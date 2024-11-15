@@ -14,13 +14,18 @@ import NextButton from "../components/atoms/NextButton";
 import PreviousButton from "../components/atoms/PreviousButton";
 import RespondentDemographic from "./RespondentDemographic";
 
-import { othersSpecify, othersPlaceholders } from "../utils/constant";
+import {
+  othersSpecify,
+  othersPlaceholders,
+  sendBlobToBackend,
+} from "../utils/constant";
 
 import RadioQuestion from "../components/Questions/RadioQuestion";
 import InputQuestion from "../components/Questions/InputQuestion";
 import MultiChoiceQuestion from "../components/Questions/MultiChoiceQuestion";
 import useSurveyTermination from "../utils/useSurveyTermination";
 import products from "../components/translationFiles/Indrusties/products";
+import RatingQuestion from "./../components/Questions/RatingQuestion";
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
@@ -35,14 +40,18 @@ function QuestionForm() {
   const [isOther, setOther] = useState(false);
   const [multi, setMulti] = useState(0);
   const [terminate, setTerminate] = useState(false);
-  const codeMapping = Array.from({ length: 10 }, (_, i) => (i + 1).toString());
-  console.log(codeMapping);
+  const [responses, setResponses] = useState({}); // Store responses in an array
+  const [storedData, setStoredData] = useState({});
+  const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
+  
 
-  console.log(codeMapping);
+
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
+    setStoredData(storedData)
 
+    console.log(storedData, "fron");
     // Get selected language from localStorage or default to English
     const selectedLanguage =
       JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
@@ -71,7 +80,10 @@ function QuestionForm() {
   const questions = loading
     ? []
     : [...Object.values(sections[0]), ...Object.values(sections[1])];
-  const [responses, setResponses] = useState({}); // Store responses in an array
+  const [isLoading, setIsLoading] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+  const [recordedBlob, setRecordedBlob] = useState(null);
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [otherInput, setOtherInput] = useState(""); // State to hold "Other" input
   const [demographicAnswered, setDemographicAnswered] = useState(false);
@@ -79,6 +91,10 @@ function QuestionForm() {
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
+
+    const selectedLanguage =
+      JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
+    setLanguage(selectedLanguage);
   }, []);
 
   useEffect(() => {
@@ -87,22 +103,29 @@ function QuestionForm() {
 
     // Merge the existing data with the new responses
     const updatedData = { ...existingData, ...responses };
+ 
 
+    setStoredData(updatedData)
+// console.log()
+    console.log(storedData, "frodfgdfh");
     // Save the updated data back to local storage
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
   }, [responses]);
 
+  //audio
   useEffect(() => {
-    // Merge existing data with new responses and store it back in local storage
-    const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then((stream) => {
+        const recorder = new MediaRecorder(stream);
+        setMediaRecorder(recorder);
 
-    // Merge the existing data with the new responses
-    const updatedData = { ...existingData, ...responses };
-
-    // Save the updated data back to local storage
-    localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
-  }, [responses]);
-
+        recorder.ondataavailable = (e) => {
+          setRecordedBlob(e.data);
+        };
+      })
+      .catch((error) => console.error("Error accessing media devices:", error));
+  }, []);
   const handleResponseChange = (key, value, index) => {
     let keyForOtherSpecify = "";
 
@@ -119,7 +142,8 @@ function QuestionForm() {
       const terminate = isTerminate(
         currentQuestion.number,
         value,
-        currentQuestion.terminationCodes
+        currentQuestion.terminationCodes,
+        storedData
       );
       setTerminate(terminate);
     }
@@ -141,10 +165,21 @@ function QuestionForm() {
     setResponses((prevResponses) => {
       const updatedResponses = { ...prevResponses, [key]: value }; // Update the specific response
 
+      if (currentQuestion.termination) {
+        const terminate = isTerminate(
+          currentQuestion.number,
+          value,
+          currentQuestion.terminationCodes
+        );
+        setTerminate(terminate);
+      }
+
       if (othersSpecify.includes(value)) {
         // If "Others" is selected in any language, keep the previous input if available
-        setOtherInput(prevResponses[key] || "");
+        updatedResponses[`${key}_other`] = otherInput;
+        // setOtherInput(prevResponses[key] || "");
       } else {
+        delete updatedResponses[`${key}_other`];
         // Reset "Other" input if a non-"Others" option is selected
         setOtherInput("");
       }
@@ -153,41 +188,55 @@ function QuestionForm() {
   };
 
   const handleCheckboxChange = (key, values) => {
+    console.log(otherInput);
+
     const keyValue = key;
     let keyForOtherSpecify = "";
     const currentQuestion = questions[currentQuestionIndex];
     const maxSelections = currentQuestion.maxSelections || 0;
-    console.log(currentQuestion.maxSelections, values.length, "max");
+
     if (maxSelections > 0) {
       setMulti(values.length);
     }
 
+    // Identify the key for "Others (please specify)"
     currentQuestion.options.forEach((option, index) => {
       if (othersSpecify.includes(option)) {
         keyForOtherSpecify = codeMapping[index];
       }
     });
 
-    setOther(codeMapping.includes(keyForOtherSpecify));
+    // Check if "Others (please specify)" is selected
+    const isOtherSelected = values.includes(keyForOtherSpecify);
+    setOther(isOtherSelected);
 
-    if (values.includes("Others (please specify)")) {
+    if (isOtherSelected) {
       setResponses((prev) => ({
         ...prev,
-        [`${keyValue}_a`]: otherInput,
+        [keyValue]: values, // Save the selected values
+        [`${keyValue}_a`]: otherInput, // Save the "other" input under a unique key
       }));
     } else {
-      setResponses((prev) => ({
-        ...prev,
-        [keyValue]: values,
-      }));
+      setResponses((prev) => {
+        // Remove "Others" input if not selected
+        const updatedResponses = { ...prev, [keyValue]: values };
+        delete updatedResponses[`${keyValue}_a`];
+        return updatedResponses;
+      });
     }
   };
 
-  const handleOtherInputChange = (e) => {
-    setOtherInput(e.target.value);
+  const handleOtherInputChange = (event) => {
+    const newValue = event.target.value;
+    setOtherInput(newValue);
+
+    setResponses((prevResponses) => ({
+      ...prevResponses,
+      [`${currentQuestion.number}_other`]: newValue, // Save under unique key, e.g., "S1-Q1_other"
+    }));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -197,16 +246,35 @@ function QuestionForm() {
       setDemographicAnswered(true);
       return;
     }
+
+    // mediaRecorder.stop()
+    //audio
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+      mediaRecorder.stop(); // Stop recording when clicking 'Next'
+      console.log("stopped");
+    }
+    if (currentQuestion.audio && recordedBlob) {
+      setIsLoading(true);
+      const fileUrl = await sendBlobToBackend(recordedBlob);
+      setIsLoading(false);
+
+      setResponses((prevResponses) => ({
+        ...prevResponses,
+        [`${currentQuestion.number}_rec`]: fileUrl, // Save the file URL to the responses
+      }));
+    }
     setOther(false);
     if (currentQuestionIndex < questions.length - 1) {
-      if (otherInput && otherInput.trim()) {
-        localStorage.setItem(`other${currentQuestionIndex}`, otherInput);
-      }
-
       setCurrentQuestionIndex((prev) => prev + 1);
+      mediaRecorder.start();
+      mediaRecorder.onstart = () => {
+        console.log("Recording started successfully.");
+      };
+      // Start recording for the next question
     } else if (sectionIndex < sections.length - 1) {
-      setSectionIndex((prev) => prev + 1);
+      setSectionIndex(sectionIndex + 1);
       setCurrentQuestionIndex(0);
+      setOtherInput("");
     }
     setOtherInput("");
   };
@@ -245,13 +313,11 @@ function QuestionForm() {
     if (
       currentQuestion.options &&
       currentQuestion.type === "multi" &&
-      currentQuestion.maxSelections &&
-      isOther
+      currentQuestion.maxSelections
     ) {
       return (
         !currentResponse ||
-        (currentResponse.includes("Others (please specify)") &&
-          !otherInput.trim()) ||
+        (isOther && !otherInput.trim()) ||
         multi != currentQuestion.maxSelections ||
         multi == 0 ||
         multi != currentQuestion.maxSelections
@@ -316,6 +382,23 @@ function QuestionForm() {
               codeMapping={codeMapping}
               isOther={isOther}
             />
+          ) : currentQuestion.type === "rate" ? (
+            <RatingQuestion
+              currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              handleResponseChange={handleResponseChange}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              handleOtherInputChange={handleOtherInputChange}
+              codeMapping={codeMapping}
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
+            />
           ) : (
             <InputQuestion
               currentQuestionIndex={currentQuestionIndex}
@@ -338,13 +421,13 @@ function QuestionForm() {
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton
               onClick={handleNext}
-              isDisabled={isNextButtonDisabled()}
+              isDisabled={isNextButtonDisabled() || isLoading}
             />
           ) : (
             <Button
               colorScheme="teal"
               onClick={handleSubmit}
-              isDisabled={isNextButtonDisabled()}>
+              isDisabled={isNextButtonDisabled() || isLoading}>
               Next
             </Button>
           )}
