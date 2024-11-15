@@ -25,7 +25,7 @@ function App() {
          
         
         
-          <Route path="/questionForm" element={<QuestionForm />} />
+          <Route path="/survey" element={<QuestionForm />} />
           <Route path="/submit" element={<SubmitMsg />} />
           < Route path="/selfie" element={   <SelfieCapture/>}/>
           

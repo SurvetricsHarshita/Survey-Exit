@@ -56,7 +56,7 @@ function LoginPage() {
           position: 'top-right',
         });
         localStorage.setItem("ProductsTest", JSON.stringify({ username: email }));
-        navigate('/type'); // Navigate to the next page
+        navigate('/survey'); // Navigate to the next page
       }
     } catch (error) {
       toast({

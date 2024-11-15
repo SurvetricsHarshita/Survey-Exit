@@ -8,7 +8,9 @@ function useSurveyTermination() {
       S1: () => handleS1(answer, terminationCodes),
       S2: () => handleS2(answer, terminationCodes),
       S4c: () => handleS4c(answer, terminationCodes),
-      S9d:() => handleS9d(answer, terminationCodes,storedData)
+      S9c: () => handleS9c(answer, terminationCodes),
+      S9d:() => handleS9d(answer, terminationCodes,storedData),
+      S9g:() => handleS9g(answer, terminationCodes,storedData)
     };
 
     if (questionHandlers[question]) {
@@ -36,7 +38,13 @@ function useSurveyTermination() {
     }
     return false;
   }
-  
+  function handleS9c(answer, terminationCodes) {
+    if (terminationCodes.includes(answer)) {
+      // Corrected syntax
+      return true;
+    }
+    return false;
+  }
   function   handleS4c(answer) {
     
     if (answer < 25 || answer > 45) {
@@ -52,6 +60,14 @@ console.log("hi",storedData)
       console.log("hi",s4aValue)
 
     if (s4aValue=="7"|| s4aValue=="6") {
+      // Corrected syntax
+      return true;
+    }
+    return false;
+  }
+
+  function handleS9g(answer, terminationCodes) {
+    if (terminationCodes.includes(answer)) {
       // Corrected syntax
       return true;
     }

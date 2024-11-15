@@ -26,6 +26,7 @@ import MultiChoiceQuestion from "../components/Questions/MultiChoiceQuestion";
 import useSurveyTermination from "../utils/useSurveyTermination";
 import products from "../components/translationFiles/Indrusties/products";
 import RatingQuestion from "./../components/Questions/RatingQuestion";
+import useAsk from "../utils/useAsk";
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
@@ -40,6 +41,7 @@ function QuestionForm() {
   const [isOther, setOther] = useState(false);
   const [multi, setMulti] = useState(0);
   const [terminate, setTerminate] = useState(false);
+  const [ask, setAsk] = useState(false);
   const [responses, setResponses] = useState({}); // Store responses in an array
   const [storedData, setStoredData] = useState({});
   const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
@@ -88,6 +90,7 @@ function QuestionForm() {
   const [otherInput, setOtherInput] = useState(""); // State to hold "Other" input
   const [demographicAnswered, setDemographicAnswered] = useState(false);
   const { isTerminate } = useSurveyTermination();
+  const { isAsk } = useAsk();
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
@@ -146,6 +149,16 @@ function QuestionForm() {
         storedData
       );
       setTerminate(terminate);
+     
+    }
+    if (currentQuestion.checkAsk) {
+      const display = isAsk(
+        currentQuestion.number,
+       value,
+        storedData
+        
+      );
+      setAsk(display );
     }
     setResponses((prevResponses) => {
       const updatedResponses = { ...prevResponses, [key]: value }; // Update the specific response
@@ -173,7 +186,13 @@ function QuestionForm() {
         );
         setTerminate(terminate);
       }
-
+      if (currentQuestion. checkAsk) {
+        const display = isAsk(
+          currentQuestion.number,
+          storedData
+        );
+        setAsk(display );
+      }
       if (othersSpecify.includes(value)) {
         // If "Others" is selected in any language, keep the previous input if available
         updatedResponses[`${key}_other`] = otherInput;
@@ -198,7 +217,7 @@ function QuestionForm() {
     if (maxSelections > 0) {
       setMulti(values.length);
     }
-
+    setMulti(values.length);
     // Identify the key for "Others (please specify)"
     currentQuestion.options.forEach((option, index) => {
       if (othersSpecify.includes(option)) {
@@ -237,6 +256,12 @@ function QuestionForm() {
   };
 
   const handleNext = async () => {
+    // if (currentQuestion.number == "S9f") {
+    //   // Skip to `q3` directly
+    //   setCurrentQuestionIndex((prev) => prev + 1);
+    //   return
+      
+    // }
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -263,9 +288,11 @@ function QuestionForm() {
         [`${currentQuestion.number}_rec`]: fileUrl, // Save the file URL to the responses
       }));
     }
+
+    
     setOther(false);
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+      // setCurrentQuestionIndex((prev) => prev + 1);
       mediaRecorder.start();
       mediaRecorder.onstart = () => {
         console.log("Recording started successfully.");
@@ -276,7 +303,22 @@ function QuestionForm() {
       setCurrentQuestionIndex(0);
       setOtherInput("");
     }
+
+
+    if (currentQuestion.checkAsk  && ask) {
+      alert("23")
+      
+        setCurrentQuestionIndex((prev) => prev + 2);
+        return
+   
+      
+
+      
+    }else{
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
     setOtherInput("");
+    setAsk(false);
   };
   // setMulti(1)
   const handlePrevious = () => {
@@ -307,13 +349,16 @@ function QuestionForm() {
 
   const currentQuestion = questions[currentQuestionIndex];
 
+  
+  
   const isNextButtonDisabled = () => {
     const currentResponse = responses[currentQuestion.number];
     if (!demographicAnswered) return false;
     if (
       currentQuestion.options &&
       currentQuestion.type === "multi" &&
-      currentQuestion.maxSelections
+      currentQuestion.maxSelections 
+      // isOth.er
     ) {
       return (
         !currentResponse ||
@@ -330,7 +375,7 @@ function QuestionForm() {
       return !currentResponse && !otherInput.trim();
     }
   };
-
+  
   return (
     <Box p={5}>
       {!demographicAnswered ? (
