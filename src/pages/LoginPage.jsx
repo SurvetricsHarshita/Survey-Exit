@@ -55,7 +55,8 @@ function LoginPage() {
           isClosable: true,
           position: 'top-right',
         });
-        localStorage.setItem("ProductsTest", JSON.stringify({ username: email }));
+        localStorage.setItem("ProductsTest", JSON.stringify({ email: email }));
+        localStorage.setItem('email', JSON.stringify(email));
         navigate('/survey'); // Navigate to the next page
       }
     } catch (error) {

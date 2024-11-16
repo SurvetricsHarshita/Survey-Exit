@@ -97,4 +97,22 @@ export const sendBlobToBackend = async (blob) => {
     console.error("Error uploading file:", error);
   }
 };
+export function formatDuration(seconds) {
+  const hrs = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${hrs}:${mins}:${secs}`;
+}
 
+export  const getIndianTime = () => {
+  // Get the current date and time in UTC
+  const d = new Date();
+  const utc = d.getTime() + (d.getTimezoneOffset() * 60000); // Calculate UTC time in milliseconds
+  const nd = new Date(utc + (3600000 * 5.5)); // Add 
+
+  const istTime = nd; // Use the Date object representing IST
+  const istFormatted = istTime.toLocaleString('en-IN'); // Format the IST time
+  console.log("IST now is: " + istFormatted); // Log the IST time
+
+  return istTime; // Return the Date object for IST
+};

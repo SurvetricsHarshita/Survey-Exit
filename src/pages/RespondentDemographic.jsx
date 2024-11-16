@@ -40,9 +40,20 @@ const RespondentDemographic = ({ handleNext, language }) => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [step, setStep] = useState(1); // Step state to track which form part to show
-
+  const [startTime, setStartTime] = useState(null);
   const langText = languageText[language] || languageText["en"];
-
+  const getIndianTime = () => {
+    // Get the current date and time in UTC
+    const d = new Date();
+    const utc = d.getTime() + (d.getTimezoneOffset() * 60000); // Calculate UTC time in milliseconds
+    const nd = new Date(utc + (3600000 * 5.5)); // Add 
+  
+    const istTime = nd; // Use the Date object representing IST
+    const istFormatted = istTime.toLocaleString('en-IN'); // Format the IST time
+    console.log("IST now is: " + istFormatted); // Log the IST time
+  
+    return istTime; // Return the Date object for IST
+  };
   useEffect(() => {
     requestMicrophonePermission();
     requestLocationPermission();
@@ -80,15 +91,28 @@ const RespondentDemographic = ({ handleNext, language }) => {
 
   const handleSubmit = (step) => {
     const respondentData = { ...formData, latitude, longitude };
-    const start = new Date();
+    const start = getIndianTime(); // Get the current IST time
+  
+    // Set the start time
+    setStartTime(start);
+
+    // Prepare stored data
+    const storedData = JSON.parse(localStorage.getItem("questionsData")) || {};
+
+    // Store date and time in the required format
+    storedData["startTime"] = {
+      date: start.toLocaleDateString('en-IN'), // Format date for India
+      time: start.toLocaleTimeString('en-IN') // Format time for India
+    };
+
 
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
     const updatedData = {
       ...existingData,
       ...respondentData,
       startTime: {
-        date: start.toLocaleDateString(),
-        time: start.toLocaleTimeString(),
+        date: start.toLocaleDateString('en-IN'), // Format date for India
+      time: start.toLocaleTimeString('en-IN') 
       },
     };
 

@@ -18,6 +18,8 @@ import {
   othersSpecify,
   othersPlaceholders,
   sendBlobToBackend,
+  formatDuration,
+  getIndianTime,
 } from "../utils/constant";
 
 import RadioQuestion from "../components/Questions/RadioQuestion";
@@ -29,6 +31,8 @@ import RatingQuestion from "./../components/Questions/RatingQuestion";
 import useAsk from "../utils/useAsk";
 
 import RatingSlider from "../components/Questions/RatingSlider";
+import { Axios } from "axios";
+import { submitDataToAPI } from "../utils/submitDataToAPI";
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
@@ -49,7 +53,7 @@ function QuestionForm() {
   const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
   const [mediaFrequencies, setMediaFrequencies] = useState({});
   const [sliderValue, setSliderValue] = useState(3)
-
+  const [endTime, setEndTime] = useState(null);
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
@@ -258,7 +262,17 @@ function QuestionForm() {
   };
 
   const handleNext = async () => {
-   
+    const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+
+    // Parse the start time from existing data
+    const startTimeObj = existingData["startTime"]; // This will be an object like { date: "16/11/2024", time: "2:51:26 pm" }
+  
+    if (startTimeObj) {
+      const startTimeStr = `${startTimeObj.date} ${startTimeObj.time}`; // Combine date and time into a single string
+      console.log(startTimeStr); // This should now log something like "16/11/2024 2:51:26 pm"
+    } else {
+      console.log("startTime is undefined or missing in existingData");
+    }
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -327,23 +341,63 @@ function QuestionForm() {
     }
   };
 
-  const handleSubmit = () => {
+const handleSubmit = async () => {
+  const end = getIndianTime(); // Get current time in IST
+  setEndTime(end);
+
+  // Retrieve existing data from localStorage
+  const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+
+
+  const startTimeDate = existingData.startTime?.date; 
+  const startTimeStr = existingData.startTime?.time; 
+
  
+  const [day, month, year] = startTimeDate.split('/'); 
+  const formattedDate = `${month}/${day}/${year}`; 
 
 
-    const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+  const startTimeFull = `${formattedDate} ${startTimeStr}`; // 
+
+
+  const startTime = new Date(startTimeFull); 
+
+  const surveyDuration = Math.floor((end.getTime() - startTime.getTime()) / 1000);
+
   
-    const updatedProductsTest = {
-      ...existingData,
-    
-    };
-
-    // Perform any action to store or submit updatedProductsTest
-    console.log(updatedProductsTest);
-    localStorage.setItem("ProductsTest", JSON.stringify(updatedProductsTest));
-
-    // navigate("/selfie");
+  const updatedProductTest = {
+    ...existingData,
+    endTime: {
+      date: end.toLocaleDateString('en-IN'), 
+      time: end.toLocaleTimeString('en-IN'), 
+    },
+    Duration: formatDuration(surveyDuration), 
   };
+
+  console.log(updatedProductTest);
+
+  localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
+  navigate("/submit",{ state: { msg: "submit" } }); 
+  const { success, message } = await submitDataToAPI(updatedProductTest);
+
+  if (success) {
+    navigate("/submit"); 
+    const email = localStorage.getItem("email");
+
+ 
+  localStorage.clear(); 
+
+  // Restore the email value back into local storage
+  if (email) {
+    localStorage.setItem("email", email);
+  } // Clear localStorage after submission
+  } else {
+    console.log(message) // Show error message if submission fails
+  }
+};
+
+
+
 
   const currentQuestion = questions[currentQuestionIndex];
 
