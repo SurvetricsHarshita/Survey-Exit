@@ -47,7 +47,7 @@ function QuestionForm() {
   const [responses, setResponses] = useState({}); // Store responses in an array
   const [storedData, setStoredData] = useState({});
   const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
-  
+  const [mediaFrequencies, setMediaFrequencies] = useState({});
 
 
   useEffect(() => {
@@ -264,6 +264,11 @@ function QuestionForm() {
     //   return
       
     // }
+
+    // if(currentQuestion.type=="rate"){
+    //   handleRating()
+    //   return
+    // }
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -377,7 +382,25 @@ function QuestionForm() {
       return !currentResponse && !otherInput.trim();
     }
   };
-  
+  const handleChange = (mediaId, frequency) => {
+    // setMediaFrequencies(prevFrequencies => ({
+    //   ...prevFrequencies,
+    //   [mediaId]: frequency,
+    // }));
+    setMediaFrequencies((prevFrequencies) => ({
+      ...prevFrequencies,
+      [mediaId]: frequency,
+    }));
+    setResponses((prevFrequencie) => ({
+      ...prevFrequencie,
+      [mediaId]: frequency, // Save under unique key, e.g., "S1-Q1_other"
+    }));
+  };
+  // const handleRating = (mediaFrequencies) => {
+  //   const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
+  //   localStorage.setItem('ProductsTest', JSON.stringify({ ...storedData, ...mediaFrequencies }));
+  //   // onSubmit("MediaConsumption", mediaFrequencies);
+  // };
   return (
     <Box p={5}>
       {!demographicAnswered ? (
@@ -434,17 +457,20 @@ function QuestionForm() {
               currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              handleResponseChange={handleResponseChange}
+              
               othersSpecify={othersSpecify}
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
-              handleOtherInputChange={handleOtherInputChange}
+       
               codeMapping={codeMapping}
               isOther={isOther}
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
-              onPrevious={handlePrevious}
-              onSubmit={handleNext}
+           
+              // onRating={handleRating}
+              handleChange={ handleChange}
+              setMediaFrequencies={setMediaFrequencies}
+              mediaFrequencies={mediaFrequencies}
             />
             // Spontaneous
           ) : currentQuestion.type === "RatingSlider" ? (
@@ -463,6 +489,7 @@ function QuestionForm() {
               frequencies={currentQuestion.FREQUENCIES}
               onPrevious={handlePrevious}
               onSubmit={handleNext}
+              setMediaFrequencies={setMediaFrequencies}
             />
             // Spontaneous
           ): (
@@ -487,7 +514,7 @@ function QuestionForm() {
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton
               onClick={handleNext}
-              isDisabled={isNextButtonDisabled() || isLoading}
+              // isDisabled={isNextButtonDisabled() || isLoading}
             />
           ) : (
             <Button
