@@ -27,6 +27,8 @@ import useSurveyTermination from "../utils/useSurveyTermination";
 import products from "../components/translationFiles/Indrusties/products";
 import RatingQuestion from "./../components/Questions/RatingQuestion";
 import useAsk from "../utils/useAsk";
+import SpontaneousLikesForm from "../components/Questions/SpontaneousLikesForm";
+import RatingSlider from "../components/Questions/RatingSlider";
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
@@ -444,7 +446,26 @@ function QuestionForm() {
               onPrevious={handlePrevious}
               onSubmit={handleNext}
             />
-          ) : (
+            // Spontaneous
+          ) : currentQuestion.type === "RatingSlider" ? (
+            <RatingSlider
+              currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              handleResponseChange={handleResponseChange}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              handleOtherInputChange={handleOtherInputChange}
+              codeMapping={codeMapping}
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
+            />
+            // Spontaneous
+          ): (
             <InputQuestion
               currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
@@ -455,7 +476,7 @@ function QuestionForm() {
         </FormControl>
       )}
 
-      {demographicAnswered && (
+      {demographicAnswered  && (
         <Flex mt={10} justify="space-between">
           <PreviousButton
             mr={2}

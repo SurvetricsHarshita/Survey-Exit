@@ -611,13 +611,17 @@ const products = {
                   { value: '1', label: 'Strongly Disagree' },
               ],
               type: "rate",
-              singleCode: true
+              
           },
   
   
           Q3: {
               number: "CS1",
               question: "Overall, how much do you like or dislike your current soap __ bar? Answer using the 5-point scale, where 5 means ‘Liked it very much’ & 1 means ‘Disliked it very much’?  ",
+              STATEMENTS: [
+                { id: 'CS1_a', label: 'how much do you like or dislike your current soap __ bar?' },
+             
+            ],
               FREQUENCIES: [
                   { value: '5', label: 'Liked it very much' },
                   { value: '4', label: 'Somewhat liked' },
@@ -631,33 +635,43 @@ const products = {
           },
   
           Q4: {
-              number: "CS2a",
+              number: "CS2a_SHAPE",
               question: "Tell us everything that you like about your current soap, however minor the  feeling  may be please do  let us know all that you like about your current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
-              type: "input",
-              responseFormat: "text",
-              additionalProbes: [
-                  { probe: "PROBE1", description: "SHAPE", placeholder: "" },
-                  { probe: "PROBE2", description: "FRAGRANCE", placeholder: "" },
-                  { probe: "PROBE3", description: "IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN", placeholder: "" }
-              ],
-              required: true,
-              multiLine: true
+              type: "",
+              label:"SHAPE :"
           },
-  
+          Q4b: {
+            number: "CS2a_FRAGRANCE",
+            question: "Tell us everything that you like about your current soap, however minor the  feeling  may be please do  let us know all that you like about your current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+            type: "",         label:"FRAGRANCE :"
+            
+        },Q4c: {
+          number: "CS2a_IMPACT",
+          question: "Tell us everything that you like about your current soap, however minor the  feeling  may be please do  let us know all that you like about your current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+          type: "",
+          label:"IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN : "
+        },
           Q5: {
-              number: "CS2b",
+              number: "CS2b_SHAPE",
               question: "Tell us everything that you dislike about the current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
-              type: "openEnded",
-              responseFormat: "text",
-              additionalProbes: [
-                  { probe: "PROBE1", description: "SHAPE", placeholder: "" },
-                  { probe: "PROBE2", description: "FRAGRANCE", placeholder: "" },
-                  { probe: "PROBE3", description: "IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN", placeholder: "" }
-              ],
-              required: true,
-              multiLine: true
+               type: "",
+              label:"SHAPE"
   
           },
+          Q5b: {
+            number: "CS2b_FRAGRANCE",
+            question: "Tell us everything that you dislike about the current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+             type: "",
+            label:"FRAGRANCE"
+
+        },
+        Q5c: {
+          number: "CS2b_IMPACT",
+          question: "Tell us everything that you dislike about the current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+           type: "",
+         label:"IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN "
+
+      },
   
           Q6: {
               number: "CS3",
@@ -670,7 +684,8 @@ const products = {
                   { value: '1', label: 'Definitely will notbuy' },
               ],            
               type: "rate",
-              singleCode: true
+              STATEMENTS: [
+                { id: 'CS3_a', label: 'basis your experience with your current soap' },]
   
           },
   
@@ -690,9 +705,10 @@ const products = {
                   { value: '2', label: 'Disagree' },
                   { value: '1', label: 'Strongly Disagree' },
               ],
-              type: "rate",
-              singleCode: true
-  
+              // type: "rate",
+              // type: "RatingSlider",
+              lastOption: '4',
+              // lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
           },
   
           Q9: {
@@ -713,9 +729,9 @@ const products = {
                   { value: '2', label: 'Disagree' },
                   { value: '1', label: 'Strongly Disagree' },
               ],
-              lastoption: 'cs5_e',
+              lastOption: '5',
               type: "rate",
-              singleCode: true
+           
   
           },
   
@@ -736,7 +752,7 @@ const products = {
                   { value: '2', label: 'Disagree' },
                   { value: '1', label: 'Strongly Disagree' },
               ],
-              lastoption: 'cs6_d',
+              lastOption: '4',
               type: "rate",
               singleCode: true
   
@@ -759,10 +775,9 @@ const products = {
                   { value: '2', label: 'Disagree' },
                   { value: '1', label: 'Strongly Disagree' },
               ],
-              lastoption: 'cs7_d',
+              lastOption: '4',
               type: "rate",
-              singleCode: true
-  
+              
           },
   
           Q12: {
@@ -782,9 +797,9 @@ const products = {
                   { value: '2', label: 'Disagree' },
                   { value: '1', label: 'Strongly Disagree' },
               ],
-              lastoption: 'cs8_d',
+              lastOption: '5',
               type: "rate",
-              singleCode: true
+       
           
       
   },
@@ -797,8 +812,12 @@ const products = {
         
 
       ],
-      lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
-
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
       type: "rate",
       singleCode: true
 
@@ -814,7 +833,12 @@ const products = {
         
 
       ],
-      lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
 
       type: "rate",
       singleCode: true
@@ -824,50 +848,82 @@ const products = {
       number: "TS1",
       question: "Overall, how much did you like or dislike this soap bar? Answer using the 5-point scale, where 5 means ‘Liked it very much’ & 1 means ‘Disliked it very much’? SINGLE CODE ",
       
-      lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
-
-      type: "rate",
-      singleCode: true
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
+      type: "RatingSlider",
+      singleCode: true,
+      value:["2","4"],
+      lableOptions: ["Liked it very much", "Somewhat liked", "Neutral", "Somewhat disliked ", "Disliked it very much"],
 
     },
     
     Q16: {
-      number: "TS2a",
+      number: "TS2a_SHAPE",
       question: "Is there anything that you liked about this   soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
-      type: "openEnded",
-      responseFormat: "text",
-      additionalProbes: [
-        { probe: "PROBE1", description: "SHAPE", placeholder: "" },
-        { probe: "PROBE2", description: "FRAGRANCE", placeholder: "" },
-        { probe: "PROBE3", description: "IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN", placeholder: "" }
-      ],
-      required: true,
-      multiLine: true
+      type: "",
+      
+       label:"SHAPE"
       
     },
+    Q16SHAPE: {
+      number: "TS2a_FRAGRANCE",
+      question: "Is there anything that you liked about this   soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+     type: "",
+     label:"FRAGRANCE"
+     
+      
+     
+      
+    },
+    Q16_FRAGRANCE: {
+      number: "TS2a_IMPACT",
+      question: "Is there anything that you liked about this   soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+      type: "",
+     label:"IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN"
+    
+     
+      
+    },
+   
     Q17: {
-      number: "TS2b",
-      question: "Is there anything that you liked about this   soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
-      type: "openEnded",
-      responseFormat: "text",
-      additionalProbes: [
-        { probe: "PROBE1", description: "SHAPE", placeholder: "" },
-        { probe: "PROBE2", description: "FRAGRANCE", placeholder: "" },
-        { probe: "PROBE3", description: "IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN", placeholder: "" }
-      ],
-      required: true,
-      multiLine: true
+      number: "TS2b_SHAPE",
+      question: "Is there anything that you disliked about  this  soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM   ",
+      type: "",
+      
+       label:"SHAPE"
       
     },
-
+    Q17SHAPE: {
+      number: "TS2b_FRAGRANCE",
+      question: "Is there anything that you disliked about  this  soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM   ",
+     type: "",
+     label:"FRAGRANCE"
+     
+      
+     
+      
+    },
+    Q17_FRAGRANCE: {
+      number: "TS2b_IMPACT",
+      question: "Is there anything that you disliked about  this  soap that we placed at your home for last 15 days? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM   ",
+      type: "",
+     label:"IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN"
+    
+     
+      
+    },
     Q18: {
       number: "TS3",
       question: "Overall, basis your experience with the soap so far, how likely are you to purchase it when it is launched in the market? Answer using the 5-point scale, where 5 means ‘Definitely will buy’ & 1 means ‘Definitely will not buy’? SINGLE CODE ",
       
       lableOptions: ["Definitely will buy","Probably will buy	","May or may not buy	","Probably will not buy","	Definitely will not buy"],
-      
-      type: "rate",
-      singleCode: true
+     
+      type: "RatingSlider",
+
       
     },
 
@@ -882,8 +938,15 @@ const products = {
         
 
       ],
-      lastoption:"ts4_d",
-      lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+         
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
+      lastOption:"ts4_d",
+      // lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
 
       type: "rate",
       singleCode: true
@@ -901,8 +964,13 @@ const products = {
         { id: 'ts5_e', label: 'Overall, it gives a very rich bathing experience' },
         
 
-      ],
-      lastoption:"ts5_e",
+      ],   FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
+      lastOption:"ts5_e",
       lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
 
       type: "rate",
@@ -921,11 +989,16 @@ const products = {
         
 
       ],
-      lastoption:"ts6_d",
+      lastOption:"ts6_d",
       lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
 
       type: "rate",
-      singleCode: true
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
 
     },
     
@@ -940,11 +1013,16 @@ const products = {
         
 
       ],
-      lastoption:"ts7_d",
+      lastOption:"ts7_d",
       lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
 
       type: "rate",
-      singleCode: true
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
 
     },
     
@@ -960,8 +1038,13 @@ const products = {
         
 
       ],
-      lastoption:"ts8_e",
-      lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+      lastOption:"ts8_e",
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' },],
 
       type: "rate",
       singleCode: true
@@ -970,23 +1053,23 @@ const products = {
 
     Q24: {
       number: "TS9",
-      question: "I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT",
+      question: "I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT",   label:"Functional Benefits",
     STATEMENTS: [
-        { id: 'ts9_', label: 'Functional Benefits' },
-        { id: 'ts9_', label: 'Has natural ingredients' },
-        { id: 'ts9_', label: 'Has healing properties' },
-        { id: 'ts9_', label: 'Is a good soap for daily beauty care' },
-        { id: 'ts9_', label: 'Lathers ' },
-        { id: 'ts9_', label: 'Value for money' },
-        { id: 'ts9_', label: 'Packaging can be recycled' },
-        { id: 'ts9_', label: 'Does not dry my skin' },
-        { id: 'ts9_', label: 'Vegan/ayurvedic/medical soap' },
-        { id: 'ts9_', label: 'Suitable for everybody in the family men and women' },
-        { id: 'ts9_', label: 'Sensorial Benefits' },
-        { id: 'ts9_', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
-        { id: 'ts9_', label: 'This soap is for youthful skin' },
-        { id: 'ts9_', label: 'This soap is for young and modern woman' },
-        { id: 'ts9_', label: 'This soap balances skin moisture' },
+        
+        { id: 'ts9F_a', label: 'Has natural ingredients' },
+        { id: 'ts9F_b', label: 'Has healing properties' },
+        { id: 'ts9F_c', label: 'Is a good soap for daily beauty care' },
+        { id: 'ts9F_d', label: 'Lathers ' },
+        { id: 'ts9F_e', label: 'Value for money' },
+        { id: 'ts9F_f', label: 'Packaging can be recycled' },
+        { id: 'ts9F_g', label: 'Does not dry my skin' },
+        { id: 'ts9F_h', label: 'Vegan/ayurvedic/medical soap' },
+        { id: 'ts9F_i', label: 'Suitable for everybody in the family men and women' },
+        { id: 'ts9F_k', label: 'Sensorial Benefits' },
+        { id: 'ts9F_', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
+        { id: 'ts9_m', label: 'This soap is for youthful skin' },
+        { id: 'ts9_n', label: 'This soap is for young and modern woman' },
+        { id: 'ts9_o', label: 'This soap balances skin moisture' },
         { id: 'ts9_', label: 'This soap is creamy and  deep cleans my skin' },
         { id: 'ts9_', label: 'This soap reduces pimples and blackheads' },
         { id: 'ts9_', label: 'Makes my skin glow' },
@@ -994,15 +1077,15 @@ const products = {
         { id: 'ts9_', label: 'Suitable for sensitive/problematic skin' },
         { id: 'ts9_', label: 'Gently cleans the skin' },
         { id: 'ts9_', label: 'Emotional Benefits' },
-        { id: 'ts9_', label: 'Dermatologist recommended' },
-        { id: 'ts9_', label: 'Leaves my skin feeling softer and smoother' },
-        { id: 'ts9_', label: 'Makes me feel beautiful' },
-        { id: 'ts9_', label: 'Makes me feel confident' },
-        { id: 'ts9_', label: 'Long lasting fragrance' },
-        { id: 'ts9_', label: 'Provides luxurious bathing experience' },
-        { id: 'ts9_', label: 'Controls all kinds of skin ailments' },
-        { id: 'ts9_', label: 'Helps me to take good care of me' },
-        { id: 'ts9_', label: 'Makes me feel like a complete woman' },
+        { id: 'ts9_p', label: 'Dermatologist recommended' },
+        { id: 'ts9_q', label: 'Leaves my skin feeling softer and smoother' },
+        { id: 'ts9_r', label: 'Makes me feel beautiful' },
+        { id: 'ts9_s', label: 'Makes me feel confident' },
+        { id: 'ts9_t', label: 'Long lasting fragrance' },
+        { id: 'ts9_u', label: 'Provides luxurious bathing experience' },
+        { id: 'ts9_v', label: 'Controls all kinds of skin ailments' },
+        { id: 'ts9_w', label: 'Helps me to take good care of me' },
+        { id: 'ts9_x', label: 'Makes me feel like a complete woman' },
         
 
       ],
@@ -1012,7 +1095,43 @@ const products = {
       singleCode: true
 
     },
+    Q24a: {
+      number: "TS9",
+      question: "I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT",
+      label:"Sensorial Benefits",
+    STATEMENTS: [
+       
 
+        { id: 'ts9_k', label: 'Sensorial Benefits' },
+        { id: 'ts9_l', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
+        { id: 'ts9_m', label: 'This soap is for youthful skin' },
+        { id: 'ts9_n', label: 'This soap is for young and modern woman' },
+        { id: 'ts9_o', label: 'This soap balances skin moisture' },
+        { id: 'ts9_p', label: 'This soap is creamy and  deep cleans my skin' },
+        { id: 'ts9_q', label: 'This soap reduces pimples and blackheads' },
+        { id: 'ts9_r', label: 'Makes my skin glow' },
+        { id: 'ts9_s', label: 'Suitable for all skin types' },
+        { id: 'ts9_', label: 'Suitable for sensitive/problematic skin' },
+        { id: 'ts9_', label: 'Gently cleans the skin' },
+        { id: 'ts9_', label: 'Emotional Benefits' },
+        { id: 'ts9_p', label: 'Dermatologist recommended' },
+        { id: 'ts9_q', label: 'Leaves my skin feeling softer and smoother' },
+        { id: 'ts9_r', label: 'Makes me feel beautiful' },
+        { id: 'ts9_s', label: 'Makes me feel confident' },
+        { id: 'ts9_t', label: 'Long lasting fragrance' },
+        { id: 'ts9_u', label: 'Provides luxurious bathing experience' },
+        { id: 'ts9_v', label: 'Controls all kinds of skin ailments' },
+        { id: 'ts9_w', label: 'Helps me to take good care of me' },
+        { id: 'ts9_x', label: 'Makes me feel like a complete woman' },
+        
+
+      ],
+      lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+
+      type: "rate",
+      singleCode: true
+
+    },
     Q25: {
       number: "C1",
       question: "Which of the following statement best describes your feeling about the BATHING SOAP   that you used for the last fifteeen day ? SINGLE CODE ",
@@ -1139,4 +1258,18 @@ export default products;
 //   first: "true", //true or false if the question is first in the section
 //   maxSelections: " false", //number of selections allowed in multi type questions
 //   radioInput: " false" // if given radio along with input box
+// },
+
+// Q4: {
+//   number: "CS2a",
+//   question: "Tell us everything that you like about your current soap, however minor the  feeling  may be please do  let us know all that you like about your current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
+//   type: "Spontaneous",
+//   responseFormat: "text",
+//   additionalProbes: [
+//       { probe: "PROBE1", description: "SHAPE", placeholder: "" },
+//       { probe: "PROBE2", description: "FRAGRANCE", placeholder: "" },
+//       { probe: "PROBE3", description: "IMPACT ON SMOOTHNESS AND SOFTNESS OF SKIN", placeholder: "" }
+//   ],
+//   required: true,
+//   multiLine: true
 // },
