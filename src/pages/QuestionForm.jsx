@@ -27,7 +27,7 @@ import useSurveyTermination from "../utils/useSurveyTermination";
 import products from "../components/translationFiles/Indrusties/products";
 import RatingQuestion from "./../components/Questions/RatingQuestion";
 import useAsk from "../utils/useAsk";
-import SpontaneousLikesForm from "../components/Questions/SpontaneousLikesForm";
+
 import RatingSlider from "../components/Questions/RatingSlider";
 
 function QuestionForm() {
@@ -48,7 +48,7 @@ function QuestionForm() {
   const [storedData, setStoredData] = useState({});
   const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
   const [mediaFrequencies, setMediaFrequencies] = useState({});
-
+  const [sliderValue, setSliderValue] = useState(3)
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
@@ -103,17 +103,17 @@ function QuestionForm() {
   }, []);
 
   useEffect(() => {
-    // Merge existing data with new responses and store it back in local storage
+  
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
 
-    // Merge the existing data with the new responses
+
     const updatedData = { ...existingData, ...responses };
  
 
     setStoredData(updatedData)
-// console.log()
+
     console.log(storedData, "frodfgdfh");
-    // Save the updated data back to local storage
+ 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
   }, [responses]);
 
@@ -258,17 +258,7 @@ function QuestionForm() {
   };
 
   const handleNext = async () => {
-    // if (currentQuestion.number == "S9f") {
-    //   // Skip to `q3` directly
-    //   setCurrentQuestionIndex((prev) => prev + 1);
-    //   return
-      
-    // }
-
-    // if(currentQuestion.type=="rate"){
-    //   handleRating()
-    //   return
-    // }
+   
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -326,6 +316,7 @@ function QuestionForm() {
     }
     setOtherInput("");
     setAsk(false);
+    // setDisable(true)
   };
   // setMulti(1)
   const handlePrevious = () => {
@@ -337,14 +328,14 @@ function QuestionForm() {
   };
 
   const handleSubmit = () => {
-    const questionCount = questions.length;
+ 
 
-    // 19_rec	https://audio-image-torage.s3.eu
+
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-    // Retrieve the existing ProductsTest from state or context
+  
     const updatedProductsTest = {
       ...existingData,
-      // Add the gathered "Others" data to the object
+    
     };
 
     // Perform any action to store or submit updatedProductsTest
@@ -358,35 +349,84 @@ function QuestionForm() {
 
   
   
+  // const isNextButtonDisabled = () => {
+  //   const currentResponse = responses[currentQuestion.number];
+  
+  //   // Demographic question handling
+  //   if (!demographicAnswered) return false;
+  
+  //   // Multi-selection question handling
+  //   if (
+  //     currentQuestion.options &&
+  //     currentQuestion.type === "multi" &&
+  //     currentQuestion.maxSelections
+  //   ) {
+  //     return (
+  //       !currentResponse ||
+  //       (isOther && !otherInput.trim()) ||
+  //       multi !== currentQuestion.maxSelections ||
+  //       multi === 0
+  //     );
+  //   }
+  
+  //   // Rate question handling
+  //   if (currentQuestion.type === "rate") {
+  //     // Ensure all media channels have a response
+  //     return !mediaFrequencies || Object.values(mediaFrequencies).some((value) => value === "");
+  //   }
+  
+  //   // Radio question handling with "Other" option
+  //   if (currentQuestion.type === "radio" && isOther) {
+  //     return !otherInput.trim();
+  //   }
+  
+  //   // Default case for unanswered questions
+  //   return !currentResponse && !otherInput.trim();
+  // };
   const isNextButtonDisabled = () => {
     const currentResponse = responses[currentQuestion.number];
+  
+ 
     if (!demographicAnswered) return false;
-    if (
-      currentQuestion.options &&
-      currentQuestion.type === "multi" &&
-      currentQuestion.maxSelections 
-      // isOth.er
-    ) {
-      return (
-        !currentResponse ||
-        (isOther && !otherInput.trim()) ||
-        multi != currentQuestion.maxSelections ||
-        multi == 0 ||
-        multi != currentQuestion.maxSelections
-      );
+  
+   
+    if (currentQuestion.options && currentQuestion.type === "multi") {
+      if (currentQuestion.maxSelections) {
+        // Handle with maxSelections defined
+        return (
+          !currentResponse ||
+          (isOther && !otherInput.trim()) || 
+          multi !== currentQuestion.maxSelections || 
+          multi === 0 // No selections
+        );
+      } else {
+      
+        return !currentResponse || multi === 0 ||
+        (isOther && !otherInput.trim()) ; // Disable if no options selected
+      }
     }
-
-    if (currentQuestion.type == "radio" && isOther) {
-      return !otherInput.trim();
-    } else {
-      return !currentResponse && !otherInput.trim();
+  
+    // Rate question handling
+    if (currentQuestion.type === "rate") {
+      // Ensure all media channels have a response
+      return !mediaFrequencies || Object.values(mediaFrequencies).some((value) => value === "");
     }
+  
+    // Radio question handling with "Other" option
+    if (currentQuestion.type === "radio" && isOther) {
+      return !otherInput.trim(); // Ensure "Other" input is not empty
+    }
+  
+    // Default case for unanswered questions
+    return !currentResponse && !otherInput.trim();
   };
+  
   const handleChange = (mediaId, frequency) => {
     // setMediaFrequencies(prevFrequencies => ({
     //   ...prevFrequencies,
     //   [mediaId]: frequency,
     // }));
+ 
     setMediaFrequencies((prevFrequencies) => ({
       ...prevFrequencies,
       [mediaId]: frequency,
@@ -400,6 +440,13 @@ function QuestionForm() {
   //   const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
   //   localStorage.setItem('ProductsTest', JSON.stringify({ ...storedData, ...mediaFrequencies }));
   //   // onSubmit("MediaConsumption", mediaFrequencies);
+  // };
+  // const handleSliderChange = (value) => {
+  //   // setSliderValue(value);
+  //   // setResponses((prevFrequencie) => ({
+  //   //   ...prevFrequencie,
+  //   //   [currentQuestion.number]: value, // Save under unique key, e.g., "S1-Q1_other"
+  //   // }));
   // };
   return (
     <Box p={5}>
@@ -490,6 +537,9 @@ function QuestionForm() {
               onPrevious={handlePrevious}
               onSubmit={handleNext}
               setMediaFrequencies={setMediaFrequencies}
+              // handleSliderChange={handleSliderChange}
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
             />
             // Spontaneous
           ): (
@@ -514,7 +564,7 @@ function QuestionForm() {
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton
               onClick={handleNext}
-              // isDisabled={isNextButtonDisabled() || isLoading}
+              isDisabled={isNextButtonDisabled() || isLoading}
             />
           ) : (
             <Button

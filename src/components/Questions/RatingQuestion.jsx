@@ -13,7 +13,7 @@ const shuffleArray = (array) => {
 
 const RatingQuestion = ({  mediaChannels, frequencies, handleChange, setMediaFrequencies,mediaFrequencies }) => {
   const [shuffledMediaChannels, setShuffledMediaChannels] = useState([]);
-
+ 
   useEffect(() => {
     // Initialize media frequencies when the component mounts
     setMediaFrequencies(
