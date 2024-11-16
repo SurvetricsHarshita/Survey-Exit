@@ -19,6 +19,7 @@ import { getIndianTime } from "../utils/constant";
 const RespondentDemographic = ({ handleNext, language }) => {
   const [formData, setFormData] = useState({
     name: "",
+    roll: "",
     doorNo: "",
     floorNo: "",
     houseName: "",
@@ -42,12 +43,17 @@ const RespondentDemographic = ({ handleNext, language }) => {
   const [longitude, setLongitude] = useState(null);
   const [step, setStep] = useState(1); // Step state to track which form part to show
   const [startTime, setStartTime] = useState(null);
+  const [isFormComplete, setIsFormComplete] = useState(false); // Track form completion
   const langText = languageText[language] || languageText["en"];
-  
+
   useEffect(() => {
     requestMicrophonePermission();
     requestLocationPermission();
   }, []);
+
+  useEffect(() => {
+    validateForm();
+  }, [formData]);
 
   const requestMicrophonePermission = async () => {
     try {
@@ -79,31 +85,52 @@ const RespondentDemographic = ({ handleNext, language }) => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const validateForm = () => {
+    const requiredFieldsStep1 = formFieldsStep1.map((field) => field.name);
+    const requiredFieldsStep2 = formFieldsStep2.map((field) => field.name);
+
+    const allRequiredFields = step === 1 ? requiredFieldsStep1 : requiredFieldsStep2;
+    const isComplete = allRequiredFields.every((field) => formData[field]?.trim());
+
+    if (step === 2 && !formData.place.trim()) {
+      setIsFormComplete(false);
+    } else {
+      setIsFormComplete(isComplete);
+    }
+  };
+
   const handleSubmit = (step) => {
+    const isValid = /^\d{10}$/.test(formData.mobile);
+    const isValidMail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId)
+    if(!isValid){
+      alert("Please enter valid mobile number")
+      return 
+    }
+    if(!isValidMail){
+      alert("Please enter valid email address")
+      return 
+    }
+    if(error){
+      alert(error)
+      return
+    }
+    
     const respondentData = { ...formData, latitude, longitude };
     const start = getIndianTime(); // Get the current IST time
-  
-    // Set the start time
+
     setStartTime(start);
 
-    // Prepare stored data
     const storedData = JSON.parse(localStorage.getItem("questionsData")) || {};
-
-    // Store date and time in the required format
     storedData["startTime"] = {
-      date: start.toLocaleDateString('en-IN'), // Format date for India
-      time: start.toLocaleTimeString('en-IN') // Format time for India
+      date: start.toLocaleDateString("en-IN"), // Format date for India
+      time: start.toLocaleTimeString("en-IN"), // Format time for India
     };
-
 
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
     const updatedData = {
       ...existingData,
       ...respondentData,
-      startTime: {
-        date: start.toLocaleDateString('en-IN'), // Format date for India
-      time: start.toLocaleTimeString('en-IN') 
-      },
+      startTime: storedData.startTime,
     };
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
@@ -124,7 +151,7 @@ const RespondentDemographic = ({ handleNext, language }) => {
       <Text fontSize="xl" fontWeight="bold" mb={4}>
         {step === 1 ? langText.title : "FIELD CONTROL INFORMATION"}
       </Text>
-    
+
       {error && (
         <Alert status="error" mb={4} width="100%">
           <AlertIcon />
@@ -151,23 +178,25 @@ const RespondentDemographic = ({ handleNext, language }) => {
         ))}
         {step === 2 && (
           <>
-          <Select
-            name="place"
-            placeholder={langText.place}
-            onChange={handleChange}>
-            {places.map((place, index) => (
-              <option key={index} value={index + 1}>
-                {place}
-              </option>
-            ))}
-          </Select>
-          <SelectLanguage /></>
+            <Select
+              name="place"
+              placeholder={langText.place}
+              onChange={handleChange}>
+              {places.map((place, index) => (
+                <option key={index} value={index + 1}>
+                  {place}
+                </option>
+              ))}
+            </Select>
+            <SelectLanguage />
+          </>
         )}
-          
       </SimpleGrid>
 
       <Flex>
-        <NextButton onClick={() => handleSubmit(step)} />
+        <NextButton onClick={() => handleSubmit(step)} 
+        isDisabled={!isFormComplete} 
+        />
       </Flex>
     </Flex>
   );

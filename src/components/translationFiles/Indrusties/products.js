@@ -12,7 +12,7 @@ const products = {
       number: "f1",
 
       type: "radio",
-      audio: true
+   
 
     },
     QB: {
@@ -22,7 +22,7 @@ const products = {
 
       number: "f2",
       type: "radio",
-
+     
 
     },
     Q1: {
@@ -35,7 +35,7 @@ const products = {
       first: true,
       terminationCodes: [ "2" ]
       ,
-      // audio: true
+      audio: true
     },
     //? MATRIX QUESTION:
     Q2: {
@@ -72,7 +72,7 @@ const products = {
       options: [ "Yes",
         "No" //todo no = terminate
       ],
-
+      audio: true,
 
 
       terminationCodes: [ "2" ],
@@ -469,8 +469,8 @@ const products = {
         "Mysore sandal soap"
       ],
       response: " ",
-      termination: true,
-      terminationCodes: []
+      // termination: true,
+      // terminationCodes: []
     },
     Q24: {
       number: "S9e",
@@ -540,7 +540,7 @@ const products = {
     },
     Q28: {
       number: "S10b",
-      questions: "Will you be available at home for the next  15 days ?",
+      question: "Will you be available at home for the next  15 days ?",
       type: "radio",
       options: [ "Yes, I will be available at home for the next 15 days or so", //todo continue only otherwise terminate
         "No, I may not be at home " ],
@@ -610,6 +610,7 @@ const products = {
         { value: '1', label: 'Strongly Disagree' },
       ],
       type: "rate",
+      lastOption:'plb_c'
 
     },
 
@@ -617,19 +618,20 @@ const products = {
     Q3: {
       number: "CS1",
       question: "Overall, how much do you like or dislike your current soap __ bar? Answer using the 5-point scale, where 5 means ‘Liked it very much’ & 1 means ‘Disliked it very much’?  ",
-      STATEMENTS: [
-        { id: 'CS1_a', label: 'how much do you like or dislike your current soap __ bar?' },
+      // STATEMENTS: [
+      //   { id: 'CS1_a', label: 'how much do you like or dislike your current soap __ bar?' },
 
-      ],
-      FREQUENCIES: [
-        { value: '5', label: 'Liked it very much' },
-        { value: '4', label: 'Somewhat liked' },
-        { value: '3', label: 'Neutral' },
-        { value: '2', label: 'Disagree' },
-        { value: '1', label: 'Strongly Disagree' },
-      ],
-      type: "rate",
-      singleCode: true
+      // ],
+      // FREQUENCIES: [
+      //   { value: '5', label: 'Liked it very much' },
+      //   { value: '4', label: 'Somewhat liked' },
+      //   { value: '3', label: 'Neutral' },
+      //   { value: '2', label: 'Disagree' },
+      //   { value: '1', label: 'Strongly Disagree' },
+      // ],
+      lableOptions: [ "Liked it very much", "Somewhat liked", "Neutral", "Somewhat disliked ", "Disliked it very much" ],
+      type: "RatingSlider",
+   
 
     },
 
@@ -675,16 +677,10 @@ const products = {
     Q6: {
       number: "CS3",
       question: "Overall, basis your experience with your current soap , how likely are you to purchase it again in the next purchase occasion.? Answer using the 5-point scale, where 5 means ‘Definitely will buy’ & 1 means ‘Definitely will not buy’? SINGLE CODE ",
-      FREQUENCIES: [
-        { value: '5', label: 'Definitely will buy' },
-        { value: '4', label: 'Probably will buy' },
-        { value: '3', label: 'May or may not buy' },
-        { value: '2', label: 'Probably will not buy' },
-        { value: '1', label: 'Definitely will notbuy' },
-      ],
-      type: "rate",
-      STATEMENTS: [
-        { id: 'CS3_a', label: 'basis your experience with your current soap' }, ]
+      
+      lableOptions: [ "Definitely will buy", "Probably will buy", "May or may not buy", "Probably will not buy", "Definitely will notbuy" ],
+      type: "RatingSlider",
+      
 
     },
 
@@ -704,10 +700,10 @@ const products = {
         { value: '2', label: 'Disagree' },
         { value: '1', label: 'Strongly Disagree' },
       ],
-      // type: "rate",
-      // type: "RatingSlider",
-      lastOption: '4',
-      // lableOptions: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+      type: "rate",
+    
+      lastOption: 'cs4_d',
+  
     },
 
     Q9: {
@@ -728,7 +724,7 @@ const products = {
         { value: '2', label: 'Disagree' },
         { value: '1', label: 'Strongly Disagree' },
       ],
-      lastOption: '5',
+      lastOption: 'cs5_e',
       type: "rate",
 
 

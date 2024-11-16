@@ -18,7 +18,6 @@ import {
   othersSpecify,
   othersPlaceholders,
   sendBlobToBackend,
- 
   getIndianTime,
   calculateSurveyData,
 } from "../utils/constant";
@@ -49,32 +48,27 @@ function QuestionForm() {
   const [multi, setMulti] = useState(0);
   const [terminate, setTerminate] = useState(false);
   const [ask, setAsk] = useState(false);
-  const [responses, setResponses] = useState({}); // Store responses in an array
+  const [responses, setResponses] = useState({});
   const [storedData, setStoredData] = useState({});
   const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
   const [mediaFrequencies, setMediaFrequencies] = useState({});
-  const [sliderValue, setSliderValue] = useState(3)
+  const [sliderValue, setSliderValue] = useState(3);
   useEffect(() => {
     window.addEventListener("beforeunload", alertUser);
     return () => {
       window.removeEventListener("beforeunload", alertUser);
-   
-      
     };
   }, []);
   const alertUser = (e) => {
     e.preventDefault();
     e.returnValue = "";
-    localStorage.removeItem('ProductsTest');
-    navigate("/"); 
-
-   
-
-  }
+    localStorage.removeItem("ProductsTest");
+    navigate("/");
+  };
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
-    setStoredData(storedData)
+    setStoredData(storedData);
 
     console.log(storedData, "fron");
     // Get selected language from localStorage or default to English
@@ -124,17 +118,12 @@ function QuestionForm() {
   }, []);
 
   useEffect(() => {
-  
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
 
-
     const updatedData = { ...existingData, ...responses };
- 
 
-    setStoredData(updatedData)
+    setStoredData(updatedData);
 
-    console.log(storedData, "frodfgdfh");
- 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
   }, [responses]);
 
@@ -172,16 +161,10 @@ function QuestionForm() {
         storedData
       );
       setTerminate(terminate);
-     
     }
     if (currentQuestion.checkAsk) {
-      const display = isAsk(
-        currentQuestion.number,
-       value,
-        storedData
-        
-      );
-      setAsk(display );
+      const display = isAsk(currentQuestion.number, value, storedData);
+      setAsk(display);
     }
     setResponses((prevResponses) => {
       const updatedResponses = { ...prevResponses, [key]: value }; // Update the specific response
@@ -209,12 +192,9 @@ function QuestionForm() {
         );
         setTerminate(terminate);
       }
-      if (currentQuestion. checkAsk) {
-        const display = isAsk(
-          currentQuestion.number,
-          storedData
-        );
-        setAsk(display );
+      if (currentQuestion.checkAsk) {
+        const display = isAsk(currentQuestion.number, storedData);
+        setAsk(display);
       }
       if (othersSpecify.includes(value)) {
         // If "Others" is selected in any language, keep the previous input if available
@@ -241,6 +221,7 @@ function QuestionForm() {
       setMulti(values.length);
     }
     setMulti(values.length);
+
     // Identify the key for "Others (please specify)"
     currentQuestion.options.forEach((option, index) => {
       if (othersSpecify.includes(option)) {
@@ -251,18 +232,29 @@ function QuestionForm() {
     // Check if "Others (please specify)" is selected
     const isOtherSelected = values.includes(keyForOtherSpecify);
     setOther(isOtherSelected);
-
+    if (currentQuestion.termination) {
+      const terminate = isTerminate(
+        currentQuestion.number,
+        values,
+        currentQuestion.terminationCodes
+      );
+      setTerminate(terminate);
+    }
+    if (currentQuestion.checkAsk) {
+      const display = isAsk(currentQuestion.number, storedData);
+      setAsk(display);
+    }
     if (isOtherSelected) {
       setResponses((prev) => ({
         ...prev,
         [keyValue]: values, // Save the selected values
-        [`${keyValue}_a`]: otherInput, // Save the "other" input under a unique key
+        [`${keyValue}_other`]: otherInput, // Save the "other" input under a unique key
       }));
     } else {
       setResponses((prev) => {
         // Remove "Others" input if not selected
         const updatedResponses = { ...prev, [keyValue]: values };
-        delete updatedResponses[`${keyValue}_a`];
+        delete updatedResponses[`${keyValue}_other`];
         return updatedResponses;
       });
     }
@@ -274,22 +266,11 @@ function QuestionForm() {
 
     setResponses((prevResponses) => ({
       ...prevResponses,
-      [`${currentQuestion.number}_other`]: newValue, // Save under unique key, e.g., "S1-Q1_other"
+      [`${currentQuestion.number}_other`]: newValue, 
     }));
   };
 
   const handleNext = async () => {
-    const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-
-    // Parse the start time from existing data
-    const startTimeObj = existingData["startTime"]; // This will be an object like { date: "16/11/2024", time: "2:51:26 pm" }
-  
-    if (startTimeObj) {
-      const startTimeStr = `${startTimeObj.date} ${startTimeObj.time}`; // Combine date and time into a single string
-      console.log(startTimeStr); // This should now log something like "16/11/2024 2:51:26 pm"
-    } else {
-      console.log("startTime is undefined or missing in existingData");
-    }
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -300,7 +281,7 @@ function QuestionForm() {
       return;
     }
 
-    // mediaRecorder.stop()
+    mediaRecorder.stop();
     //audio
     if (mediaRecorder && mediaRecorder.state !== "inactive") {
       mediaRecorder.stop(); // Stop recording when clicking 'Next'
@@ -317,7 +298,6 @@ function QuestionForm() {
       }));
     }
 
-    
     setOther(false);
     if (currentQuestionIndex < questions.length - 1) {
       // setCurrentQuestionIndex((prev) => prev + 1);
@@ -332,21 +312,17 @@ function QuestionForm() {
       setOtherInput("");
     }
 
+    if (currentQuestion.checkAsk && ask) {
+      // alert(ask,currentQuestion.checkAsk )
 
-    if (currentQuestion.checkAsk  && ask) {
-      alert("23")
-      
-        setCurrentQuestionIndex((prev) => prev + 2);
-        return
-   
-      
-
-      
-    }else{
+      setCurrentQuestionIndex((prev) => prev + 2);
+      return;
+    } else {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
     setOtherInput("");
     setAsk(false);
+    setMediaFrequencies({})
     // setDisable(true)
   };
   // setMulti(1)
@@ -360,20 +336,19 @@ function QuestionForm() {
 
   const handleSubmit = async () => {
     const end = getIndianTime(); // Get current time in IST
-    setEndTime(end);
-  
+    // setEndTime(end);
+
     // Retrieve existing data from localStorage
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-  
-    
+
     const updatedProductTest = calculateSurveyData(existingData, end);
-  
-    console.log(updatedProductTest);
-  
+
+    // console.log(updatedProductTest);
+
     // Store the updated product test in localStorage
     localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
     const email = localStorage.getItem("email");
-  
+
     localStorage.clear();
 
     if (email) {
@@ -381,17 +356,16 @@ function QuestionForm() {
     }
     // Navigate to the submit page
     navigate("/submit", { state: { msg: "submit" } });
-  
+
     // Submit data to the API
     const { success, message } = await submitDataToAPI(updatedProductTest);
-  
+
     if (success) {
-     
       navigate("/submit");
       const email = localStorage.getItem("email");
-  
+
       localStorage.clear();
-  
+
       if (email) {
         localStorage.setItem("email", email);
       }
@@ -400,21 +374,15 @@ function QuestionForm() {
       console.log(message);
     }
   };
-  
-
-
-
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  
-  
   // const isNextButtonDisabled = () => {
   //   const currentResponse = responses[currentQuestion.number];
-  
+
   //   // Demographic question handling
   //   if (!demographicAnswered) return false;
-  
+
   //   // Multi-selection question handling
   //   if (
   //     currentQuestion.options &&
@@ -428,75 +396,74 @@ function QuestionForm() {
   //       multi === 0
   //     );
   //   }
-  
+
   //   // Rate question handling
   //   if (currentQuestion.type === "rate") {
   //     // Ensure all media channels have a response
   //     return !mediaFrequencies || Object.values(mediaFrequencies).some((value) => value === "");
   //   }
-  
+
   //   // Radio question handling with "Other" option
   //   if (currentQuestion.type === "radio" && isOther) {
   //     return !otherInput.trim();
   //   }
-  
+
   //   // Default case for unanswered questions
   //   return !currentResponse && !otherInput.trim();
   // };
+  
+  
   const isNextButtonDisabled = () => {
     const currentResponse = responses[currentQuestion.number];
-  
- 
+
     if (!demographicAnswered) return false;
-  
-   
+
     if (currentQuestion.options && currentQuestion.type === "multi") {
       if (currentQuestion.maxSelections) {
-        // Handle with maxSelections defined
         return (
           !currentResponse ||
-          (isOther && !otherInput.trim()) || 
-          multi !== currentQuestion.maxSelections || 
+          (isOther && !otherInput.trim()) ||
+          multi !== currentQuestion.maxSelections ||
           multi === 0 // No selections
         );
       } else {
-      
-        return !currentResponse || multi === 0 ||
-        (isOther && !otherInput.trim()) ; // Disable if no options selected
+        return (
+          !currentResponse || multi === 0 || (isOther && !otherInput.trim())
+        );
       }
     }
-  
+
     // Rate question handling
     if (currentQuestion.type === "rate") {
-      // Ensure all media channels have a response
-      return !mediaFrequencies || Object.values(mediaFrequencies).some((value) => value === "");
+      return (
+        !mediaFrequencies ||
+        Object.values(mediaFrequencies).some((value) => value === "")
+      );
     }
-  
+    if (currentQuestion.type === "RatingSlider") {
+      return false;
+    }
     // Radio question handling with "Other" option
     if (currentQuestion.type === "radio" && isOther) {
       return !otherInput.trim(); // Ensure "Other" input is not empty
     }
-  
+
     // Default case for unanswered questions
     return !currentResponse && !otherInput.trim();
   };
-  
+
   const handleChange = (mediaId, frequency) => {
-    // setMediaFrequencies(prevFrequencies => ({
-    //   ...prevFrequencies,
-    //   [mediaId]: frequency,
-    // }));
- 
     setMediaFrequencies((prevFrequencies) => ({
       ...prevFrequencies,
       [mediaId]: frequency,
     }));
-    setResponses((prevFrequencie) => ({
-      ...prevFrequencie,
-      [mediaId]: frequency, // Save under unique key, e.g., "S1-Q1_other"
+
+    setResponses((prevResponses) => ({
+      ...prevResponses,
+      [mediaId]: frequency,
     }));
   };
-  
+
   return (
     <Box p={5}>
       {!demographicAnswered ? (
@@ -553,23 +520,20 @@ function QuestionForm() {
               currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              
               othersSpecify={othersSpecify}
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
-       
               codeMapping={codeMapping}
               isOther={isOther}
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
-           
               // onRating={handleRating}
-              handleChange={ handleChange}
+              handleChange={handleChange}
               setMediaFrequencies={setMediaFrequencies}
               mediaFrequencies={mediaFrequencies}
             />
-            // Spontaneous
-          ) : currentQuestion.type === "RatingSlider" ? (
+          ) : // Spontaneous
+          currentQuestion.type === "RatingSlider" ? (
             <RatingSlider
               currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
@@ -590,8 +554,8 @@ function QuestionForm() {
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
             />
+          ) : (
             // Spontaneous
-          ): (
             <InputQuestion
               currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
@@ -602,7 +566,7 @@ function QuestionForm() {
         </FormControl>
       )}
 
-      {demographicAnswered  && (
+      {demographicAnswered && (
         <Flex mt={10} justify="space-between">
           <PreviousButton
             mr={2}

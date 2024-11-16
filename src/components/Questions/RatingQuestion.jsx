@@ -2,29 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { Box, FormControl, Table, Thead, Tbody, Tr, Th, Td, Radio, RadioGroup } from '@chakra-ui/react';
 
 // Shuffle function
-const shuffleArray = (array) => {
-  let shuffledArray = [...array];
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
+const shuffleStatementsWithLastOption = (statements, lastOptionId) => {
+  // Separate the lastOption
+  const otherStatements = statements.filter((statement) => statement.id !== lastOptionId);
+  const lastStatement = statements.find((statement) => statement.id === lastOptionId);
+
+  // Shuffle the rest of the statements
+  const shuffledStatements = [...otherStatements];
+  for (let i = shuffledStatements.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    [shuffledStatements[i], shuffledStatements[j]] = [shuffledStatements[j], shuffledStatements[i]];
   }
-  return shuffledArray;
+
+  // Add the lastOption at the end
+  return lastStatement ? [...shuffledStatements, lastStatement] : shuffledStatements;
 };
 
-const RatingQuestion = ({  mediaChannels, frequencies, handleChange, setMediaFrequencies,mediaFrequencies }) => {
+
+
+const RatingQuestion = ({  mediaChannels, frequencies, handleChange, setMediaFrequencies,mediaFrequencies ,currentQuestion}) => {
   const [shuffledMediaChannels, setShuffledMediaChannels] = useState([]);
  
   useEffect(() => {
-    // Initialize media frequencies when the component mounts
+  
     setMediaFrequencies(
       mediaChannels.reduce((acc, channel) => ({ ...acc, [channel.id]: '' }), {})
     );
-  }, []);
+  }, [currentQuestion, mediaChannels]);
 
   useEffect(() => {
-    // Shuffle the media channels once
-    setShuffledMediaChannels(shuffleArray(mediaChannels));
+    setShuffledMediaChannels(shuffleStatementsWithLastOption (mediaChannels, currentQuestion.lastOption));
   }, [mediaChannels]);
+  
 
   return (
     <Box bg="#F7FAFC" p={4}>
@@ -34,7 +43,7 @@ const RatingQuestion = ({  mediaChannels, frequencies, handleChange, setMediaFre
             <Table variant="simple" size={{ base: 'sm', md: 'md' }}>
               <Thead>
                 <Tr>
-                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">Media Channel</Th>
+                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">Statements</Th>
                   {frequencies.map((freq) => (
                     <Th key={freq.value} fontSize={{ base: 'sm', md: 'md' }} textAlign="center">{freq.label}</Th>
                   ))}

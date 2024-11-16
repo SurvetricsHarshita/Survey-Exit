@@ -4,6 +4,7 @@ export const languageText = {
   en: {
     title: "Respondent Demographic",
     name: "Name of the Respondent",
+    roll:"enter Roll",
     address: "Address",
     contact: "Contact number",
     doorNo: "Door / House / Bldng No.",
@@ -29,6 +30,7 @@ export const languageText = {
 // src/static/formFields.js
 export const formFieldsStep1 = [
   { name: "name", placeholder: "Name of the Respondent", },
+  { name: "roll", placeholder: "enter Roll", },
   { name: "doorNo", placeholder: "Door / House / Bldng No." },
   { name: "floorNo", placeholder: "Floor No.",type:"number" },
   { name: "houseName", placeholder: "House / Flat Name" },
@@ -47,8 +49,8 @@ export const formFieldsStep1 = [
 export const formFieldsStep2 = [
   { name: "interviewerName", placeholder: "Interviewer Name" },
   { name: "interviewerId", placeholder: "Interviewer ID" },
-  { name: "INT Start Time (write in 24hrs)", placeholder: "INT Start Time (write in 24hrs)" },
-  { name: "PLACE OF INTERVIEW", placeholder: "Place of Interview" },
+  // { name: "INT Start Time (write in 24hrs)", placeholder: "INT Start Time (write in 24hrs)" },
+ 
 ];
 
 export const places = [
