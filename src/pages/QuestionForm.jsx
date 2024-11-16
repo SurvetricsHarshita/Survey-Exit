@@ -18,8 +18,9 @@ import {
   othersSpecify,
   othersPlaceholders,
   sendBlobToBackend,
-  formatDuration,
+ 
   getIndianTime,
+  calculateSurveyData,
 } from "../utils/constant";
 
 import RadioQuestion from "../components/Questions/RadioQuestion";
@@ -53,7 +54,23 @@ function QuestionForm() {
   const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
   const [mediaFrequencies, setMediaFrequencies] = useState({});
   const [sliderValue, setSliderValue] = useState(3)
-  const [endTime, setEndTime] = useState(null);
+  useEffect(() => {
+    window.addEventListener("beforeunload", alertUser);
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+   
+      
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+    localStorage.removeItem('ProductsTest');
+    navigate("/"); 
+
+   
+
+  }
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
@@ -341,60 +358,49 @@ function QuestionForm() {
     }
   };
 
-const handleSubmit = async () => {
-  const end = getIndianTime(); // Get current time in IST
-  setEndTime(end);
-
-  // Retrieve existing data from localStorage
-  const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-
-
-  const startTimeDate = existingData.startTime?.date; 
-  const startTimeStr = existingData.startTime?.time; 
-
- 
-  const [day, month, year] = startTimeDate.split('/'); 
-  const formattedDate = `${month}/${day}/${year}`; 
-
-
-  const startTimeFull = `${formattedDate} ${startTimeStr}`; // 
-
-
-  const startTime = new Date(startTimeFull); 
-
-  const surveyDuration = Math.floor((end.getTime() - startTime.getTime()) / 1000);
-
+  const handleSubmit = async () => {
+    const end = getIndianTime(); // Get current time in IST
+    setEndTime(end);
   
-  const updatedProductTest = {
-    ...existingData,
-    endTime: {
-      date: end.toLocaleDateString('en-IN'), 
-      time: end.toLocaleTimeString('en-IN'), 
-    },
-    Duration: formatDuration(surveyDuration), 
-  };
-
-  console.log(updatedProductTest);
-
-  localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
-  navigate("/submit",{ state: { msg: "submit" } }); 
-  const { success, message } = await submitDataToAPI(updatedProductTest);
-
-  if (success) {
-    navigate("/submit"); 
+    // Retrieve existing data from localStorage
+    const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+  
+    
+    const updatedProductTest = calculateSurveyData(existingData, end);
+  
+    console.log(updatedProductTest);
+  
+    // Store the updated product test in localStorage
+    localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
     const email = localStorage.getItem("email");
+  
+    localStorage.clear();
 
- 
-  localStorage.clear(); 
-
-  // Restore the email value back into local storage
-  if (email) {
-    localStorage.setItem("email", email);
-  } // Clear localStorage after submission
-  } else {
-    console.log(message) // Show error message if submission fails
-  }
-};
+    if (email) {
+      localStorage.setItem("email", email);
+    }
+    // Navigate to the submit page
+    navigate("/submit", { state: { msg: "submit" } });
+  
+    // Submit data to the API
+    const { success, message } = await submitDataToAPI(updatedProductTest);
+  
+    if (success) {
+     
+      navigate("/submit");
+      const email = localStorage.getItem("email");
+  
+      localStorage.clear();
+  
+      if (email) {
+        localStorage.setItem("email", email);
+      }
+    } else {
+      // Show error message if submission fails
+      console.log(message);
+    }
+  };
+  
 
 
 
@@ -490,18 +496,7 @@ const handleSubmit = async () => {
       [mediaId]: frequency, // Save under unique key, e.g., "S1-Q1_other"
     }));
   };
-  // const handleRating = (mediaFrequencies) => {
-  //   const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
-  //   localStorage.setItem('ProductsTest', JSON.stringify({ ...storedData, ...mediaFrequencies }));
-  //   // onSubmit("MediaConsumption", mediaFrequencies);
-  // };
-  // const handleSliderChange = (value) => {
-  //   // setSliderValue(value);
-  //   // setResponses((prevFrequencie) => ({
-  //   //   ...prevFrequencie,
-  //   //   [currentQuestion.number]: value, // Save under unique key, e.g., "S1-Q1_other"
-  //   // }));
-  // };
+  
   return (
     <Box p={5}>
       {!demographicAnswered ? (

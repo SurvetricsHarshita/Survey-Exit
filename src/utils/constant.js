@@ -116,3 +116,29 @@ export  const getIndianTime = () => {
 
   return istTime; // Return the Date object for IST
 };
+
+// Function to calculate survey duration and prepare updated product test
+export const calculateSurveyData = (existingData, end) => {
+  const startTimeDate = existingData.startTime?.date;
+  const startTimeStr = existingData.startTime?.time;
+
+  const [day, month, year] = startTimeDate.split('/');
+  const formattedDate = `${month}/${day}/${year}`; // Reformat the date as mm/dd/yyyy
+
+  const startTimeFull = `${formattedDate} ${startTimeStr}`; // Combine date and time to create a full start time
+
+  const startTime = new Date(startTimeFull); // Create a Date object from the start time string
+
+  const surveyDuration = Math.floor((end.getTime() - startTime.getTime()) / 1000); // Calculate duration in seconds
+
+  const updatedProductTest = {
+    ...existingData,
+    endTime: {
+      date: end.toLocaleDateString('en-IN'), // Format end date for India
+      time: end.toLocaleTimeString('en-IN'), // Format end time for India
+    },
+    Duration: formatDuration(surveyDuration), // Format duration
+  };
+
+  return updatedProductTest; // Return the updated product test object
+};

@@ -14,6 +14,7 @@ import { languageText } from "../utils/Respondent";
 import { formFieldsStep1, formFieldsStep2, places } from "../utils/Respondent";
 import NextButton from "../components/atoms/NextButton";
 import SelectLanguage from "../components/atoms/SelectLanguage";
+import { getIndianTime } from "../utils/constant";
 
 const RespondentDemographic = ({ handleNext, language }) => {
   const [formData, setFormData] = useState({
@@ -42,18 +43,7 @@ const RespondentDemographic = ({ handleNext, language }) => {
   const [step, setStep] = useState(1); // Step state to track which form part to show
   const [startTime, setStartTime] = useState(null);
   const langText = languageText[language] || languageText["en"];
-  const getIndianTime = () => {
-    // Get the current date and time in UTC
-    const d = new Date();
-    const utc = d.getTime() + (d.getTimezoneOffset() * 60000); // Calculate UTC time in milliseconds
-    const nd = new Date(utc + (3600000 * 5.5)); // Add 
   
-    const istTime = nd; // Use the Date object representing IST
-    const istFormatted = istTime.toLocaleString('en-IN'); // Format the IST time
-    console.log("IST now is: " + istFormatted); // Log the IST time
-  
-    return istTime; // Return the Date object for IST
-  };
   useEffect(() => {
     requestMicrophonePermission();
     requestLocationPermission();
