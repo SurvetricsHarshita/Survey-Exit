@@ -9,9 +9,10 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  useToast,
+  FormLabel,
 } from "@chakra-ui/react";
-import { languageText } from "../utils/Respondent";
-import { formFieldsStep1, formFieldsStep2, places } from "../utils/Respondent";
+import { formFieldsStep1, formFieldsStep2, formFieldsStep3, languageText, places } from "../utils/Respondent";
 import NextButton from "../components/atoms/NextButton";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 import { getIndianTime } from "../utils/constant";
@@ -19,7 +20,6 @@ import { getIndianTime } from "../utils/constant";
 const RespondentDemographic = ({ handleNext, language }) => {
   const [formData, setFormData] = useState({
     name: "",
-    roll: "",
     doorNo: "",
     floorNo: "",
     houseName: "",
@@ -41,10 +41,10 @@ const RespondentDemographic = ({ handleNext, language }) => {
   const [error, setError] = useState("");
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [step, setStep] = useState(1); // Step state to track which form part to show
-  const [startTime, setStartTime] = useState(null);
-  const [isFormComplete, setIsFormComplete] = useState(false); // Track form completion
+  const [step, setStep] = useState(1);
+  const [isFormComplete, setIsFormComplete] = useState(false);
   const langText = languageText[language] || languageText["en"];
+  const toast = useToast();
 
   useEffect(() => {
     requestMicrophonePermission();
@@ -86,44 +86,75 @@ const RespondentDemographic = ({ handleNext, language }) => {
   };
 
   const validateForm = () => {
-    const requiredFieldsStep1 = formFieldsStep1.map((field) => field.name);
-    const requiredFieldsStep2 = formFieldsStep2.map((field) => field.name);
-
-    const allRequiredFields = step === 1 ? requiredFieldsStep1 : requiredFieldsStep2;
-    const isComplete = allRequiredFields.every((field) => formData[field]?.trim());
-
-    if (step === 2 && !formData.place.trim()) {
-      setIsFormComplete(false);
+    let requiredFields = [];
+    if (step === 1) {
+      requiredFields = formFieldsStep1.map((field) => field.name);
+    } else if (step === 2) {
+      requiredFields = formFieldsStep2.map((field) => field.name);
     } else {
-      setIsFormComplete(isComplete);
+      requiredFields = formFieldsStep3.map((field) => field.name);
     }
+
+    const isComplete = requiredFields.every((field) => formData[field]?.trim());
+    setIsFormComplete(isComplete);
   };
 
-  const handleSubmit = (step) => {
-    const isValid = /^\d{10}$/.test(formData.mobile);
-    const isValidMail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId)
-    if(!isValid){
-      alert("Please enter valid mobile number")
-      return 
+  const handleValidationError = (errorMessage) => {
+    toast({
+      title: "Validation Error",
+      description: errorMessage,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+      position: "top-right",
+    });
+  };
+
+  const handleSubmit = () => {
+    const isValidMobile = /^\d{10}$/.test(formData.mobile);
+    const isValidMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId);
+    const isValidPincode = /\d/.test(formData.pincode);
+    const isValidPhoneRes = !formData.phoneRes || /^\d{10}$/.test(formData.phoneRes);
+    const isValidPhonePP = !formData.phonePP || /^\d{10}$/.test(formData.phonePP);
+    const isValidPhoneOff = !formData.phoneOff || /^\d{10}$/.test(formData.phoneOff);
+if(step==2){
+  if (!isValidMobile) {
+    handleValidationError("Please enter a valid 10-digit mobile number");
+    return;
+  }
+  if (!isValidMail) {
+    handleValidationError("Please enter a valid email address");
+    return;
+  }
+  if (!isValidPincode) {
+    handleValidationError("Please enter a valid pincode");
+    return;
+  }
+  if (!isValidPhoneRes) {
+    handleValidationError("Please enter a valid 10-digit residential phone number");
+    return;
+  }
+  if (!isValidPhonePP) {
+    handleValidationError("Please enter a valid 10-digit personal phone number");
+    return;
+  }
+  if (!isValidPhoneOff) {
+    handleValidationError("Please enter a valid 10-digit office phone number");
+    return;
+  }
+}
+   
+    if (error) {
+      handleValidationError(error);
+      return;
     }
-    if(!isValidMail){
-      alert("Please enter valid email address")
-      return 
-    }
-    if(error){
-      alert(error)
-      return
-    }
-    
+
     const respondentData = { ...formData, latitude, longitude };
-    const start = getIndianTime(); // Get the current IST time
-
-    setStartTime(start);
-
+    const start = getIndianTime();
     const storedData = JSON.parse(localStorage.getItem("questionsData")) || {};
     storedData["startTime"] = {
-      date: start.toLocaleDateString("en-IN"), // Format date for India
-      time: start.toLocaleTimeString("en-IN"), // Format time for India
+      date: start.toLocaleDateString("en-IN"),
+      time: start.toLocaleTimeString("en-IN"),
     };
 
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
@@ -136,20 +167,18 @@ const RespondentDemographic = ({ handleNext, language }) => {
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
 
     if (step === 1) {
-      setStep(2); // Go to step 2
+      setStep(2);
+    } else if (step === 2) {
+      setStep(3);
     } else {
-      handleNext(); // Call the function to handle the final step
+      handleNext();
     }
   };
 
   return (
-    <Flex
-      p={4}
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center">
+    <Flex p={4} flexDirection="column" justifyContent="center" alignItems="center">
       <Text fontSize="xl" fontWeight="bold" mb={4}>
-        {step === 1 ? langText.title : "FIELD CONTROL INFORMATION"}
+        {step === 1 ||step === 2 ? langText.title : "FIELD CONTROL INFORMATION"}
       </Text>
 
       {error && (
@@ -160,28 +189,24 @@ const RespondentDemographic = ({ handleNext, language }) => {
         </Alert>
       )}
 
-      <SimpleGrid
-        columns={{ base: 1, md: 2, lg: 2 }}
-        spacing={4}
-        width="100%"
-        maxWidth="800px"
-        mb={8}>
-        {(step === 1 ? formFieldsStep1 : formFieldsStep2).map((field, index) => (
-          <Input
-            key={index}
-            name={field.name}
-            placeholder={field.placeholder}
-            value={formData[field.name]}
-            onChange={handleChange}
-            type={field.type || "text"}
-          />
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={4} width="100%" maxWidth="800px" mb={8}>
+        {((step === 1 && formFieldsStep1) ||
+          (step === 2 && formFieldsStep2) ||
+          (step === 3 && formFieldsStep3)).map((field, index) => (
+          <div key={index}>
+            <FormLabel>{field.placeholder}:</FormLabel>
+            <Input
+              name={field.name}
+              placeholder={field.placeholder}
+              value={formData[field.name]}
+              onChange={handleChange}
+              type={field.type || "text"}
+            />
+          </div>
         ))}
-        {step === 2 && (
+        {step === 3 && (
           <>
-            <Select
-              name="place"
-              placeholder={langText.place}
-              onChange={handleChange}>
+            <Select name="place" placeholder={langText.place} onChange={handleChange}>
               {places.map((place, index) => (
                 <option key={index} value={index + 1}>
                   {place}
@@ -194,9 +219,7 @@ const RespondentDemographic = ({ handleNext, language }) => {
       </SimpleGrid>
 
       <Flex>
-        <NextButton onClick={() => handleSubmit(step)} 
-        isDisabled={!isFormComplete} 
-        />
+        <NextButton onClick={handleSubmit} isDisabled={!isFormComplete} />
       </Flex>
     </Flex>
   );

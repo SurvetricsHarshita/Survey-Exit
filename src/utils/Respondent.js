@@ -4,7 +4,7 @@ export const languageText = {
   en: {
     title: "Respondent Demographic",
     name: "Name of the Respondent",
-    roll:"enter Roll",
+   
     address: "Address",
     contact: "Contact number",
     doorNo: "Door / House / Bldng No.",
@@ -29,24 +29,26 @@ export const languageText = {
 };
 // src/static/formFields.js
 export const formFieldsStep1 = [
-  { name: "name", placeholder: "Name of the Respondent", },
-  { name: "roll", placeholder: "enter Roll", },
+  { name: "name", placeholder: "Name of the Respondent" },
   { name: "doorNo", placeholder: "Door / House / Bldng No." },
-  { name: "floorNo", placeholder: "Floor No.",type:"number" },
+  { name: "floorNo", placeholder: "Floor No.", type: "number" },
   { name: "houseName", placeholder: "House / Flat Name" },
   { name: "streetName", placeholder: "Street / Road Name" },
   { name: "areaName", placeholder: "Area Name" },
   { name: "townName", placeholder: "Town / Village Name" },
-  { name: "landmark", placeholder: "Landmark" },
-  { name: "pincode", placeholder: "Pincode" },
-  { name: "mobile", placeholder: "MOBILE No.", type: "tel" },
-  { name: "phoneRes", placeholder: "Phone No. (Res)", type: "tel" },
-  { name: "phonePP", placeholder: "Phone No. PP(C/O)", type: "tel" },
-  { name: "phoneOff", placeholder: "Phone No. (Off)", type: "tel" },
-  { name: "emailId", placeholder: "e-mail ID", type: "email" },
+ 
 ];
 
-export const formFieldsStep2 = [
+export const formFieldsStep2=[ { name: "landmark", placeholder: "Landmark" },
+  { name: "pincode", placeholder: "Pincode", type: "number" ,label:"Pincode" },
+  { name: "mobile", placeholder: "MOBILE No.", type: "tel" ,label:"Mobile No"},
+  { name: "phoneRes", placeholder: "Phone No. (Res)", type: "number" ,label:"Res Phone No" },
+  { name: "phonePP", placeholder: "Phone No. PP(C/O)", type: "number", },
+  { name: "phoneOff", placeholder: "Phone No. (Off)",type: "number"  },
+  { name: "emailId", placeholder: "e-mail ID", type: "email" },]
+
+
+export const formFieldsStep3 = [
   { name: "interviewerName", placeholder: "Interviewer Name" },
   { name: "interviewerId", placeholder: "Interviewer ID" },
   // { name: "INT Start Time (write in 24hrs)", placeholder: "INT Start Time (write in 24hrs)" },
