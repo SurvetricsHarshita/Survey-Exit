@@ -4,7 +4,7 @@ import { Box, Center } from '@chakra-ui/react';
 
 // Import your pages
 import LoginPage from './pages/LoginPage';
-import ChooseType from './pages/ChooseType';
+
 
 
 
@@ -21,7 +21,7 @@ function App() {
       <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md" width={{ md: "80%", lg: "50%" }}>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/type" element={<ChooseType />} />
+        
          
         
         
