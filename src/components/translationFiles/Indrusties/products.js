@@ -7,22 +7,32 @@ const products = {
     QA: {
       question: "FW CENTER DETAILS ",
       response: " ",
-      options: [ "Indore ", "Lucknow", "Guwahati" ],
+      options: [
+        { label: "Indore", code: "1" },
+        { label: "Lucknow", code: "2" },
+        { label: "Guwahati", code: "3" }
+      ],
       first: true,
       number: "f1",
 
       type: "radio",
-      audio: true
+      // audio: true
 
     },
     QB: {
       question: "Area classification  ",
       response: " ",
-      options: [ "Urban ", "	Semi urban" ],
+      options: [
+        { label: "Urban", code: "1" },
+        { label: "Semi urban", code: "2" },
+      
+      ],
+    
+    
 
       number: "f2",
       type: "radio",
-      audio: true
+      // audio: true
 
     },
     Q1: {
@@ -30,12 +40,18 @@ const products = {
       question: "Please ask for the lady of the house,who should be the decision maker for purchase of  HH grocery and personal care products",
       //CODE BY OBSERVATION AND CONTINUE
       type: "radio",
-      options: [ "Female ", " Male" ], // todo Male = terminate
-      termination: true,
+
+      
+      options: [
+        { label: "Female", code: "1" },
+        { label: "Male", code: "2" },
+      
+      ],
+      // termination: true,
       first: true,
-      terminationCodes: [ "2" ]
-      ,
-      audio: true
+      // terminationCodes: [ "2" ]
+      // ,
+      // audio: true
     },
     //? MATRIX QUESTION:
     Q2: {
@@ -43,10 +59,19 @@ const products = {
       response: "",
       number: "S2",
       termination: true,
-      options: [ "Marketing", "Marketing / Market Research (agency and including a market research department within an organization)", "	Advertising / PR Agency", "Journalism / Print (Newspaper / Magazine)", "Working in Retail shop/ Kirana Shop/Medical Stores/Department stores ", "Working in FMCG / Retail company /personal grooming products  Industry / Personal grooming products Distribution company", "None of the above" ],
+      options: [ { label: "Marketing", code: "1" },
+        { label: "Marketing / Market Research (agency and including a market research department within an organization)", code: "2" },
+        { label: "Advertising / PR Agency", code: "3" },
+        { label: "Journalism / Print (Newspaper / Magazine)", code: "4" },
+        { label: "Working in Retail shop/ Kirana Shop/Medical Stores/Department stores", code: "5" },
+        { label: "Working in FMCG / Retail company / personal grooming products Industry / Personal grooming products Distribution company", code: "6" },
+        { label: "None of the above", code: "7" } ],
       type: "radio",
       terminationCodes: [ "1", "2", "3", "4", "5", "6" ],
       // audio: true
+
+      optionsDependOn:["S1"]
+      // show first options "marketing if 1 coded in s1"
     },
     Q3: {
       number: "S3",
@@ -85,9 +110,8 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Yes", //todo yes = terminate
-        "No"
-      ],
+      options: [  { label: "Yes", code: "1" },
+        { label: "No", code: "2" } ],
 
       termination: true, //true or false 
       terminationCodes: [ "1" ],
@@ -115,14 +139,14 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Illiterate",
-        "Literate, but no school",
-        "School (up to 4 years)",
-        "School (5 to 9 years)",
-        "School (10+ years (HSC)",
-        "HSC+ , but not graduate",
-        "Graduate / Pst Grad-Gen",
-        "Graduate / Pst Grad-Prof",
+      options: [   { label: "Illiterate", code: "1" },
+        { label: "Literate, but no school", code: "2" },
+        { label: "School (up to 4 years)", code: "3" },
+        { label: "School (5 to 9 years)", code: "4" },
+        { label: "School (10+ years (HSC))", code: "5" },
+        { label: "HSC+, but not graduate", code: "6" },
+        { label: "Graduate / Post Grad-Gen", code: "7" },
+        { label: "Graduate / Post Grad-Prof", code: "8" }
       ],
 
 
@@ -156,7 +180,8 @@ const products = {
       type: "radio",
       placeHolder: "agricultural land",
       label: "",
-      options: [ "yes", "no"
+      options: [  { label: "Yes", code: "1" },
+        { label: "No", code: "2" }
       ],
       otherSpecify: true,
       random: "false",
@@ -197,9 +222,9 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Only  one soap that is used by everybody",
-        "Only one soap that is  used  by only me ",
-        "Everybody in the family uses their own individual soap" ],
+      options: [ { label: "Only one soap that is used by everybody", code: "1" },
+        { label: "Only one soap that is used by only me", code: "2" },
+        { label: "Everybody in the family uses their own individual soap", code: "3" } ],
 
 
     },
@@ -210,12 +235,11 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Me and my husband",
-        "Me and my husband and our one child  ",
-        "Me and my husband and our two children",
-        "Me and my husband and our three children",
-        "Me and my husband ,our children and other relatives"
-      ],
+      options: [  { label: "Me and my husband", code: "1" },
+        { label: "Me and my husband and our one child", code: "2" },
+        { label: "Me and my husband and our two children", code: "3" },
+        { label: "Me and my husband and our three children", code: "4" },
+        { label: "Me and my husband, our children and other relatives", code: "5" } ],
 
     },
 
@@ -266,11 +290,10 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Once a month",
-        "Once a month",
-        "Once in fifteen days ",
-        "Once in two months",
-        "Less often"
+      options: [  { label: "Once a month", code: "1" },
+        { label: "Once in fifteen days", code: "2" },
+        { label: "Once in two months", code: "3" },
+        { label: "Less often", code: "4" }
       ],
 
     },
@@ -281,11 +304,11 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Less that 50 gms",
-        "50 gms to 75 gms",
-        "75 gms but <  100 gms",
-        "100 gms",
-        "More than 100 gms"
+      options: [  { label: "	Less that 50 gms", code: "1" },
+        { label: "50-75 gms", code: "2" },
+        { label: "75gms but <100 gms", code: "3" },
+        { label: "100 gms", code: "4" },
+        { label: "More than 100 gms", code: "5" }
       ],
 
 
@@ -300,10 +323,10 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Less that 5 minutes",
-        "5 to 10 minutes",
-        "10 to 15 minutes",
-        " More than 15  minutes",
+      options: [  { label: "Less than 5 minutes", code: "1" },
+        { label: "5 to 10 minutes", code: "2" },
+        { label: "10 to 15 minutes", code: "3" },
+        { label: "More than 15 minutes", code: "4" }
       ],
 
 
@@ -314,20 +337,20 @@ const products = {
       number: "S8a",
       question: "Whenever you think of bathing soap bars which brand comes to your mind first? NEED A FULL LIST OF BRANDS OF BATHING SOAPS FROM THE CLIENT",
       type: "radio",
-      options: [ "Cinthol",
-        "Dove",
-        "Dyna",
-        "Fiam",
-        "Famus",
-        "Godrej number 1",
-        "Jo",
-        "Khadee",
-        "Lux",
-        "Liril",
-        "Medimix",
-        "Margo",
-        "Moti",
-        "Mysore sandal soap"
+      options: [ { label: "Cinthol", code: "1" },
+        { label: "Dove", code: "2" },
+        { label: "Dyna", code: "3" },
+        { label: "Fiam", code: "4" },
+        { label: "Famus", code: "5" },
+        { label: "Godrej number 1", code: "6" },
+        { label: "Jo", code: "7" },
+        { label: "Khadee", code: "8" },
+        { label: "Lux", code: "9" },
+        { label: "Liril", code: "10" },
+        { label: "Medimix", code: "11" },
+        { label: "Margo", code: "12" },
+        { label: "Moti", code: "13" },
+        { label: "Mysore sandal soap", code: "14" }
       ],
       response: " "
     },
@@ -364,20 +387,20 @@ const products = {
       //? matrix , dropdown(single) , dropdown(multi) , rate , scale , upload )
       placeHolder: "",
       label: "",
-      options: [ "Cinthol",
-        "Dove",
-        "Dyna",
-        "Fiam",
-        "Famus",
-        "Godrej number 1",
-        "Jo",
-        "Khadee",
-        "Lux",
-        "Liril",
-        "Medimix",
-        "Margo",
-        "Moti",
-        "Mysore sandal soap"
+      options: [ { label: "Cinthol", code: "1" },
+        { label: "Dove", code: "2" },
+        { label: "Dyna", code: "3" },
+        { label: "Fiam", code: "4" },
+        { label: "Famus", code: "5" },
+        { label: "Godrej number 1", code: "6" },
+        { label: "Jo", code: "7" },
+        { label: "Khadee", code: "8" },
+        { label: "Lux", code: "9" },
+        { label: "Liril", code: "10" },
+        { label: "Medimix", code: "11" },
+        { label: "Margo", code: "12" },
+        { label: "Moti", code: "13" },
+        { label: "Mysore sandal soap", code: "14" }
       ],
       column: [ "Tom", "SPONTANEOUS", "Last 3 Months", "Currently using" ],
 
@@ -430,20 +453,20 @@ const products = {
       number: "S9c",
       question: "Which bathing soap bar are you and your family members  using most often in the last three months? ",
       type: "radio",
-      options: [ "Cinthol",
-        "Dove",
-        "Dyna",
-        "Fiam",
-        "Famus",
-        "Godrej number 1", //todo continue only otherwise terminate
-        "Jo", //todo continue only otherwise terminate 
-        "Khadee",
-        "Lux",
-        "Liril",
-        "Medimix",
-        "Margo",
-        "Moti",
-        "Mysore sandal soap"
+      options: [ { label: "Cinthol", code: "1" },
+        { label: "Dove", code: "2" },
+        { label: "Dyna", code: "3" },
+        { label: "Fiam", code: "4" },
+        { label: "Famus", code: "5" },
+        { label: "Godrej number 1", code: "6" },
+        { label: "Jo", code: "7" },
+        { label: "Khadee", code: "8" },
+        { label: "Lux", code: "9" },
+        { label: "Liril", code: "10" },
+        { label: "Medimix", code: "11" },
+        { label: "Margo", code: "12" },
+        { label: "Moti", code: "13" },
+        { label: "Mysore sandal soap", code: "14" }
       ],
       response: " ",
       termination: true,
@@ -454,20 +477,20 @@ const products = {
       number: "S9d",
       question: "Which bathing soap bar are you and your family members are currently  using in the household? ",
       type: "radio",
-      options: [ "Cinthol",
-        "Dove",
-        "Dyna",
-        "Fiam",
-        "Famus",
-        "Godrej number 1",
-        "Jo",
-        "Khadee",
-        "Lux",
-        "Liril",
-        "Medimix",
-        "Margo",
-        "Moti",
-        "Mysore sandal soap"
+      options: [ { label: "Cinthol", code: "1" },
+        { label: "Dove", code: "2" },
+        { label: "Dyna", code: "3" },
+        { label: "Fiam", code: "4" },
+        { label: "Famus", code: "5" },
+        { label: "Godrej number 1", code: "6" },
+        { label: "Jo", code: "7" },
+        { label: "Khadee", code: "8" },
+        { label: "Lux", code: "9" },
+        { label: "Liril", code: "10" },
+        { label: "Medimix", code: "11" },
+        { label: "Margo", code: "12" },
+        { label: "Moti", code: "13" },
+        { label: "Mysore sandal soap", code: "14" }
       ],
       response: " ",
       // termination: true,
@@ -479,12 +502,12 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Never change",
-        "Change infrequently , may be once in two to three years",
-        "Change  frequently , every  1-2 years",
-        "Always change my brand of soap every year",
-        "Always change my brand of soap every six- three months",
-        "Always change my brand of soap every  three- two months",
+      options: [ { label: "Never change", code: "1" },
+        { label: "Change infrequently, may be once in two to three years", code: "2" },
+        { label: "Change frequently, every 1-2 years", code: "3" },
+        { label: "Always change my brand of soap every year", code: "4" },
+        { label: "Always change my brand of soap every six-three months", code: "5" },
+        { label: "Always change my brand of soap every three-two months", code: "6" }
 
       ],
       checkAsk: true,
@@ -496,12 +519,11 @@ const products = {
       type: "multi",
       placeHolder: "",
       label: "",
-      options: [ "I like different fragrances  so I try a new fragrance",
-        "I like value for money bathing soaps so buy the inexpensive soap that is available  ",
-        "I like to try new brands",
-        "I like to change my brand when I want to feel different and I don’t like the same experience ",
-        "I like to change my brand of soap because my skin  starts showing a reaction if the soap is constantly the same brand",
-        "Any other reason please specify",
+      options: [           {label:"I like different fragrances  so I try a new fragrance", code:"1"},
+        {label:"I like value for money bathing soaps so buy the inexpensive soap that is available  ", code:"2"},
+        {label:"I like to try new brands", code:"3"},
+        {label : "I like to change my brand when I want to feel different and I don’t like the same experience ", code:"4"},
+       {label: "I like to change my brand of soap because my skin  starts showing a reaction if the so",code:"5"}
 
       ],
     },
@@ -511,15 +533,17 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [ "Jasmine",
-        "Lemon ",
-        "Rose",
-        "Sandalwood",
-        "Milk/Cream/Saffron",
-        "Woody/Aqua/ etc", //todo terminate
-        "Mixed fragrance None of above" //todo terminate
+      options: [
+        {label: "Jasmine" , code:"1"},
+        {label : "Lemon " ,  code:"2"},
+        {label:"Rose" , code:"3"},
+        {label:"Sandalwood" , code:"4"},
+      {label:"Milk/Cream/Saffron" , code:"5"},
+      {abel:"Woody/Aqua/ etc", code:"6"}, //todo terminate
+       {label:"Mixed fragrance None of above" ,code:"7"} //todo terminate
 
       ],
+
       codeMapping: [ "1", "2", "3", '4', '5', '6', '99' ],
 
       otherSpecify: "false", //true or false
@@ -533,8 +557,9 @@ const products = {
       number: "S10a",
       question: "Are you willing to participate in such a study by using the soap sample that we leave with you for next 15 days? ",
       type: "radio",
-      options: [ "Yes, i wish to participate",  // todo continue only otherwise terminate
-        "No , i don't  wish  to participate" ],
+      options: [ 
+        {label:"Yes, i wish to participate", code:"1"} ,// todo continue only otherwise terminate
+       {label: "No , i don't  wish  to participate ",code:"2"  } ],
       termination: true,
       terminationCodes: [ "3" ],
 
@@ -543,8 +568,10 @@ const products = {
       number: "S10b",
       question: "Will you be available at home for the next  15 days ?",
       type: "radio",
-      options: [ "Yes, I will be available at home for the next 15 days or so", //todo continue only otherwise terminate
-        "No, I may not be at home " ],
+      options: [
+        { label : "Yes, I will be available at home for the next 15 days or so", code:"1"}, //todo continue only otherwise terminate
+       { label : "No, I may not be at home " , code:"2"}
+      ],
       termination: true,
       terminationCodes: [ "3" ],
     },
@@ -554,8 +581,8 @@ const products = {
       question: "Are you willing to participate in such a study by using the soap sample that we leave with you  for next 15 DAYS ?",
       type: "radio",
       options: [
-        "Yes, I wish to participate", // todo continue only otherwise terminate
-        "No, I don't wish to participate"
+        {label: "Yes, I wish to participate", code:"1"}, // todo continue only otherwise terminate
+        { label : "No, I don't wish to participate" , code:"2"}
       ]
       ,
       termination: true, terminationCodes: [ "3" ],
@@ -565,12 +592,17 @@ const products = {
       question: "Will you be available at home for the next 15 days?",
       type: "radio",
       options: [
-        "Yes, I will be available at home for the next 15 days or so", //todo continue only otherwise terminate
-        "No, I may not be at home "
+        {label : "Yes, I will be available at home for the next 15 days or so", code : "1"}, //todo continue only otherwise terminate
+        {label:"No, I may not be at home " ,  code :"2"}
       ]
       ,
       termination: true, terminationCodes: [ "3" ],
     }
+    // Q31:{
+    //     type:"displayCard",
+    //     Section : "1"
+
+    // }
   },
   //?QUESTIONS-
   Section2: {

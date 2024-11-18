@@ -144,7 +144,7 @@ function QuestionForm() {
 
   useEffect(() => {
     // Trigger the recording logic only when demographicAnswered is true
-    if ( mediaRecorder) {
+    if (demographicAnswered && mediaRecorder) {
       // Only execute if the mediaRecorder exists
       if (mediaRecorder.state === "recording") {
         mediaRecorder.stop(); // Stop recording if it's currently recording
