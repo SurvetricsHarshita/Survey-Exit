@@ -109,6 +109,7 @@ function QuestionForm() {
   const { isTerminate } = useSurveyTermination();
   const { isAsk } = useAsk();
   useEffect(() => {
+   
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
 
@@ -123,10 +124,39 @@ function QuestionForm() {
     const updatedData = { ...existingData, ...responses };
 
     setStoredData(updatedData);
+   
+   
+    // Check if demographic question is answered before handling recording
+  // if (!currentQuestion) {
+  //   if (mediaRecorder) {
+  //     if (mediaRecorder.state === "recording") {
+  //       mediaRecorder.stop(); // Stop recording if it's currently recording
+  //       console.log("Recording stopped...");
+  //     } else if (mediaRecorder.state === "inactive") {
+  //       mediaRecorder.start(); // Start recording if it's not recording
+  //       console.log("Recording started...");
+  //     }
+  //   }
+  // }
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
   }, [responses]);
 
+  useEffect(() => {
+    // Trigger the recording logic only when demographicAnswered is true
+    if ( mediaRecorder) {
+      // Only execute if the mediaRecorder exists
+      if (mediaRecorder.state === "recording") {
+        mediaRecorder.stop(); // Stop recording if it's currently recording
+        console.log("Recording stopped...");
+        mediaRecorder.start(); // Start recording if it's not recording
+        console.log("Recording started...");
+      } else if (mediaRecorder.state === "inactive") {
+        mediaRecorder.start(); // Start recording if it's not recording
+        console.log("Recording started...");
+      }
+    }
+  }, [demographicAnswered, mediaRecorder]);
   //audio
   useEffect(() => {
     navigator.mediaDevices
@@ -141,6 +171,8 @@ function QuestionForm() {
       })
       .catch((error) => console.error("Error accessing media devices:", error));
   }, []);
+
+
   const handleResponseChange = (key, value, index) => {
     let keyForOtherSpecify = "";
 
@@ -271,6 +303,8 @@ function QuestionForm() {
   };
 
   const handleNext = async () => {
+
+ 
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -325,6 +359,7 @@ function QuestionForm() {
     setMediaFrequencies({})
     // setDisable(true)
   };
+  
   // setMulti(1)
   const handlePrevious = () => {
     setCurrentQuestionIndex((prev) => Math.max(prev - 1, 0));

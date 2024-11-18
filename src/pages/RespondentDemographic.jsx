@@ -17,7 +17,7 @@ import NextButton from "../components/atoms/NextButton";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 import { getIndianTime } from "../utils/constant";
 
-const RespondentDemographic = ({ handleNext, language }) => {
+const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
   const [formData, setFormData] = useState({
     name: "",
     doorNo: "",
@@ -111,38 +111,38 @@ const RespondentDemographic = ({ handleNext, language }) => {
   };
 
   const handleSubmit = () => {
-    // const isValidMobile = /^\d{10}$/.test(formData.mobile);
-    // const isValidMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId);
-    // const isValidPincode = /\d/.test(formData.pincode);
-    // const isValidPhoneRes = !formData.phoneRes || /^\d{10}$/.test(formData.phoneRes);
-    // const isValidPhonePP = !formData.phonePP || /^\d{10}$/.test(formData.phonePP);
-    // const isValidPhoneOff = !formData.phoneOff || /^\d{10}$/.test(formData.phoneOff);
-// if(step==2){
-//   if (!isValidMobile) {
-//     handleValidationError("Please enter a valid 10-digit mobile number");
-//     return;
-//   }
-//   if (!isValidMail) {
-//     handleValidationError("Please enter a valid email address");
-//     return;
-//   }
-//   if (!isValidPincode) {
-//     handleValidationError("Please enter a valid pincode");
-//     return;
-//   }
-//   if (!isValidPhoneRes) {
-//     handleValidationError("Please enter a valid 10-digit residential phone number");
-//     return;
-//   }
-//   if (!isValidPhonePP) {
-//     handleValidationError("Please enter a valid 10-digit personal phone number");
-//     return;
-//   }
-//   if (!isValidPhoneOff) {
-//     handleValidationError("Please enter a valid 10-digit office phone number");
-//     return;
-//   }
-// }
+    const isValidMobile = /^\d{10}$/.test(formData.mobile);
+    const isValidMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId);
+    const isValidPincode = /\d/.test(formData.pincode);
+    const isValidPhoneRes = !formData.phoneRes || /^\d{10}$/.test(formData.phoneRes);
+    const isValidPhonePP = !formData.phonePP || /^\d{10}$/.test(formData.phonePP);
+    const isValidPhoneOff = !formData.phoneOff || /^\d{10}$/.test(formData.phoneOff);
+if(step==2){
+  if (!isValidMobile) {
+    handleValidationError("Please enter a valid 10-digit mobile number");
+    return;
+  }
+  if (!isValidMail) {
+    handleValidationError("Please enter a valid email address");
+    return;
+  }
+  if (!isValidPincode) {
+    handleValidationError("Please enter a valid pincode");
+    return;
+  }
+  if (!isValidPhoneRes) {
+    handleValidationError("Please enter a valid 10-digit residential phone number");
+    return;
+  }
+  if (!isValidPhonePP) {
+    handleValidationError("Please enter a valid 10-digit personal phone number");
+    return;
+  }
+  if (!isValidPhoneOff) {
+    handleValidationError("Please enter a valid 10-digit office phone number");
+    return;
+  }
+}
    
     if (error) {
       handleValidationError(error);
@@ -171,7 +171,9 @@ const RespondentDemographic = ({ handleNext, language }) => {
     } else if (step === 2) {
       setStep(3);
     } else {
+      onComplete()
       handleNext();
+ 
     }
   };
 
@@ -220,7 +222,7 @@ const RespondentDemographic = ({ handleNext, language }) => {
 
       <Flex>
         <NextButton onClick={handleSubmit} 
-        // isDisabled={!isFormComplete} 
+        isDisabled={!isFormComplete} 
         />
       </Flex>
     </Flex>
