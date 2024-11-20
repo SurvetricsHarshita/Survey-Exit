@@ -67,7 +67,7 @@ function QuestionForm() {
     e.preventDefault();
     e.returnValue = "";
     localStorage.removeItem("ProductsTest");
-    navigate("/");
+    navigate("/survey");
   };
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
