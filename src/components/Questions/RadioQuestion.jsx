@@ -1,6 +1,6 @@
 import { Input, Radio, RadioGroup, Stack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { shuffleArray } from '../../utils/constant';
+import { shuffleArray, shuffleArrayWithFixed } from '../../utils/constant';
 import useOptions from '../../utils/useOptions';
 
 function RadioQuestion({
@@ -34,6 +34,7 @@ function RadioQuestion({
       updatedOptions = isOptions(
         currentQuestion.number,
         currentQuestion.optionsDependOn,
+        currentQuestion.optionsRemove,
         currentQuestion.options,
         updatedData
       );
@@ -41,14 +42,14 @@ function RadioQuestion({
 
     // Handle randomization
     if (currentQuestion.randomize) {
-      updatedOptions = shuffleArray(updatedOptions);
+      updatedOptions = shuffleArrayWithFixed(updatedOptions,  currentQuestion.fixedCodes,currentQuestion.RandomizeOnce);
     }
 
     setOptions(updatedOptions); // Update options state
     setIsLoading(false); // End loader
   }, [
     currentQuestion, // Update when the current question changes
-    responses, // Re-run if responses change
+    ...(currentQuestion.RandomizeOnce ? [] : [responses]),
     currentQuestionIndex, // React to index changes
   ]);
 

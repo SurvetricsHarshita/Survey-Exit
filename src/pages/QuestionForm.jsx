@@ -33,10 +33,13 @@ import useAsk from "../utils/useAsk";
 import RatingSlider from "../components/Questions/RatingSlider";
 import { Axios } from "axios";
 import { submitDataToAPI } from "../utils/submitDataToAPI";
+import Segment2 from "../components/Questions/SegmentQuestion";
+import SegmentQuestion from "../components/Questions/SegmentQuestion";
+import RankingQuestion from "../components/Questions/RankingQuestion";
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
-
+  const [sliderMoved, setSliderMoved] = useState(false);
   const navigate = useNavigate();
   const [sectionIndex, setSectionIndex] = useState(0);
   // Default is English
@@ -109,7 +112,6 @@ function QuestionForm() {
   const { isTerminate } = useSurveyTermination();
   const { isAsk } = useAsk();
   useEffect(() => {
-   
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
     setResponses(storedData);
 
@@ -124,20 +126,6 @@ function QuestionForm() {
     const updatedData = { ...existingData, ...responses };
 
     setStoredData(updatedData);
-   
-   
-    // Check if demographic question is answered before handling recording
-  // if (!currentQuestion) {
-  //   if (mediaRecorder) {
-  //     if (mediaRecorder.state === "recording") {
-  //       mediaRecorder.stop(); // Stop recording if it's currently recording
-  //       console.log("Recording stopped...");
-  //     } else if (mediaRecorder.state === "inactive") {
-  //       mediaRecorder.start(); // Start recording if it's not recording
-  //       console.log("Recording started...");
-  //     }
-  //   }
-  // }
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
   }, [responses]);
@@ -172,18 +160,18 @@ function QuestionForm() {
       .catch((error) => console.error("Error accessing media devices:", error));
   }, []);
 
-
   const handleResponseChange = (key, value, index) => {
     let keyForOtherSpecify = "";
 
+    // Loop through options and find the "Other" option
     currentQuestion.options.forEach((option, idx) => {
-      if (othersSpecify.includes(option)) {
-        keyForOtherSpecify = codeMapping[idx]; // Use idx instead of index to correctly reference the current index
+      if (othersSpecify.includes(option.label)) {
+        keyForOtherSpecify = option.code; // Ensure this maps to the correct value
       }
     });
 
-    // Update the state to show/hide the "Other" input
-    setOther(value == keyForOtherSpecify);
+    // Check if the selected value is the "Other" option and update state
+    setOther(value === keyForOtherSpecify);
 
     if (currentQuestion.termination) {
       const terminate = isTerminate(
@@ -198,16 +186,19 @@ function QuestionForm() {
       const display = isAsk(currentQuestion.number, value, storedData);
       setAsk(display);
     }
-    setResponses((prevResponses) => {
-      const updatedResponses = { ...prevResponses, [key]: value }; // Update the specific response
 
+    // Update responses state
+    setResponses((prevResponses) => {
+      const updatedResponses = { ...prevResponses, [key]: value };
+
+      // If "Other" option is selected, clear the "other" input value
       if (othersSpecify.includes(value)) {
         setOtherInput("");
       } else if (keyForOtherSpecify && value === keyForOtherSpecify) {
         setOtherInput("");
       }
 
-      return updatedResponses; // Return the updated responses object
+      return updatedResponses; // Return updated responses object
     });
   };
 
@@ -256,8 +247,8 @@ function QuestionForm() {
 
     // Identify the key for "Others (please specify)"
     currentQuestion.options.forEach((option, index) => {
-      if (othersSpecify.includes(option)) {
-        keyForOtherSpecify = codeMapping[index];
+      if (othersSpecify.includes(option.label)) {
+        keyForOtherSpecify = option.code;
       }
     });
 
@@ -276,7 +267,9 @@ function QuestionForm() {
       const display = isAsk(currentQuestion.number, storedData);
       setAsk(display);
     }
-    if (isOtherSelected) {
+    
+    if (isOther) {
+ 
       setResponses((prev) => ({
         ...prev,
         [keyValue]: values, // Save the selected values
@@ -286,7 +279,7 @@ function QuestionForm() {
       setResponses((prev) => {
         // Remove "Others" input if not selected
         const updatedResponses = { ...prev, [keyValue]: values };
-        delete updatedResponses[`${keyValue}_other`];
+        // delete updatedResponses[`${keyValue}_other`];
         return updatedResponses;
       });
     }
@@ -298,13 +291,11 @@ function QuestionForm() {
 
     setResponses((prevResponses) => ({
       ...prevResponses,
-      [`${currentQuestion.number}_other`]: newValue, 
+      [`${currentQuestion.number}_other`]: newValue,
     }));
   };
 
   const handleNext = async () => {
-
- 
     if (terminate) {
       alert("terminated");
       navigate("/submit", { state: { msg: "terminated" } });
@@ -332,6 +323,38 @@ function QuestionForm() {
       }));
     }
 
+
+    if (currentQuestion.autoCodeQuestion) {
+      setResponses((prev) => {
+    const updatedResponses = { ...prev };
+        const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
+    const selectedCode = prev[currentQuestion.number]; // assuming the selected code is saved in prev[currentQuestion.number]
+
+    if (selectedCode) {
+      const response = currentQuestion.codes[selectedCode];
+      if (response) {
+        storedData[currentQuestion.autoCodeQuestionVar] = response.save; // Save the mapped value to localStorage
+        localStorage.setItem('ProductsTest', JSON.stringify(storedData));
+      }
+    }
+    return updatedResponses;
+      });
+    }
+
+
+    if (!isOther) {
+      setResponses((prev) => {
+        const updatedResponses = { ...prev };
+    delete updatedResponses[`${currentQuestion.number}_other`]; // Clean up "other" input
+    console.log(updatedResponses);
+
+    const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
+    delete storedData[`${currentQuestion.number}_other`];
+    localStorage.setItem('ProductsTest', JSON.stringify(storedData));
+
+    return updatedResponses;
+      });
+    }
     setOther(false);
     if (currentQuestionIndex < questions.length - 1) {
       // setCurrentQuestionIndex((prev) => prev + 1);
@@ -356,10 +379,10 @@ function QuestionForm() {
     }
     setOtherInput("");
     setAsk(false);
-    setMediaFrequencies({})
+    setMediaFrequencies({});
     // setDisable(true)
   };
-  
+
   // setMulti(1)
   const handlePrevious = () => {
     setCurrentQuestionIndex((prev) => Math.max(prev - 1, 0));
@@ -412,42 +435,6 @@ function QuestionForm() {
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  // const isNextButtonDisabled = () => {
-  //   const currentResponse = responses[currentQuestion.number];
-
-  //   // Demographic question handling
-  //   if (!demographicAnswered) return false;
-
-  //   // Multi-selection question handling
-  //   if (
-  //     currentQuestion.options &&
-  //     currentQuestion.type === "multi" &&
-  //     currentQuestion.maxSelections
-  //   ) {
-  //     return (
-  //       !currentResponse ||
-  //       (isOther && !otherInput.trim()) ||
-  //       multi !== currentQuestion.maxSelections ||
-  //       multi === 0
-  //     );
-  //   }
-
-  //   // Rate question handling
-  //   if (currentQuestion.type === "rate") {
-  //     // Ensure all media channels have a response
-  //     return !mediaFrequencies || Object.values(mediaFrequencies).some((value) => value === "");
-  //   }
-
-  //   // Radio question handling with "Other" option
-  //   if (currentQuestion.type === "radio" && isOther) {
-  //     return !otherInput.trim();
-  //   }
-
-  //   // Default case for unanswered questions
-  //   return !currentResponse && !otherInput.trim();
-  // };
-  
-  
   const isNextButtonDisabled = () => {
     const currentResponse = responses[currentQuestion.number];
 
@@ -475,8 +462,14 @@ function QuestionForm() {
         Object.values(mediaFrequencies).some((value) => value === "")
       );
     }
+    if (currentQuestion.type === "rank") {
+      return (
+        !mediaFrequencies ||
+        Object.values(mediaFrequencies).some((value) => value === "")
+      );
+    }
     if (currentQuestion.type === "RatingSlider") {
-      return false;
+      return !sliderMoved
     }
     // Radio question handling with "Other" option
     if (currentQuestion.type === "radio" && isOther) {
@@ -498,6 +491,8 @@ function QuestionForm() {
       [mediaId]: frequency,
     }));
   };
+
+  
 
   return (
     <Box p={5}>
@@ -568,6 +563,8 @@ function QuestionForm() {
               mediaFrequencies={mediaFrequencies}
             />
           ) : // Spontaneous
+
+          // segment
           currentQuestion.type === "RatingSlider" ? (
             <RatingSlider
               currentQuestionIndex={currentQuestionIndex}
@@ -588,8 +585,30 @@ function QuestionForm() {
               // handleSliderChange={handleSliderChange}
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
+              setSliderMoved={setSliderMoved}
             />
-          ) : (
+          ) : // Spontaneous
+
+          // segment
+          currentQuestion.type === "rank" ? (
+            <RankingQuestion
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              codeMapping={codeMapping}
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              // onRating={handleRating}
+              handleChange={handleChange}
+              setMediaFrequencies={setMediaFrequencies}
+              mediaFrequencies={mediaFrequencies}
+           
+            />
+          ) :(
             // Spontaneous
             <InputQuestion
               currentQuestionIndex={currentQuestionIndex}
@@ -601,7 +620,7 @@ function QuestionForm() {
         </FormControl>
       )}
 
-      {demographicAnswered && (
+      {demographicAnswered &&  (
         <Flex mt={10} justify="space-between">
           <PreviousButton
             mr={2}
@@ -618,7 +637,7 @@ function QuestionForm() {
             <Button
               colorScheme="teal"
               onClick={handleSubmit}
-              isDisabled={isNextButtonDisabled() || isLoading}>
+              isDisabled={isNextButtonDisabled() || isLoading }>
               Next
             </Button>
           )}

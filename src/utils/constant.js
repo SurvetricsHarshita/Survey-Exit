@@ -1,7 +1,7 @@
 export const othersSpecify = [
 "Any other reason please specify",
   "Others (please specify)",
-
+"Others (please specify)",
   "മറ്റുള്ളവ (ദയവായി വ്യക്തമാക്കുക)",
 
   "অন্যান্য (একটু বলুন)",
@@ -69,13 +69,42 @@ export  const othersPlaceholders = {
 
 
 export function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-  }
-  return array;
+  return array.sort((a, b) => {
+    // Compare the label strings and sort randomly
+    return a.label.localeCompare(b.label) * (Math.random() - 0.5);
+  });
 }
 
+ export function shuffleArrayWithFixed(array, fixedCodes = [], randomizeOnce = false) {
+  if (randomizeOnce && array._shuffled) {
+    return array; // Return the array as-is if it has already been randomized
+  }
+
+  const fixedItems = array.filter(item => fixedCodes.includes(item.code));
+  const shuffleItems = array.filter(item => !fixedCodes.includes(item.code));
+
+  // Shuffle only the items that are not fixed
+  for (let i = shuffleItems.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffleItems[i], shuffleItems[j]] = [shuffleItems[j], shuffleItems[i]];
+  }
+
+  // Combine fixed items and shuffled items, preserving the original positions of fixed items
+  const result = [];
+  array.forEach(item => {
+    if (fixedCodes.includes(item.code)) {
+      result.push(item); // Add fixed items in their original position
+    } else {
+      result.push(shuffleItems.shift()); // Add shuffled items
+    }
+  });
+
+  if (randomizeOnce) {
+    result._shuffled = true; // Mark as shuffled
+  }
+
+  return result;
+}
 export const sendBlobToBackend = async (blob) => {
   const formData = new FormData();
   formData.append("file", blob, "audio.webm"); // Append the blob to FormData with a filename

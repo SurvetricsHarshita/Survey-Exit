@@ -1,43 +1,52 @@
 import { useState } from "react";
 
 function useOptions() {
-  const [display, setDisplay] = useState()
-  const [filteredOptions, setFilteredOptions] = useState();
+  const [filteredOptions, setFilteredOptions] = useState([]);
 
-  function isOptions(question, dependOn, allOptions, storedData) {
+  function isOptions(question, dependOn,  optionsRemove,allOptions, storedData) {
     const questionHandlers = {
-      S2: () => handleS2(dependOn, allOptions, storedData), // Add handler for S2
+      S2: () => handleDynamicFilter(dependOn, allOptions, storedData,optionsRemove),
+      S6a:() => handleDynamicFilter(dependOn, allOptions, storedData,optionsRemove)
     };
 
+    // Check if there's a handler for the current question
     if (questionHandlers[question]) {
       const result = questionHandlers[question]();
       if (result) {
-        setDisplay(`Survey terminated for ${question} with result: ${result}`);
         setFilteredOptions(result);
       }
       return result;
     }
-    return allOptions; // If no handler, return all options
+
+    // Default: return all options if no handler exists
+    setFilteredOptions(allOptions);
+    return allOptions;
   }
 
-
-
-  function handleS2(dependOn, allOptions, storedData) {
- 
+  function handleDynamicFilter(dependOn, allOptions, storedData, optionsRemove) {
+    // Check if any dependency condition is met for multiple questions
+    const shouldKeepOptions = dependOn.some((dependency) => {
+      const storedAnswer = storedData[dependency.question];
+      
+      // If there's a stored answer and it matches any of the dependency options
+      return (
+        storedAnswer &&
+        dependency.options.some((option) => storedAnswer.includes(option))
+      );
+    });
   
-    const dependentAnswers = dependOn.map(
-      (dependentQuestion) => storedData[dependentQuestion] || ""
-    );
-  
-    //  if any dependent question answer is "1", return all except the first option 
-    if (dependentAnswers.includes("1")) {
-      return allOptions.slice(1); // Remove the first option and return the rest
+    // If dependencies are met, return options that are not removed
+    if (shouldKeepOptions) {
+      const filteredOptions = allOptions.filter(option => !optionsRemove.includes(option.code));
+      return filteredOptions;
+    } else {
+      // Return all options if dependencies are not met
+      return allOptions;
     }
-  
-    return allOptions; // Default: remove the first option and return the rest
   }
   
-  return { isOptions,  filteredOptions };
+
+  return { isOptions, filteredOptions };
 }
 
 export default useOptions;

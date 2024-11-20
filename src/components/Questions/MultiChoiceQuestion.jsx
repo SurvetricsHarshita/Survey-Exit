@@ -1,8 +1,7 @@
-import { Checkbox, CheckboxGroup, Input, Stack } from '@chakra-ui/react'
-import { shuffleArray } from '../../utils/constant';
-import { useEffect, useState } from 'react';
-import useOptions from '../../utils/useOptions';
-
+import { Checkbox, CheckboxGroup, Input, Stack } from "@chakra-ui/react";
+import { shuffleArray, shuffleArrayWithFixed } from "../../utils/constant";
+import { useEffect, useState } from "react";
+import useOptions from "../../utils/useOptions";
 
 function MultiChoiceQuestion({
   currentQuestion,
@@ -14,77 +13,77 @@ function MultiChoiceQuestion({
   handleOtherInputChange,
   codeMapping,
   currentQuestionIndex,
-  isOther 
+  isOther,
 }) {
-  const [options, setOptions] = useState([...currentQuestion.options]);
+  const [options, setOptions] = useState(currentQuestion.options || []);
   const { isOptions } = useOptions();
   const [storedData, setStoredData] = useState({});
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true); // Start loader
 
-    const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-
+    const existingData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
     const updatedData = { ...existingData, ...responses };
-
     setStoredData(updatedData);
 
-    // question, dependOn, allOptions, storedData
+    let updatedOptions = [...currentQuestion.options];
 
+    // Handle dependent options
     if (currentQuestion.optionsDependOn) {
-
-
-      const filteredOptions = isOptions(
+      updatedOptions = isOptions(
         currentQuestion.number,
         currentQuestion.optionsDependOn,
+        currentQuestion.optionsRemove,
         currentQuestion.options,
-        storedData
+        updatedData
       );
-    
-      setOptions(filteredOptions,"filter");
-      
-      console.log(filteredOptions)// Use the returned options directly
-      console.log(options,"options")
     }
-  
+
+    // Handle randomization
     if (currentQuestion.randomize) {
-      const randomizedOptions = shuffleArray([...isOptions]);
-      
-      setOptions(randomizedOptions);
-    } else {
-      setOptions([...currentQuestion.options]);
+      updatedOptions = shuffleArrayWithFixed(updatedOptions,  currentQuestion.fixedCodes,currentQuestion.RandomizeOnce);
     }
-  }, [currentQuestionIndex]); // Add currentQuestion as a dependency
+
+    setOptions(updatedOptions); // Update options state
+    setIsLoading(false); // End loader
+  }, [
+    currentQuestion, // Update when the current question changes
+  ...(currentQuestion.RandomizeOnce ? [] : [responses]),
+    currentQuestionIndex, // React to index changes
+  ]);
 
   return (
     <CheckboxGroup
-      value={responses[`${currentQuestion.number}`] || []}
+      value={responses[currentQuestion.number] || []}
       onChange={(values) => handleCheckboxChange(currentQuestion.number, values)}
     >
       <Stack spacing={4} direction="column">
         {options.map((option, idx) => (
           <Checkbox
             key={idx}
-            isChecked={(responses[currentQuestionIndex] || []).includes(option.trim())}
-            value={codeMapping[idx]}
+            value={option.code}
+            isChecked={(responses[currentQuestion.number] || []).includes(option.code)}
           >
-            {option}
+            {option.label}
           </Checkbox>
         ))}
-        {/* Display Input field when an option includes any value from 'othersSpecify' */}
-        {(isOther || othersSpecify.some((value) => responses[currentQuestionIndex]?.includes(value))) && (
+
+        {/* Display input field for "Other" options */}
+        {(isOther || othersSpecify.some((value) => responses[currentQuestion.number]?.includes(value))) && (
           <Input
             placeholder={
-              othersSpecify.find((value) => responses[currentQuestionIndex]?.includes(value)) || "Please specify"
+              othersSpecify.find((value) => responses[currentQuestion.number]?.includes(value)) || "Please specify"
             }
             value={otherInput}
             onChange={handleOtherInputChange}
             mt={2}
           />
         )}
-        {/* Display input fields dynamically for specific responses */}
+
+        {/* Dynamic input fields for specific responses */}
         {othersSpecify.map(
           (checkValue) =>
-            responses[currentQuestionIndex]?.includes(checkValue) && (
+            responses[currentQuestion.number]?.includes(checkValue) && (
               <Input
                 key={checkValue}
                 placeholder={othersPlaceholders[checkValue] || "Please specify"}
