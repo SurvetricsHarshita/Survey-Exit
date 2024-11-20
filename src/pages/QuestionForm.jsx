@@ -36,6 +36,7 @@ import { submitDataToAPI } from "../utils/submitDataToAPI";
 import Segment2 from "../components/Questions/SegmentQuestion";
 import SegmentQuestion from "../components/Questions/SegmentQuestion";
 import RankingQuestion from "../components/Questions/RankingQuestion";
+import Quota from "../components/Questions/Quota";
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
@@ -53,7 +54,7 @@ function QuestionForm() {
   const [ask, setAsk] = useState(false);
   const [responses, setResponses] = useState({});
   const [storedData, setStoredData] = useState({});
-  const codeMapping = Array.from({ length: 20 }, (_, i) => (i + 1).toString());
+ 
   const [mediaFrequencies, setMediaFrequencies] = useState({});
   const [sliderValue, setSliderValue] = useState(3);
   useEffect(() => {
@@ -380,6 +381,7 @@ function QuestionForm() {
     setOtherInput("");
     setAsk(false);
     setMediaFrequencies({});
+    setSliderMoved(false)
     // setDisable(true)
   };
 
@@ -393,45 +395,58 @@ function QuestionForm() {
   };
 
   const handleSubmit = async () => {
-    const end = getIndianTime(); // Get current time in IST
-    // setEndTime(end);
-
+    // Get the current time in IST
+    const end = getIndianTime(); // Function to get Indian Standard Time
+    const endDate = `${end.getDate()}/${end.getMonth() + 1}/${end.getFullYear()}`; // Format: DD/MM/YYYY
+    const endTime = end.toLocaleTimeString('en-IN'); // Format: hh:mm:ss am/pm
+  
     // Retrieve existing data from localStorage
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-
+    const startTimeDate = existingData.startTime?.date; 
+    const startTimeStr = existingData.startTime?.time;
+  
+    if (startTimeDate && startTimeStr) {
+      // Convert start time to Date object
+      const [day, month, year] = startTimeDate.split('/');
+      const formattedDate = `${month}/${day}/${year}`; // Format: MM/DD/YYYY
+      const startTimeFull = `${formattedDate} ${startTimeStr}`; 
+      const startTime = new Date(startTimeFull);
+  
+      // Calculate survey duration in seconds
+      const surveyDuration = Math.floor((end.getTime() - startTime.getTime()) / 1000);
+  
+      // Add end time and duration to the existing data
+      existingData.endTime = { date: endDate, time: endTime };
+      existingData.duration = surveyDuration; // Duration in seconds
+    } else {
+      console.error("Start time data is missing!");
+      return;
+    }
+  
+    // Update and store the data in localStorage
     const updatedProductTest = calculateSurveyData(existingData, end);
-
-    // console.log(updatedProductTest);
-
-    // Store the updated product test in localStorage
     localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
+  
+    // Preserve the email in localStorage
     const email = localStorage.getItem("email");
-
     localStorage.clear();
-
     if (email) {
       localStorage.setItem("email", email);
     }
+  
     // Navigate to the submit page
     navigate("/submit", { state: { msg: "submit" } });
-
+  
     // Submit data to the API
     const { success, message } = await submitDataToAPI(updatedProductTest);
-
+  
     if (success) {
       navigate("/submit");
-      const email = localStorage.getItem("email");
-
-      localStorage.clear();
-
-      if (email) {
-        localStorage.setItem("email", email);
-      }
     } else {
-      // Show error message if submission fails
-      console.log(message);
+      console.log(message); // Show error message if submission fails
     }
   };
+  
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -468,7 +483,7 @@ function QuestionForm() {
         Object.values(mediaFrequencies).some((value) => value === "")
       );
     }
-    if (currentQuestion.type === "RatingSlider") {
+    if (currentQuestion.type === "RatingSlider" ||currentQuestion.type === "segment" ) {
       return !sliderMoved
     }
     // Radio question handling with "Other" option
@@ -492,10 +507,10 @@ function QuestionForm() {
     }));
   };
 
-  
+
 
   return (
-    <Box p={5}>
+    <Box p={5} mb={4}  >
       {!demographicAnswered ? (
         <RespondentDemographic
           setResponses={setResponses}
@@ -504,11 +519,11 @@ function QuestionForm() {
           language={language}
         />
       ) : (
-        <FormControl mb={4}>
+        <FormControl mb={4} pl={{ base: '10', md: '4', lg: '6' }}>
           <Text fontSize="2xl" fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>
-          <FormLabel fontSize="lg">
+          <FormLabel fontSize="lg" mb={30} >
             {" "}
             {currentQuestion.number} .{currentQuestion.question}
           </FormLabel>
@@ -529,7 +544,7 @@ function QuestionForm() {
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
               handleOtherInputChange={handleOtherInputChange}
-              codeMapping={codeMapping}
+              
               isOther={isOther}
             />
           ) : currentQuestion.type === "radio" ? (
@@ -542,7 +557,7 @@ function QuestionForm() {
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
               handleOtherInputChange={handleOtherInputChange}
-              codeMapping={codeMapping}
+              
               isOther={isOther}
             />
           ) : currentQuestion.type === "rate" ? (
@@ -553,7 +568,7 @@ function QuestionForm() {
               othersSpecify={othersSpecify}
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
-              codeMapping={codeMapping}
+              
               isOther={isOther}
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
@@ -575,7 +590,7 @@ function QuestionForm() {
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
               handleOtherInputChange={handleOtherInputChange}
-              codeMapping={codeMapping}
+              
               isOther={isOther}
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
@@ -586,7 +601,12 @@ function QuestionForm() {
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
               setSliderMoved={setSliderMoved}
-            />
+             
+              setResponses={setResponses}
+              // segmentLabels = {currentQuestion.sliderLabels }
+              // segmentData = {currentQuestion.questionsData}
+
+ />
           ) : // Spontaneous
 
           // segment
@@ -598,7 +618,7 @@ function QuestionForm() {
               othersSpecify={othersSpecify}
               othersPlaceholders={othersPlaceholders}
               otherInput={otherInput}
-              codeMapping={codeMapping}
+              
               isOther={isOther}
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
@@ -608,7 +628,51 @@ function QuestionForm() {
               mediaFrequencies={mediaFrequencies}
            
             />
-          ) :(
+          ) :currentQuestion.type === "Quota" ? (
+            <Quota
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              // onRating={handleRating}
+              handleChange={handleChange}
+              setMediaFrequencies={setMediaFrequencies}
+              mediaFrequencies={mediaFrequencies}
+           
+            />
+          ): // Spontaneous
+          // Quota
+          // segment
+          currentQuestion.type === "segment" ? (
+            <SegmentQuestion
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              handleResponseChange={handleResponseChange}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              handleOtherInputChange={handleOtherInputChange}
+              
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
+              setMediaFrequencies={setMediaFrequencies}
+              // handleSliderChange={handleSliderChange}
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+              setSliderMoved={setSliderMoved}
+              setResponses={setResponses}
+            />
+          ):(
             // Spontaneous
             <InputQuestion
               currentQuestionIndex={currentQuestionIndex}
@@ -621,7 +685,7 @@ function QuestionForm() {
       )}
 
       {demographicAnswered &&  (
-        <Flex mt={10} justify="space-between">
+        <Flex mt={10} justify="space-between" >
           <PreviousButton
             mr={2}
             onPrev={handlePrevious}

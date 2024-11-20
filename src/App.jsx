@@ -15,10 +15,10 @@ import QuestionForm from './pages/QuestionForm';
 
 function App() {
  
-
+  // #1d2124
   return (
-    <Center minHeight="100vh" bg="#F7FAFC">
-      <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md" width={{ md: "80%", lg: "50%" }}>
+    <Center minHeight="100vh" bg="" color="">
+      <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md"  borderColor="#9caac2" width={{ md: "80%", lg: "80%" }}   m="4">
         <Routes>
           <Route path="/" element={<LoginPage />} />
         

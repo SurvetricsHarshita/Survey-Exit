@@ -10,35 +10,50 @@ import {
   HStack,
 } from "@chakra-ui/react";
 
-const RatingSlider = ({ currentQuestion , setSliderMoved}) => {
+const RatingSlider = ({ currentQuestion, setSliderMoved, setResponses }) => {
   const [sliderValue, setSliderValue] = useState(3); // Default neutral value
   const maxSliderValue = currentQuestion.lableOptions.length - 1; // Maximum value based on options length
 
-  const handleSliderChange = (value) => {
-    setSliderValue(value);
-    setSliderMoved(true)
-    // Store the selected value in localStorage as a number (not as a string)
-    const selectedOption = currentQuestion.lableOptions[value]; 
-    const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
-    localStorage.setItem('ProductsTest', JSON.stringify({ 
-      ...storedData, 
-      [currentQuestion.number]: selectedOption.value 
-    }));
-  };
-
-  // Ensure slider value persists even after page reload
+  // Set the slider value from localStorage if it exists
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
+    const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
     const storedValue = storedData[currentQuestion.number];
+
     if (storedValue) {
       // Find the index of the stored value in the lableOptions
-      const index = currentQuestion.lableOptions.findIndex(option => option.value === storedValue);
-     
+      const index = currentQuestion.lableOptions.findIndex(
+        (option) => option.value === storedValue
+      );
+      if (index !== -1) {
+        setSliderValue(index); // Set the slider to the stored index
+      }
     }
   }, [currentQuestion.number, currentQuestion.lableOptions]);
 
+  const handleSliderChange = (value) => {
+    setSliderValue(value);
+    setSliderMoved(true);
+
+    // Update the parent state with the slider value (index) and the corresponding option
+    setResponses((prevResponses) => ({
+      ...prevResponses,
+      [currentQuestion.number]: currentQuestion.lableOptions[value].value,
+    }));
+
+    // Optionally, save the selected value to localStorage
+    const selectedOption = currentQuestion.lableOptions[value];
+    const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+    localStorage.setItem(
+      "ProductsTest",
+      JSON.stringify({
+        ...storedData,
+        [currentQuestion.number]: selectedOption.value,
+      })
+    );
+  };
+
   return (
-    <Box p={6} maxWidth="700px" mx="auto" mt={6} borderWidth="1px" borderRadius="lg" bg="gray.50">
+    <Box p={6} maxWidth="700px" mx="auto" mt={6} borderWidth="1px" borderRadius="lg" >
       <VStack spacing={6} align="stretch">
         <Slider
           aria-label="rating-slider"
@@ -52,9 +67,7 @@ const RatingSlider = ({ currentQuestion , setSliderMoved}) => {
           <SliderTrack bg="gray.300">
             <SliderFilledTrack />
           </SliderTrack>
-          <SliderThumb boxSize={5} bg="blue.500">
-            
-          </SliderThumb>
+          <SliderThumb boxSize={5} bg="blue.500" />
         </Slider>
 
         {/* Displaying Labels dynamically from currentQuestion.lableOptions */}
@@ -67,7 +80,6 @@ const RatingSlider = ({ currentQuestion , setSliderMoved}) => {
               width={{ base: "45px", md: "70px" }}
             >
               {option.label} {/* Display the label for each option */}
-              {/* {option.value} Display the corresponding value */}
             </Text>
           ))}
         </HStack>
@@ -75,5 +87,8 @@ const RatingSlider = ({ currentQuestion , setSliderMoved}) => {
     </Box>
   );
 };
+
+
+
 
 export default RatingSlider;

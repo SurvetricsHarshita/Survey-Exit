@@ -42,7 +42,7 @@ function SelectLanguage() {
   return (
     <VStack spacing={2}  w={{ base: 300, md: 300, lg:300 }} mb={3}>
     {/* <Heading as="h2" size="lg">Choose Language</Heading> */}
-    <Select placeholder="Select language" onChange={handleLanguageSelect} textAlign="center">
+    <Select placeholder="Select language" onChange={handleLanguageSelect} >
       <option value="en">English</option>
       <option value="hi">Hindi</option>
       <option value="ben">Bengali</option>

@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxGroup, Input, Stack } from "@chakra-ui/react";
+import { Checkbox, CheckboxGroup, Input, SimpleGrid, Stack } from "@chakra-ui/react";
 import { shuffleArray, shuffleArrayWithFixed } from "../../utils/constant";
 import { useEffect, useState } from "react";
 import useOptions from "../../utils/useOptions";
@@ -11,7 +11,7 @@ function MultiChoiceQuestion({
   othersPlaceholders,
   otherInput,
   handleOtherInputChange,
-  codeMapping,
+
   currentQuestionIndex,
   isOther,
 }) {
@@ -54,11 +54,19 @@ function MultiChoiceQuestion({
 
   return (
     <CheckboxGroup
-      value={responses[currentQuestion.number] || []}
-      onChange={(values) => handleCheckboxChange(currentQuestion.number, values)}
+    value={responses[currentQuestion.number] || []}
+    onChange={(values) => handleCheckboxChange(currentQuestion.number, values)}
+  >
+    <SimpleGrid
+      columns={{ base: 1, md: 2 }}
+      spacing={6}
+      width="100%"
+      maxWidth="800px"
+      mb={8}
     >
-      <Stack spacing={4} direction="column">
-        {options.map((option, idx) => (
+      {/* First Section of Checkboxes */}
+      <Stack spacing={4}>
+        {options.slice(0, Math.ceil(options.length / 2)).map((option, idx) => (
           <Checkbox
             key={idx}
             value={option.code}
@@ -67,34 +75,51 @@ function MultiChoiceQuestion({
             {option.label}
           </Checkbox>
         ))}
-
-        {/* Display input field for "Other" options */}
-        {(isOther || othersSpecify.some((value) => responses[currentQuestion.number]?.includes(value))) && (
+      </Stack>
+  
+      {/* Second Section of Checkboxes */}
+      <Stack spacing={4}>
+        {options.slice(Math.ceil(options.length / 2)).map((option, idx) => (
+          <Checkbox
+            key={idx + Math.ceil(options.length / 2)} // Ensure unique keys
+            value={option.code}
+            isChecked={(responses[currentQuestion.number] || []).includes(option.code)}
+          >
+            {option.label}
+          </Checkbox>
+        ))}
+      </Stack>
+    </SimpleGrid>
+  
+    {/* Display input field for "Other" options */}
+    {(isOther || othersSpecify.some((value) => responses[currentQuestion.number]?.includes(value))) && (
+      <Input
+        width="300px"
+        placeholder={
+          othersSpecify.find((value) => responses[currentQuestion.number]?.includes(value)) || "Please specify"
+        }
+        value={otherInput}
+        onChange={handleOtherInputChange}
+        mt={4}
+      />
+    )}
+  
+    {/* Dynamic input fields for specific responses */}
+    {othersSpecify.map(
+      (checkValue) =>
+        responses[currentQuestion.number]?.includes(checkValue) && (
           <Input
-            placeholder={
-              othersSpecify.find((value) => responses[currentQuestion.number]?.includes(value)) || "Please specify"
-            }
+            width="300px"
+            key={checkValue}
+            placeholder={othersPlaceholders[checkValue] || "Please specify"}
             value={otherInput}
             onChange={handleOtherInputChange}
-            mt={2}
+            mt={4}
           />
-        )}
-
-        {/* Dynamic input fields for specific responses */}
-        {othersSpecify.map(
-          (checkValue) =>
-            responses[currentQuestion.number]?.includes(checkValue) && (
-              <Input
-                key={checkValue}
-                placeholder={othersPlaceholders[checkValue] || "Please specify"}
-                value={otherInput}
-                onChange={handleOtherInputChange}
-                mt={2}
-              />
-            )
-        )}
-      </Stack>
-    </CheckboxGroup>
+        )
+    )}
+  </CheckboxGroup>
+  
   );
 }
 

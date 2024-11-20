@@ -5,7 +5,8 @@ import { IoArrowForward } from 'react-icons/io5';
 const NextButton = ({ onClick, label = 'Next', icon = <IoArrowForward /> ,isDisabled}) => {
   return (
     <Button
-      colorScheme="teal"
+      colorScheme="#2563eb"
+      bg="#319dcf"
       onClick={onClick}
       rightIcon={icon}
       type="submit"

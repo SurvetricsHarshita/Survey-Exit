@@ -49,9 +49,9 @@ const RankingQuestion = ({ mediaChannels, frequencies, handleChange, setMediaFre
     setMediaFrequencies(updatedMediaFrequencies);
     handleChange(channelId, frequencyValue); // Ensure this is calling the proper handler to update parent state
   };
-
+  // #F7FAFC
   return (
-    <Box bg="#F7FAFC" p={4}>
+    <Box bg="" p={4}>
       <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md" maxWidth="90vw" width="100%" overflowX="auto">
         <FormControl mb={4}>
           <Box overflowX="auto">
@@ -76,7 +76,7 @@ const RankingQuestion = ({ mediaChannels, frequencies, handleChange, setMediaFre
                         >
                           <Radio
                             value={freq.value}
-                            borderColor="gray.300"
+                            borderColor="black"
                             borderWidth="1px"
                             _focus={{ boxShadow: 'outline' }}
                             size={{ base: 'sm', md: 'md' }}

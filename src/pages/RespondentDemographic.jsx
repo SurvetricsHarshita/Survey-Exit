@@ -16,6 +16,8 @@ import { formFieldsStep1, formFieldsStep2, formFieldsStep3, languageText, places
 import NextButton from "../components/atoms/NextButton";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 import { getIndianTime } from "../utils/constant";
+import PreviousButton from "../components/atoms/PreviousButton";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
   const [formData, setFormData] = useState({
@@ -45,7 +47,7 @@ const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
   const [isFormComplete, setIsFormComplete] = useState(false);
   const langText = languageText[language] || languageText["en"];
   const toast = useToast();
-
+const navigate=useNavigate()
   useEffect(() => {
     requestMicrophonePermission();
     requestLocationPermission();
@@ -99,55 +101,55 @@ const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
     setIsFormComplete(isComplete);
   };
 
-  // const handleValidationError = (errorMessage) => {
-  //   toast({
-  //     title: "Validation Error",
-  //     description: errorMessage,
-  //     status: "error",
-  //     duration: 3000,
-  //     isClosable: true,
-  //     position: "top-right",
-  //   });
-  // };
+  const handleValidationError = (errorMessage) => {
+    toast({
+      title: "Validation Error",
+      description: errorMessage,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+      position: "top-right",
+    });
+  };
 
   const handleSubmit = () => {
-//     const isValidMobile = /^\d{10}$/.test(formData.mobile);
-//     const isValidMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId);
-//     const isValidPincode = /\d/.test(formData.pincode);
-//     const isValidPhoneRes = !formData.phoneRes || /^\d{10}$/.test(formData.phoneRes);
-//     const isValidPhonePP = !formData.phonePP || /^\d{10}$/.test(formData.phonePP);
-//     const isValidPhoneOff = !formData.phoneOff || /^\d{10}$/.test(formData.phoneOff);
-// if(step==2){
-//   if (!isValidMobile) {
-//     handleValidationError("Please enter a valid 10-digit mobile number");
-//     return;
-//   }
-//   if (!isValidMail) {
-//     handleValidationError("Please enter a valid email address");
-//     return;
-//   }
-//   if (!isValidPincode) {
-//     handleValidationError("Please enter a valid pincode");
-//     return;
-//   }
-//   if (!isValidPhoneRes) {
-//     handleValidationError("Please enter a valid 10-digit residential phone number");
-//     return;
-//   }
-//   if (!isValidPhonePP) {
-//     handleValidationError("Please enter a valid 10-digit personal phone number");
-//     return;
-//   }
-//   if (!isValidPhoneOff) {
-//     handleValidationError("Please enter a valid 10-digit office phone number");
-//     return;
-//   }
-// }
+    const isValidMobile = /^\d{10}$/.test(formData.mobile);
+    const isValidMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailId);
+    const isValidPincode = /\d/.test(formData.pincode);
+    const isValidPhoneRes = !formData.phoneRes || /^\d{10}$/.test(formData.phoneRes);
+    const isValidPhonePP = !formData.phonePP || /^\d{10}$/.test(formData.phonePP);
+    const isValidPhoneOff = !formData.phoneOff || /^\d{10}$/.test(formData.phoneOff);
+if(step==2){
+  if (!isValidMobile) {
+    handleValidationError("Please enter a valid 10-digit mobile number");
+    return;
+  }
+  if (!isValidMail) {
+    handleValidationError("Please enter a valid email address");
+    return;
+  }
+  if (!isValidPincode) {
+    handleValidationError("Please enter a valid pincode");
+    return;
+  }
+  if (!isValidPhoneRes) {
+    handleValidationError("Please enter a valid 10-digit residential phone number");
+    return;
+  }
+  if (!isValidPhonePP) {
+    handleValidationError("Please enter a valid 10-digit personal phone number");
+    return;
+  }
+  if (!isValidPhoneOff) {
+    handleValidationError("Please enter a valid 10-digit office phone number");
+    return;
+  }
+}
    
-//     if (error) {
-//       handleValidationError(error);
-//       return;
-//     }
+    if (error) {
+      handleValidationError(error);
+      return;
+    }
 
     const respondentData = { ...formData, latitude, longitude };
     const start = getIndianTime();
@@ -176,10 +178,25 @@ const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
  
     }
   };
+function handlePrevious(){
+  if(step > 1){
+    setStep(step - 1);
+  }else{
+    
+    
+    const email = localStorage.getItem("email");
 
+    localStorage.clear();
+
+    if (email) {
+      localStorage.setItem("email", email);
+    }
+    navigate("/")
+  }
+}
   return (
     <Flex p={4} flexDirection="column" justifyContent="center" alignItems="center">
-      <Text fontSize="xl" fontWeight="bold" mb={4}>
+      <Text fontSize="xl" fontWeight="bold" mb={9}>
         {step === 1 ||step === 2 ? langText.title : "FIELD CONTROL INFORMATION"}
       </Text>
 
@@ -220,9 +237,10 @@ const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
         )}
       </SimpleGrid>
 
-      <Flex>
+      <Flex mt={10} justify="space-between" gap={60}>
+        <PreviousButton onPrev={handlePrevious} />
         <NextButton onClick={handleSubmit} 
-        // isDisabled={!isFormComplete} 
+        isDisabled={!isFormComplete} 
         />
       </Flex>
     </Flex>
