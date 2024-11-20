@@ -79,8 +79,8 @@ function LoginPage() {
         <Heading mb={6} textAlign="center">Login</Heading>
         <form onSubmit={handleLogin}>
           <Stack spacing={4}>
-            <FormControl>zxczxc
-              <FormLabel>Emailzxczx</FormLabel>
+            <FormControl>
+              <FormLabel>Email</FormLabel>
               <Input
                 // type="email"
                 placeholder="Enter your email"
