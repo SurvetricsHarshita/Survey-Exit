@@ -66,6 +66,12 @@ function QuestionForm() {
   const alertUser = (e) => {
     e.preventDefault();
     e.returnValue = "";
+
+    const email = localStorage.getItem("email");
+    localStorage.clear();
+    if (email) {
+      localStorage.setItem("email", email);
+    }
     localStorage.removeItem("ProductsTest");
     navigate("/survey");
   };
