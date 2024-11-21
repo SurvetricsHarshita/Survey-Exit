@@ -195,7 +195,7 @@ function handlePrevious(){
   }
 }
   return (
-    <Flex p={4} flexDirection="column" justifyContent="center" alignItems="center">
+    <Flex p={4} flexDirection="column" justifyContent="center" alignItems="center" pl={{ base: '10', md: '4', lg: '6' }}>
       <Text fontSize="xl" fontWeight="bold" mb={9}>
         {step === 1 ||step === 2 ? langText.title : "FIELD CONTROL INFORMATION"}
       </Text>
@@ -237,7 +237,7 @@ function handlePrevious(){
         )}
       </SimpleGrid>
 
-      <Flex mt={10} justify="space-between" gap={60}>
+      <Flex mt={10} justify="space-between" gap={10}>
         <PreviousButton onPrev={handlePrevious} />
         <NextButton onClick={handleSubmit} 
         isDisabled={!isFormComplete} 

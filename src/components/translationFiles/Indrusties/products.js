@@ -220,9 +220,7 @@ const products = {
       options: [  { label: "Yes", code: "1" },
         { label: "No", code: "2" }
       ],
-      otherSpecify: true,
-      random: "false",
-      conditional: true,
+  
 
     },
 
