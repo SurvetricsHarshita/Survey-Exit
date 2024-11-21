@@ -44,34 +44,8 @@ const products = {
       // audio: true
 
     },
-    Qimage: {
-      question: "upload your image  ",
-      response: " ",
-     
-    
-    
-
-      number: "Image_1",
-      type: "image",
-
-      // if user selec the 2 on f1 then do not render this auto it to localstoarge
-      // audio: true
-
-    },
-    BsQuestionOctagon: {
-      question: "you anwers ",
-      response: " ",
-     
-    
-    
-
-      number: "Quota_1",
-      type: "Quota",
-
-      // if user selec the 2 on f1 then do not render this auto it to localstoarge
-      // audio: true
-
-    },
+   
+   
     Q1: {
       number: "S1",
       question: "Please ask for the lady of the house,who should be the decision maker for purchase of  HH grocery and personal care products",
@@ -658,6 +632,34 @@ const products = {
       ]
       ,
       termination: true, terminationCodes: [ "3" ],
+    },
+    BsQuestionOctagon: {
+      question: "you anwers ",
+      response: " ",
+     
+    
+    
+
+      number: "Quota_1",
+      type: "Quota",
+
+      // if user selec the 2 on f1 then do not render this auto it to localstoarge
+      // audio: true
+
+    },
+    Qimage: {
+      question: "upload your image  ",
+      response: " ",
+     
+    
+    
+
+      number: "Image_1",
+      type: "image",
+
+      // if user selec the 2 on f1 then do not render this auto it to localstoarge
+      // audio: true
+
     },
   }
 ,
