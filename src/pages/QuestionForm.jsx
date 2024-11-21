@@ -598,27 +598,17 @@ function QuestionForm() {
               currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              handleResponseChange={handleResponseChange}
-              othersSpecify={othersSpecify}
-              othersPlaceholders={othersPlaceholders}
-              otherInput={otherInput}
-              handleOtherInputChange={handleOtherInputChange}
-              
-              isOther={isOther}
-              mediaChannels={currentQuestion.STATEMENTS}
-              frequencies={currentQuestion.FREQUENCIES}
+           
               onPrevious={handlePrevious}
               onSubmit={handleNext}
               setMediaFrequencies={setMediaFrequencies}
-              // handleSliderChange={handleSliderChange}
+             
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
               setSliderMoved={setSliderMoved}
              
               setResponses={setResponses}
-              // segmentLabels = {currentQuestion.sliderLabels }
-              // segmentData = {currentQuestion.questionsData}
-
+            
  />
           ) : // Spontaneous
 
@@ -628,14 +618,12 @@ function QuestionForm() {
             currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              othersSpecify={othersSpecify}
-              othersPlaceholders={othersPlaceholders}
-              otherInput={otherInput}
               
-              isOther={isOther}
+              
+       
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
-              // onRating={handleRating}
+
               handleChange={handleChange}
               setMediaFrequencies={setMediaFrequencies}
               mediaFrequencies={mediaFrequencies}
@@ -659,28 +647,21 @@ function QuestionForm() {
               mediaFrequencies={mediaFrequencies}
            
             />
-          ): // Spontaneous
-          // Quota
-          // segment
-          // image
+          ): 
           currentQuestion.type === "segment" ? (
             <SegmentQuestion
             currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              handleResponseChange={handleResponseChange}
-              othersSpecify={othersSpecify}
-              othersPlaceholders={othersPlaceholders}
-              otherInput={otherInput}
-              handleOtherInputChange={handleOtherInputChange}
               
-              isOther={isOther}
+           
+ 
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
               onPrevious={handlePrevious}
               onSubmit={handleNext}
               setMediaFrequencies={setMediaFrequencies}
-              // handleSliderChange={handleSliderChange}
+           
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
               setSliderMoved={setSliderMoved}
@@ -691,19 +672,11 @@ function QuestionForm() {
             currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              handleResponseChange={handleResponseChange}
-              othersSpecify={othersSpecify}
-              othersPlaceholders={othersPlaceholders}
-              otherInput={otherInput}
-              handleOtherInputChange={handleOtherInputChange}
               
-              isOther={isOther}
-              mediaChannels={currentQuestion.STATEMENTS}
-              frequencies={currentQuestion.FREQUENCIES}
               onPrevious={handlePrevious}
               onSubmit={handleNext}
-              setMediaFrequencies={setMediaFrequencies}
-              // handleSliderChange={handleSliderChange}
+           
+       
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
               setSliderMoved={setSliderMoved}
