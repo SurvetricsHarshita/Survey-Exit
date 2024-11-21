@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { AiOutlineCamera, AiFillCamera, AiOutlineReload, AiOutlineUpload } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 
-const SelfieCapture = ({ setResponses,onSubmit }) => {
+const SelfieCapture = ({ setResponses,onSubmit ,currentQuestion}) => {
   const [imageSrc, setImageSrc] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -89,29 +89,33 @@ const SelfieCapture = ({ setResponses,onSubmit }) => {
           isClosable: true,
           position: 'top-right',
         });
-
-        const end = new Date();
-        const endTime = {
-          date: end.toLocaleDateString(),
-          time: end.toLocaleTimeString(),
-        };
+        
+        // const end = new Date();
+        // const endTime = {
+        //   date: end.toLocaleDateString(),
+        //   time: end.toLocaleTimeString(),
+        // };
 
         // Retrieve existing data from local storage
-        const existingData = JSON.parse(localStorage.getItem('E_TrucksData')) || {};
+        // const existingData = JSON.parse(localStorage.getItem('E_TrucksData')) || {};
 
+        setResponses((prevResponses) => ({
+          ...prevResponses,
+          [currentQuestion.number]: response.data.fileUrl,
+        }));
         // Merge the end time into the existing data
-        const updatedData = {
-          ...existingData,
-          endTime,
-          image: response.data.fileUrl,
-          
-        };
+        // const updatedData = {
+        //   ...existingData,
+        //   endTime,
+        //   image: response.data.fileUrl,
+        onSubmit()
+        // };
         // onSubmit
         // Store the updated data back in localStorage
-        localStorage.setItem('E_TrucksData', JSON.stringify(updatedData));
+        // localStorage.setItem('E_TrucksData', JSON.stringify(updatedData));
 
         // Call the function to submit the data to the API
-        await submitDataToAPI(updatedData);
+        // await submitDataToAPI(updatedData);
 
       } else {
         toast({

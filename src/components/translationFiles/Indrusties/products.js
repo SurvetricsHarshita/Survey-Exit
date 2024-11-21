@@ -1,3 +1,4 @@
+import { BsQuestionOctagon } from "react-icons/bs";
 
 
 
@@ -38,6 +39,34 @@ const products = {
 
       number: "f2",
       type: "radio",
+
+      // if user selec the 2 on f1 then do not render this auto it to localstoarge
+      // audio: true
+
+    },
+    Qimage: {
+      question: "upload your image  ",
+      response: " ",
+     
+    
+    
+
+      number: "Image_1",
+      type: "image",
+
+      // if user selec the 2 on f1 then do not render this auto it to localstoarge
+      // audio: true
+
+    },
+    BsQuestionOctagon: {
+      question: "you anwers ",
+      response: " ",
+     
+    
+    
+
+      number: "Quota_1",
+      type: "Quota",
 
       // if user selec the 2 on f1 then do not render this auto it to localstoarge
       // audio: true

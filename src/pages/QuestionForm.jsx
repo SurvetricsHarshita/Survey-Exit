@@ -31,12 +31,14 @@ import RatingQuestion from "./../components/Questions/RatingQuestion";
 import useAsk from "../utils/useAsk";
 
 import RatingSlider from "../components/Questions/RatingSlider";
-import { Axios } from "axios";
+
 import { submitDataToAPI } from "../utils/submitDataToAPI";
-import Segment2 from "../components/Questions/SegmentQuestion";
+
 import SegmentQuestion from "../components/Questions/SegmentQuestion";
 import RankingQuestion from "../components/Questions/RankingQuestion";
 import Quota from "../components/Questions/Quota";
+import SelfieCapture from "../components/atoms/SelfieCapture";
+
 
 function QuestionForm() {
   const { Section1, Section2 } = products;
@@ -496,7 +498,12 @@ function QuestionForm() {
     if (currentQuestion.type === "radio" && isOther) {
       return !otherInput.trim(); // Ensure "Other" input is not empty
     }
-
+    if (currentQuestion.type === "Quota") {
+      return false // Ensure "Other" input is not empty
+    }
+    if (currentQuestion.type === "image") {
+      return true // Ensure "Other" input is not empty
+    }
     // Default case for unanswered questions
     return !currentResponse && !otherInput.trim();
   };
@@ -655,6 +662,7 @@ function QuestionForm() {
           ): // Spontaneous
           // Quota
           // segment
+          // image
           currentQuestion.type === "segment" ? (
             <SegmentQuestion
             currentQuestionIndex={currentQuestionIndex}
@@ -677,6 +685,30 @@ function QuestionForm() {
               setSliderValue={setSliderValue}
               setSliderMoved={setSliderMoved}
               setResponses={setResponses}
+            />
+          ):  currentQuestion.type === "image" ? (
+            <SelfieCapture
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              handleResponseChange={handleResponseChange}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              handleOtherInputChange={handleOtherInputChange}
+              
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
+              setMediaFrequencies={setMediaFrequencies}
+              // handleSliderChange={handleSliderChange}
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+              setSliderMoved={setSliderMoved}
+              setResponses={setResponses}
+         
             />
           ):(
             // Spontaneous
