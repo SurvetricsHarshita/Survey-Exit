@@ -85,6 +85,8 @@ const products = {
         { label: "Working in Retail shop/ Kirana Shop/Medical Stores/Department stores", code: "5" },
         { label: "Working in FMCG / Retail company / personal grooming products Industry / Personal grooming products Distribution company", code: "6" },
         { label: "None of the above", code: "99" } ],
+
+        
       type: "radio",
       terminationCodes: [ "1", "2", "3", "4", "5", "6" ],
       // audio: true
@@ -96,6 +98,7 @@ const products = {
       randomize:true,
       fixedCodes:["99"],
       RandomizeOnce:true
+
       // show first options "marketing if 1 coded in s1"
     },
     Q3: {

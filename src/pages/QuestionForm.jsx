@@ -378,6 +378,8 @@ function QuestionForm() {
       setOtherInput("");
     }
 
+    
+
     if (currentQuestion.checkAsk && ask) {
       // alert(ask,currentQuestion.checkAsk )
 
