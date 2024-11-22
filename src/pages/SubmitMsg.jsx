@@ -7,7 +7,7 @@ function SubmitMsg() {
   const { msg } = location.state || {};  // Default to empty object if no state is passed
 
   return (
-    <Box p={8} maxW="500px" w="100%" bg="white" textAlign="center">
+    <Box p={8} w="100%" bg="white" textAlign="center">
       <Box mb={6}>
         <Text fontSize="2xl" fontWeight="bold" color="gray.700">
           {msg === "submit" ? " ✅ Survey Completed!" : " 🚫 Survey Terminated!"}

@@ -114,11 +114,8 @@ function RadioQuestion({
                   <Radio value={option.code}>{option.label}</Radio>
                 </RadioGroup>
               ))}
-            </Stack>
-          )}
 
-          {/* Handle dynamic input fields based on selected responses */}
-          {(isOther || othersSpecify.includes(responses[currentQuestion.number])) && (
+{(isOther || othersSpecify.includes(responses[currentQuestion.number])) && (
             <Input
               width="300px"
               placeholder={
@@ -130,6 +127,11 @@ function RadioQuestion({
               mt={4}
             />
           )}
+            </Stack>
+          )}
+
+          {/* Handle dynamic input fields based on selected responses */}
+         
         </Flex>
       )}
     </>
