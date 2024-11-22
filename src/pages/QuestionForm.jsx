@@ -533,7 +533,7 @@ function QuestionForm() {
           language={language}
         />
       ) : (
-        <FormControl mb={4} pl={{ base: '10', md: '4', lg: '6' }}>
+        <FormControl mb={4} pl={2}>
           <Text fontSize="2xl" fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>

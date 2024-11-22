@@ -61,7 +61,7 @@ function RadioQuestion({
       {isLoading ? (
         <div>Loading...</div> // Loader UI
       ) : (
-        <Flex justify="center">
+        <Flex>
           {options.length > 9 ? ( // Render SimpleGrid only if options length is greater than 9
             <SimpleGrid
               columns={{ base: 1, md: 2 }}
