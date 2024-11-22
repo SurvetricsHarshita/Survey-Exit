@@ -13,7 +13,6 @@ function RadioQuestion({
   otherInput,
   handleOtherInputChange,
   currentQuestionIndex,
-
 }) {
   const [options, setOptions] = useState(currentQuestion.options); // Initialize with current question options
   const { isOptions } = useOptions();
@@ -42,7 +41,11 @@ function RadioQuestion({
 
     // Handle randomization
     if (currentQuestion.randomize) {
-      updatedOptions = shuffleArrayWithFixed(updatedOptions,  currentQuestion.fixedCodes,currentQuestion.RandomizeOnce);
+      updatedOptions = shuffleArrayWithFixed(
+        updatedOptions,
+        currentQuestion.fixedCodes,
+        currentQuestion.RandomizeOnce
+      );
     }
 
     setOptions(updatedOptions); // Update options state
@@ -54,62 +57,82 @@ function RadioQuestion({
   ]);
 
   return (
-<>
-  {isLoading ? (
-    <div>Loading...</div> // Loader UI
-  ) : (
-    <Flex justify="center">
-      <SimpleGrid
-        columns={{ base: 1, md: 2 }}
-        spacing={6}
-        width="100%"
-        maxWidth="800px"
-        mb={8}
-      >
-        {/* First Section of Options */}
-        <Stack spacing={4}>
-          {options.slice(0, Math.ceil(options.length / 2)).map((option, idx) => (
-            <RadioGroup
-              key={idx}
-              onChange={(value) => handleResponseChange(currentQuestion.number, value)}
-              value={responses[currentQuestion.number] || ''}
+    <>
+      {isLoading ? (
+        <div>Loading...</div> // Loader UI
+      ) : (
+        <Flex justify="center">
+          {options.length > 9 ? ( // Render SimpleGrid only if options length is greater than 9
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              spacing={6}
+              width="100%"
+              maxWidth="800px"
+              mb={8}
             >
-              <Radio value={option.code}>{option.label}</Radio>
-            </RadioGroup>
-          ))}
-        </Stack>
+              {/* First Section of Options */}
+              <Stack spacing={4}>
+                {options.slice(0, Math.ceil(options.length / 2)).map((option, idx) => (
+                  <RadioGroup
+                    key={idx}
+                    onChange={(value) =>
+                      handleResponseChange(currentQuestion.number, value)
+                    }
+                    value={responses[currentQuestion.number] || ''}
+                  >
+                    <Radio value={option.code}>{option.label}</Radio>
+                  </RadioGroup>
+                ))}
+              </Stack>
 
-        {/* Second Section of Options */}
-        <Stack spacing={4}>
-          {options.slice(Math.ceil(options.length / 2)).map((option, idx) => (
-            <RadioGroup
-              key={idx + Math.ceil(options.length / 2)} // Ensure unique keys
-              onChange={(value) => handleResponseChange(currentQuestion.number, value)}
-              value={responses[currentQuestion.number] || ''}
-            >
-              <Radio value={option.code}>{option.label}</Radio>
-            </RadioGroup>
-          ))}
-        </Stack>
-      </SimpleGrid>
+              {/* Second Section of Options */}
+              <Stack spacing={4}>
+                {options.slice(Math.ceil(options.length / 2)).map((option, idx) => (
+                  <RadioGroup
+                    key={idx + Math.ceil(options.length / 2)} // Ensure unique keys
+                    onChange={(value) =>
+                      handleResponseChange(currentQuestion.number, value)
+                    }
+                    value={responses[currentQuestion.number] || ''}
+                  >
+                    <Radio value={option.code}>{option.label}</Radio>
+                  </RadioGroup>
+                ))}
+              </Stack>
+            </SimpleGrid>
+          ) : (
+            // Render options in a single stack if length is less than or equal to 9
+            <Stack spacing={4} width="100%" maxWidth="800px">
+              {options.map((option, idx) => (
+                <RadioGroup
+                  key={idx}
+                  onChange={(value) =>
+                    handleResponseChange(currentQuestion.number, value)
+                  }
+                  value={responses[currentQuestion.number] || ''}
+                >
+                  <Radio value={option.code}>{option.label}</Radio>
+                </RadioGroup>
+              ))}
+            </Stack>
+          )}
 
-      {/* Handle dynamic input fields based on selected responses */}
-      {(isOther || othersSpecify.includes(responses[currentQuestion.number])) && (
-        <Input
-          width="300px"
-          placeholder={
-            othersPlaceholders[responses[currentQuestion.number]] || 'Please specify'
-          }
-          value={otherInput}
-          onChange={handleOtherInputChange}
-          mt={4}
-        />
+          {/* Handle dynamic input fields based on selected responses */}
+          {(isOther || othersSpecify.includes(responses[currentQuestion.number])) && (
+            <Input
+              width="300px"
+              placeholder={
+                othersPlaceholders[responses[currentQuestion.number]] ||
+                'Please specify'
+              }
+              value={otherInput}
+              onChange={handleOtherInputChange}
+              mt={4}
+            />
+          )}
+        </Flex>
       )}
-    </Flex>
-  )}
-</>
-
-
+    </>
   );
 }
 

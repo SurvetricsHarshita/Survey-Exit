@@ -18,13 +18,13 @@ const products = {
 
       type: "radio",
       // audio: true
-      autoCodeQuestion:true,
-      autoCodeQuestionVar:"f1a",
-      codes: {
-        "1": { save: "urban" },
-        "2": { save: "semi-urban" },
-        "3": { save: "rural" }
-      }
+      // autoCodeQuestion:true,
+      // autoCodeQuestionVar:"f1a",
+      // codes: {
+      //   "1": { save: "urban" },
+      //   "2": { save: "semi-urban" },
+      //   "3": { save: "rural" }
+      // }
     },
     QB: {
       question: "Area classification  ",
@@ -88,11 +88,11 @@ const products = {
       type: "radio",
       terminationCodes: [ "1", "2", "3", "4", "5", "6" ],
       // audio: true
-      optionsRemove:["2","5"],
-      optionsDependOn:[{
-        question:"S1",options:["1"],
+      // optionsRemove:["2","5"],
+      // optionsDependOn:[{
+        // question:"S1",options:["1"],
        
-      },{ question:"f1",options:["2","1"]}],
+      // },{ question:"f1",options:["2","1"]}],
       randomize:true,
       fixedCodes:["99"],
       RandomizeOnce:true
@@ -633,34 +633,34 @@ const products = {
       ,
       termination: true, terminationCodes: [ "3" ],
     },
-    BsQuestionOctagon: {
-      question: "you anwers ",
-      response: " ",
+    // BsQuestionOctagon: {
+    //   question: "you anwers ",
+    //   response: " ",
      
     
     
 
-      number: "Quota_1",
-      type: "Quota",
+    //   number: "Quota_1",
+    //   type: "Quota",
 
-      // if user selec the 2 on f1 then do not render this auto it to localstoarge
-      // audio: true
+    //   // if user selec the 2 on f1 then do not render this auto it to localstoarge
+    //   // audio: true
 
-    },
-    Qimage: {
-      question: "upload your image  ",
-      response: " ",
+    // },
+    // Qimage: {
+    //   question: "upload your image  ",
+    //   response: " ",
      
     
     
 
-      number: "Image_1",
-      type: "image",
+    //   number: "Image_1",
+    //   type: "image",
 
-      // if user selec the 2 on f1 then do not render this auto it to localstoarge
-      // audio: true
+    //   // if user selec the 2 on f1 then do not render this auto it to localstoarge
+    //   // audio: true
 
-    },
+    // },
   }
 ,
   //?QUESTIONS-
@@ -705,24 +705,7 @@ const products = {
       lastOption:'plb_c',
       type: "rate",
     },
-    Q2a: {
-      number: "P1bRank",
-      question: "Also let me know your opinion on few other aspects. As I read out each statement, kindly let me know your opinion with the help of the card. SINGLE CODE FOR EACH STATEMENT",
-      STATEMENTS: [
-        { id: 'plb_ranka', label: 'Shape of the soap is  just right' },
-        { id: 'plb_rankb', label: 'Fragrance of the soap is just right' },
-        { id: 'plb_rankc', label: 'This  soap will give me a  rich creamy lather  and is just right' },
-      ],
-      FREQUENCIES: [
-        { value: '3', label: 'rank3' },
-        { value: '2', label: 'rank2' },
-        { value: '1', label: 'rank11' },
-      
-      ],
-     
-      lastOption:'plb_c',
-      type: "rank",
-    },
+    
 
 
     Q3: {
@@ -1249,6 +1232,24 @@ const products = {
 
     },
 
+  
+    Q25a: {
+      number: "C1a",
+      question: "Which of the following statement best describes your feeling about the BATHING SOAP   that you used for the last fifteeen day ? SINGLE CODE ",
+
+      lableOptions: [
+      { value: '5', label: 'Definitely will buy' },
+      { value: '4', label: 'Probably will buy' },
+      { value: '3', label: 'May or may not buy' },
+      { value: '2', label: 'Probably will not bu' },
+      { value: '1', label: 'Definitely will notbuy' },
+    ],
+    
+
+      type: "RatingSlider",
+      singleCode: true
+
+    },
     Q26segment_a: {
       number: "segment_a",
       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
@@ -1288,22 +1289,23 @@ statementB:"I don’t believe environmental issues have any direct impact on my 
       singleCode: true
     
     },
-    Q25a: {
-      number: "C1a",
-      question: "Which of the following statement best describes your feeling about the BATHING SOAP   that you used for the last fifteeen day ? SINGLE CODE ",
-
-      lableOptions: [
-      { value: '5', label: 'Definitely will buy' },
-      { value: '4', label: 'Probably will buy' },
-      { value: '3', label: 'May or may not buy' },
-      { value: '2', label: 'Probably will not bu' },
-      { value: '1', label: 'Definitely will notbuy' },
-    ],
-    
-
-      type: "RatingSlider",
-      singleCode: true
-
+    Q2a: {
+      number: "P1bRank",
+      question: "Also let me know your opinion on few other aspects. As I read out each statement, kindly let me know your opinion with the help of the card. SINGLE CODE FOR EACH STATEMENT",
+      STATEMENTS: [
+        { id: 'plb_ranka', label: 'Shape of the soap is  just right' },
+        { id: 'plb_rankb', label: 'Fragrance of the soap is just right' },
+        { id: 'plb_rankc', label: 'This  soap will give me a  rich creamy lather  and is just right' },
+      ],
+      FREQUENCIES: [
+        { value: '3', label: 'rank3' },
+        { value: '2', label: 'rank2' },
+        { value: '1', label: 'rank11' },
+      
+      ],
+     
+      lastOption:'plb_c',
+      type: "rank",
     },
   }
 }
