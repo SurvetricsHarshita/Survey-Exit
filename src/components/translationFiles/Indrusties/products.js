@@ -199,19 +199,19 @@ const products = {
         { label: "Personal Computer / Laptop", code: "8" },
         { label: "Car / Jeep / Van", code: "9" },
         { label: "Air Conditioner", code: "10" },
-        { label: "Others (please specify)", code: "99" }
+        // { label: "Others (please specify)", code: "99" }
 
       ],
       response: " ",
-      maxSelections: 3,
+      // maxSelections: 3,
     
-      optionsDependOn:[{
-        question:"S1",options:["1"],
+      // optionsDependOn:[{
+      //   question:"S1",options:["1"],
        
-      }],
-      optionsRemove:["4"],
+      // }],
+      // optionsRemove:["4"],
       randomize:true,
-      fixedCodes:["99"],
+      // fixedCodes:["99"],
       RandomizeOnce:true
       // dont not show two wheeler if coded 1 in s1
     },
@@ -246,7 +246,7 @@ const products = {
         { label: "Body Scrubber", code: "5" },
         { label: "Sun Screen lotion", code: "6" },
         { label: "None of the above", code: "99" },
-        { label: "Others (please specify)", code: "8" }
+        // { label: "Others (please specify)", code: "8" }
       ],
 
 
@@ -736,23 +736,7 @@ const products = {
       question: "Tell us everything that you like about your current soap, however minor the  feeling  may be please do  let us know all that you like about your current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
       type: "",
       label: "SHAPE :",
-      // questionsData : [
-      //   { id: "a", dimension: "1.Connectedness to Nature", statement: "I love being around nature and I try to spend as much time as I can being surrounded by trees, lakes/rivers and open landscapes", optionA: "I am fine to spend minimum or no time at all around nature or outdoors" },
-      //   { id: "b", dimension: "2.Perceived impacts at the individual level", statement: "I believe environmental issues will significantly affect my daily life and well-being.", optionA: "I don’t believe environmental issues have any direct impact on my personal daily life and well being" },
-      //   { id: "c", dimension: "3.Perceived impacts for future generations", statement: "I believe environmental issues can significantly harm future generations", optionA: "I believe technological advancements will address environmental issues before they seriously impact future generations" },
-      //   { id: "d", dimension: "4.Anthropocentrism vs Ecocentrism", statement: "Taking care of our environment is important for the future as well as for our needs.", optionA: "Taking care of environment is necessary mostly for the overall well-being of the planet, beyond human needs" },
-      //   { id: "e", dimension: "5.Environment over other priorities", statement: "Protecting environment must be a priority although this means limiting the growth and development of the country", optionA: "The growth and development of the country must be a priority, even if it has negative consequences on environment" },
-      //   { id: "f", dimension: "6.Belief in the existence and origin of climate change", statement: "Climate change / environmental problems are real threat to our world", optionA: "Climate change / environmental problems poses no real threat, and it’s only been hyped by the media" },
-      //   { id: "g", dimension: "7.Environmental Sense of Agency", statement: "I believe that my actions, no matter how small, can positively impact the environment ", optionA: "I believe real change requires efforts from Government, corporates etc." },
-      //   { id: "h", dimension: "8.Environmental Responsibility", statement: "India should take action to protect the environment because the effects of climate change or environmental propblems are clearly visible here.", optionA: "India doesn’t need to focus on protecting the environment, as bigger and richer countries should take the lead." },
-      // ],
-      // sliderLabels : [
-      //   "A lot like person A",
-      //   "Somewhat like person A",
-      //   "Neither",
-      //   "Somewhat like person B",
-      //   "A lot like person B",
-      // ]
+     
     },
     Q4b: {
       number: "CS2a_FRAGRANCE",
@@ -1171,55 +1155,316 @@ const products = {
       singleCode: true
 
     },
-
     Q24: {
-      number: "TS9",
-      question: "I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT", label: "Functional Benefits",
+      number: "TS9_F",
+      question: " I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT ",
+       label: "Functional Benefits",
+   
       STATEMENTS: [
 
-        { id: 'ts9F_a', label: 'Has natural ingredients' },
-        { id: 'ts9F_b', label: 'Has healing properties' },
-        { id: 'ts9F_c', label: 'Is a good soap for daily beauty care' },
-        { id: 'ts9F_d', label: 'Lathers ' },
-        { id: 'ts9F_e', label: 'Value for money' },
-        { id: 'ts9F_f', label: 'Packaging can be recycled' },
-        { id: 'ts9F_g', label: 'Does not dry my skin' },
-        { id: 'ts9F_h', label: 'Vegan/ayurvedic/medical soap' },
-        { id: 'ts9F_i', label: 'Suitable for everybody in the family men and women' },
-        { id: 'ts9F_k', label: 'Sensorial Benefits' },
-        { id: 'ts9F_', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
-        { id: 'ts9_m', label: 'This soap is for youthful skin' },
-        { id: 'ts9_n', label: 'This soap is for young and modern woman' },
-        { id: 'ts9_o', label: 'This soap balances skin moisture' },
-        { id: 'ts9_', label: 'This soap is creamy and  deep cleans my skin' },
-        { id: 'ts9_', label: 'This soap reduces pimples and blackheads' },
-        { id: 'ts9_', label: 'Makes my skin glow' },
-        { id: 'ts9_', label: 'Suitable for all skin types' },
-        { id: 'ts9_', label: 'Suitable for sensitive/problematic skin' },
-        { id: 'ts9_', label: 'Gently cleans the skin' },
-        { id: 'ts9_', label: 'Emotional Benefits' },
-        { id: 'ts9_p', label: 'Dermatologist recommended' },
-        { id: 'ts9_q', label: 'Leaves my skin feeling softer and smoother' },
-        { id: 'ts9_r', label: 'Makes me feel beautiful' },
-        { id: 'ts9_s', label: 'Makes me feel confident' },
-        { id: 'ts9_t', label: 'Long lasting fragrance' },
-        { id: 'ts9_u', label: 'Provides luxurious bathing experience' },
-        { id: 'ts9_v', label: 'Controls all kinds of skin ailments' },
-        { id: 'ts9_w', label: 'Helps me to take good care of me' },
-        { id: 'ts9_x', label: 'Makes me feel like a complete woman' },
-
+        { id: 'TS9F_a', label: 'Has natural ingredients' },
+        { id: 'TS9F_b', label: 'Has healing properties' },
+        { id: 'TS9F_c', label: 'Is a good soap for daily beauty care' },
+        { id: 'TS9F_d', label: 'Lathers ' },
+        { id: 'TS9F_e', label: 'Value for money' },
+        { id: 'TS9F_f', label: 'Packaging can be recycled' },
+        { id: 'TS9F_g', label: 'Does not dry my skin' },
+        { id: 'TS9F_h', label: 'Vegan/ayurvedic/medical soap' },
+        { id: 'TS9F_i', label: 'Suitable for everybody in the family men and women' },
+       
 
       ],
-      lableOptions: [ "Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree" ],
+
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' }, ],
+    
 
       type: "rate",
       singleCode: true
 
     },
+    Q24a: {
+      number: "TS9_S",
+      question: " I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT",
+       label: "Sensorial Benefits",
+   
+      STATEMENTS: [
 
-    Q25: {
+        { id: 'TS9S_a', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
+        { id: 'TS9S_b', label: 'This soap is for youthful skin' },
+        { id: 'TS9S_c', label: 'This soap is for young and modern woman' },
+        { id: 'TS9S_d', label: 'This soap balances skin moisture' },
+        { id: 'TS9S_e', label: 'This soap is creamy and  deep cleans my skin' },
+        { id: 'TS9S_f', label: 'This soap reduces pimples and blackheads' },
+        { id: 'TS9S_g', label: 'Makes my skin glow' },
+        { id: 'TS9S_h', label: 'Suitable for all skin types' },
+        { id: 'TS9S_i', label: 'Suitable for sensitive/problematic skin' },
+        { id: 'TS9S_j', label: 'Gently cleans the skin' },
+       
+      ],
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' }, ],
+
+      type: "rate",
+      singleCode: true
+
+    },
+    Q24b: {
+      number: "TS9_E",
+      question: " I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT ",
+       label: "Emotional Benefits",
+   
+      STATEMENTS: [
+
+       
+        { id: 'TS9E_a', label: 'Emotional Benefits' },
+        { id: 'TS9E_b', label: 'Dermatologist recommended' },
+        { id: 'TS9E_c', label: 'Leaves my skin feeling softer and smoother' },
+        { id: 'TS9E_d', label: 'Makes me feel beautiful' },
+        { id: 'TS9E_d', label: 'Makes me feel confident' },
+        { id: 'TS9E_f', label: 'Long lasting fragrance' },
+        { id: 'TS9E_g', label: 'Provides luxurious bathing experience' },
+        { id: 'TS9E_h', label: 'Controls all kinds of skin ailments' },
+        { id: 'TS9E_i', label: 'Helps me to take good care of me' },
+        { id: 'TS9E_j', label: 'Makes me feel like a complete woman' },
+
+
+      ],
+      FREQUENCIES: [
+        { value: '5', label: 'Strongly Agree' },
+        { value: '4', label: 'Agree' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Disagree' },
+        { value: '1', label: 'Strongly Disagree' }, ],
+
+      type: "rate",
+      singleCode: true
+
+    },
+        Q25a: {
       number: "C1",
       question: "Which of the following statement best describes your feeling about the BATHING SOAP   that you used for the last fifteeen day ? SINGLE CODE ",
+
+      lableOptions: [
+      { value: '5', label: 'Liked it much more than my current brand' },
+      { value: '4', label: 'Liked it little more than my current brand' },
+      { value: '3', label: 'Liked it as much as  my current brand' },
+      { value: '2', label: 'Liked it little less than my current brand' },
+      { value: '1', label: 'Liked it much less than my current brand' },
+    ],
+    
+
+      type: "RatingSlider",
+      singleCode: true
+
+    },
+    Q26a: {
+      number: "C2a",
+      question: "Basis your usage experience with the Test Product, how much marks out of 100 would you give this Test product on overall quality of the product? ",
+
+      inputType:"number",
+      inputLimit:3,
+
+      type: "",
+      singleCode: true
+
+    },
+    Q26b: {
+      number: "C2b",
+      question: "Basis your usage experience how much marks out of 100 would you give your current brand on overall quality of the product  ",
+
+     inputType:"number",
+      inputLimit:3,
+
+      type: "",
+      singleCode: true
+
+    },
+    C4a: {
+      question: "This product is from a Reputed company. In your opinion, which company is this soap  from? SINGLE CODE ",
+      response: " ",
+      options: [
+        { label: "Fena", code: "1" },
+        { label: "Godrej ", code: "2" },
+        { label: "P&G ", code: "3" },
+        { label: "Unilever ", code: "4" },
+        { label: "Wipro ", code: "5" },  
+         { label: "ITC", code: "6" },
+         { label: "Jyothy Labs", code: "7" },
+         { label: "Others ", code: "8" }
+
+      ],
+      first: true,
+      number: "C4a",
+
+      type: "radio",
+      
+    },
+    C5a: {
+      number: "  C5a",
+      question: "Please tell us all  that you know about FENA brand of company: (Open Ended Question)   ",
+
+     
+    
+
+      type: "",
+      singleCode: true
+
+    },
+    C5b: {
+      question: "This product with brand name “FAMUS “ is manufactured by FENA, the company that is known for quality products in the market. Now  that you know the brand and the company ,please tell what is your opinion about the brand and overall believability on this “Famus” brand of soap that you just tested? SINGLE CODE ",
+      response: " ",
+      options: [
+        { label: "Yes, I  think I can believe with the same level on  the  Test product  “FENA” as I have the same belief on my current brand", code: "1" },
+        { label: "No, I  think I will take a little more time or few more trials to believe  on the  Test product “FENA” ", code: "2" },
+        { label: "It does not matter I always like to change my soap and so long it is from the good company I am ok. ", code: "3" },
+       
+      ],
+      first: true,
+      number: "C5b",
+
+      type: "radio",
+      
+    },
+
+    QD1:{
+      question: "There are different bathing experiences that women look forward to which are considered as dream bathing experiences. They are looking for this experience as a routine. Which is your dream bathing experience?",
+      number: "D1",
+      type: "radio",
+      options: [
+          {
+              label: "A cleansing bathing experience that makes me feel clean, free from harmful chemicals, and protected throughout the day.",
+              code: "1"
+          },
+          {
+              label: "A natural bathing experience that makes me feel efficient, effective, and protected throughout the day.",
+              code: "2"
+          },
+          {
+              label: "A moisturizing bathing experience that makes me feel soft, smooth, and protected throughout the day.",
+              code: "3"
+          },
+          {
+              label: "A refreshing bathing experience that makes me feel energetic, rejuvenated, and protected throughout the day.",
+              code: "4"
+          },
+          {
+              label: "A beauty/pampering bathing experience that makes me feel beautiful, exfoliated, and protected throughout the day.",
+              code: "5"
+          },
+          {
+              label: "A sensorial bathing experience that makes me feel beautiful from inside and outside, fragrance-filled, and protected throughout the day.",
+              code: "6"
+          }
+      ],
+      response: ""
+  },
+    
+    Q24B: {
+      number: "BA_F",
+      question: " We are on the last few questions and we will do this exercise quickly. I have a few  statements,   and you will have to tell me your opinion  to which brand(s) each of these are statement applicable to. It could be applicable to one brand or brand(s) or no brand. There are no right or wrong answers you just have to give us your association feeling about the statement with the brand . ",
+       label: "Functional Benefits",
+   
+      STATEMENTS: [
+
+        { id: 'BAF_a', label: 'Has natural ingredients' },
+        { id: 'BAF_b', label: 'Has healing properties' },
+        { id: 'BAF_c', label: 'Is a good soap for daily beauty care' },
+        { id: 'BAF_d', label: 'Lathers ' },
+        { id: 'BAF_e', label: 'Value for money' },
+        { id: 'BAF_f', label: 'Packaging can be recycled' },
+        { id: 'BAF_g', label: 'Does not dry my skin' },
+        { id: 'BAF_h', label: 'Vegan/ayurvedic/medical soap' },
+        { id: 'BAF_i', label: 'Suitable for everybody in the family men and women' },
+       
+
+      ],
+
+      FREQUENCIES: [
+        { value: '5', label: 'Famus' },
+        { value: '4', label: 'Godrej 1' },
+        { value: '3', label: 'Jo' },
+        { value: '2', label: 'other' },
+        { value: '1', label: 'None ' }, ],
+    
+
+      type: "rate",
+      singleCode: true
+
+    },
+    Q24C: {
+      number: "BA_S",
+      question: " We are on the last few questions and we will do this exercise quickly. I have a few  statements,   and you will have to tell me your opinion  to which brand(s) each of these are statement applicable to. It could be applicable to one brand or brand(s) or no brand. There are no right or wrong answers you just have to give us your association feeling about the statement with the brand . ",
+       label: "Sensorial Benefits",
+   
+      STATEMENTS: [
+
+        { id: 'BAS_a', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
+        { id: 'BAS_b', label: 'This soap is for youthful skin' },
+        { id: 'BAS_c', label: 'This soap is for young and modern woman' },
+        { id: 'BAS_d', label: 'This soap balances skin moisture' },
+        { id: 'BAS_e', label: 'This soap is creamy and  deep cleans my skin' },
+        { id: 'BAS_f', label: 'This soap reduces pimples and blackheads' },
+        { id: 'BAS_g', label: 'Makes my skin glow' },
+        { id: 'BAS_h', label: 'Suitable for all skin types' },
+        { id: 'BAS_i', label: 'Suitable for sensitive/problematic skin' },
+        { id: 'BAS_j', label: 'Gently cleans the skin' },
+       
+      ],
+      FREQUENCIES: [
+        { value: '5', label: 'Famus' },
+        { value: '4', label: 'Godrej 1' },
+        { value: '3', label: 'Jo' },
+        { value: '2', label: 'other' },
+        { value: '1', label: 'None ' }, ],
+
+      type: "rate",
+      singleCode: true
+
+    },
+    Q24D: {
+      number: "BA_E",
+      question: " We are on the last few questions and we will do this exercise quickly. I have a few  statements,   and you will have to tell me your opinion  to which brand(s) each of these are statement applicable to. It could be applicable to one brand or brand(s) or no brand. There are no right or wrong answers you just have to give us your association feeling about the statement with the brand . ",
+       label: "Emotional Benefits",
+   
+      STATEMENTS: [
+
+       
+        { id: 'BAE_a', label: 'Emotional Benefits' },
+        { id: 'BAE_b', label: 'Dermatologist recommended' },
+        { id: 'BAE_c', label: 'Leaves my skin feeling softer and smoother' },
+        { id: 'BAE_d', label: 'Makes me feel beautiful' },
+        { id: 'BAE_d', label: 'Makes me feel confident' },
+        { id: 'BAE_f', label: 'Long lasting fragrance' },
+        { id: 'BAE_g', label: 'Provides luxurious bathing experience' },
+        { id: 'BAE_h', label: 'Controls all kinds of skin ailments' },
+        { id: 'BAE_i', label: 'Helps me to take good care of me' },
+        { id: 'BAE_j', label: 'Makes me feel like a complete woman' },
+
+
+      ],
+      FREQUENCIES: [
+        { value: '5', label: 'Famus' },
+        { value: '4', label: 'Godrej 1' },
+        { value: '3', label: 'Jo' },
+        { value: '2', label: 'other' },
+        { value: '1', label: 'None ' }, ],
+
+      type: "rate",
+      singleCode: true
+
+    },
+    Q25: {
+      number: "Pl2",
+      question: "Please look at this card and tell me if you would buy this Famus Soap in future for bathing  ",
 
       lableOptions: [
       { value: '5', label: 'Definitely will buy' },
@@ -1236,80 +1481,64 @@ const products = {
     },
 
   
-    Q25a: {
-      number: "C1a",
-      question: "Which of the following statement best describes your feeling about the BATHING SOAP   that you used for the last fifteeen day ? SINGLE CODE ",
 
-      lableOptions: [
-      { value: '5', label: 'Definitely will buy' },
-      { value: '4', label: 'Probably will buy' },
-      { value: '3', label: 'May or may not buy' },
-      { value: '2', label: 'Probably will not bu' },
-      { value: '1', label: 'Definitely will notbuy' },
-    ],
-    
-
-      type: "RatingSlider",
-      singleCode: true
-
-    },
-    Q26segment_a: {
-      number: "segment_a",
-      question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
-lable:"1.Connectedness to Nature",
-statementA:"I love being around nature and I try to spend as much time as I can being surrounded by trees, lakes/rivers and open landscapes",
-statementB:"I am fine to spend minimum or no time at all around nature or outdoors",
+//     Q26segment_a: {
+//       number: "segment_a",
+//       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
+// lable:"1.Connectedness to Nature",
+// statementA:"I love being around nature and I try to spend as much time as I can being surrounded by trees, lakes/rivers and open landscapes",
+// statementB:"I am fine to spend minimum or no time at all around nature or outdoors",
      
-      lableOptions: [
-        { value: 'A lot like person A', label: 'A lot like person A' },
-        { value: 'Somewhat like person A', label: 'Somewhat like person A' },
-        { value: 'Neither', label: 'Neither' },
-        { value: '55', label: 'Somewhat like person B' },
-        { value: '1', label: 'A lot like person B' },
-      ],
-       instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
-      type: "segment",
-      singleCode: true
+//       lableOptions: [
+//         { value: 'A lot like person A', label: 'A lot like person A' },
+//         { value: 'Somewhat like person A', label: 'Somewhat like person A' },
+//         { value: 'Neither', label: 'Neither' },
+//         { value: '55', label: 'Somewhat like person B' },
+//         { value: '1', label: 'A lot like person B' },
+//       ],
+//        instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
+//       type: "segment",
+//       singleCode: true
    
 
-    },
-    Q26segment_b: {
-      number: "segment_b",
-      question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
-lable:"Perceived impacts at the individual level",
-statementA:"I believe environmental issues will significantly affect my daily life and well-being",
-statementB:"I don’t believe environmental issues have any direct impact on my personal daily life and well being",
+//     },
+//     Q26segment_b: {
+//       number: "segment_b",
+//       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
+// lable:"Perceived impacts at the individual level",
+// statementA:"I believe environmental issues will significantly affect my daily life and well-being",
+// statementB:"I don’t believe environmental issues have any direct impact on my personal daily life and well being",
      
-      lableOptions: [
-        { value: 'A lot like person A', label: 'A lot like person A' },
-        { value: 'Somewhat like person A', label: 'Somewhat like person A' },
-        { value: 'Neither', label: 'Neither' },
-        { value: '55', label: 'Somewhat like person B' },
-        { value: '1', label: 'A lot like person B' },
-      ],
-       instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
-      type: "segment",
-      singleCode: true
+//       lableOptions: [
+//         { value: 'A lot like person A', label: 'A lot like person A' },
+//         { value: 'Somewhat like person A', label: 'Somewhat like person A' },
+//         { value: 'Neither', label: 'Neither' },
+//         { value: '55', label: 'Somewhat like person B' },
+//         { value: '1', label: 'A lot like person B' },
+//       ],
+//        instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
+//       type: "segment",
+//       singleCode: true
     
-    },
-    Q2a: {
-      number: "P1bRank",
-      question: "Also let me know your opinion on few other aspects. As I read out each statement, kindly let me know your opinion with the help of the card. SINGLE CODE FOR EACH STATEMENT",
-      STATEMENTS: [
-        { id: 'plb_ranka', label: 'Shape of the soap is  just right' },
-        { id: 'plb_rankb', label: 'Fragrance of the soap is just right' },
-        { id: 'plb_rankc', label: 'This  soap will give me a  rich creamy lather  and is just right' },
-      ],
-      FREQUENCIES: [
-        { value: '3', label: 'rank3' },
-        { value: '2', label: 'rank2' },
-        { value: '1', label: 'rank11' },
+//     },
+    // Q2a: {
+    //   number: "P1bRank",
+    //   question: "Also let me know your opinion on few other aspects. As I read out each statement, kindly let me know your opinion with the help of the card. SINGLE CODE FOR EACH STATEMENT",
+    //   STATEMENTS: [
+    //     { id: 'plb_ranka', label: 'Shape of the soap is  just right' },
+    //     { id: 'plb_rankb', label: 'Fragrance of the soap is just right' },
+    //     { id: 'plb_rankc', label: 'This  soap will give me a  rich creamy lather  and is just right' },
+    //   ],
+    //   FREQUENCIES: [
+    //     { value: '3', label: 'rank3' },
+    //     { value: '2', label: 'rank2' },
+    //     { value: '1', label: 'rank11' },
       
-      ],
+    //   ],
      
-      lastOption:'plb_c',
-      type: "rank",
-    },
+    //   lastOption:'plb_c',
+    //   type: "rank",
+    // },
   }
 }
 

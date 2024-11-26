@@ -307,7 +307,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
-      navigate("/submit", { state: { msg: "terminated" } });
+      // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {
@@ -381,9 +381,46 @@ function QuestionForm() {
     
 
     if (currentQuestion.checkAsk && ask) {
-      // alert(ask,currentQuestion.checkAsk )
-
-      setCurrentQuestionIndex((prev) => prev + 2);
+      // Create a shallow copy of the current responses
+      setResponses((prev) => {
+        // Create a copy of the current responses
+        const updatedResponses = { ...prev };
+      
+        // Calculate the range of skipped questions
+        const startIndex = currentQuestionIndex + 1;
+        const endIndex = currentQuestionIndex + (currentQuestion.nextStep || 2);
+      
+        // Remove responses for skipped questions
+        for (let i = startIndex; i <= endIndex; i++) {
+          const skippedQuestionKey = questions[i]?.number;
+          if (updatedResponses[skippedQuestionKey]) {
+            console.log(`Deleting response for skipped question: ${skippedQuestionKey}`);
+            delete updatedResponses[skippedQuestionKey];
+            delete updatedResponses[`${skippedQuestionKey}_other`]; // Clean up "other" input if applicable
+          }
+        }
+      
+        // Update the localStorage 
+        const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
+        for (let i = startIndex; i <= endIndex; i++) {
+          const skippedQuestionKey = questions[i]?.number;
+          if (storedData[skippedQuestionKey]) {
+            delete storedData[skippedQuestionKey];
+            delete storedData[`${skippedQuestionKey}_other`]; // Clean up "other" input in storage
+          }
+        }
+        localStorage.setItem("ProductsTest", JSON.stringify(storedData));
+      
+  
+      
+        // Return the updated responses to update the state
+        return updatedResponses;
+      });
+      if (currentQuestion.nextStep && ask) {
+        setCurrentQuestionIndex((prev) => prev + currentQuestion.nextStep);
+      } else {
+        setCurrentQuestionIndex((prev) => prev + 2);
+      }
       return;
     } else {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -397,11 +434,37 @@ function QuestionForm() {
 
   // setMulti(1)
   const handlePrevious = () => {
-    setCurrentQuestionIndex((prev) => Math.max(prev - 1, 0));
-
-    if (currentQuestion.first) {
-      setDemographicAnswered(false);
-    }
+    setCurrentQuestionIndex((prevIndex) => {
+      let newIndex = prevIndex;
+  
+      // Loop to find the previous question with a response
+      while (newIndex > 0) {
+        newIndex -= 1; // Decrement the index
+        const prevQuestionKey = questions[newIndex]?.number;
+  
+        // Break the loop if a response is found for the question
+        if (responses[prevQuestionKey]) {
+          console.log(`Previous response exists for ${prevQuestionKey}:`, responses[prevQuestionKey]);
+          break;
+        }
+  
+        // If no response and index reaches 0, exit the loop
+        if (newIndex === 0) {
+          console.log("No previous responses found.");
+          break;
+        }
+      }
+  
+      // Restore states as needed
+      if (questions[newIndex]?.first) {
+        setDemographicAnswered(false);
+      }
+  
+      return newIndex; // Update to the new index
+    });
+  
+    // Reset other global states or perform cleanup
+    setSliderMoved(false);
   };
 
   const handleSubmit = async () => {
@@ -709,7 +772,7 @@ function QuestionForm() {
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton
               onClick={handleNext}
-              isDisabled={isNextButtonDisabled() || isLoading}
+              // isDisabled={isNextButtonDisabled() || isLoading}
             />
           ) : (
             <Button

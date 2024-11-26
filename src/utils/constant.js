@@ -1,7 +1,8 @@
 export const othersSpecify = [
 "Any other reason please specify",
   "Others (please specify)",
- "Any others please specify"
+ "Any others please specify",
+ "Others"
 
 
 
