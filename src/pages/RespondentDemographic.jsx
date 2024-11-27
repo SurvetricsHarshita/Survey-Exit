@@ -153,17 +153,14 @@ if(step==2){
 
     const respondentData = { ...formData, latitude, longitude };
     const start = getIndianTime();
-    const storedData = JSON.parse(localStorage.getItem("questionsData")) || {};
-    storedData["startTime"] = {
-      date: start.toLocaleDateString("en-IN"),
-      time: start.toLocaleTimeString("en-IN"),
-    };
+   
 
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
     const updatedData = {
       ...existingData,
       ...respondentData,
-      startTime: storedData.startTime,
+      startTime: start.toLocaleTimeString("en-IN"),
+      startDate: start.toLocaleDateString("en-IN"),
     };
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));

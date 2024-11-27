@@ -5,6 +5,7 @@
 
 const products = {
   Section1: {
+ 
     QA: {
       question: "FW CENTER DETAILS ",
       response: " ",
@@ -32,10 +33,10 @@ const products = {
       options: [
         { label: "Urban", code: "1" },
         { label: "Semi urban", code: "2" },
-      
+
       ],
-    
-    
+
+
 
       number: "f2",
       type: "radio",
@@ -44,19 +45,19 @@ const products = {
       // audio: true
 
     },
-   
-   
+
+
     Q1: {
       number: "S1",
       question: "Please ask for the lady of the house,who should be the decision maker for purchase of  HH grocery and personal care products",
       //CODE BY OBSERVATION AND CONTINUE
       type: "radio",
 
-      
+
       options: [
         { label: "Female", code: "1" },
         { label: "Male", code: "2" },
-      
+
       ],
       termination: true,
 
@@ -70,7 +71,7 @@ const products = {
     //   //CODE BY OBSERVATION AND CONTINUE
     //   type: "Quota",
 
-    
+
     // },
     //? MATRIX QUESTION:
     Q2: {
@@ -79,25 +80,25 @@ const products = {
       number: "S2",
       termination: true,
       options: [ { label: "Marketing", code: "1" },
-        { label: "Marketing / Market Research (agency and including a market research department within an organization)", code: "2" },
-        { label: "Advertising / PR Agency", code: "3" },
-        { label: "Journalism / Print (Newspaper / Magazine)", code: "4" },
-        { label: "Working in Retail shop/ Kirana Shop/Medical Stores/Department stores", code: "5" },
-        { label: "Working in FMCG / Retail company / personal grooming products Industry / Personal grooming products Distribution company", code: "6" },
-        { label: "None of the above", code: "99" } ],
+      { label: "Marketing / Market Research (agency and including a market research department within an organization)", code: "2" },
+      { label: "Advertising / PR Agency", code: "3" },
+      { label: "Journalism / Print (Newspaper / Magazine)", code: "4" },
+      { label: "Working in Retail shop/ Kirana Shop/Medical Stores/Department stores", code: "5" },
+      { label: "Working in FMCG / Retail company / personal grooming products Industry / Personal grooming products Distribution company", code: "6" },
+      { label: "None of the above", code: "99" } ],
 
-        
+
       type: "radio",
       terminationCodes: [ "1", "2", "3", "4", "5", "6" ],
       // audio: true
       // optionsRemove:["2","5"],
       // optionsDependOn:[{
-        // question:"S1",options:["1"],
-       
+      // question:"S1",options:["1"],
+
       // },{ question:"f1",options:["2","1"]}],
-      randomize:true,
-      fixedCodes:["99"],
-      RandomizeOnce:true
+      randomize: true,
+      fixedCodes: [ "99" ],
+      RandomizeOnce: true
 
       // show first options "marketing if 1 coded in s1"
     },
@@ -110,13 +111,13 @@ const products = {
       placeHolder: "",
       label: "",
       options: [ { label: "Married", code: "1" },
-        { label: "Single / Widow / Divorce", code: "2" } // //todo Single /Widow/Divorce = terminate
+      { label: "Single / Widow / Divorce", code: "2" } // //todo Single /Widow/Divorce = terminate
       ],
       terminationCodes: [ "2" ],
       termination: true,
       audio: true,
-      randomize:true,
-      RandomizeOnce:true
+      randomize: true,
+      RandomizeOnce: true
     },
     Q4: {
       number: "S4a",
@@ -125,15 +126,15 @@ const products = {
       placeHolder: "",
       label: "",
       options: [ { label: "Yes", code: "1" },
-        { label: "No", code: "2" } 
+      { label: "No", code: "2" }
       ],
       audio: true,
 
 
       terminationCodes: [ "2" ],
       termination: true,
-      randomize:true,
-    
+      randomize: true,
+
       // RandomizeOnce:true
     },
     Q5: {
@@ -143,8 +144,8 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [  { label: "Yes", code: "1" },
-        { label: "No", code: "2" } ,
+      options: [ { label: "Yes", code: "1" },
+      { label: "No", code: "2" },
         // {label: "Others (please specify)", code: "99"}
       ],
 
@@ -160,12 +161,12 @@ const products = {
       placeHolder: "NOTE DOWN AGE IN YEARS",
       label: "(RECORD AGE IN YEARS)",
       inputType: "number",
-      inputLimit:3,
-   
+      inputLimit: 3,
+
       termination: true, //true or false 
     },
-     
-  
+
+
     Q7: {
       number: "S5a",
       question: "Could you please tell me the education of the Chief Wage Earner of your household? By Chief Wage Earner, I refer to the person who contributes the maximum to your household expenditure?  ",
@@ -173,14 +174,14 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [   { label: "Illiterate", code: "1" },
-        { label: "Literate, but no school", code: "2" },
-        { label: "School (up to 4 years)", code: "3" },
-        { label: "School (5 to 9 years)", code: "4" },
-        { label: "School (10+ years (HSC))", code: "5" },
-        { label: "HSC+, but not graduate", code: "6" },
-        { label: "Graduate / Post Grad-Gen", code: "7" },
-        { label: "Graduate / Post Grad-Prof", code: "8" }
+      options: [ { label: "Illiterate", code: "1" },
+      { label: "Literate, but no school", code: "2" },
+      { label: "School (up to 4 years)", code: "3" },
+      { label: "School (5 to 9 years)", code: "4" },
+      { label: "School (10+ years (HSC))", code: "5" },
+      { label: "HSC+, but not graduate", code: "6" },
+      { label: "Graduate / Post Grad-Gen", code: "7" },
+      { label: "Graduate / Post Grad-Prof", code: "8" }
       ],
 
 
@@ -189,30 +190,30 @@ const products = {
       number: "S6a",
       question: "Please look at this list and tell me which of these items do you have at home? (It could be owned by you, your family, or provided by the employer or it could be available in the house you live in; but it should be for the use of just you or your family) EXPLAIN, IF NECESSARY: We have a standard list of items that we use in all kind of cities and villages. So, don’t worry if any item appears irrelevant for you or too ordinary, just go ahead and tell me which items you do have. We need this information for survey purpose only ",
       type: "multi",
-      options: [  { label: "Electricity Connection", code: "1" },
-        { label: "Ceiling Fan", code: "2" },
-        { label: "LPG Stove", code: "3" },
-        { label: "Two-Wheeler", code: "4" },
-        { label: "Colour TV", code: "5" },
-        { label: "Refrigerator", code: "6" },
-        { label: "Washing Machine", code: "7" },
-        { label: "Personal Computer / Laptop", code: "8" },
-        { label: "Car / Jeep / Van", code: "9" },
-        { label: "Air Conditioner", code: "10" },
+      options: [ { label: "Electricity Connection", code: "1" },
+      { label: "Ceiling Fan", code: "2" },
+      { label: "LPG Stove", code: "3" },
+      { label: "Two-Wheeler", code: "4" },
+      { label: "Colour TV", code: "5" },
+      { label: "Refrigerator", code: "6" },
+      { label: "Washing Machine", code: "7" },
+      { label: "Personal Computer / Laptop", code: "8" },
+      { label: "Car / Jeep / Van", code: "9" },
+      { label: "Air Conditioner", code: "10" },
         // { label: "Others (please specify)", code: "99" }
 
       ],
       response: " ",
       // maxSelections: 3,
-    
+
       // optionsDependOn:[{
       //   question:"S1",options:["1"],
-       
+
       // }],
       // optionsRemove:["4"],
-      randomize:true,
+      randomize: true,
       // fixedCodes:["99"],
-      RandomizeOnce:true
+      RandomizeOnce: true
       // dont not show two wheeler if coded 1 in s1
     },
 
@@ -223,10 +224,10 @@ const products = {
       type: "radio",
       placeHolder: "agricultural land",
       label: "",
-      options: [  { label: "Yes", code: "1" },
-        { label: "No", code: "2" }
+      options: [ { label: "Yes", code: "1" },
+      { label: "No", code: "2" }
       ],
-  
+
 
     },
 
@@ -264,8 +265,8 @@ const products = {
       placeHolder: "",
       label: "",
       options: [ { label: "Only one soap that is used by everybody", code: "1" },
-        { label: "Only one soap that is used by only me", code: "2" },
-        { label: "Everybody in the family uses their own individual soap", code: "3" } ],
+      { label: "Only one soap that is used by only me", code: "2" },
+      { label: "Everybody in the family uses their own individual soap", code: "3" } ],
 
 
     },
@@ -276,53 +277,40 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [  { label: "Me and my husband", code: "1" },
-        { label: "Me and my husband and our one child", code: "2" },
-        { label: "Me and my husband and our two children", code: "3" },
-        { label: "Me and my husband and our three children", code: "4" },
-        { label: "Me and my husband, our children and other relatives", code: "5" } ],
+      options: [ { label: "Me and my husband", code: "1" },
+      { label: "Me and my husband and our one child", code: "2" },
+      { label: "Me and my husband and our two children", code: "3" },
+      { label: "Me and my husband and our three children", code: "4" },
+      { label: "Me and my husband, our children and other relatives", code: "5" } ],
 
     },
 
     // doubt
-    Q13: {
-      number: "S7e_Total ",
-      question: "Total  number of members living in the family",
+    Q16Multi: {
+      number: "S7e",
+      question: "Please rate your experience with the Telematics features of the vehicle. ",
+      type: "matrixInput",
+      response: "",
+      STATEMENTS: [
+        { id: "S7e", label: "Total  number of members living in the family" },
 
-      type: "",
-      placeHolder: "",
-      label: "",
-      options: [ "Number of children",
-        "Number of adults"
-      ],
-      maxLength: 3,
-      inputType: "number"
-
-    },
-    Q13c: {
-      number: "S7e_children",
-      question: "Total  number of Number of children living in the family",
-      type: "",
-      placeHolder: "",
-      label: "Number of children",
-      options: [ "Number of children",
-        "Number of adults"
 
       ],
-      inputType: "number"
 
-    }, Q13a: {
-      number: "S7e_adults",
-      question: "Total  number of adults living in the family",
+      labels: [ {
+        key: "q", label: "Question"
+      },
+      {
+        key: "childrens",
+        label: "Number of children",
+        inputLimit:3
+      }, {
+        key: "adults", label: "Number of Adults",
+        inputLimit:2
+      } ],
+      
 
-      type: "",
-      placeHolder: "",
-      label: "Number of adults",
-      options: [ "Number of children",
-        "Number of adults"
-      ],
 
-      inputType: "number"
     },
     Q14: {
       number: "S7f",
@@ -331,10 +319,10 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [  { label: "Once a month", code: "1" },
-        { label: "Once in fifteen days", code: "2" },
-        { label: "Once in two months", code: "3" },
-        { label: "Less often", code: "4" }
+      options: [ { label: "Once a month", code: "1" },
+      { label: "Once in fifteen days", code: "2" },
+      { label: "Once in two months", code: "3" },
+      { label: "Less often", code: "4" }
       ],
 
     },
@@ -345,11 +333,11 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [  { label: "	Less that 50 gms", code: "1" },
-        { label: "50-75 gms", code: "2" },
-        { label: "75gms but <100 gms", code: "3" },
-        { label: "100 gms", code: "4" },
-        { label: "More than 100 gms", code: "5" }
+      options: [ { label: "	Less that 50 gms", code: "1" },
+      { label: "50-75 gms", code: "2" },
+      { label: "75gms but <100 gms", code: "3" },
+      { label: "100 gms", code: "4" },
+      { label: "More than 100 gms", code: "5" }
       ],
 
 
@@ -364,10 +352,10 @@ const products = {
       type: "radio",
       placeHolder: "",
       label: "",
-      options: [  { label: "Less than 5 minutes", code: "1" },
-        { label: "5 to 10 minutes", code: "2" },
-        { label: "10 to 15 minutes", code: "3" },
-        { label: "More than 15 minutes", code: "4" }
+      options: [ { label: "Less than 5 minutes", code: "1" },
+      { label: "5 to 10 minutes", code: "2" },
+      { label: "10 to 15 minutes", code: "3" },
+      { label: "More than 15 minutes", code: "4" }
       ],
 
 
@@ -379,19 +367,19 @@ const products = {
       question: "Whenever you think of bathing soap bars which brand comes to your mind first? NEED A FULL LIST OF BRANDS OF BATHING SOAPS FROM THE CLIENT",
       type: "radio",
       options: [ { label: "Cinthol", code: "1" },
-        { label: "Dove", code: "2" },
-        { label: "Dyna", code: "3" },
-        { label: "Fiam", code: "4" },
-        { label: "Famus", code: "5" },
-        { label: "Godrej number 1", code: "6" },
-        { label: "Jo", code: "7" },
-        { label: "Khadee", code: "8" },
-        { label: "Lux", code: "9" },
-        { label: "Liril", code: "10" },
-        { label: "Medimix", code: "11" },
-        { label: "Margo", code: "12" },
-        { label: "Moti", code: "13" },
-        { label: "Mysore sandal soap", code: "14" }
+      { label: "Dove", code: "2" },
+      { label: "Dyna", code: "3" },
+      { label: "Fiam", code: "4" },
+      { label: "Famus", code: "5" },
+      { label: "Godrej number 1", code: "6" },
+      { label: "Jo", code: "7" },
+      { label: "Khadee", code: "8" },
+      { label: "Lux", code: "9" },
+      { label: "Liril", code: "10" },
+      { label: "Medimix", code: "11" },
+      { label: "Margo", code: "12" },
+      { label: "Moti", code: "13" },
+      { label: "Mysore sandal soap", code: "14" }
       ],
       response: " "
     },
@@ -429,19 +417,19 @@ const products = {
       placeHolder: "",
       label: "",
       options: [ { label: "Cinthol", code: "1" },
-        { label: "Dove", code: "2" },
-        { label: "Dyna", code: "3" },
-        { label: "Fiam", code: "4" },
-        { label: "Famus", code: "5" },
-        { label: "Godrej number 1", code: "6" },
-        { label: "Jo", code: "7" },
-        { label: "Khadee", code: "8" },
-        { label: "Lux", code: "9" },
-        { label: "Liril", code: "10" },
-        { label: "Medimix", code: "11" },
-        { label: "Margo", code: "12" },
-        { label: "Moti", code: "13" },
-        { label: "Mysore sandal soap", code: "14" }
+      { label: "Dove", code: "2" },
+      { label: "Dyna", code: "3" },
+      { label: "Fiam", code: "4" },
+      { label: "Famus", code: "5" },
+      { label: "Godrej number 1", code: "6" },
+      { label: "Jo", code: "7" },
+      { label: "Khadee", code: "8" },
+      { label: "Lux", code: "9" },
+      { label: "Liril", code: "10" },
+      { label: "Medimix", code: "11" },
+      { label: "Margo", code: "12" },
+      { label: "Moti", code: "13" },
+      { label: "Mysore sandal soap", code: "14" }
       ],
       column: [ "Tom", "SPONTANEOUS", "Last 3 Months", "Currently using" ],
 
@@ -453,19 +441,19 @@ const products = {
       question: "Please have a look at this card and let me know which all  bathing soap bars you and your family have ever used ?",
       type: "multi",
       options: [ { label: "Cinthol", code: "1" },
-        { label: "Dove", code: "2" },
-        { label: "Dyna", code: "3" },
-        { label: "Fiam", code: "4" },
-        { label: "Famus", code: "5" },
-        { label: "Godrej number 1", code: "6" },
-        { label: "Jo", code: "7" },
-        { label: "Khadee", code: "8" },
-        { label: "Lux", code: "9" },
-        { label: "Liril", code: "10" },
-        { label: "Medimix", code: "11" },
-        { label: "Margo", code: "12" },
-        { label: "Moti", code: "13" },
-        { label: "Mysore sandal soap", code: "14" }
+      { label: "Dove", code: "2" },
+      { label: "Dyna", code: "3" },
+      { label: "Fiam", code: "4" },
+      { label: "Famus", code: "5" },
+      { label: "Godrej number 1", code: "6" },
+      { label: "Jo", code: "7" },
+      { label: "Khadee", code: "8" },
+      { label: "Lux", code: "9" },
+      { label: "Liril", code: "10" },
+      { label: "Medimix", code: "11" },
+      { label: "Margo", code: "12" },
+      { label: "Moti", code: "13" },
+      { label: "Mysore sandal soap", code: "14" }
       ],
       response: " "
     },
@@ -474,19 +462,19 @@ const products = {
       question: "Please have a look at this card and let me know which all  bathing soap bars you and your family have in the last 1 Year ?",
       type: "multi",
       options: [ { label: "Cinthol", code: "1" },
-        { label: "Dove", code: "2" },
-        { label: "Dyna", code: "3" },
-        { label: "Fiam", code: "4" },
-        { label: "Famus", code: "5" },
-        { label: "Godrej number 1", code: "6" },
-        { label: "Jo", code: "7" },
-        { label: "Khadee", code: "8" },
-        { label: "Lux", code: "9" },
-        { label: "Liril", code: "10" },
-        { label: "Medimix", code: "11" },
-        { label: "Margo", code: "12" },
-        { label: "Moti", code: "13" },
-        { label: "Mysore sandal soap", code: "14" }
+      { label: "Dove", code: "2" },
+      { label: "Dyna", code: "3" },
+      { label: "Fiam", code: "4" },
+      { label: "Famus", code: "5" },
+      { label: "Godrej number 1", code: "6" },
+      { label: "Jo", code: "7" },
+      { label: "Khadee", code: "8" },
+      { label: "Lux", code: "9" },
+      { label: "Liril", code: "10" },
+      { label: "Medimix", code: "11" },
+      { label: "Margo", code: "12" },
+      { label: "Moti", code: "13" },
+      { label: "Mysore sandal soap", code: "14" }
       ],
       response: " "
     },
@@ -495,19 +483,19 @@ const products = {
       question: "Which bathing soap bar are you and your family members  using most often in the last three months? ",
       type: "radio",
       options: [ { label: "Cinthol", code: "1" },
-        { label: "Dove", code: "2" },
-        { label: "Dyna", code: "3" },
-        { label: "Fiam", code: "4" },
-        { label: "Famus", code: "5" },
-        { label: "Godrej number 1", code: "6" },
-        { label: "Jo", code: "7" },
-        { label: "Khadee", code: "8" },
-        { label: "Lux", code: "9" },
-        { label: "Liril", code: "10" },
-        { label: "Medimix", code: "11" },
-        { label: "Margo", code: "12" },
-        { label: "Moti", code: "13" },
-        { label: "Mysore sandal soap", code: "14" }
+      { label: "Dove", code: "2" },
+      { label: "Dyna", code: "3" },
+      { label: "Fiam", code: "4" },
+      { label: "Famus", code: "5" },
+      { label: "Godrej number 1", code: "6" },
+      { label: "Jo", code: "7" },
+      { label: "Khadee", code: "8" },
+      { label: "Lux", code: "9" },
+      { label: "Liril", code: "10" },
+      { label: "Medimix", code: "11" },
+      { label: "Margo", code: "12" },
+      { label: "Moti", code: "13" },
+      { label: "Mysore sandal soap", code: "14" }
       ],
       response: " ",
       termination: true,
@@ -519,19 +507,19 @@ const products = {
       question: "Which bathing soap bar are you and your family members are currently  using in the household? ",
       type: "radio",
       options: [ { label: "Cinthol", code: "1" },
-        { label: "Dove", code: "2" },
-        { label: "Dyna", code: "3" },
-        { label: "Fiam", code: "4" },
-        { label: "Famus", code: "5" },
-        { label: "Godrej number 1", code: "6" },
-        { label: "Jo", code: "7" },
-        { label: "Khadee", code: "8" },
-        { label: "Lux", code: "9" },
-        { label: "Liril", code: "10" },
-        { label: "Medimix", code: "11" },
-        { label: "Margo", code: "12" },
-        { label: "Moti", code: "13" },
-        { label: "Mysore sandal soap", code: "14" }
+      { label: "Dove", code: "2" },
+      { label: "Dyna", code: "3" },
+      { label: "Fiam", code: "4" },
+      { label: "Famus", code: "5" },
+      { label: "Godrej number 1", code: "6" },
+      { label: "Jo", code: "7" },
+      { label: "Khadee", code: "8" },
+      { label: "Lux", code: "9" },
+      { label: "Liril", code: "10" },
+      { label: "Medimix", code: "11" },
+      { label: "Margo", code: "12" },
+      { label: "Moti", code: "13" },
+      { label: "Mysore sandal soap", code: "14" }
       ],
       response: " ",
       // termination: true,
@@ -544,11 +532,11 @@ const products = {
       placeHolder: "",
       label: "",
       options: [ { label: "Never change", code: "1" },
-        { label: "Change infrequently, may be once in two to three years", code: "2" },
-        { label: "Change frequently, every 1-2 years", code: "3" },
-        { label: "Always change my brand of soap every year", code: "4" },
-        { label: "Always change my brand of soap every six-three months", code: "5" },
-        { label: "Always change my brand of soap every three-two months", code: "6" }
+      { label: "Change infrequently, may be once in two to three years", code: "2" },
+      { label: "Change frequently, every 1-2 years", code: "3" },
+      { label: "Always change my brand of soap every year", code: "4" },
+      { label: "Always change my brand of soap every six-three months", code: "5" },
+      { label: "Always change my brand of soap every three-two months", code: "6" }
 
       ],
       checkAsk: true,
@@ -560,11 +548,11 @@ const products = {
       type: "multi",
       placeHolder: "",
       label: "",
-      options: [           {label:"I like different fragrances  so I try a new fragrance", code:"1"},
-        {label:"I like value for money bathing soaps so buy the inexpensive soap that is available  ", code:"2"},
-        {label:"I like to try new brands", code:"3"},
-        {label : "I like to change my brand when I want to feel different and I don’t like the same experience ", code:"4"},
-       {label: "I like to change my brand of soap because my skin  starts showing a reaction if the so",code:"5"}
+      options: [ { label: "I like different fragrances  so I try a new fragrance", code: "1" },
+      { label: "I like value for money bathing soaps so buy the inexpensive soap that is available  ", code: "2" },
+      { label: "I like to try new brands", code: "3" },
+      { label: "I like to change my brand when I want to feel different and I don’t like the same experience ", code: "4" },
+      { label: "I like to change my brand of soap because my skin  starts showing a reaction if the so", code: "5" }
 
       ],
     },
@@ -575,13 +563,13 @@ const products = {
       placeHolder: "",
       label: "",
       options: [
-        {label: "Jasmine" , code:"1"},
-        {label : "Lemon " ,  code:"2"},
-        {label:"Rose" , code:"3"},
-        {label:"Sandalwood" , code:"4"},
-      {label:"Milk/Cream/Saffron" , code:"5"},
-      {label:"Woody/Aqua/ etc", code:"6"}, //todo terminate
-       {label:"Mixed fragrance None of above" ,code:"7"} //todo terminate
+        { label: "Jasmine", code: "1" },
+        { label: "Lemon ", code: "2" },
+        { label: "Rose", code: "3" },
+        { label: "Sandalwood", code: "4" },
+        { label: "Milk/Cream/Saffron", code: "5" },
+        { label: "Woody/Aqua/ etc", code: "6" }, //todo terminate
+        { label: "Mixed fragrance None of above", code: "7" } //todo terminate
 
       ],
 
@@ -595,9 +583,9 @@ const products = {
       number: "S10a",
       question: "Are you willing to participate in such a study by using the soap sample that we leave with you for next 15 days? ",
       type: "radio",
-      options: [ 
-        {label:"Yes, i wish to participate", code:"1"} ,// todo continue only otherwise terminate
-       {label: "No , i don't  wish  to participate ",code:"2"  } ],
+      options: [
+        { label: "Yes, i wish to participate", code: "1" },// todo continue only otherwise terminate
+        { label: "No , i don't  wish  to participate ", code: "2" } ],
       termination: true,
       terminationCodes: [ "3" ],
 
@@ -607,8 +595,8 @@ const products = {
       question: "Will you be available at home for the next  15 days ?",
       type: "radio",
       options: [
-        { label : "Yes, I will be available at home for the next 15 days or so", code:"1"}, //todo continue only otherwise terminate
-       { label : "No, I may not be at home " , code:"2"}
+        { label: "Yes, I will be available at home for the next 15 days or so", code: "1" }, //todo continue only otherwise terminate
+        { label: "No, I may not be at home ", code: "2" }
       ],
       termination: true,
       terminationCodes: [ "3" ],
@@ -619,8 +607,8 @@ const products = {
       question: "Are you willing to participate in such a study by using the soap sample that we leave with you  for next 15 DAYS ?",
       type: "radio",
       options: [
-        {label: "Yes, I wish to participate", code:"1"}, // todo continue only otherwise terminate
-        { label : "No, I don't wish to participate" , code:"2"}
+        { label: "Yes, I wish to participate", code: "1" }, // todo continue only otherwise terminate
+        { label: "No, I don't wish to participate", code: "2" }
       ]
       ,
       termination: true, terminationCodes: [ "3" ],
@@ -630,8 +618,8 @@ const products = {
       question: "Will you be available at home for the next 15 days?",
       type: "radio",
       options: [
-        {label : "Yes, I will be available at home for the next 15 days or so", code : "1"}, //todo continue only otherwise terminate
-        {label:"No, I may not be at home " ,  code :"2"}
+        { label: "Yes, I will be available at home for the next 15 days or so", code: "1" }, //todo continue only otherwise terminate
+        { label: "No, I may not be at home ", code: "2" }
       ]
       ,
       termination: true, terminationCodes: [ "3" ],
@@ -639,9 +627,9 @@ const products = {
     // BsQuestionOctagon: {
     //   question: "you anwers ",
     //   response: " ",
-     
-    
-    
+
+
+
 
     //   number: "Quota_1",
     //   type: "Quota",
@@ -653,9 +641,9 @@ const products = {
     // Qimage: {
     //   question: "upload your image  ",
     //   response: " ",
-     
-    
-    
+
+
+
 
     //   number: "Image_1",
     //   type: "image",
@@ -665,7 +653,7 @@ const products = {
 
     // },
   }
-,
+  ,
   //?QUESTIONS-
   Section2: {
 
@@ -705,10 +693,10 @@ const products = {
         { value: '1', label: 'Strongly Disagree' },
       ],
       // type: "rate",
-      lastOption:'plb_c',
+      lastOption: 'plb_c',
       type: "rate",
     },
-    
+
 
 
     Q3: {
@@ -727,7 +715,7 @@ const products = {
       ],
       // lableOptions: [ "Liked it very much", "Somewhat liked", "Neutral", "Somewhat disliked ", "Disliked it very much" ],
       type: "RatingSlider",
-   
+
 
     },
 
@@ -736,7 +724,7 @@ const products = {
       question: "Tell us everything that you like about your current soap, however minor the  feeling  may be please do  let us know all that you like about your current soap? INTERVIEWER: PLEASE PROBE. Anything else? Is there anything more you wish to mention? RECORD VERBATIM",
       type: "",
       label: "SHAPE :",
-     
+
     },
     Q4b: {
       number: "CS2a_FRAGRANCE",
@@ -774,16 +762,16 @@ const products = {
     Q6: {
       number: "CS3",
       question: "Overall, basis your experience with your current soap , how likely are you to purchase it again in the next purchase occasion.? Answer using the 5-point scale, where 5 means ‘Definitely will buy’ & 1 means ‘Definitely will not buy’? SINGLE CODE ",
-    lableOptions: [
-      { value: '5', label: 'Definitely will buy' },
-      { value: '4', label: 'Probably will buy' },
-      { value: '3', label: 'May or may not buy' },
-      { value: '2', label: 'Probably will not bu' },
-      { value: '1', label: 'Definitely will notbuy' },
-    ],
-    
+      lableOptions: [
+        { value: '5', label: 'Definitely will buy' },
+        { value: '4', label: 'Probably will buy' },
+        { value: '3', label: 'May or may not buy' },
+        { value: '2', label: 'Probably will not bu' },
+        { value: '1', label: 'Definitely will notbuy' },
+      ],
+
       type: "RatingSlider",
-      
+
 
     },
 
@@ -804,9 +792,9 @@ const products = {
         { value: '1', label: 'Strongly Disagree' },
       ],
       type: "rate",
-    
+
       lastOption: 'cs4_d',
-  
+
     },
 
     Q9: {
@@ -949,13 +937,13 @@ const products = {
       type: "RatingSlider",
       singleCode: true,
 
-    lableOptions: [
-      { value: '5', label: 'Liked it very much' },
-      { value: '4', label: 'Somewhat liked' },
-      { value: '3', label: 'Neutral' },
-      { value: '2', label: 'Somewhat disliked' },
-      { value: '1', label: 'Disliked it very much' },
-    ],
+      lableOptions: [
+        { value: '5', label: 'Liked it very much' },
+        { value: '4', label: 'Somewhat liked' },
+        { value: '3', label: 'Neutral' },
+        { value: '2', label: 'Somewhat disliked' },
+        { value: '1', label: 'Disliked it very much' },
+      ],
 
     },
 
@@ -1018,14 +1006,14 @@ const products = {
       number: "TS3",
       question: "Overall, basis your experience with the soap so far, how likely are you to purchase it when it is launched in the market? Answer using the 5-point scale, where 5 means ‘Definitely will buy’ & 1 means ‘Definitely will not buy’? SINGLE CODE ",
 
-   lableOptions: [
-      { value: '5', label: 'Definitely will buy' },
-      { value: '4', label: 'Probably will buy' },
-      { value: '3', label: 'May or may not buy' },
-      { value: '2', label: 'Probably will not bu' },
-      { value: '1', label: 'Definitely will notbuy' },
-    ],
-    
+      lableOptions: [
+        { value: '5', label: 'Definitely will buy' },
+        { value: '4', label: 'Probably will buy' },
+        { value: '3', label: 'May or may not buy' },
+        { value: '2', label: 'Probably will not bu' },
+        { value: '1', label: 'Definitely will notbuy' },
+      ],
+
 
       type: "RatingSlider",
 
@@ -1158,8 +1146,8 @@ const products = {
     Q24: {
       number: "TS9_F",
       question: " I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT ",
-       label: "Functional Benefits",
-   
+      label: "Functional Benefits",
+
       STATEMENTS: [
 
         { id: 'TS9F_a', label: 'Has natural ingredients' },
@@ -1171,7 +1159,7 @@ const products = {
         { id: 'TS9F_g', label: 'Does not dry my skin' },
         { id: 'TS9F_h', label: 'Vegan/ayurvedic/medical soap' },
         { id: 'TS9F_i', label: 'Suitable for everybody in the family men and women' },
-       
+
 
       ],
 
@@ -1181,7 +1169,7 @@ const products = {
         { value: '3', label: 'Neutral' },
         { value: '2', label: 'Disagree' },
         { value: '1', label: 'Strongly Disagree' }, ],
-    
+
 
       type: "rate",
       singleCode: true
@@ -1190,8 +1178,8 @@ const products = {
     Q24a: {
       number: "TS9_S",
       question: " I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT",
-       label: "Sensorial Benefits",
-   
+      label: "Sensorial Benefits",
+
       STATEMENTS: [
 
         { id: 'TS9S_a', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
@@ -1204,7 +1192,7 @@ const products = {
         { id: 'TS9S_h', label: 'Suitable for all skin types' },
         { id: 'TS9S_i', label: 'Suitable for sensitive/problematic skin' },
         { id: 'TS9S_j', label: 'Gently cleans the skin' },
-       
+
       ],
       FREQUENCIES: [
         { value: '5', label: 'Strongly Agree' },
@@ -1220,11 +1208,11 @@ const products = {
     Q24b: {
       number: "TS9_E",
       question: " I have a few other statements,  that can be considered as key benefits of this soap and the company/brand can talk about it in their communication. Please indicate the extent to which you Agree or Disagree with them based on your experience with the test product. Answer using the 5-point scale, where 5 means ‘Strongly Agree’ & 1 means ‘Strongly Disagree’? SINGLE CODE FOR EACH STATEMENT ",
-       label: "Emotional Benefits",
-   
+      label: "Emotional Benefits",
+
       STATEMENTS: [
 
-       
+
         { id: 'TS9E_a', label: 'Emotional Benefits' },
         { id: 'TS9E_b', label: 'Dermatologist recommended' },
         { id: 'TS9E_c', label: 'Leaves my skin feeling softer and smoother' },
@@ -1249,18 +1237,18 @@ const products = {
       singleCode: true
 
     },
-        Q25a: {
+    Q25a: {
       number: "C1",
       question: "Which of the following statement best describes your feeling about the BATHING SOAP   that you used for the last fifteeen day ? SINGLE CODE ",
 
       lableOptions: [
-      { value: '5', label: 'Liked it much more than my current brand' },
-      { value: '4', label: 'Liked it little more than my current brand' },
-      { value: '3', label: 'Liked it as much as  my current brand' },
-      { value: '2', label: 'Liked it little less than my current brand' },
-      { value: '1', label: 'Liked it much less than my current brand' },
-    ],
-    
+        { value: '5', label: 'Liked it much more than my current brand' },
+        { value: '4', label: 'Liked it little more than my current brand' },
+        { value: '3', label: 'Liked it as much as  my current brand' },
+        { value: '2', label: 'Liked it little less than my current brand' },
+        { value: '1', label: 'Liked it much less than my current brand' },
+      ],
+
 
       type: "RatingSlider",
       singleCode: true
@@ -1270,8 +1258,8 @@ const products = {
       number: "C2a",
       question: "Basis your usage experience with the Test Product, how much marks out of 100 would you give this Test product on overall quality of the product? ",
 
-      inputType:"number",
-      inputLimit:3,
+      inputType: "number",
+      inputLimit: 3,
 
       type: "",
       singleCode: true
@@ -1281,8 +1269,8 @@ const products = {
       number: "C2b",
       question: "Basis your usage experience how much marks out of 100 would you give your current brand on overall quality of the product  ",
 
-     inputType:"number",
-      inputLimit:3,
+      inputType: "number",
+      inputLimit: 3,
 
       type: "",
       singleCode: true
@@ -1296,24 +1284,24 @@ const products = {
         { label: "Godrej ", code: "2" },
         { label: "P&G ", code: "3" },
         { label: "Unilever ", code: "4" },
-        { label: "Wipro ", code: "5" },  
-         { label: "ITC", code: "6" },
-         { label: "Jyothy Labs", code: "7" },
-         { label: "Others ", code: "8" }
+        { label: "Wipro ", code: "5" },
+        { label: "ITC", code: "6" },
+        { label: "Jyothy Labs", code: "7" },
+        { label: "Others ", code: "8" }
 
       ],
       first: true,
       number: "C4a",
 
       type: "radio",
-      
+
     },
     C5a: {
       number: "  C5a",
       question: "Please tell us all  that you know about FENA brand of company: (Open Ended Question)   ",
 
-     
-    
+
+
 
       type: "",
       singleCode: true
@@ -1326,53 +1314,53 @@ const products = {
         { label: "Yes, I  think I can believe with the same level on  the  Test product  “FENA” as I have the same belief on my current brand", code: "1" },
         { label: "No, I  think I will take a little more time or few more trials to believe  on the  Test product “FENA” ", code: "2" },
         { label: "It does not matter I always like to change my soap and so long it is from the good company I am ok. ", code: "3" },
-       
+
       ],
       first: true,
       number: "C5b",
 
       type: "radio",
-      
+
     },
 
-    QD1:{
+    QD1: {
       question: "There are different bathing experiences that women look forward to which are considered as dream bathing experiences. They are looking for this experience as a routine. Which is your dream bathing experience?",
       number: "D1",
       type: "radio",
       options: [
-          {
-              label: "A cleansing bathing experience that makes me feel clean, free from harmful chemicals, and protected throughout the day.",
-              code: "1"
-          },
-          {
-              label: "A natural bathing experience that makes me feel efficient, effective, and protected throughout the day.",
-              code: "2"
-          },
-          {
-              label: "A moisturizing bathing experience that makes me feel soft, smooth, and protected throughout the day.",
-              code: "3"
-          },
-          {
-              label: "A refreshing bathing experience that makes me feel energetic, rejuvenated, and protected throughout the day.",
-              code: "4"
-          },
-          {
-              label: "A beauty/pampering bathing experience that makes me feel beautiful, exfoliated, and protected throughout the day.",
-              code: "5"
-          },
-          {
-              label: "A sensorial bathing experience that makes me feel beautiful from inside and outside, fragrance-filled, and protected throughout the day.",
-              code: "6"
-          }
+        {
+          label: "A cleansing bathing experience that makes me feel clean, free from harmful chemicals, and protected throughout the day.",
+          code: "1"
+        },
+        {
+          label: "A natural bathing experience that makes me feel efficient, effective, and protected throughout the day.",
+          code: "2"
+        },
+        {
+          label: "A moisturizing bathing experience that makes me feel soft, smooth, and protected throughout the day.",
+          code: "3"
+        },
+        {
+          label: "A refreshing bathing experience that makes me feel energetic, rejuvenated, and protected throughout the day.",
+          code: "4"
+        },
+        {
+          label: "A beauty/pampering bathing experience that makes me feel beautiful, exfoliated, and protected throughout the day.",
+          code: "5"
+        },
+        {
+          label: "A sensorial bathing experience that makes me feel beautiful from inside and outside, fragrance-filled, and protected throughout the day.",
+          code: "6"
+        }
       ],
       response: ""
-  },
-    
+    },
+
     Q24B: {
       number: "BA_F",
       question: " We are on the last few questions and we will do this exercise quickly. I have a few  statements,   and you will have to tell me your opinion  to which brand(s) each of these are statement applicable to. It could be applicable to one brand or brand(s) or no brand. There are no right or wrong answers you just have to give us your association feeling about the statement with the brand . ",
-       label: "Functional Benefits",
-   
+      label: "Functional Benefits",
+
       STATEMENTS: [
 
         { id: 'BAF_a', label: 'Has natural ingredients' },
@@ -1384,7 +1372,7 @@ const products = {
         { id: 'BAF_g', label: 'Does not dry my skin' },
         { id: 'BAF_h', label: 'Vegan/ayurvedic/medical soap' },
         { id: 'BAF_i', label: 'Suitable for everybody in the family men and women' },
-       
+
 
       ],
 
@@ -1394,7 +1382,7 @@ const products = {
         { value: '3', label: 'Jo' },
         { value: '2', label: 'other' },
         { value: '1', label: 'None ' }, ],
-    
+
 
       type: "rate",
       singleCode: true
@@ -1403,8 +1391,8 @@ const products = {
     Q24C: {
       number: "BA_S",
       question: " We are on the last few questions and we will do this exercise quickly. I have a few  statements,   and you will have to tell me your opinion  to which brand(s) each of these are statement applicable to. It could be applicable to one brand or brand(s) or no brand. There are no right or wrong answers you just have to give us your association feeling about the statement with the brand . ",
-       label: "Sensorial Benefits",
-   
+      label: "Sensorial Benefits",
+
       STATEMENTS: [
 
         { id: 'BAS_a', label: 'For my skin to feel refreshing/invigorated  I use this soap  bar' },
@@ -1417,7 +1405,7 @@ const products = {
         { id: 'BAS_h', label: 'Suitable for all skin types' },
         { id: 'BAS_i', label: 'Suitable for sensitive/problematic skin' },
         { id: 'BAS_j', label: 'Gently cleans the skin' },
-       
+
       ],
       FREQUENCIES: [
         { value: '5', label: 'Famus' },
@@ -1433,11 +1421,11 @@ const products = {
     Q24D: {
       number: "BA_E",
       question: " We are on the last few questions and we will do this exercise quickly. I have a few  statements,   and you will have to tell me your opinion  to which brand(s) each of these are statement applicable to. It could be applicable to one brand or brand(s) or no brand. There are no right or wrong answers you just have to give us your association feeling about the statement with the brand . ",
-       label: "Emotional Benefits",
-   
+      label: "Emotional Benefits",
+
       STATEMENTS: [
 
-       
+
         { id: 'BAE_a', label: 'Emotional Benefits' },
         { id: 'BAE_b', label: 'Dermatologist recommended' },
         { id: 'BAE_c', label: 'Leaves my skin feeling softer and smoother' },
@@ -1467,60 +1455,60 @@ const products = {
       question: "Please look at this card and tell me if you would buy this Famus Soap in future for bathing  ",
 
       lableOptions: [
-      { value: '5', label: 'Definitely will buy' },
-      { value: '4', label: 'Probably will buy' },
-      { value: '3', label: 'May or may not buy' },
-      { value: '2', label: 'Probably will not bu' },
-      { value: '1', label: 'Definitely will notbuy' },
-    ],
-    
+        { value: '5', label: 'Definitely will buy' },
+        { value: '4', label: 'Probably will buy' },
+        { value: '3', label: 'May or may not buy' },
+        { value: '2', label: 'Probably will not bu' },
+        { value: '1', label: 'Definitely will notbuy' },
+      ],
+
 
       type: "RatingSlider",
       singleCode: true
 
     },
 
-  
 
-//     Q26segment_a: {
-//       number: "segment_a",
-//       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
-// lable:"1.Connectedness to Nature",
-// statementA:"I love being around nature and I try to spend as much time as I can being surrounded by trees, lakes/rivers and open landscapes",
-// statementB:"I am fine to spend minimum or no time at all around nature or outdoors",
-     
-//       lableOptions: [
-//         { value: 'A lot like person A', label: 'A lot like person A' },
-//         { value: 'Somewhat like person A', label: 'Somewhat like person A' },
-//         { value: 'Neither', label: 'Neither' },
-//         { value: '55', label: 'Somewhat like person B' },
-//         { value: '1', label: 'A lot like person B' },
-//       ],
-//        instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
-//       type: "segment",
-//       singleCode: true
-   
 
-//     },
-//     Q26segment_b: {
-//       number: "segment_b",
-//       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
-// lable:"Perceived impacts at the individual level",
-// statementA:"I believe environmental issues will significantly affect my daily life and well-being",
-// statementB:"I don’t believe environmental issues have any direct impact on my personal daily life and well being",
-     
-//       lableOptions: [
-//         { value: 'A lot like person A', label: 'A lot like person A' },
-//         { value: 'Somewhat like person A', label: 'Somewhat like person A' },
-//         { value: 'Neither', label: 'Neither' },
-//         { value: '55', label: 'Somewhat like person B' },
-//         { value: '1', label: 'A lot like person B' },
-//       ],
-//        instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
-//       type: "segment",
-//       singleCode: true
-    
-//     },
+    //     Q26segment_a: {
+    //       number: "segment_a",
+    //       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
+    // lable:"1.Connectedness to Nature",
+    // statementA:"I love being around nature and I try to spend as much time as I can being surrounded by trees, lakes/rivers and open landscapes",
+    // statementB:"I am fine to spend minimum or no time at all around nature or outdoors",
+
+    //       lableOptions: [
+    //         { value: 'A lot like person A', label: 'A lot like person A' },
+    //         { value: 'Somewhat like person A', label: 'Somewhat like person A' },
+    //         { value: 'Neither', label: 'Neither' },
+    //         { value: '55', label: 'Somewhat like person B' },
+    //         { value: '1', label: 'A lot like person B' },
+    //       ],
+    //        instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
+    //       type: "segment",
+    //       singleCode: true
+
+
+    //     },
+    //     Q26segment_b: {
+    //       number: "segment_b",
+    //       question: "Segment 2. Next, again we will be reading out some more contrasting statements to you. As explained ",
+    // lable:"Perceived impacts at the individual level",
+    // statementA:"I believe environmental issues will significantly affect my daily life and well-being",
+    // statementB:"I don’t believe environmental issues have any direct impact on my personal daily life and well being",
+
+    //       lableOptions: [
+    //         { value: 'A lot like person A', label: 'A lot like person A' },
+    //         { value: 'Somewhat like person A', label: 'Somewhat like person A' },
+    //         { value: 'Neither', label: 'Neither' },
+    //         { value: '55', label: 'Somewhat like person B' },
+    //         { value: '1', label: 'A lot like person B' },
+    //       ],
+    //        instruction:"Please listen to these statements carefully, and tell us which one do you feel closer to?",
+    //       type: "segment",
+    //       singleCode: true
+
+    //     },
     // Q2a: {
     //   number: "P1bRank",
     //   question: "Also let me know your opinion on few other aspects. As I read out each statement, kindly let me know your opinion with the help of the card. SINGLE CODE FOR EACH STATEMENT",
@@ -1533,9 +1521,9 @@ const products = {
     //     { value: '3', label: 'rank3' },
     //     { value: '2', label: 'rank2' },
     //     { value: '1', label: 'rank11' },
-      
+
     //   ],
-     
+
     //   lastOption:'plb_c',
     //   type: "rank",
     // },

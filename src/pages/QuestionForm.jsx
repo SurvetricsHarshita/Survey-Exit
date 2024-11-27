@@ -38,6 +38,7 @@ import SegmentQuestion from "../components/Questions/SegmentQuestion";
 import RankingQuestion from "../components/Questions/RankingQuestion";
 import Quota from "../components/Questions/Quota";
 import SelfieCapture from "../components/atoms/SelfieCapture";
+import MatrixInput from "../components/Questions/MatrixInput";
 
 
 function QuestionForm() {
@@ -476,8 +477,10 @@ function QuestionForm() {
   
     // Retrieve existing data from localStorage
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
-    const startTimeDate = existingData.startTime?.date; 
-    const startTimeStr = existingData.startTime?.time;
+    const startTimeDate = existingData.startDate
+    const startTimeStr = existingData.startTime
+    ;
+    alert(startTimeStr )
   
     if (startTimeDate && startTimeStr) {
       // Convert start time to Date object
@@ -485,25 +488,36 @@ function QuestionForm() {
       const formattedDate = `${month}/${day}/${year}`; // Format: MM/DD/YYYY
       const startTimeFull = `${formattedDate} ${startTimeStr}`; 
       const startTime = new Date(startTimeFull);
-  
+      function formatDuration(seconds) {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${hrs}:${mins}:${secs}`;
+    }
       // Calculate survey duration in seconds
       const surveyDuration = Math.floor((end.getTime() - startTime.getTime()) / 1000);
   
       // Add end time and duration to the existing data
-      existingData.endTime = { date: endDate, time: endTime };
-      existingData.duration = surveyDuration; // Duration in seconds
+      existingData.endTime =   endTime
+      existingData.endDate = endDate
+      alert(endTime)
+      existingData.duration = formatDuration(surveyDuration);
+      alert(surveyDuration)
+      console.log("After update:", existingData);
+       // Duration in seconds
     } else {
       console.error("Start time data is missing!");
       return;
     }
   
+   
     // Update and store the data in localStorage
-    const updatedProductTest = calculateSurveyData(existingData, end);
+    const updatedProductTest = existingData
     localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
   
     // Preserve the email in localStorage
     const email = localStorage.getItem("email");
-    localStorage.clear();
+    // localStorage.clear();
     if (email) {
       localStorage.setItem("email", email);
     }
@@ -515,8 +529,9 @@ function QuestionForm() {
     const { success, message } = await submitDataToAPI(updatedProductTest);
   
     if (success) {
-      navigate("/submit");
+      navigate("/submit", { state: { msg: "submit" } });
     } else {
+       
       console.log(message); // Show error message if submission fails
     }
   };
@@ -585,7 +600,17 @@ function QuestionForm() {
       [mediaId]: frequency,
     }));
   };
+  const handleMultiChange = (mediaId, frequency) => {
+    setMediaFrequencies((prevFrequencies) => ({
+      ...prevFrequencies,
+      [mediaId]: frequency,
+    }));
 
+    setResponses((prevResponses) => ({
+      ...prevResponses,
+      [mediaId]: frequency,
+    }));
+  };
 
 
   return (
@@ -638,6 +663,24 @@ function QuestionForm() {
               handleOtherInputChange={handleOtherInputChange}
               
               isOther={isOther}
+            />
+          ): currentQuestion.type === "matrixInput" ? (
+            <MatrixInput
+            currentQuestionIndex={currentQuestionIndex}
+            currentQuestion={currentQuestion}
+            responses={responses}
+            othersSpecify={othersSpecify}
+            othersPlaceholders={othersPlaceholders}
+            otherInput={otherInput}
+
+            isOther={isOther}
+            mediaChannels={currentQuestion.STATEMENTS}
+            frequencies={currentQuestion.FREQUENCIES}
+            // onRating={handleRating}
+            handleMultiChange={handleMultiChange}
+            setMediaFrequencies={setMediaFrequencies}
+            mediaFrequencies={mediaFrequencies}
+            number={currentQuestion.number}
             />
           ) : currentQuestion.type === "rate" ? (
             <RatingQuestion
@@ -772,14 +815,15 @@ function QuestionForm() {
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton
               onClick={handleNext}
-              // isDisabled={isNextButtonDisabled() || isLoading}
+              isDisabled={isNextButtonDisabled() || isLoading}
             />
           ) : (
             <Button
-              colorScheme="teal"
+              colorScheme="#2563eb"
+      bg="#319dcf"
               onClick={handleSubmit}
               isDisabled={isNextButtonDisabled() || isLoading }>
-              Next
+       Submit
             </Button>
           )}
         </Flex>
