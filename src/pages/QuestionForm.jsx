@@ -1,13 +1,13 @@
 // export default QuestionForm
-import { useState, useEffect } from "react";
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
-  Flex,
   Text,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import NextButton from "../components/atoms/NextButton";
@@ -15,40 +15,39 @@ import PreviousButton from "../components/atoms/PreviousButton";
 import RespondentDemographic from "./RespondentDemographic";
 
 import {
-  othersSpecify,
-  othersPlaceholders,
-  sendBlobToBackend,
   getIndianTime,
-  calculateSurveyData,
+  othersPlaceholders,
+  othersSpecify,
+  sendBlobToBackend
 } from "../utils/constant";
 
-import RadioQuestion from "../components/Questions/RadioQuestion";
 import InputQuestion from "../components/Questions/InputQuestion";
 import MultiChoiceQuestion from "../components/Questions/MultiChoiceQuestion";
-import useSurveyTermination from "../utils/useSurveyTermination";
+import RadioQuestion from "../components/Questions/RadioQuestion";
 import products from "../components/translationFiles/Indrusties/products";
-import RatingQuestion from "./../components/Questions/RatingQuestion";
 import useAsk from "../utils/useAsk";
+import useSurveyTermination from "../utils/useSurveyTermination";
+import RatingQuestion from "./../components/Questions/RatingQuestion";
 
 import RatingSlider from "../components/Questions/RatingSlider";
 
 import { submitDataToAPI } from "../utils/submitDataToAPI";
 
-import SegmentQuestion from "../components/Questions/SegmentQuestion";
-import RankingQuestion from "../components/Questions/RankingQuestion";
-import Quota from "../components/Questions/Quota";
 import SelfieCapture from "../components/atoms/SelfieCapture";
 import MatrixInput from "../components/Questions/MatrixInput";
+import Quota from "../components/Questions/Quota";
+import RankingQuestion from "../components/Questions/RankingQuestion";
+import SegmentQuestion from "../components/Questions/SegmentQuestion";
 
 
 function QuestionForm() {
-  const { Section1, Section2 } = products;
+  const { Section1 } = products;
   const [sliderMoved, setSliderMoved] = useState(false);
   const navigate = useNavigate();
   const [sectionIndex, setSectionIndex] = useState(0);
   // Default is English
   const [language, setLanguage] = useState("en");
-  const [sections, setSections] = useState([Section1, Section2]); // Default is English
+  const [sections, setSections] = useState([Section1]); // Default is English
   const [loading, setLoading] = useState(true);
 
   const [isOther, setOther] = useState(false);
@@ -57,7 +56,20 @@ function QuestionForm() {
   const [ask, setAsk] = useState(false);
   const [responses, setResponses] = useState({});
   const [storedData, setStoredData] = useState({});
- 
+  const table = [
+    ["E3", "E2", "E2", "E2", "E2", "E1", "D2"], 
+    ["E1", "E1", "E1", "E1", "D2", "D2", "D2"], 
+    ["E1", "E1", "D2", "D2", "D1", "D1", "D1"], 
+    ["D2", "D2", "D1", "D1", "C2", "C2", "C2"], 
+    ["D1", "C2", "C2", "C1", "C1", "B2", "B2"], 
+    ["C2", "C1", "C1", "B2", "B1", "B1", "B1"], 
+    ["C1", "B2", "B2", "B1", "A3", "A3", "A3"],
+    ["C1", "B1", "B1", "A3", "A3", "A2", "A2"],
+    ["B1", "A3", "A3", "A3", "A2", "A2", "A2"],
+    ["B1", "A3", "A3", "A2", "A2", "A1", "A1"]  
+  ];
+
+
   const [mediaFrequencies, setMediaFrequencies] = useState({});
   const [sliderValue, setSliderValue] = useState(3);
   useEffect(() => {
@@ -95,14 +107,14 @@ function QuestionForm() {
 
     switch (language) {
       case "en":
-        setSections([Section1, Section2]);
+        setSections([Section1]);
         break;
       // case "hi":
-      //   setSections([HiSection1, HiSection2]);
+      //   setSections([HiSection1, ]);
       //   break;
 
       default:
-        setSections([Section1, Section2]); // Default to English if no match
+        setSections([Section1]); // Default to English if no match
         break;
     }
 
@@ -111,7 +123,7 @@ function QuestionForm() {
 
   const questions = loading
     ? []
-    : [...Object.values(sections[0]), ...Object.values(sections[1])];
+    : [...Object.values(sections[0])];
   const [isLoading, setIsLoading] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [recordedBlob, setRecordedBlob] = useState(null);
@@ -480,8 +492,8 @@ function QuestionForm() {
     const startTimeDate = existingData.startDate
     const startTimeStr = existingData.startTime
     ;
-    alert(startTimeStr )
-  
+
+    
     if (startTimeDate && startTimeStr) {
       // Convert start time to Date object
       const [day, month, year] = startTimeDate.split('/');
@@ -500,10 +512,9 @@ function QuestionForm() {
       // Add end time and duration to the existing data
       existingData.endTime =   endTime
       existingData.endDate = endDate
-      alert(endTime)
+
       existingData.duration = formatDuration(surveyDuration);
-      alert(surveyDuration)
-      console.log("After update:", existingData);
+     console.log("After update:", existingData);
        // Duration in seconds
     } else {
       console.error("Start time data is missing!");
@@ -831,5 +842,7 @@ function QuestionForm() {
     </Box>
   );
 }
+
+
 
 export default QuestionForm;

@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
 import {
-  Flex,
-  Input,
-  SimpleGrid,
-  Text,
-  Select,
   Alert,
+  AlertDescription,
   AlertIcon,
   AlertTitle,
-  AlertDescription,
-  useToast,
+  Flex,
   FormLabel,
+  Input,
+  Select,
+  SimpleGrid,
+  Text,
+  useToast,
 } from "@chakra-ui/react";
-import { formFieldsStep1, formFieldsStep2, formFieldsStep3, languageText, places } from "../utils/Respondent";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NextButton from "../components/atoms/NextButton";
+import PreviousButton from "../components/atoms/PreviousButton";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 import { getIndianTime } from "../utils/constant";
-import PreviousButton from "../components/atoms/PreviousButton";
-import { Navigate, useNavigate } from "react-router-dom";
+import { formFieldsStep1, formFieldsStep2, formFieldsStep3, languageText, places } from "../utils/Respondent";
 
 const RespondentDemographic = ({ handleNext, language ,onComplete }) => {
   const [formData, setFormData] = useState({
@@ -119,7 +119,7 @@ const navigate=useNavigate()
     const isValidPhoneRes = !formData.phoneRes || /^\d{10}$/.test(formData.phoneRes);
     const isValidPhonePP = !formData.phonePP || /^\d{10}$/.test(formData.phonePP);
     const isValidPhoneOff = !formData.phoneOff || /^\d{10}$/.test(formData.phoneOff);
-if(step==2){
+if(step==5){
   if (!isValidMobile) {
     handleValidationError("Please enter a valid 10-digit mobile number");
     return;
@@ -237,7 +237,7 @@ function handlePrevious(){
       <Flex mt={10} justify="space-between" gap={10}>
         <PreviousButton onPrev={handlePrevious} />
         <NextButton onClick={handleSubmit} 
-        isDisabled={!isFormComplete} 
+        // isDisabled={!isFormComplete} 
         />
       </Flex>
     </Flex>
