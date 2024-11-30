@@ -44,7 +44,7 @@ function LoginPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('https://fi-backend.vercel.app/login', { username: email, password, type: "truck" });
+      const response = await axios.post('https://pptv-backend.vercel.app/login ', { username: email, password, type: "truck" });
 
       if (response.status === 200) {
         toast({

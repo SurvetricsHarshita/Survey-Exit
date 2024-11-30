@@ -64,7 +64,7 @@ export const sendBlobToBackend = async (blob) => {
   formData.append("file", blob, "audio.webm"); // Append the blob to FormData with a filename
 
   try {
-    const response = await fetch("https://fi-backend.vercel.app/add-audio", {
+    const response = await fetch("https://pptv-backend.vercel.app/add-audio", {
       method: "POST",
       body: formData,
     });
