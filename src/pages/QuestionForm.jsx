@@ -500,6 +500,8 @@ else{
   
     // Reset other global states or perform cleanup
     setSliderMoved(false);
+
+    setOther(false)
   };
 
   const handleSubmit = async () => {
