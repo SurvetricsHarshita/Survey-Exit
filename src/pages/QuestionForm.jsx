@@ -439,6 +439,9 @@ function QuestionForm() {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
     setOtherInput("");
+
+    
+
     setAsk(false);
     setMediaFrequencies({});
     setSliderMoved(false)

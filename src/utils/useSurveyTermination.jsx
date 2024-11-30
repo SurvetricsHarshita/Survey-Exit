@@ -8,7 +8,7 @@ function useSurveyTermination() {
       S4a: () => radioHandler(answer, terminationCodes),
       S4b: () => radioHandler(answer, terminationCodes),
       S4c: () => handleS4c(answer),
-      S7b: () => handleS7b(answer),
+      Q2_c: () => handleQ2_c(answer),
       S7g: () => radioHandler(answer, terminationCodes),
       S9c: () => radioHandler(answer, terminationCodes),
       S9d: () => handleS9d(answer, terminationCodes, storedData),
@@ -42,8 +42,8 @@ function useSurveyTermination() {
   }
 
   // Custom handler for S7b (specific condition)
-  function handleS7b(answer) {
-    return !answer.includes("1");
+  function handleQ2_c(answer) {
+    return !answer.includes("4") || !answer.includes("10");
   }
 
   // Custom handler for S9d (dependent on storedData)
