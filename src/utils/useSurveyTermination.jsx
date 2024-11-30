@@ -8,10 +8,11 @@ QConsent: () => radioHandler(answer, terminationCodes),
 Q2_c: () => handleQ2_c(answer),
       Q1: () => radioHandler(answer, terminationCodes),
       Q4_a: () => radioHandler(answer, terminationCodes),
-     Q3: () => radioHandler(answer, terminationCodes),
+     Q3: () => handleQ3(answer, terminationCodes),
      Q6_a: () => handleS4c(answer),
      
-      S7g: () => radioHandler(answer, terminationCodes),
+     Q2_e: () => handleS9d(answer, terminationCodes),
+
       S9c: () => radioHandler(answer, terminationCodes),
       S9d: () => handleS9d(answer, terminationCodes, storedData),
       S9g: () => radioHandler(answer, terminationCodes),
@@ -45,15 +46,33 @@ Q2_c: () => handleQ2_c(answer),
 
   // Custom handler for S7b (specific condition)
   function handleQ2_c(answer) {
-    alert(answer)
-    return !answer.includes("4") ;
+    // alert(answer)
+    return !(answer.includes("4") && answer.includes("10"));
   }
 
   // Custom handler for S9d (dependent on storedData)
   function handleS9d(answer, terminationCodes, storedData) {
-    const s9cValue = storedData["S9c"] || "";
-    return s9cValue === "7" || s9cValue === "6";
+    // Extract NCCS and Q2_c values from storedData
+    const s9cValue = storedData["NCCS"] || "";
+    const Q2cValue = storedData["Q2_c"] || [];
+  
+    // Check if the household is not NCCS A1 and codes 1 and 5 are selected in Q2_c
+    const isNotNCCSA1 = s9cValue!="A1"
+    const areCodesSelected = Q2cValue.includes("1") && Q2cValue.includes("5");
+  
+    // Return true if both conditions are satisfied
+    return ! (isNotNCCSA1 && areCodesSelected);
   }
+  function handleQ3(answer) {
+    const codes = ["1", "2", "3", "7"];
+
+    // Check if "4" is selected or none of the codes are selected
+    if (answer.includes("4") || !codes.some(code => answer.includes(code))) {
+        return true; // Terminate
+    }
+    return false; // Continue
+}
+
 
   return { isTerminate, terminationReason };
 }

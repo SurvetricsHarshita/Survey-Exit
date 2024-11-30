@@ -43,7 +43,7 @@ const RatingQuestion = ({  mediaChannels, frequencies, handleChange, setMediaFre
             <Table variant="simple" size={{ base: 'sm', md: 'md' }}>
               <Thead fontWeight={3} color="black">
                 <Tr>
-                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">Statements</Th>
+                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">{currentQuestion. heading || "STATEMENTS"}</Th>
                   {frequencies.map((freq) => (
                     <Th key={freq.value} fontSize={{ base: 'sm', md: 'md' }} textAlign="center">{freq.label}</Th>
                   ))}

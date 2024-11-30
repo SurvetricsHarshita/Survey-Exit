@@ -17,6 +17,7 @@ Section1 : {
     
     ],
     type: "radio",
+    first:true
   },
   
   Q2_a: 
@@ -179,8 +180,8 @@ Section1 : {
         "code": "5"
       },
       {
-        "label": "Electricity Connection",
-        "code": "availability of electricity"
+        "label": "Electricity Connection (availability of electricity)",
+        "code": "6"
       },
       {
         "label": "Ceiling Fan",
@@ -215,25 +216,26 @@ Section1 : {
     
     "type": "rate",
  
-    "label": "Lifestyle",
+
+    heading:"Lifestyle",
     "options": "",
     "lableoptions": "",
     "STATEMENTS": [
       {
         "label": "Air cooler",
-        "id": "1"
+        "id": "Q2_e_1"
       },
       {
         "label": "Tab",
-        "id": "2"
+        "id": "Q2_e_2"
       },
       {
         "label": "Smart TV or TV which is connected to internet/ WIFI / Fiber",
-        "id": "3"
+        "id": "Q2_e_3"
       },
       {
         "label": "Modular Kitchen",
-        "id": "4"
+        "id": "Q2_e_4"
       }
     ],
     "FREQUENCIES": [
@@ -246,6 +248,7 @@ Section1 : {
         "value": "2"
       }
     ],
+    termination:true,
   },
   
   Q9: 
@@ -303,51 +306,19 @@ Section1 : {
     "label": "House details",
     "options": [
       {
-        "label": "1 BHK",
-        "code": "1 Bedroom"
-      },
-      {
-        "label": "Hall",
-        "code": ""
-      },
-      {
-        "label": "Kitchen) or smaller",
+        "label": "1 BHK (1 Bedroom Hall Kitchen) or smaller",
         "code": "1"
       },
       {
-        "label": "2 BHK",
-        "code": "2 Bedrooms"
-      },
-      {
-        "label": "Hall",
-        "code": ""
-      },
-      {
-        "label": "Kitchen)",
+        "label": "2 BHK (2 Bedrooms Hall Kitchen)",
         "code": "2"
       },
       {
-        "label": "3 BHK",
-        "code": "3 Bedrooms"
-      },
-      {
-        "label": "Hall",
-        "code": ""
-      },
-      {
-        "label": "Kitchen)",
+        "label": "3 BHK (3 Bedrooms Hall Kitchen)",
         "code": "3"
       },
       {
-        "label": "4 BHK",
-        "code": "4 Bedrooms"
-      },
-      {
-        "label": "Hall",
-        "code": ""
-      },
-      {
-        "label": "Kitchen) or larger",
+        "label": "4 BHK (4 Bedrooms Hall Kitchen) or larger",
         "code": "4"
       }
     ],
@@ -365,21 +336,22 @@ Section1 : {
       "  inputLimit": "",
       "type": "rate",
       "    placeHolder": "",
-      "label": "Lifestyle",
+      // "label": "Lifestyle",
+      heading:"Lifestyle",
       "options": "",
       "lableoptions": "",
       "STATEMENTS": [
         {
           "label": "Have Club membership for you or any member in the house",
-          "id": "1"
+          "id": "Q4_b_1"
         },
         {
           "label": "Have Gym membership for you any member in the house",
-          "id": "2"
+          "id": "Q4_b_2"
         },
         {
           "label": "If any family member stayed in a 4*/5* hotel in last 2 years",
-          "id": "3"
+          "id": "Q4_b_3"
         }
       ],
       "FREQUENCIES": [
@@ -399,58 +371,39 @@ Section1 : {
       "instruction": "",
       " inputType": "",
       "  inputLimit": "",
-      "type": "rate",
+      "type": "radio",
       "    placeHolder": "",
-      "label": "Lifestyle",
-      "options": [{ "label": "Unskilled Worker", "code": "1" },
-        { "label": "Skilled Worker", "code": "2" },
-        { "label": "Petty Traders", "code": "3" },
-        { "label": "Shop Owners", "code": "4" },
-        { "label": "Businessman/Industrialist (No Employees)", "code": "5" },
-        { "label": "Businessman/Industrialist (1 – 9 Employees)", "code": "6" },
-        { "label": "Businessman/Industrialist (10+ Employees)", "code": "7" },
-        { "label": "Self Employed Professional", "code": "8" },
-        { "label": "Clerk / Salesman", "code": "9" },
-        { "label": "Supervisory Level", "code": "10" },
-        { "label": "Officer / Executive – Junior", "code": "11" },
-        { "label": "Officer / Executive – Middle /Senior", "code": "12" },
-        { "label": "Owner Farmer", "code": "13" },
-        { "label": "Leased Farmer", "code": "14" },
-        { "label": "Retired", "code": "15" },
-        { "label": "Other – specify", "code": "98" }],
-      "lableoptions": "",
-      "STATEMENTS": [
-        {
-          "label": "Have Club membership for you or any member in the house",
-          "id": "1"
-        },
-        {
-          "label": "Have Gym membership for you any member in the house",
-          "id": "2"
-        },
-        {
-          "label": "If any family member stayed in a 4*/5* hotel in last 2 years",
-          "id": "3"
-        }
+      "label": "Occupation URBAN",
+      options: [
+        { label: "Unskilled Worker", code: "1" }, 
+        { label: "Skilled Worker", code: "2" },
+        { label: "Petty Traders", code: "3" },
+        { label: "Shop Owners", code: "4" },
+       
+      { label: "Businessman/Industrialist (No Employees)", code: "5" },
+      { label: "Businessman/Industrialist (1 – 9 Employees)", code: "6" },
+      { label: "Businessman/Industrialist (10+ Employees)", code: "7" },
+      { label: "Self Employed Professional", code: "8" },
+      { label: "Clerk / Salesman", code: "9" },
+      { label: "Supervisory Level", code: "10" },
+      { label: "Officer / Executive – Junior", code: "11" },
+      { label: "Officer / Executive – Middle /Senior", code: "12" },
+      { label: "Owner Farmer", code: "13" },
+      { label: "Leased Farmer", code: "14" },
+      { label: "Retired",code: "15" },
+        { label: "Other specify ……….", code: "98" },
+      
       ],
-      "FREQUENCIES": [
-        {
-          "label": "Yes",
-          "value": "1"
-        },
-        {
-          "label": "No",
-          "value": "2"
-        }
-      ],
+   
+     
   }
   ,
   Q6_a:{
     "number": "Q6_a",
       "question": "Please tell me number of members in the household, which means who share food from the same kitchen. Please also include guests, full-time house help, or any other members sharing food from the same kitchen in the HH. ",
       "instruction": "",
-      " inputType": "",
-      "  inputLimit": "number",
+      " inputType": "number",
+      "  inputLimit": 3,
       "type": "input",
       "    placeHolder": "",
       "label": "The number of members currently staying in this house",
@@ -720,12 +673,12 @@ Section1 : {
  Q324: {
     "number": "Q7_b",
     "question": "Amongst the languages mentioned above, which language do you speak most often with your family members?",
-    "instruction": "The question is on recommendation for the dealer based on a 10-point scale ",
+    
     " inputType": "",
     "  inputLimit": "",
     "type": "radio",
     "    placeHolder": "",
-    "label": "Languages most often spoken",
+    "label": "Languages most often spoken:",
     "options": [
       {
         "label": "Assamese",
@@ -899,37 +852,34 @@ Section1 : {
     optionsRemove:[],
   },
  Q33: {
-    "number": "Q8_a",
+    "number": "Q8_a1",
     "question": "Please share your contact details - mobile",
     "instruction": "",
     " inputType": "number",
-    "  inputLimit": "",
+    inputLimit: 10,
     "type": "matrix input",
     "    placeHolder": "",
     "label": "Mobile number",
-    "options": "",
-    "lableoptions": "",
-    "STATEMENTS": "",
-    "FREQUENCIES": "",
-    "lastOption": "",
-    "termination": "",
-    " terminationCodes": "",
-    "audio": "",
-    "randomize": "",
-    "fixedCodes": "",
-    " RandomizeOnce": "",
-    " maxSelections": "",
-    "  checkAsk": "",
-    "readout": "",
-    "depend on": "",
-    "labels": ""
+   
+  },
+  Q3A: {
+    "number": "Q8_a2",
+    "question": "Please share your contact details - mobile",
+    "instruction": "",
+    " inputType": "number",
+    inputLimit: 10,
+    "type": "matrinput",
+    "    placeHolder": "",
+    "label": "Mobile number",
+   
   },
  Q34: {
     "number": "Q8_b",
-    "question": "",
+    "question": "Please share your contact details - mobile",
     "instruction": "",
-    " inputType": "",
-    "  inputLimit": "",
+    " inputType": "number",
+
+    inputLimit: 10,
     "type": "",
     "    placeHolder": "",
     "label": "",
@@ -1164,25 +1114,15 @@ Section1 : {
     "instruction": "",
     " inputType": "",
     "  inputLimit": "",
-    "type": "",
-    "    placeHolder": "",
-    "label": "",
-    "options": "",
-    "lableoptions": "",
-    "STATEMENTS": "",
-    "FREQUENCIES": "",
-    "lastOption": "",
-    "termination": "",
-    " terminationCodes": "",
-    "audio": "",
-    "randomize": "",
-    "fixedCodes": "",
-    " RandomizeOnce": "",
-    " maxSelections": "",
-    "  checkAsk": "",
-    "readout": "",
-    "depend on": "",
-    "labels": ""
+    options:[
+      { label: "Yes", code: "1" }, 
+      { label: "No", code: "2" }
+     
+    ],
+    type: "radio",
+
+
+    
   }
 
 

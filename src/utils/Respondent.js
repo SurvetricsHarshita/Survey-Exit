@@ -1,4 +1,3 @@
-
 export const languageText = {
 
   en: {
@@ -25,8 +24,10 @@ export const languageText = {
     previous: "Previous",
     place: "Place of Interview",
     time: "",
+    age:"Age",
   },
 };
+
 // src/static/formFields.js
 export const formFieldsStep1 = [
   { name: "name", placeholder: "Name of the Respondent" },
@@ -36,32 +37,37 @@ export const formFieldsStep1 = [
   { name: "streetName", placeholder: "Street / Road Name" },
   { name: "areaName", placeholder: "Area Name" },
   { name: "townName", placeholder: "Town / Village Name" },
- 
-];
-
-export const formFieldsStep2=[ { name: "landmark", placeholder: "Landmark" },
   { name: "pincode", placeholder: "Pincode", type: "number" ,label:"Pincode" },
   { name: "mobile", placeholder: "MOBILE No.", type: "tel" ,label:"Mobile No"},
-  { name: "phoneRes", placeholder: "Phone No. (Res)", type: "number" ,label:"Res Phone No" },
-  { name: "phonePP", placeholder: "Phone No. PP(C/O)", type: "number", },
-  { name: "phoneOff", placeholder: "Phone No. (Off)",type: "number"  },
-  { name: "emailId", placeholder: "e-mail ID", type: "email" },]
-
-
-export const formFieldsStep3 = [
+  { name: "age", placeholder: "age",type: "number"},
   { name: "interviewerName", placeholder: "Interviewer Name" },
   { name: "interviewerId", placeholder: "Interviewer ID" },
-  // { name: "INT Start Time (write in 24hrs)", placeholder: "INT Start Time (write in 24hrs)" },
  
 ];
 
-export const places = [
-  "Home – 1",
-  "Office – 2",
-  "Street Intercept - 3",
-  "Shop / Outlet – 4",
-  "CLT – 5",
-  "Hospital / Clinic – 6",
-  "Exit – 7",
-  "Others – 8",
-];
+// export const formFieldsStep2=[ { name: "landmark", placeholder: "Landmark" },
+//   { name: "pincode", placeholder: "Pincode", type: "number" ,label:"Pincode" },
+//   { name: "mobile", placeholder: "MOBILE No.", type: "tel" ,label:"Mobile No"},
+//   { name: "phoneRes", placeholder: "Phone No. (Res)", type: "number" ,label:"Res Phone No" },
+//   { name: "phonePP", placeholder: "Phone No. PP(C/O)", type: "number", },
+//   { name: "phoneOff", placeholder: "Phone No. (Off)",type: "number"  },
+//   { name: "emailId", placeholder: "e-mail ID", type: "email" },]
+
+
+// export const formFieldsStep3 = [
+//   { name: "interviewerName", placeholder: "Interviewer Name" },
+//   { name: "interviewerId", placeholder: "Interviewer ID" },
+//   // { name: "INT Start Time (write in 24hrs)", placeholder: "INT Start Time (write in 24hrs)" },
+ 
+// ];
+
+// export const places = [
+//   "Home – 1",
+//   "Office – 2",
+//   "Street Intercept - 3",
+//   "Shop / Outlet – 4",
+//   "CLT – 5",
+//   "Hospital / Clinic – 6",
+//   "Exit – 7",
+//   "Others – 8",
+// ];

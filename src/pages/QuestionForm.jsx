@@ -188,6 +188,8 @@ function QuestionForm() {
     // Loop through options and find the "Other" option
     currentQuestion.options.forEach((option, idx) => {
       if (othersSpecify.includes(option.label)) {
+
+        // alert(option.label)
         keyForOtherSpecify = option.code; // Ensure this maps to the correct value
       }
     });
@@ -352,13 +354,28 @@ function QuestionForm() {
         const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
     const selectedCode = prev[currentQuestion.number]; // assuming the selected code is saved in prev[currentQuestion.number]
 
-    if (selectedCode) {
-      const response = currentQuestion.codes[selectedCode];
-      if (response) {
-        storedData[currentQuestion.autoCodeQuestionVar] = response.save; // Save the mapped value to localStorage
-        localStorage.setItem('ProductsTest', JSON.stringify(storedData));
-      }
+if(currentQuestion.number=="Q2_c"){
+  const Q2_c = prev[currentQuestion.number]
+  const Q2_b=storedData["Q2_b"]
+
+  let row=Q2_c.length - 1;
+  if(row>=9)row=9;
+  storedData['NCCS'] = table[row][Q2_b - '1'];
+  storedData['Q2d'] = table[row][Q2_b - '1'];
+  storedData[currentQuestion.autoCodeQuestionVar] = table[row][Q2_b - '1']; // Save the mapped value to localStorage
+  localStorage.setItem('ProductsTest', JSON.stringify(storedData));
+}
+else{
+  if (selectedCode) {
+    const response = currentQuestion.codes[selectedCode];
+    if (response) {
+      storedData[currentQuestion.autoCodeQuestionVar] = response.save; // Save the mapped value to localStorage
+      localStorage.setItem('ProductsTest', JSON.stringify(storedData));
     }
+  }
+}
+
+    
     return updatedResponses;
       });
     }
@@ -450,6 +467,8 @@ function QuestionForm() {
 
   // setMulti(1)
   const handlePrevious = () => {
+
+    
     setCurrentQuestionIndex((prevIndex) => {
       let newIndex = prevIndex;
   
@@ -822,7 +841,11 @@ function QuestionForm() {
         <Flex mt={10} justify="space-between" >
           <PreviousButton
             mr={2}
-            onPrev={handlePrevious}
+            onPrev={
+              currentQuestionIndex === 0
+                ? () => setDemographicAnswered(false)
+                : handlePrevious
+            }
             isDisabled={currentQuestionIndex === 0}>
             Previous
           </PreviousButton>
