@@ -5,7 +5,7 @@ function useOptions() {
 
   function isOptions(question, dependOn,  optionsRemove,allOptions, storedData) {
     const questionHandlers = {
-      S2: () => handleDynamicFilter(dependOn, allOptions, storedData,optionsRemove),
+      Q7_b: () => handleQ7_b(dependOn, allOptions, storedData,optionsRemove),
       S6a:() => handleDynamicFilter(dependOn, allOptions, storedData,optionsRemove)
     };
 
@@ -44,8 +44,19 @@ function useOptions() {
       return allOptions;
     }
   }
+  function handleQ7_b(dependOn, allOptions, storedData, optionsRemove = []) {
+    // Extract Q7_a from storedData
+    const selectedCodes = storedData["Q7_a"];
+    
+    // Ensure Q7_a exists and is an array
+    if (!Array.isArray(selectedCodes)) {
+      return [];
+    }
   
-
+    // Filter allOptions to return only those matching the codes in Q7_a
+    return allOptions.filter((option) => selectedCodes.includes(option.code));
+  }
+  
   return { isOptions, filteredOptions };
 }
 

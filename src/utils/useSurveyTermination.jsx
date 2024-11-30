@@ -3,12 +3,14 @@ let terminationReason = "";
 function useSurveyTermination() {
   function isTerminate(question, answer, terminationCodes, storedData = {}) {
     const questionHandlers = {
-      S1: () => radioHandler(answer, terminationCodes),
-      S3: () => radioHandler(answer, terminationCodes),
-      S4a: () => radioHandler(answer, terminationCodes),
-      S4b: () => radioHandler(answer, terminationCodes),
-      S4c: () => handleS4c(answer),
-      Q2_c: () => handleQ2_c(answer),
+I: () => radioHandler(answer, terminationCodes),
+QConsent: () => radioHandler(answer, terminationCodes),
+Q2_c: () => handleQ2_c(answer),
+      Q1: () => radioHandler(answer, terminationCodes),
+      Q4_a: () => radioHandler(answer, terminationCodes),
+     Q3: () => radioHandler(answer, terminationCodes),
+     Q6_a: () => handleS4c(answer),
+     
       S7g: () => radioHandler(answer, terminationCodes),
       S9c: () => radioHandler(answer, terminationCodes),
       S9d: () => handleS9d(answer, terminationCodes, storedData),
@@ -38,12 +40,13 @@ function useSurveyTermination() {
 
   // Custom handler for S4c (numerical range restriction)
   function handleS4c(answer) {
-    return answer < 25 || answer > 45;
+    return answer > 12 
   }
 
   // Custom handler for S7b (specific condition)
   function handleQ2_c(answer) {
-    return !answer.includes("4") || !answer.includes("10");
+    alert(answer)
+    return !answer.includes("4") ;
   }
 
   // Custom handler for S9d (dependent on storedData)
