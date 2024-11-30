@@ -878,14 +878,15 @@ Section1 : {
   },
  Q34: {
     "number": "Q8_b",
-    "question": "Please share your contact details - mobile",
+    "question": "Please share your contact details - Landline /Fixed line",
     "instruction": "",
     " inputType": "number",
 
+label:"Landline /Fixed line",
     inputLimit: 10,
     "type": "",
     "    placeHolder": "",
-    "label": "",
+    
     "options": "",
     "lableoptions": "",
     "STATEMENTS": "",
