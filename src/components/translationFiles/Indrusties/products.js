@@ -18,7 +18,7 @@ Section1 : {
     ],
     type: "radio",
     first:true,
-    audio:true
+    // audio:true
   },
   
   Q2_a: 
