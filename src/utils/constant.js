@@ -61,8 +61,9 @@ export function shuffleArray(array) {
 }
 export const sendBlobToBackend = async (blob) => {
   const formData = new FormData();
-  formData.append("file", blob, "audio.webm"); // Append the blob to FormData with a filename
-
+  formData.append("file", blob, "audio.mp4"); // Append the blob to FormData with a filename
+  // https://fi-backend.vercel.app/add-audio
+  // https://pptv-backend.vercel.app/add-audio
   try {
     const response = await fetch("https://pptv-backend.vercel.app/add-audio", {
       method: "POST",

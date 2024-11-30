@@ -322,7 +322,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
-      navigate("/submit", { state: { msg: "terminated" } });
+      // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {
@@ -556,7 +556,7 @@ else{
     }
   
     // Navigate to the submit page
-    navigate("/submit", { state: { msg: "submit" } });
+    // navigate("/submit", { state: { msg: "submit" } });
   
     // Submit data to the API
     const { success, message } = await submitDataToAPI(updatedProductTest);

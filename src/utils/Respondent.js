@@ -25,21 +25,16 @@ export const languageText = {
     place: "Place of Interview",
     time: "",
     age:"Age",
+  
   },
 };
 
 // src/static/formFields.js
 export const formFieldsStep1 = [
   { name: "name", placeholder: "Name of the Respondent" },
-  { name: "doorNo", placeholder: "Door / House / Bldng No." },
-  { name: "floorNo", placeholder: "Floor No.", type: "number" },
-  { name: "houseName", placeholder: "House / Flat Name" },
-  { name: "streetName", placeholder: "Street / Road Name" },
-  { name: "areaName", placeholder: "Area Name" },
-  { name: "townName", placeholder: "Town / Village Name" },
-  { name: "pincode", placeholder: "Pincode", type: "number" ,label:"Pincode" },
+  { name: "Address", placeholder:"Address" },
   { name: "mobile", placeholder: "MOBILE No.", type: "tel" ,label:"Mobile No"},
-  { name: "age", placeholder: "age",type: "number"},
+  { name: "Age", placeholder: "Age",type: "number"},
   { name: "interviewerName", placeholder: "Interviewer Name" },
   { name: "interviewerId", placeholder: "Interviewer ID" },
  
