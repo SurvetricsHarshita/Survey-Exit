@@ -27,15 +27,7 @@ const RespondentDemographic = ({ handleNext, language, onComplete }) => {
     areaName: "",
     townName: "",
     landmark: "",
-    pincode: "",
-    phoneRes: "",
-    phonePP: "",
-    phoneOff: "",
-    emailId: "",
-    interviewerName: "",
-    interviewerId: "",
-    mobile: "",
-    place: "",
+   
   });
 
   const [error, setError] = useState("");

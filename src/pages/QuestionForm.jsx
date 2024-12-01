@@ -259,56 +259,52 @@ function QuestionForm() {
 
   const handleCheckboxChange = (key, values) => {
     console.log(otherInput);
-
+  
     const keyValue = key;
-    let keyForOtherSpecify = "";
+    let keyForNone = "";
     const currentQuestion = questions[currentQuestionIndex];
-    const maxSelections = currentQuestion.maxSelections || 0;
-
-    if (maxSelections > 0) {
-      setMulti(values.length);
-    }
-    setMulti(values.length);
-
-    // Identify the key for "Others (please specify)"
-    currentQuestion.options.forEach((option, index) => {
-      if (othersSpecify.includes(option.label)) {
-        keyForOtherSpecify = option.code;
+  
+    // Identify the key for "None"
+    currentQuestion.options.forEach((option) => {
+      if (option.label === "None") {
+        keyForNone = option.code;
       }
     });
-
-    // Check if "Others (please specify)" is selected
-    const isOtherSelected = values.includes(keyForOtherSpecify);
-    setOther(isOtherSelected);
-    if (currentQuestion.termination) {
-      const terminate = isTerminate(
-        currentQuestion.number,
-        values,
-        currentQuestion.terminationCodes
-      );
-      setTerminate(terminate);
+  
+    // Check if "None" is selected
+    const isNoneSelected = values.includes(keyForNone);
+  
+    // Handle termination logic
+    if (currentQuestion.termination && isNoneSelected) {
+      // If "None" is selected, terminate and disable further selections
+      setResponses((prev) => ({
+        ...prev,
+        [keyValue]: [keyForNone],
+      }));
+      setTerminate(true); // Trigger termination state
+      return; // Stop further processing
     }
+  
+    // Handle regular options selection
+    setResponses((prev) => {
+      const updatedResponses = { ...prev, [keyValue]: values };
+  
+      // Remove "Others" input if not selected
+      if (!values.includes(keyForOtherSpecify)) {
+        delete updatedResponses[`${keyValue}_other`];
+      }
+  
+      return updatedResponses;
+    });
+  
+    // Handle dependent questions
     if (currentQuestion.checkAsk) {
       const display = isAsk(currentQuestion.number, storedData);
       setAsk(display);
     }
-    
-    if (isOther) {
- 
-      setResponses((prev) => ({
-        ...prev,
-        [keyValue]: values, // Save the selected values
-        [`${keyValue}_other`]: otherInput, // Save the "other" input under a unique key
-      }));
-    } else {
-      setResponses((prev) => {
-        // Remove "Others" input if not selected
-        const updatedResponses = { ...prev, [keyValue]: values };
-        // delete updatedResponses[`${keyValue}_other`];
-        return updatedResponses;
-      });
-    }
   };
+  
+  
 
   const handleOtherInputChange = (event) => {
     const newValue = event.target.value;
@@ -323,7 +319,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
-      navigate("/submit", { state: { msg: "terminated" } });
+      // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {

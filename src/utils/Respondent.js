@@ -32,8 +32,7 @@ export const languageText = {
 // src/static/formFields.js
 export const formFieldsStep1 = [
   { name: "name", placeholder: "Name of the Respondent" },
-  { name: "Address", placeholder:"Address" },
-  { name: "mobile", placeholder: "MOBILE No.", type: "tel" ,label:"Mobile No"},
+  
   { name: "Age", placeholder: "Age",type: "number"},
   { name: "interviewerName", placeholder: "Interviewer Name" },
   { name: "interviewerId", placeholder: "Interviewer ID" },

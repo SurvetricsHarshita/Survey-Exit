@@ -24,7 +24,7 @@ const products = {
 
       Q2_a: 
       {
-        number:"I",
+        number:"Introduction –",
         question: "May I please proceed?  ",
         response: " ",
         instruction:"Hi! I am _______from __________(Agency name) and we are conducting a survey for TV viewership. Can I please ask you a few questions. It's a very short survey and will take only around 5 minutes of your time! ",
@@ -867,44 +867,63 @@ const products = {
 
       },
       Q3A: {
-        "number": "Q8_a2",
+        "number": "Q8_a",
         "question": "Please share your contact details - mobile",
         "instruction": "",
         " inputType": "number",
         inputLimit: 10,
-        "type": "matrinput",
-        "    placeHolder": "",
+    
         "label": "Mobile number",
 
+       
+        "type": "multiInput",
+        "  placeHolder": "",
+  
+        formFieldsStep1: [
+          { name: "Q8_a_1", placeholder: "Mobile Number 1" },
+          { name: "Q8_b_2", placeholder: "Mobile Number 2" },
+          
+        ],
+  
+  
+        languageText: {
+  
+          en: {
+               mobilenumbercomp:"Mobile Number1",
+        mobilenumberopt:"Mobile Number2"
+  
+          },
+
       },
+    },
      Q34: {
         "number": "Q8_b",
-        "question": "Please share your contact details - Landline /Fixed line",
-        "instruction": "",
-        " inputType": "number",
+    "question": "Please share your contact details - mobile",
+    "instruction": "",
+    " inputType": "",
+    "  inputLimit": "",
+    "type": "multiInput",
+    "  placeHolder": "",
 
-    label:"Landline /Fixed line",
-        inputLimit: 10,
-        "type": "",
-        "    placeHolder": "",
+    formFieldsStep1: [
+      { name: "Q8_b_1", placeholder: "Landline / Fixed line 1" },
+      { name: "Q8_b_2", placeholder: "Landline / Fixed line 2" },
+      
+    ],
 
-        "options": "",
-        "lableoptions": "",
-        "STATEMENTS": "",
-        "FREQUENCIES": "",
-        "lastOption": "",
-        "termination": "",
-        " terminationCodes": "",
-        "audio": "",
-        "randomize": "",
-        "fixedCodes": "",
-        " RandomizeOnce": "",
-        " maxSelections": "",
-        "  checkAsk": "",
-        "readout": "",
-        "depend on": "",
-        "labels": ""
+
+    languageText: {
+
+      en: {
+        
+        landlinecomp:"Landline / Fixed line 1",
+        landlineopt:"Landline / Fixed line 2"
+
+
       },
+
+      isCompulsory: true,
+      }},
     Q35: {
       "number": "Q8_c",
       "question": "Detailed address",
