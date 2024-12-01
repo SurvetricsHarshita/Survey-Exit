@@ -24,7 +24,7 @@ const products = {
 
       Q2_a: 
       {
-        number:"Introduction –",
+        number:"Introduction",
         question: " ",
         label:"May I please proceed? ",
         response: " ",
@@ -428,35 +428,37 @@ const products = {
         "type": "radio",
         "    placeHolder": "",
         "label": "Education",
-        options: [
+        "options": [
           {
-            "label": "Marketing/Market Research",
+            "label": "Illiterate",
             "code": "1"
           },
           {
-            "label": "Media ,Print & TV / Broadcasting Agency / TV Channel Network",
+            "label": "Literate but no formal education/School Upto 4 Standard",
             "code": "2"
           },
           {
-            "label": "Working with DTH / IPTV / Cable Operator",
+            "label": "School 5th-9th Standard",
             "code": "3"
           },
           {
-            "label": "Advertising/Public Relations /Media Planning Agency",
+            "label": "SSC/HSC (10th-12th)",
             "code": "4"
           },
           {
-            "label": "Journalist/Anchor,Full time or Part time",
+            "label": "Some College Including Diploma but not Graduate",
             "code": "5"
           },
           {
-            "label": "Whether part of any TV/Media panel in last 2 years e.g. BARCINDIA TV Panel",
+            "label": "Graduate- General (B.A, B.SC, B. COM)/ Post-Graduate General (M. A, M.SC, M. COM, M. Phil))",
             "code": "6"
           },
           {
-            "label": "None of the above",
+            "label": "Graduate- Professional (B.E., M.B.B. S, B. Tech)/ Post-Graduate- Professional (M. E, M. TECH, M.B.A)",
             "code": "7"
-          }]
+          },
+
+        ],
       },
       Q31:{
         "number": "Q6_c",
@@ -467,35 +469,37 @@ const products = {
         "type": "radio",
         "    placeHolder": "",
         "label": "Education",
-        options: [
+        "options": [
           {
-            "label": "Marketing/Market Research",
+            "label": "Illiterate",
             "code": "1"
           },
           {
-            "label": "Media ,Print & TV / Broadcasting Agency / TV Channel Network",
+            "label": "Literate but no formal education/School Upto 4 Standard",
             "code": "2"
           },
           {
-            "label": "Working with DTH / IPTV / Cable Operator",
+            "label": "School 5th-9th Standard",
             "code": "3"
           },
           {
-            "label": "Advertising/Public Relations /Media Planning Agency",
+            "label": "SSC/HSC (10th-12th)",
             "code": "4"
           },
           {
-            "label": "Journalist/Anchor,Full time or Part time",
+            "label": "Some College Including Diploma but not Graduate",
             "code": "5"
           },
           {
-            "label": "Whether part of any TV/Media panel in last 2 years e.g. BARCINDIA TV Panel",
+            "label": "Graduate- General (B.A, B.SC, B. COM)/ Post-Graduate General (M. A, M.SC, M. COM, M. Phil))",
             "code": "6"
           },
           {
-            "label": "None of the above",
+            "label": "Graduate- Professional (B.E., M.B.B. S, B. Tech)/ Post-Graduate- Professional (M. E, M. TECH, M.B.A)",
             "code": "7"
-          }]
+          },
+
+        ],
       },
 
 

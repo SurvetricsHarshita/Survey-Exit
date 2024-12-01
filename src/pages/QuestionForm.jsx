@@ -50,7 +50,7 @@ function QuestionForm() {
   const [language, setLanguage] = useState("en");
   const [sections, setSections] = useState([Section1]); // Default is English
   const [loading, setLoading] = useState(true);
-
+  const [nccs, setNccs] = useState();
   const [isOther, setOther] = useState(false);
   const [multi, setMulti] = useState(0);
   const [terminate, setTerminate] = useState(false);
@@ -369,35 +369,55 @@ function QuestionForm() {
 
     if (currentQuestion.autoCodeQuestion) {
       setResponses((prev) => {
-    const updatedResponses = { ...prev };
+        const updatedResponses = { ...prev };
+        
+        // Retrieve stored data from localStorage
         const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
-    const selectedCode = prev[currentQuestion.number]; // assuming the selected code is saved in prev[currentQuestion.number]
-
-if(currentQuestion.number=="Q2_c"){
-  const Q2_c = prev[currentQuestion.number]
-  const Q2_b=storedData["Q2_b"]
-
-  let row=Q2_c.length - 1;
-  if(row>=9)row=9;
-  storedData['NCCS'] = table[row][Q2_b - '1'];
-  storedData['Q2d'] = table[row][Q2_b - '1'];
-  storedData[currentQuestion.autoCodeQuestionVar] = table[row][Q2_b - '1']; // Save the mapped value to localStorage
-  localStorage.setItem('ProductsTest', JSON.stringify(storedData));
-}
-else{
-  if (selectedCode) {
-    const response = currentQuestion.codes[selectedCode];
-    if (response) {
-      storedData[currentQuestion.autoCodeQuestionVar] = response.save; // Save the mapped value to localStorage
-      localStorage.setItem('ProductsTest', JSON.stringify(storedData));
-    }
-  }
-}
-
+        const selectedCode = prev[currentQuestion.number]; // assuming the selected code is saved in prev[currentQuestion.number]
     
-    return updatedResponses;
+        if (currentQuestion.number === "Q2_c") {
+          // Get Q2_c value from prev and Q2_b from storedData
+          const Q2_c = prev[currentQuestion.number];
+          const Q2_b = storedData["Q2_b"];
+          
+          // Ensure Q2_b is a valid number (it might be a string)
+          const Q2_bValue = parseInt(Q2_b, 10); // Convert Q2_b to a number
+          
+          // Calculate the row index based on Q2_c length
+          let row = Q2_c.length - 1;
+          if (row >= 9) row = 9; // Ensure the row does not exceed 9
+          
+          // Fetch the correct value for NCCS based on the row and Q2_b
+          const nccsValue = table[row][Q2_bValue - 1];  // Adjust index correctly
+        
+          // Update the NCCS value in state
+          setNccs(nccsValue); // Assuming `setNccs` is a state update function
+        
+          // Update storedData values with the new NCCS value
+          updatedResponses['NCCS'] = nccs; // Correct assignment here
+          updatedResponses['Q2d'] = nccs;  // Adjusting Q2d value as well
+          
+   
+        
+          // Save updated data to localStorage
+          localStorage.setItem('ProductsTest', JSON.stringify(storedData));
+        
+          console.log("NCCS updated in localStorage:", storedData['NCCS']); // For debugging
+        } else {
+          // Handle the case for other selected codes (not Q2_c)
+          if (selectedCode) {
+            const response = currentQuestion.codes[selectedCode];
+            if (response) {
+              storedData[currentQuestion.autoCodeQuestionVar] = response.save; // Save the mapped value to localStorage
+              localStorage.setItem('ProductsTest', JSON.stringify(storedData));
+            }
+          }
+        }
+    
+        return updatedResponses;
       });
     }
+    
 
 
     if (!isOther) {
@@ -656,6 +676,20 @@ else{
       ...prevResponses,
       [mediaId]: frequency,
     }));
+
+    const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
+    // setResponses(storedData);
+console.log(storedData)
+    if (currentQuestion.termination) {
+      const terminate = isTerminate(
+        currentQuestion.number,
+   "2345",
+        currentQuestion.terminationCodes,
+        storedData,
+    
+      );
+      setTerminate(terminate);
+    }
   };
   const handleMultiChange = (mediaId, frequency) => {
     setMediaFrequencies((prevFrequencies) => ({

@@ -3,7 +3,8 @@ let terminationReason = "";
 function useSurveyTermination() {
   function isTerminate(question, answer, terminationCodes, storedData = {}) {
     const questionHandlers = {
-I: () => radioHandler(answer, terminationCodes),
+
+      Introduction: () => radioHandler(answer, terminationCodes),
 QConsent: () => radioHandler(answer, terminationCodes),
 Q2_c: () => handleQ2_c(answer),
       Q1: () => radioHandler(answer, terminationCodes),
@@ -11,7 +12,7 @@ Q2_c: () => handleQ2_c(answer),
      Q3: () => handleQ3(answer, terminationCodes),
      Q6_a: () => handleS4c(answer),
      
-     Q2_e: () => handleS9d(answer, terminationCodes),
+     Q2_e: () => handleS9d(answer, terminationCodes,storedData),
 
       S9c: () => radioHandler(answer, terminationCodes),
       S9d: () => handleS9d(answer, terminationCodes, storedData),
@@ -51,18 +52,50 @@ Q2_c: () => handleQ2_c(answer),
   }
 
   // Custom handler for S9d (dependent on storedData)
-  function handleS9d(answer, terminationCodes, storedData) {
-    // Extract NCCS and Q2_c values from storedData
-    const s9cValue = storedData["NCCS"] || "";
-    const Q2cValue = storedData["Q2_c"] || [];
+ function handleS9d(answer, terminationCodes, storedData) {
+    const Q2_e_1 = storedData["Q2_e_1"];
+    const Q2_e_2 = storedData["Q2_e_2"];
+    const Q2_e_3 = storedData["Q2_e_3"];
+    const Q2_e_4 = storedData["Q2_e_4"];
+    
+    // Log values for debugging
+    console.log("Q2_e_1:", Q2_e_1);
+    console.log("Q2_e_2:", Q2_e_2);
+    
+    // Extract NCCS, Q2_c, and Q2_e values from storedData
+    const s9cValue = storedData["NCCS"] || ""; // Household NCCS value
+    const Q2_c = storedData["Q2_c"] || []; // Selected codes for Q2_c
+    const Q2eValue = [Q2_e_1, Q2_e_2, Q2_e_3, Q2_e_4]; // Selected codes for Q2_e
+    console.log(Q2_c)
+    console.log("Q2_e_Values:", Q2eValue);
+    
+    // Check if codes 1 and 5 are selected in Q2_c
+    const areCodes1and5Selected = Q2_c.includes("1") && Q2_c.includes("5");
   
-    // Check if the household is not NCCS A1 and codes 1 and 5 are selected in Q2_c
-    const isNotNCCSA1 = s9cValue!="A1"
-    const areCodesSelected = Q2cValue.includes("1") && Q2cValue.includes("5");
+    // // Check if codes 1 and 5 are not selected in Q2_c
+    // const areCodes1and5NotSelectedInQ2c = !Q2_c.includes("1") || !Q2_c.includes("5");
   
-    // Return true if both conditions are satisfied
-    return ! (isNotNCCSA1 && areCodesSelected);
-  }
+    // Check if codes 1 and 2 are not selected in Q2_e
+    const areCodes1and2NotSelectedInQ2e = (Q2_e_1 =="2" &  Q2_e_2 =="2")
+    // Logic for when Household is NCCS A1
+    if (s9cValue === "A1") {
+        // Household is NCCS A1, check the termination conditions
+        if (!areCodes1and5Selected && areCodes1and2NotSelectedInQ2e) {
+            // Terminate if codes 1 and 5 are not selected in Q2_c and codes 1 and 2 are not selected in Q2_e
+            return true; // Terminate
+        } else {
+            // If conditions aren't met for termination, don't terminate
+            return areCodes1and5Selected; // Do not terminate
+        }
+    } else {
+        // Logic for when Household is NOT NCCS A1
+        return !areCodes1and5Selected // No termination for other households
+    }
+}
+
+  
+  
+  
   function handleQ3(answer) {
     const codes = ["1", "2", "3", "7"];
 
