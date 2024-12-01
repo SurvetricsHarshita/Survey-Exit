@@ -38,6 +38,7 @@ import MatrixInput from "../components/Questions/MatrixInput";
 import Quota from "../components/Questions/Quota";
 import RankingQuestion from "../components/Questions/RankingQuestion";
 import SegmentQuestion from "../components/Questions/SegmentQuestion";
+import MultiInput from "../components/Questions/MultiInput";
 
 
 function QuestionForm() {
@@ -620,6 +621,9 @@ else{
     if (currentQuestion.type === "image") {
       return true // Ensure "Other" input is not empty
     }
+    if (currentQuestion.type === "multiInput") {
+      return false // Ensure "Other" input is not empty
+    }
     // Default case for unanswered questions
     return !currentResponse && !otherInput.trim();
   };
@@ -647,6 +651,17 @@ else{
     }));
   };
 
+
+  
+  const handleMultiInput = (e) => {
+    const { name, value } = e.target;
+
+
+    setResponses((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   return (
     <Box p={5} mb={4}  >
@@ -790,6 +805,31 @@ else{
               setMediaFrequencies={setMediaFrequencies}
               mediaFrequencies={mediaFrequencies}
            
+            />
+
+
+            // multiInput
+          ):currentQuestion.type === "multiInput" ? (
+            <MultiInput
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              
+           handleMultiChange={handleMultiChange}
+ 
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
+              setMediaFrequencies={setMediaFrequencies}
+           
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+              setSliderMoved={setSliderMoved}
+              setResponses={setResponses}
+
+              formFieldsStep1={currentQuestion.formFieldsStep1}
+              languageText={currentQuestion.languageText}
             />
           ): 
           currentQuestion.type === "segment" ? (
