@@ -85,7 +85,7 @@ Q2_c: () => handleQ2_c(answer),
             return true; // Terminate
         } else {
             // If conditions aren't met for termination, don't terminate
-            return areCodes1and5Selected; // Do not terminate
+            return false; // Do not terminate
         }
     } else {
         // Logic for when Household is NOT NCCS A1
