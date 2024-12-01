@@ -259,31 +259,43 @@ function QuestionForm() {
 
   const handleCheckboxChange = (key, values) => {
     console.log(otherInput);
-
+  
     const keyValue = key;
     let keyForOtherSpecify = "";
+    let keyForNone = "";
     const currentQuestion = questions[currentQuestionIndex];
     const maxSelections = currentQuestion.maxSelections || 0;
-
+  
     if (maxSelections > 0) {
       setMulti(values.length);
     }
     setMulti(values.length);
-
-    // Identify the key for "Others (please specify)"
-    currentQuestion.options.forEach((option, index) => {
+  
+    // Identify the key for "Others (please specify)" and "None"
+    currentQuestion.options.forEach((option) => {
       if (othersSpecify.includes(option.label)) {
         keyForOtherSpecify = option.code;
       }
+      if (option.label === "None") {
+        keyForNone = option.code;
+      }
     });
-    // currentQuestion.options.forEach((option) => {
-    //   if (option.label === "None") {
-    //     keyForNone = option.code;
-    //   }
-    // });
+  
+    // Check if "None" is selected
+    const isNoneSelected = values.includes(keyForNone);
+  
+    // If "None" is selected, deselect all other options
+    if (isNoneSelected) {
+      values = [keyForNone];
+    } else {
+      // Prevent "None" from being selected along with other options
+      values = values.filter((value) => value !== keyForNone);
+    }
+  
     // Check if "Others (please specify)" is selected
     const isOtherSelected = values.includes(keyForOtherSpecify);
     setOther(isOtherSelected);
+  
     if (currentQuestion.termination) {
       const terminate = isTerminate(
         currentQuestion.number,
@@ -292,13 +304,14 @@ function QuestionForm() {
       );
       setTerminate(terminate);
     }
+  
     if (currentQuestion.checkAsk) {
       const display = isAsk(currentQuestion.number, storedData);
       setAsk(display);
     }
-    
-    if (isOther) {
- 
+  
+    // Update responses
+    if (isOtherSelected) {
       setResponses((prev) => ({
         ...prev,
         [keyValue]: values, // Save the selected values
@@ -308,11 +321,12 @@ function QuestionForm() {
       setResponses((prev) => {
         // Remove "Others" input if not selected
         const updatedResponses = { ...prev, [keyValue]: values };
-        // delete updatedResponses[`${keyValue}_other`];
+        delete updatedResponses[`${keyValue}_other`];
         return updatedResponses;
       });
     }
   };
+  
 
   const handleOtherInputChange = (event) => {
     const newValue = event.target.value;
@@ -830,8 +844,7 @@ else{
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
               setSliderMoved={setSliderMoved}
-              setResponses={setResponses}
-
+             
               formFieldsStep1={currentQuestion.formFieldsStep1}
               languageText={currentQuestion.languageText}
             />
