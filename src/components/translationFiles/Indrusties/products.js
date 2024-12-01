@@ -6,7 +6,7 @@ const products = {
       {
         number: "QH",
         question: "Please select the appropriate option from the list. This household is located in …",
-    instruction: "Survey can be conducted with any adult member (above 15 years of age) in the family though preference should be given for a householder or CWE. Before knocking the door select the correct option for QH"
+    instruction: "Survey can be conducted with any adult member (above 15 years of age) in the family though preference should be given for a householder or CWE. Before knocking the door select the correct option for QH",
         response: "",
         options: [
           { label: "A gated community with 24 hours security", code: "1" }, 
@@ -969,7 +969,7 @@ const products = {
     Q43: {
       "number": "Q9",
       "question": "Would you like to be part of the panel?",
-      "instruction": "",
+      "instruction": "If selected yes, inform the respondent that he/she would receive a call/visit for next steps. Thank the respondent for participating in the survey before leaving the household ",
       " inputType": "",
       "  inputLimit": "",
       options: [
