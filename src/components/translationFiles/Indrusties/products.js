@@ -25,7 +25,8 @@ const products = {
       Q2_a: 
       {
         number:"Introduction –",
-        question: "May I please proceed?  ",
+        question: " ",
+        label:"May I please proceed? ",
         response: " ",
         instruction:"Hi! I am _______from __________(Agency name) and we are conducting a survey for TV viewership. Can I please ask you a few questions. It's a very short survey and will take only around 5 minutes of your time! ",
 
@@ -47,6 +48,8 @@ const products = {
         question: "Before we start with the survey, may I request your consent to use your contact details (e.g., email or phone) to follow up on your survey responses. Your information will be kept confidential and used only for this purpose. ",
         response: "",
       instruction:"Proceed only if selected yes",
+
+
       label:"Do you consent to share your contact details?",
         options: [
           { label: "Yes, I consent.", code: "1" }, 
