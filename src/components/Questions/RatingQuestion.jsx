@@ -31,7 +31,9 @@ const RatingQuestion = ({  mediaChannels, frequencies, handleChange, setMediaFre
   }, [currentQuestion, mediaChannels]);
 
   useEffect(() => {
-    setShuffledMediaChannels(shuffleStatementsWithLastOption (mediaChannels, currentQuestion.lastOption));
+    // setShuffledMediaChannels(shuffleStatementsWithLastOption (mediaChannels, currentQuestion.lastOption));
+
+    setShuffledMediaChannels(mediaChannels);
   }, [mediaChannels]);
   
 

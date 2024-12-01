@@ -327,7 +327,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
-      navigate("/submit", { state: { msg: "terminated" } });
+      // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {
@@ -820,7 +820,7 @@ else{
               responses={responses}
               
            handleMultiChange={handleMultiChange}
- 
+           setResponses={ setResponses}
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
               onPrevious={handlePrevious}

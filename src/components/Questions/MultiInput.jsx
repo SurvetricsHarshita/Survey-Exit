@@ -16,7 +16,9 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const MultiInput = ({ handleNext, language, formFieldsStep1, languageText, setResponses,  handleMultiChange}) => {
+const MultiInput = ({ handleNext, language, formFieldsStep1, languageText
+  ,setResponses
+ }) => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
   const langText = languageText[language] || languageText["en"];
@@ -30,7 +32,17 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText, setRe
     setFormData(initialData);
   }, [formFieldsStep1]);
 
- 
+  const handleMultiChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setResponses((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const validateForm = () => {
     for (const field of formFieldsStep1) {
@@ -47,18 +59,18 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText, setRe
     return true;
   };
 
-  // const handleSubmit = () => {
-  //   if (validateForm()) {
-  //     handleNext(formData);
-  //     toast({
-  //       title: "Success",
-  //       description: "Form submitted successfully!",
-  //       status: "success",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // };
+  const handleSubmit = () => {
+    if (validateForm()) {
+      handleNext(formData); // Pass data to parent
+      toast({
+        title: "Success",
+        description: "Form submitted successfully!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <Flex p={4} flexDirection="column" alignItems="center">
@@ -84,7 +96,10 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText, setRe
               value={formData[field.name]}
               onChange={handleMultiChange}
               type={field.type || "text"}
-              isInvalid={error.includes(field.placeholder)}
+              isInvalid={
+                error === `${field.placeholder} is required.` || 
+                (field.type === "tel" && error === "Mobile number must be 10 digits.")
+              }
               errorBorderColor="red.300"
             />
           </div>
@@ -99,6 +114,9 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText, setRe
     </Flex>
   );
 };
+
+
+
 
 
 

@@ -840,35 +840,13 @@ const products = {
             "code": "38"
           }
         ],
-        "lableoptions": "",
-        "STATEMENTS": "",
-        "FREQUENCIES": "",
-        "lastOption": "",
-        "termination": "",
-        " terminationCodes": "",
-        "audio": "",
-        "randomize": "",
-        "fixedCodes": "",
-        " RandomizeOnce": "",
-        " maxSelections": "",
-        "  checkAsk": "",
-        "readout": "",
+       
         "depend on": "Q7_a",
         "labels": "",
         optionsDependOn:"Q7_a",
         optionsRemove:[],
       },
-     Q33: {
-        "number": "Q8_a1",
-        "question": "Please share your contact details - mobile",
-        "instruction": "",
-        " inputType": "number",
-        inputLimit: 10,
-        "type": "matrix input",
-        "    placeHolder": "",
-        "label": "Mobile number",
-
-      },
+    
       Q3A: {
         "number": "Q8_a",
         "question": "Please share your contact details - mobile",
@@ -876,15 +854,15 @@ const products = {
         " inputType": "number",
         inputLimit: 10,
     
-        "label": "Mobile number",
+        // "label": "Mobile number",
 
        
         "type": "multiInput",
         "  placeHolder": "",
   
         formFieldsStep1: [
-          { name: "Q8_a_1", placeholder: "Mobile Number 1" },
-          { name: "Q8_b_2", placeholder: "Mobile Number 2" },
+          { name: "Q8_a_1", placeholder: "Mobile Number 1" ,type: "number"},
+          { name: "Q8_a_2", placeholder: "Mobile Number -2 (optional)" ,type: "number"},
           
         ],
   
@@ -892,8 +870,8 @@ const products = {
         languageText: {
   
           en: {
-               mobilenumbercomp:"Mobile Number1",
-        mobilenumberopt:"Mobile Number2"
+            Q8_a1:"Mobile Number1",
+            Q8_a2:"Mobile Number2"
   
           },
 
@@ -919,14 +897,15 @@ const products = {
 
       en: {
         
-        landlinecomp:"Landline / Fixed line 1",
-        landlineopt:"Landline / Fixed line 2"
+        Q8_b_1:"Landline / Fixed line 1",
+        Q8_b_2:"Landline / Fixed line 2"
 
 
       },
 
-      isCompulsory: true,
+      // isCompulsory: true,
       }},
+
     Q35: {
       "number": "Q8_c",
       "question": "Detailed address",
@@ -951,7 +930,7 @@ const products = {
       languageText: {
 
         en: {
-          title: "Respondent Demographic",
+          // title: "Respondent Demographic",
           name: "Address line 1 - House number",
 
           address: "Address line 2 - Building number/name",
