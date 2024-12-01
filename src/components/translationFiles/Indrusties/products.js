@@ -111,6 +111,7 @@ const products = {
         type: "input",
         "placeHolder": "please mention name",
     "label": "Name",
+
       },
 
 
@@ -119,8 +120,8 @@ const products = {
       Q6: 
       {
         "number": "Q2_b",
-        "question": "Please select correct response for education of (add name from Q2.1) ",
-
+        "question": "Please select correct response for education of ",
+//  "question": "Please select correct response for education of (add name from Q2.1) ",
         "type": "radio",
         "    placeHolder": "",
         "label": "Education",
@@ -374,7 +375,7 @@ const products = {
       },
       Q5a:{
         "number": "Q5",
-          "question": "Please select correct option for each from the list  ",
+          "question": "Please select correct option for each from the list  for ",
           "instruction": "",
           " inputType": "",
           "  inputLimit": "",

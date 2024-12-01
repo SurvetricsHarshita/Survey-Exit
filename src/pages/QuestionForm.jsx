@@ -341,7 +341,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
-      // navigate("/submit", { state: { msg: "terminated" } });
+      navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {
@@ -697,7 +697,11 @@ else{
           </Text>
           <FormLabel fontSize="lg" mb={30} >
             {" "}
-            {currentQuestion.number} .{currentQuestion.question}
+            {currentQuestion.number} .{currentQuestion.question} 
+
+            {currentQuestion.number === "Q2_b" ? storedData["Q2_a"] : ""}
+            {currentQuestion.number === "Q5" ? storedData["Q2_a"] +"   occupation ?" : ""}
+            
           </FormLabel>
           <Text color="green.500" fontWeight={500}>
             {currentQuestion.instruction}
