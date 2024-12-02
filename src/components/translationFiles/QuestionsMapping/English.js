@@ -410,7 +410,7 @@ const products = {
         "number": "Q6_a",
           "question": "Please tell me number of members in the household, which means who share food from the same kitchen. Please also include guests, full-time house help, or any other members sharing food from the same kitchen in the HH. ",
           "instruction": "",
-          " inputType": "number",
+          "inputType": "number",
           "inputLimit": 2,
           "type": "input",
           "    placeHolder": "",

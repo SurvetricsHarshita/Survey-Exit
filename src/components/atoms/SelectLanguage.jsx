@@ -9,7 +9,7 @@ function SelectLanguage({handleLanguageSelect }) {
   return (
     <VStack
   spacing={2}
-  w={{ base: 200, md: 200, lg: 300 }}
+  w={{ base: 150, md: 200, lg: 300 }}
   mb={3}
   border="1px solid "
   rounded="10px"

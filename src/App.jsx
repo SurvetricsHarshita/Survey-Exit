@@ -18,7 +18,7 @@ function App() {
   // #1d2124
   return (
     <Center minHeight="100vh" bg="" color="">
-      <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md"  borderColor="#9caac2" width={{ md: "80%", lg: "80%" }}   m="4">
+      <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md"  borderColor="#9caac2" width={{ md: "80%", lg: "60%" }}   m="4">
         <Routes>
           <Route path="/" element={<LoginPage />} />
         

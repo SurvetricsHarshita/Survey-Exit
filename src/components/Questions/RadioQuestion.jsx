@@ -84,6 +84,7 @@ function RadioQuestion({
                   othersPlaceholders[responses[currentQuestion.number]] ||
                   'Please specify'
                 }
+                border={"1px solid"}
                 value={otherInput}
                 onChange={handleOtherInputChange}
                 mt={4}

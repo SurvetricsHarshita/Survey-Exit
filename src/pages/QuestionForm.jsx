@@ -24,7 +24,7 @@ import {
 import InputQuestion from "../components/Questions/InputQuestion";
 import MultiChoiceQuestion from "../components/Questions/MultiChoiceQuestion";
 import RadioQuestion from "../components/Questions/RadioQuestion";
-import products from "../components/translationFiles/Indrusties/products";
+import products from "../components/translationFiles/QuestionsMapping/English";
 import useAsk from "../utils/useAsk";
 import useSurveyTermination from "../utils/useSurveyTermination";
 import RatingQuestion from "./../components/Questions/RatingQuestion";
@@ -40,7 +40,7 @@ import RankingQuestion from "../components/Questions/RankingQuestion";
 import SegmentQuestion from "../components/Questions/SegmentQuestion";
 import MultiInput from "../components/Questions/MultiInput";
 import SelectLanguage from "../components/atoms/SelectLanguage";
-import hindi from "../components/translationFiles/hindi";
+import hindi from "../components/translationFiles/QuestionsMapping/hindi";
 
 
 function QuestionForm() {
@@ -294,7 +294,8 @@ function QuestionForm() {
       if (othersSpecify.includes(option.label)) {
         keyForOtherSpecify = option.code;
       }
-      if (option.label === "None") {
+      
+      if (option.label === "None" ||  option.label === "कोई नहीं" ) {
         keyForNone = option.code;
       }
     });
@@ -359,7 +360,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
-      navigate("/submit", { state: { msg: "terminated" } });
+      // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {
@@ -768,7 +769,7 @@ console.log(storedData)
             {currentQuestion.number} .{currentQuestion.question} 
 
             {currentQuestion.number === "Q2_b" ? storedData["Q2_a"] : ""}
-            {currentQuestion.number === "Q5" ? storedData["Q2_a"] +"   occupation ?" : ""}
+            {currentQuestion.number === "Q5" ?   storedData["Q2_a"] +   "   occupation ?" : ""}
             
           </FormLabel>
           <Text color="green.500" fontWeight={500}>
@@ -969,7 +970,7 @@ console.log(storedData)
       )}
 
       {demographicAnswered &&  (
-        <Flex mt={10} justify="space-between" >
+        <Flex mt={10} justify="space-between"  >
           <PreviousButton
             mr={2}
             onPrev={

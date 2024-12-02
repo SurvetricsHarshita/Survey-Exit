@@ -16,6 +16,7 @@ import NextButton from "../components/atoms/NextButton";
 import PreviousButton from "../components/atoms/PreviousButton";
 import { getIndianTime } from "../utils/constant";
 import { formFieldsStep1, languageText } from "../utils/Respondent";
+import SelectLanguage from "../components/atoms/SelectLanguage";
 
 const RespondentDemographic = ({ handleNext, language, onComplete }) => {
   const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ const RespondentDemographic = ({ handleNext, language, onComplete }) => {
   const langText = languageText[language] || languageText["en"];
   const toast = useToast();
   const navigate = useNavigate();
-
+  const [languages, setLanguage] = useState("en");
   useEffect(() => {
     requestMicrophonePermission();
     requestLocationPermission();
@@ -127,7 +128,14 @@ const RespondentDemographic = ({ handleNext, language, onComplete }) => {
     }
     navigate("/");
   }
+  const handleLanguageSelect = (event) => {
+    const selectedLanguage = event.target.value;
+    setLanguage(selectedLanguage);
+    
+  
+    localStorage.setItem('selectedLanguage', JSON.stringify(selectedLanguage)); // Store French as the selected language
 
+  };
   return (
     <Flex
       p={4}
@@ -167,6 +175,7 @@ const RespondentDemographic = ({ handleNext, language, onComplete }) => {
             />
           </div>
         ))}
+        <SelectLanguage handleLanguageSelect={handleLanguageSelect}/>
       </SimpleGrid>
 
       <Flex mt={10} justify="space-between" gap={10}>
