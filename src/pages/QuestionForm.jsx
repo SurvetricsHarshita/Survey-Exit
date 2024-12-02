@@ -39,16 +39,25 @@ import Quota from "../components/Questions/Quota";
 import RankingQuestion from "../components/Questions/RankingQuestion";
 import SegmentQuestion from "../components/Questions/SegmentQuestion";
 import MultiInput from "../components/Questions/MultiInput";
+import SelectLanguage from "../components/atoms/SelectLanguage";
+import hindi from "../components/translationFiles/hindi";
 
 
 function QuestionForm() {
-  const { Section1 } = products;
+  const { Section1, Section2 } = products || {};  // Add fallback to prevent destructuring null
+  const {
+    Section1: HiSection1,
+    Section2: HiSection2,
+   
+  } = hindi;
+;  // Add fallback to prevent destructuring null
+  
   const [sliderMoved, setSliderMoved] = useState(false);
   const navigate = useNavigate();
   const [sectionIndex, setSectionIndex] = useState(0);
   // Default is English
   const [language, setLanguage] = useState("en");
-  const [sections, setSections] = useState([Section1]); // Default is English
+  const [sections, setSections] = useState([Section1,Section2,]); // Default is English
   const [loading, setLoading] = useState(true);
   const [nccs, setNccs] = useState();
   const [isOther, setOther] = useState(false);
@@ -102,29 +111,38 @@ function QuestionForm() {
       JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
     setLanguage(selectedLanguage);
   }, []);
-
+  useEffect(() => {
+    const selectedLanguage =
+      JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
+    setLanguage(selectedLanguage);
+  }, []);
   useEffect(() => {
     setLoading(true); // Set loading to true when language changes
 
     switch (language) {
       case "en":
-        setSections([Section1]);
+        setSections([Section1, Section2]);
         break;
-      // case "hi":
-      //   setSections([HiSection1, ]);
-      //   break;
+        case "hi":
+          setSections([
+            HiSection1,
+            HiSection2,
+         
+          ]);
+        break;
 
       default:
-        setSections([Section1]); // Default to English if no match
+        setSections([Section1,Section2]); // Default to English if no match
         break;
     }
 
-    setLoading(false); // Set loading to false after sections are updated
+    setLoading(false); 
   }, [language]);
 
   const questions = loading
     ? []
-    : [...Object.values(sections[0])];
+    : [...Object.values(sections[0]),...Object.values(sections[1])]
+
   const [isLoading, setIsLoading] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [recordedBlob, setRecordedBlob] = useState(null);
@@ -134,14 +152,14 @@ function QuestionForm() {
   const [demographicAnswered, setDemographicAnswered] = useState(false);
   const { isTerminate } = useSurveyTermination();
   const { isAsk } = useAsk();
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
-    setResponses(storedData);
+  // useEffect(() => {
+  //   const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
+  //   setResponses(storedData);
 
-    const selectedLanguage =
-      JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
-    setLanguage(selectedLanguage);
-  }, []);
+  //   const selectedLanguage =
+  //     JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
+  //   setLanguage(selectedLanguage);
+  // }, []);
 
   useEffect(() => {
     const existingData = JSON.parse(localStorage.getItem("ProductsTest")) || {};
@@ -715,6 +733,20 @@ console.log(storedData)
     }));
   };
 
+
+
+  // Update the language state and immediately update localStorage
+  const handleLanguageSelect = (event) => {
+    const selectedLanguage = event.target.value;
+    setLanguage(selectedLanguage);
+    
+  
+    localStorage.setItem('selectedLanguage', JSON.stringify(selectedLanguage)); // Store French as the selected language
+
+  };
+
+  
+
   return (
     <Box p={5} mb={4}  >
       {!demographicAnswered ? (
@@ -726,6 +758,8 @@ console.log(storedData)
         />
       ) : (
         <FormControl mb={4} pl={2}>
+
+        <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/>
           <Text fontSize="2xl" fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>

@@ -991,9 +991,8 @@ const products = {
 
 
 
-  }
+  },
+  Section2:{}
 }
 
 export default products;
-
-

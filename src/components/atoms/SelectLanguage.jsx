@@ -1,42 +1,9 @@
 import { Select, VStack } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
 
 
-function SelectLanguage() {
-  const [language, setLanguage] = useState(
-    JSON.parse(localStorage.getItem('selectedLanguage')) || 'en'
-  );
 
-  // Update the language state and immediately update localStorage
-  const handleLanguageSelect = (event) => {
-    const selectedLanguage = event.target.value;
-    setLanguage(selectedLanguage);
-
-    // Update selected language in localStorage
-    localStorage.setItem('selectedLanguage', JSON.stringify(selectedLanguage));
-
-    // Update language in ProductsTest
-    const existingData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
-    localStorage.setItem(
-      'ProductsTest',
-      JSON.stringify({
-        ...existingData,
-        language: selectedLanguage,
-      })
-    );
-  };
-
-  useEffect(() => {
-    // Ensure initial language is synced with ProductsTest on load
-    const existingData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
-    localStorage.setItem(
-      'ProductsTest',
-      JSON.stringify({
-        ...existingData,
-        language,
-      })
-    );
-  }, [language]);
+function SelectLanguage({handleLanguageSelect }) {
+ 
 
 
   return (
