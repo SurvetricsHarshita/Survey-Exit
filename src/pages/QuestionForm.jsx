@@ -759,7 +759,7 @@ console.log(storedData)
       ) : (
         <FormControl mb={4} pl={2}>
 
-        <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/>
+        {/* <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/> */}
           <Text fontSize="2xl" fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>
@@ -980,6 +980,7 @@ console.log(storedData)
             isDisabled={currentQuestionIndex === 0}>
             Previous
           </PreviousButton>
+          <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/>
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton
               onClick={handleNext}

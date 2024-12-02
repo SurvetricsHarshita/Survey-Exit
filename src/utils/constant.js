@@ -5,7 +5,9 @@ export const othersSpecify = [
 //  "Others"
 "Other specify ……….",
 "Other – specify",
-"Other - specify"
+"Other - specify",
+"अन्य, कृपया उल्लेख करें ……….",
+"अन्य - बतायें"
 
 
 ]
