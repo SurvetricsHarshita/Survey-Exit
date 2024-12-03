@@ -18,7 +18,7 @@ const hindi= {
       ],
       type: "radio",
       first: true,
-      audio: true
+     
     },
     
     Q2_a: 
@@ -35,7 +35,7 @@ const hindi= {
       type: "radio",
       termination: true,
       terminationCodes: ["2"],
-      audio: true
+     
     },
     
     Q2: {
@@ -51,7 +51,7 @@ const hindi= {
       type: "radio",
       termination: true,
       terminationCodes: ["2"],
-      audio: true
+  
     },
     
     Q3:
@@ -146,6 +146,7 @@ const hindi= {
           }
         ]
         ,
+        audio: true
       },
 
       Q7: 
@@ -206,7 +207,8 @@ const hindi= {
 
           termination:true,
           autoCodeQuestion:true,
-          autoCodeQuestionVar:"NCCS"
+          autoCodeQuestionVar:"NCCS",
+          audio: true
           },
 
       Q8: 
@@ -587,21 +589,7 @@ const hindi= {
           { "label": "तुलु", "code": "37" },
           { "label": "उर्दू", "code": "38" }
         ],
-        "lableoptions": "",
-        "STATEMENTS": "",
-        "FREQUENCIES": "",
-        "lastOption": "",
-        "termination": "",
-        " terminationCodes": "",
-        "audio": "",
-        "randomize": "",
-        "fixedCodes": "",
-        " RandomizeOnce": "",
-        " maxSelections": "",
-        "  checkAsk": "",
-        "readout": "",
-        "depend on": "",
-        "labels": ""
+        
       },
      Q324: {
         "number": "Q7_b",
@@ -764,23 +752,7 @@ const hindi= {
         isCompulsory: true,
         // anwerNeed:all
       },
-      "label": "",
-      "options": "",
-      "lableoptions": "",
-      "STATEMENTS": "",
-      "FREQUENCIES": "",
-      "lastOption": "",
-      "termination": "",
-      " terminationCodes": "",
-      "audio": "",
-      "randomize": "",
-      "fixedCodes": "",
-      " RandomizeOnce": "",
-      " maxSelections": "",
-      "  checkAsk": "",
-      "readout": "",
-      "depend on": "",
-      "labels": ""
+   
     },
     
     Q43: {

@@ -1,36 +1,41 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Box, Center } from '@chakra-ui/react';
 
 // Import your pages
 import LoginPage from './pages/LoginPage';
-
-
-
-
 import SubmitMsg from './pages/SubmitMsg';
 import SelfieCapture from './components/atoms/SelfieCapture';
-
 import QuestionForm from './pages/QuestionForm';
 import Terminate from './components/atoms/Terminate';
+import ProtectedRoute from './pages/ProtectedRoute';
+// import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute
 
 function App() {
- 
-  // #1d2124
   return (
     <Center minHeight="100vh" bg="" color="">
-      <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md"  borderColor="#9caac2" width={{ md: "80%", lg: "60%" }}   m="4">
+      <Box
+        p={6}
+        borderWidth={1}
+        borderRadius="md"
+        boxShadow="md"
+        borderColor="#9caac2"
+        width={{ md: '80%', lg: '60%' }}
+        m="4"
+      >
         <Routes>
           <Route path="/" element={<LoginPage />} />
-        
-         
-        
-        
-          <Route path="/survey" element={<QuestionForm />} />
+          <Route
+            path="/survey"
+            element={
+              <ProtectedRoute>
+                <QuestionForm />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/submit" element={<SubmitMsg />} />
-          < Route path="/selfie" element={   <SelfieCapture/>}/>
-          < Route path="/terminate" element={   <Terminate/>}/>
-        
+          <Route path="/selfie" element={<SelfieCapture />} />
+          <Route path="/terminate" element={<Terminate />} />
         </Routes>
       </Box>
     </Center>
@@ -38,12 +43,9 @@ function App() {
 }
 
 const AppWrapper = () => (
-  <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
->
+  <Router>
     <App />
   </Router>
 );
 
 export default AppWrapper;
-
-

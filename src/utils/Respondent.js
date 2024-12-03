@@ -2,38 +2,38 @@ export const languageText = {
 
   en: {
     title: "Respondent Demographic",
-    name: "Name of the Respondent",
+    // name: "Name of the Respondent",
    
-    address: "Address",
-    contact: "Contact number",
-    doorNo: "Door / House / Bldng No.",
-    floorNo: "Floor No.",
-    houseName: "House / Flat Name",
-    streetName: "Street / Road Name",
-    areaName: "Area Name",
-    townName: "Town / Village Name",
-    landmark: "Landmark",
-    pincode: "Pincode",
-    phoneRes: "Phone No. (Res)",
-    phonePP: "Phone No. PP(C/O)",
-    phoneOff: "Phone No. (Off)",
-    emailId: "e-mail ID",
+    // address: "Address",
+    // contact: "Contact number",
+    // doorNo: "Door / House / Bldng No.",
+    // floorNo: "Floor No.",
+    // houseName: "House / Flat Name",
+    // streetName: "Street / Road Name",
+    // areaName: "Area Name",
+    // townName: "Town / Village Name",
+    // landmark: "Landmark",
+    // pincode: "Pincode",
+    // phoneRes: "Phone No. (Res)",
+    // phonePP: "Phone No. PP(C/O)",
+    // phoneOff: "Phone No. (Off)",
+    // emailId: "e-mail ID",
     interviewerName: "Interviewer Name",
     interviewerId: "Interviewer ID",
     next: "Next",
     previous: "Previous",
-    place: "Place of Interview",
-    time: "",
-    age:"Age",
+    // place: "Place of Interview",
+    // time: "",
+    // age:"Age",
   
   },
 };
 
 // src/static/formFields.js
 export const formFieldsStep1 = [
-  { name: "name", placeholder: "Name of the Respondent" },
+  // { name: "name", placeholder: "Name of the Respondent" },
   
-  { name: "Age", placeholder: "Age",type: "number"},
+  // { name: "Age", placeholder: "Age",type: "number"},
   { name: "interviewerName", placeholder: "Interviewer Name" },
   { name: "interviewerId", placeholder: "Interviewer ID" },
  

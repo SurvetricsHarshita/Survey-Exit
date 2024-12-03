@@ -18,19 +18,12 @@ import { getIndianTime } from "../utils/constant";
 import { formFieldsStep1, languageText } from "../utils/Respondent";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 
-const RespondentDemographic = ({ handleNext, language, onComplete }) => {
+const RespondentDemographic = ({ handleNext,  onComplete }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    doorNo: "",
-    floorNo: "",
-    houseName: "",
-    streetName: "",
-    areaName: "",
-    townName: "",
-    landmark: "",
+    
    
   });
-
+  const [language, setLanguage] = useState("en");
   const [error, setError] = useState("");
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -38,7 +31,7 @@ const RespondentDemographic = ({ handleNext, language, onComplete }) => {
   const langText = languageText[language] || languageText["en"];
   const toast = useToast();
   const navigate = useNavigate();
-  const [languages, setLanguage] = useState("en");
+
   useEffect(() => {
     requestMicrophonePermission();
     requestLocationPermission();
@@ -110,6 +103,7 @@ const RespondentDemographic = ({ handleNext, language, onComplete }) => {
       ...respondentData,
       startTime: start.toLocaleTimeString("en-IN"),
       startDate: start.toLocaleDateString("en-IN"),
+      language
     };
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));

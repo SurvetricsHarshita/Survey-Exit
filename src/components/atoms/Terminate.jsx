@@ -58,7 +58,7 @@ const navigate=useNavigate()
        // Duration in seconds
     } else {
       console.error("Start time data is missing!");
-      return;
+      // return;
     }
   
    
@@ -67,11 +67,11 @@ const navigate=useNavigate()
     localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
   
     // Preserve the email in localStorage
-    const email = localStorage.getItem("email");
+    // const email = localStorage.getItem("email");
     // localStorage.clear();
-    if (email) {
-      localStorage.setItem("email", email);
-    }
+    // if (email) {
+    //   localStorage.setItem("email", email);
+    // }
   
     // Navigate to the submit page
     // navigate("/submit", { state: { msg: "submit" } });
@@ -80,6 +80,7 @@ const navigate=useNavigate()
     const { success, message } = await submitDataToAPI(updatedProductTest);
     if (success) {
       navigate("/submit", { state: { msg: "terminated" } })
+      localStorage.clear();
     } else {
        
       console.log(message); // Show error message if submission fails

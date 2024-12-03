@@ -106,7 +106,7 @@ function QuestionForm() {
     setResponses(storedData);
     setStoredData(storedData);
 
-    console.log(storedData, "fron");
+ 
     // Get selected language from localStorage or default to English
     const selectedLanguage =
       JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
@@ -118,8 +118,12 @@ function QuestionForm() {
     setLanguage(selectedLanguage);
   }, []);
   useEffect(() => {
-    setLoading(true); // Set loading to true when language changes
 
+
+    setLoading(true); // Set loading to true when language changes
+ const selectedLanguage =
+      JSON.parse(localStorage.getItem("selectedLanguage")) || "en";
+    setLanguage(selectedLanguage);
     switch (language) {
       case "en":
         setSections([Section1, Section2]);
@@ -178,12 +182,10 @@ function QuestionForm() {
       // Only execute if the mediaRecorder exists
       if (mediaRecorder.state === "recording") {
         mediaRecorder.stop(); // Stop recording if it's currently recording
-        console.log("Recording stopped...");
-        mediaRecorder.start(); // Start recording if it's not recording
-        console.log("Recording started...");
+      
+        mediaRecorder.start(); 
       } else if (mediaRecorder.state === "inactive") {
-        mediaRecorder.start(); // Start recording if it's not recording
-        console.log("Recording started...");
+        mediaRecorder.start();
       }
     }
   }, [demographicAnswered, mediaRecorder]);
@@ -277,7 +279,7 @@ function QuestionForm() {
   };
 
   const handleCheckboxChange = (key, values) => {
-    console.log(otherInput);
+ 
   
     const keyValue = key;
     let keyForOtherSpecify = "";
@@ -359,35 +361,6 @@ function QuestionForm() {
   };
 
   const handleNext = async () => {
-    if (terminate) {
-      alert("terminated");
-      navigate("/terminate")
-      // navigate("/submit", { state: { msg: "terminated" } });
-      setTerminate(false);
-    }
-    if (!demographicAnswered) {
-      setDemographicAnswered(true);
-      return;
-    }
-
-    mediaRecorder.stop();
-    //audio
-    if (mediaRecorder && mediaRecorder.state !== "inactive") {
-      mediaRecorder.stop(); // Stop recording when clicking 'Next'
-      console.log("stopped");
-    }
-    if (currentQuestion.audio && recordedBlob) {
-      setIsLoading(true);
-      const fileUrl = await sendBlobToBackend(recordedBlob);
-      setIsLoading(false);
-
-      setResponses((prevResponses) => ({
-        ...prevResponses,
-        [`${currentQuestion.number}_rec`]: fileUrl, // Save the file URL to the responses
-      }));
-    }
-
-
     if (currentQuestion.autoCodeQuestion) {
       setResponses((prev) => {
         const updatedResponses = { ...prev };
@@ -423,7 +396,6 @@ function QuestionForm() {
           // Save updated data to localStorage
           localStorage.setItem('ProductsTest', JSON.stringify(storedData));
         
-          console.log("NCCS updated in localStorage:", storedData['NCCS']); // For debugging
         } else {
           // Handle the case for other selected codes (not Q2_c)
           if (selectedCode) {
@@ -439,13 +411,43 @@ function QuestionForm() {
       });
     }
     
+    if (terminate) {
+      alert("terminated");
+      navigate("/terminate")
+      // navigate("/submit", { state: { msg: "terminated" } });
+      setTerminate(false);
+    }
+    if (!demographicAnswered) {
+      setDemographicAnswered(true);
+      return;
+    }
+
+    mediaRecorder.stop();
+    //audio
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+      mediaRecorder.stop(); // Stop recording when clicking 'Next'
+      
+    }
+    if (currentQuestion.audio && recordedBlob) {
+      setIsLoading(true);
+      const fileUrl = await sendBlobToBackend(recordedBlob);
+      setIsLoading(false);
+
+      setResponses((prevResponses) => ({
+        ...prevResponses,
+        [`${currentQuestion.number}_rec`]: fileUrl, // Save the file URL to the responses
+      }));
+    }
+
+
+   
 
 
     if (!isOther) {
       setResponses((prev) => {
         const updatedResponses = { ...prev };
     delete updatedResponses[`${currentQuestion.number}_other`]; // Clean up "other" input
-    console.log(updatedResponses);
+   
 
     const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
     delete storedData[`${currentQuestion.number}_other`];
@@ -459,7 +461,7 @@ function QuestionForm() {
       // setCurrentQuestionIndex((prev) => prev + 1);
       mediaRecorder.start();
       mediaRecorder.onstart = () => {
-        console.log("Recording started successfully.");
+        // console.log("Recording started successfully.");
       };
       // Start recording for the next question
     } else if (sectionIndex < sections.length - 1) {
@@ -484,7 +486,7 @@ function QuestionForm() {
         for (let i = startIndex; i <= endIndex; i++) {
           const skippedQuestionKey = questions[i]?.number;
           if (updatedResponses[skippedQuestionKey]) {
-            console.log(`Deleting response for skipped question: ${skippedQuestionKey}`);
+            // console.log(`Deleting response for skipped question: ${skippedQuestionKey}`);
             delete updatedResponses[skippedQuestionKey];
             delete updatedResponses[`${skippedQuestionKey}_other`]; // Clean up "other" input if applicable
           }
@@ -598,11 +600,11 @@ function QuestionForm() {
       existingData.endDate = endDate
 
       existingData.duration = formatDuration(surveyDuration);
-     console.log("After update:", existingData);
+
        // Duration in seconds
     } else {
       console.error("Start time data is missing!");
-      return;
+      // return;
     }
   
    
@@ -611,20 +613,21 @@ function QuestionForm() {
     localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
   
     // Preserve the email in localStorage
-    const email = localStorage.getItem("email");
-    // localStorage.clear();
-    if (email) {
-      localStorage.setItem("email", email);
-    }
+    // const email = localStorage.getItem("email");
+    // // localStorage.clear();
+    // if (email) {
+    //   localStorage.setItem("email", email);
+    // }
   
     // Navigate to the submit page
     // navigate("/submit", { state: { msg: "submit" } });
-  
+  // localStorage.clear()
     // Submit data to the API
     const { success, message } = await submitDataToAPI(updatedProductTest);
   
     if (success) {
       navigate("/submit", { state: { msg: "submit" } });
+      localStorage.clear()
     } else {
        
       console.log(message); // Show error message if submission fails
@@ -703,8 +706,7 @@ function QuestionForm() {
     }));
 
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
-    // setResponses(storedData);
-console.log(storedData)
+   
     if (currentQuestion.termination) {
       const terminate = isTerminate(
         currentQuestion.number,

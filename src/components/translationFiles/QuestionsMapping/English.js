@@ -78,7 +78,31 @@ const products = {
       "label": "Name",
 
     },
+    QRes2:
+    {
+      number:"QRes2",
+      question: "Can you please tell me your age",
+      response: "",
+     "inputType": "number",
+      type: "input",
+      "placeHolder": "",
+      "label": "Age",
 
+    },
+    QRes3:{
+      number:"QRes3",
+      question: "select the gender",
+      response: "",
+      type: "radio",
+      "placeHolder": "",
+      "label": "Gender",
+      options: [
+        { label: "Male", code: "1" },
+        { label: "Female", code: "2" },
+        { label: "other", code: "3" },
+      ],
+
+    },
     Q3:
     {
       number: "Q1",
@@ -172,6 +196,7 @@ const products = {
         },
 
       ],
+      audio:true
     },
 
     Q7:
@@ -230,7 +255,8 @@ const products = {
 
       termination: true,
       autoCodeQuestion: true,
-      autoCodeQuestionVar: "NCCS"
+      autoCodeQuestionVar: "NCCS",
+      audio:true
     },
 
     Q7_a:
@@ -343,8 +369,8 @@ const products = {
           "code": "2"
         },
         {
-          "label": "Local cable operator",
-          "code": "with set top box"
+          "label": "Local cable operator(with set top box)",
+          "code": "3"
         },
         {
           "label": "None",
@@ -857,7 +883,7 @@ const products = {
       "number": "Q8_a",
       "question": "Please share your contact details - mobile",
       "instruction": "",
-      " inputType": "number",
+      "inputType": "number",
       inputLimit: 10,
 
       // "label": "Mobile number",
@@ -953,11 +979,11 @@ label:"Email ID",
         { name: "Q8_c_1", placeholder: "Address line 1 - House number" },
         { name: "Q8_c_2", placeholder: "Address line 2 - Building number/name" },
         { name: "Q8_c_3", placeholder: "Address line 3 - Lane/street/ward number/name", type: "tel", label: "" },
-        { name: "Q8_c_4", placeholder: "Address line 4 - Area /locality name", type: "number" },
+        { name: "Q8_c_4", placeholder: "Address line 4 - Area /locality name",  },
         { name: "Q8_c_5", placeholder: "Address line 5 - Town name" },
-        { name: "Q8_c_6", placeholder: "Address line 6 – PIN code" },
-        { name: "Q8_c_7", placeholder: "Address line 7 – Landmark 1" },
-        { name: "Q8_c_8", placeholder: "Address line 8 – Landmark 2" },
+        { name: "Q8_c_6", placeholder: "Address line 6 - PIN code" ,type: "number"},
+        { name: "Q8_c_7", placeholder: "Address line 7 - Landmark 1" },
+        { name: "Q8_c_8", placeholder: "Address line 8 - Landmark 2" },
       ],
 
 
