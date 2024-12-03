@@ -527,42 +527,42 @@ function QuestionForm() {
 
   // setMulti(1)
   const handlePrevious = () => {
+  //   let includesArray=["Q9","Q9b","Q5","Q9a","Q14c","Q3"]
+  //  if(includesArray.includes(currentQuestion.number)){
+  //    setCurrentQuestionIndex((prevIndex) => {
+  //      let newIndex = prevIndex;
+ 
+  //      // Loop to find the previous question with a response
+  //      while (newIndex > 0) {
+  //        newIndex -= 1; // Decrement the index
+  //        const prevQuestionKey = questions[newIndex]?.number;
+ 
+  //        // Break the loop if a response is found for the question
+  //        if (responses[prevQuestionKey]) {
+          
+  //          break;
+  //        }
+ 
+  //        // If no response and index reaches 0, exit the loop
+  //        if (newIndex === 0) {
+          
+  //          break;
+  //        }
+  //      }
+ 
+  //      return newIndex; // Update to the new index
+  //    });
+  //  }else{
+     setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  //  }
 
-    
-    setCurrentQuestionIndex((prevIndex) => {
-      let newIndex = prevIndex;
   
-      // Loop to find the previous question with a response
-      while (newIndex > 0) {
-        newIndex -= 1; // Decrement the index
-        const prevQuestionKey = questions[newIndex]?.number;
-  
-        // Break the loop if a response is found for the question
-        if (responses[prevQuestionKey]) {
-          console.log(`Previous response exists for ${prevQuestionKey}:`, responses[prevQuestionKey]);
-          break;
-        }
-  
-        // If no response and index reaches 0, exit the loop
-        if (newIndex === 0) {
-          console.log("No previous responses found.");
-          break;
-        }
-      }
-  
-      // Restore states as needed
-      if (questions[newIndex]?.first) {
-        setDemographicAnswered(false);
-      }
-  
-      return newIndex; // Update to the new index
-    });
-  
-    // Reset other global states or perform cleanup
-    setSliderMoved(false);
+   // }
 
-    setOther(false)
-  };
+   // Reset other global states or perform cleanup
+   setSliderMoved(false);
+   setOther(false)
+ };
 
   const handleSubmit = async () => {
     
