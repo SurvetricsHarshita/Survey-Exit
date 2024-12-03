@@ -41,6 +41,7 @@ import SegmentQuestion from "../components/Questions/SegmentQuestion";
 import MultiInput from "../components/Questions/MultiInput";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 import hindi from "../components/translationFiles/QuestionsMapping/hindi";
+import Q9Consent from "../components/Questions/Q9Consent";
 
 
 function QuestionForm() {
@@ -360,6 +361,7 @@ function QuestionForm() {
   const handleNext = async () => {
     if (terminate) {
       alert("terminated");
+      navigate("/terminate")
       // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
@@ -628,7 +630,11 @@ function QuestionForm() {
       console.log(message); // Show error message if submission fails
     }
   };
-  
+  //Terminate
+  const handleTerminate = async () => {
+    
+    navigate("/terminate")
+  };
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -941,6 +947,26 @@ console.log(storedData)
               setSliderMoved={setSliderMoved}
               setResponses={setResponses}
             />
+          ): 
+          currentQuestion.type === "QRCode" ? (
+            <Q9Consent
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              
+           
+ 
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
+              setMediaFrequencies={setMediaFrequencies}
+           
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+              setSliderMoved={setSliderMoved}
+              setResponses={setResponses}
+            />
           ):  currentQuestion.type === "image" ? (
             <SelfieCapture
             currentQuestionIndex={currentQuestionIndex}
@@ -981,6 +1007,14 @@ console.log(storedData)
             isDisabled={currentQuestionIndex === 0}>
             Previous
           </PreviousButton>
+          <Button
+              colorScheme="#2563eb"
+      bg="#e40a0a"
+              onClick={handleTerminate}
+              // isDisabled={isNextButtonDisabled() || isLoading }
+              >
+      Terminate
+            </Button>
           <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/>
           {currentQuestionIndex < questions.length - 1 ? (
             <NextButton

@@ -12,6 +12,7 @@ import SubmitMsg from './pages/SubmitMsg';
 import SelfieCapture from './components/atoms/SelfieCapture';
 
 import QuestionForm from './pages/QuestionForm';
+import Terminate from './components/atoms/Terminate';
 
 function App() {
  
@@ -28,7 +29,7 @@ function App() {
           <Route path="/survey" element={<QuestionForm />} />
           <Route path="/submit" element={<SubmitMsg />} />
           < Route path="/selfie" element={   <SelfieCapture/>}/>
-          
+          < Route path="/terminate" element={   <Terminate/>}/>
         
         </Routes>
       </Box>
