@@ -9,20 +9,22 @@ import {
   Input,
   SimpleGrid,
   Text,
-  useToast,
+ 
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 
+const MultiInput = ({
 
-const MultiInput = ({ handleNext, language, formFieldsStep1, languageText
-  ,setResponses
- }) => {
+  language,
+  formFieldsStep1,
+  languageText,
+  setResponses,
+}) => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
   const langText = languageText[language] || languageText["en"];
-  const toast = useToast();
+
 
   useEffect(() => {
     const initialData = formFieldsStep1.reduce((acc, field) => {
@@ -32,45 +34,37 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText
     setFormData(initialData);
   }, [formFieldsStep1]);
 
-  const handleMultiChange = (e) => {
+  const handleMultiChange = (e, currentQuestion) => {
     const { name, value } = e.target;
+    
+    // Limit the input value based on the inputLimit property for fields
+    const newValue = value.slice(0, currentQuestion.inputLimit || value.length);
+
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
+
     setResponses((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
-  const validateForm = () => {
-    for (const field of formFieldsStep1) {
-      if (!formData[field.name]?.trim() && field.isRequired) {
-        setError(`${field.placeholder} is required.`);
-        return false;
-      }
-      if (field.type === "tel" && formData[field.name]?.length !== 10) {
-        setError("Mobile number must be 10 digits.");
-        return false;
-      }
-    }
-    setError("");
-    return true;
-  };
-
-  const handleSubmit = () => {
-    if (validateForm()) {
-      handleNext(formData); // Pass data to parent
-      toast({
-        title: "Success",
-        description: "Form submitted successfully!",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
+  // const validateForm = () => {
+  //   for (const field of formFieldsStep1) {
+  //     if (!formData[field.name]?.trim() && field.isRequired) {
+  //       setError(`${field.placeholder} is required.`);
+  //       return false;
+  //     }
+  //     if (field.type === "tel" && formData[field.name]?.length !== 10) {
+  //       setError("Mobile number must be 10 digits.");
+  //       return false;
+  //     }
+  //   }
+  //   setError("");
+  //   return true;
+  // };
 
   return (
     <Flex p={4} flexDirection="column" alignItems="center">
@@ -94,10 +88,12 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText
               name={field.name}
               placeholder={field.placeholder}
               value={formData[field.name]}
-              onChange={handleMultiChange}
+              onChange={(e) =>
+                handleMultiChange(e, field)
+              }
               type={field.type || "text"}
               isInvalid={
-                error === `${field.placeholder} is required.` || 
+                error === `${field.placeholder} is required.` ||
                 (field.type === "tel" && error === "Mobile number must be 10 digits.")
               }
               errorBorderColor="red.300"
@@ -106,18 +102,9 @@ const MultiInput = ({ handleNext, language, formFieldsStep1, languageText
         ))}
       </SimpleGrid>
 
-      <Flex mt={8}>
-        {/* <Button colorScheme="teal" onClick={handleSubmit}>
-          Submit
-        </Button> */}
-      </Flex>
+     
     </Flex>
   );
 };
 
-
-
-
-
-
-export default MultiInput
+export default MultiInput;

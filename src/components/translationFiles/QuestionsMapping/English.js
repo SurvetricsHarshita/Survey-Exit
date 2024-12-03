@@ -1864,8 +1864,8 @@ const products = {
       "  placeHolder": "",
 
       formFieldsStep1: [
-        { name: "Q8_a_1", placeholder: "Mobile Number 1", type: "number" },
-        { name: "Q8_a_2", placeholder: "Mobile Number -2 (optional)", type: "number" },
+        { name: "Q8_a_1", placeholder: "Mobile Number 1", type: "number" ,inputLimit:"10"},
+        { name: "Q8_a_2", placeholder: "Mobile Number -2 (optional)", type: "number" ,inputLimit:"10"},
 
       ],
 
@@ -1880,129 +1880,129 @@ const products = {
 
       },
     },
-    Q34: {
-      "number": "Q8_b",
-      "question": "Please share your contact details - Landline /Fixed line",
-      "instruction": "",
-      " inputType": "",
-      "  inputLimit": "",
-      "type": "multiInput",
-      "  placeHolder": "",
+//     Q34: {
+//       "number": "Q8_b",
+//       "question": "Please share your contact details - Landline /Fixed line",
+//       "instruction": "",
+//       " inputType": "",
+//       "  inputLimit": "",
+//       "type": "multiInput",
+//       "  placeHolder": "",
 
-      formFieldsStep1: [
-        { name: "Q8_b_1", placeholder: "Landline / Fixed line 1" },
-        { name: "Q8_b_2", placeholder: "Landline / Fixed line 2" },
+//       formFieldsStep1: [
+//         { name: "Q8_b_1", placeholder: "Landline / Fixed line 1" },
+//         { name: "Q8_b_2", placeholder: "Landline / Fixed line 2" },
 
-      ],
-
-
-      languageText: {
-
-        en: {
-
-          Q8_b_1: "Landline / Fixed line 1",
-          Q8_b_2: "Landline / Fixed line 2"
+//       ],
 
 
-        },
+//       languageText: {
 
-        // isCompulsory: true,
-      }
-    },
-    Q34_a: {
-      "number": "Q8_cc",
-      "question": "Please share your Email ID",
-      "instruction": "",
-      " inputType": "",
-      "  inputLimit": "",
-      "type": "",
-      "  placeHolder": "",
-label:"Email ID",
-      // formFieldsStep1: [
-      //   { name: "Q8_b2_a", placeholder: "Email ID" },
+//         en: {
 
-      // ],
+//           Q8_b_1: "Landline / Fixed line 1",
+//           Q8_b_2: "Landline / Fixed line 2"
 
 
-      // languageText: {
+//         },
 
-      //   en: {
+//         // isCompulsory: true,
+//       }
+//     },
+//     Q34_a: {
+//       "number": "Q8_cc",
+//       "question": "Please share your Email ID",
+//       "instruction": "",
+//       " inputType": "",
+//       "  inputLimit": "",
+//       "type": "",
+//       "  placeHolder": "",
+// label:"Email ID",
+//       // formFieldsStep1: [
+//       //   { name: "Q8_b2_a", placeholder: "Email ID" },
 
-      //     Q8_b2_a: "Email ID",
-
-
-      //   },
-
-      //   // isCompulsory: true,
-      // }
-    },
-
-    Q35: {
-      "number": "Q8_c",
-      "question": "Detailed address",
-      "instruction": "",
-      " inputType": "",
-      "  inputLimit": "",
-      "type": "multiInput",
-      "  placeHolder": "",
-
-      formFieldsStep1: [
-        { name: "Q8_c_1", placeholder: "Address line 1 - House number" },
-        { name: "Q8_c_2", placeholder: "Address line 2 - Building number/name" },
-        { name: "Q8_c_3", placeholder: "Address line 3 - Lane/street/ward number/name", type: "tel", label: "" },
-        { name: "Q8_c_4", placeholder: "Address line 4 - Area /locality name", type: "number" },
-        { name: "Q8_c_5", placeholder: "Address line 5 - Town name" },
-        { name: "Q8_c_6", placeholder: "Address line 6 – PIN code" },
-        { name: "Q8_c_7", placeholder: "Address line 7 – Landmark 1" },
-        { name: "Q8_c_8", placeholder: "Address line 8 – Landmark 2" },
-      ],
+//       // ],
 
 
-      languageText: {
+//       // languageText: {
 
-        en: {
-          // title: "Respondent Demographic",
-          name: "Address line 1 - House number",
+//       //   en: {
 
-          address: "Address line 2 - Building number/name",
-          contact: "Address line 3 - Lane/street/ward number/name",
-          doorNo: "Address line 4 - Area /locality name",
-          floorNo: "Floor No.",
-          houseName: "Address line 5 - Town name",
-          streetName: "Address line 6 - PIN code",
-          areaName: "Address line 7 - Landmark 1",
-          townName: "Address line 8 - Landmark 2",
+//       //     Q8_b2_a: "Email ID",
 
 
-        },
+//       //   },
 
-        isCompulsory: true,
-        // anwerNeed:all
-      },
-      "label": "",
-      "options": "",
-      "lableoptions": "",
-      "STATEMENTS": "",
-      "FREQUENCIES": "",
-      "lastOption": "",
-      "termination": "",
-      " terminationCodes": "",
-      "audio": "",
-      "randomize": "",
-      "fixedCodes": "",
-      " RandomizeOnce": "",
-      " maxSelections": "",
-      "  checkAsk": "",
-      "readout": "",
-      "depend on": "",
-      "labels": ""
-    },
-// Q36:{
-//   "number": "QRCode",
-//   "question": "Would you like to be part of the panel?",
-//   "instruction": "If selected yes, inform the respondent that he/she would receive a call/visit for next steps. Thank the respondent for participating in the survey before leaving the household ",
-//   type:"QRCode"
-// },
+//       //   // isCompulsory: true,
+//       // }
+//     },
+
+//     Q35: {
+//       "number": "Q8_c",
+//       "question": "Detailed address",
+//       "instruction": "",
+//       " inputType": "",
+//       "  inputLimit": "",
+//       "type": "multiInput",
+//       "  placeHolder": "",
+
+//       formFieldsStep1: [
+//         { name: "Q8_c_1", placeholder: "Address line 1 - House number" },
+//         { name: "Q8_c_2", placeholder: "Address line 2 - Building number/name" },
+//         { name: "Q8_c_3", placeholder: "Address line 3 - Lane/street/ward number/name", type: "tel", label: "" },
+//         { name: "Q8_c_4", placeholder: "Address line 4 - Area /locality name", type: "number" },
+//         { name: "Q8_c_5", placeholder: "Address line 5 - Town name" },
+//         { name: "Q8_c_6", placeholder: "Address line 6 – PIN code" },
+//         { name: "Q8_c_7", placeholder: "Address line 7 – Landmark 1" },
+//         { name: "Q8_c_8", placeholder: "Address line 8 – Landmark 2" },
+//       ],
+
+
+//       languageText: {
+
+//         en: {
+//           // title: "Respondent Demographic",
+//           name: "Address line 1 - House number",
+
+//           address: "Address line 2 - Building number/name",
+//           contact: "Address line 3 - Lane/street/ward number/name",
+//           doorNo: "Address line 4 - Area /locality name",
+//           floorNo: "Floor No.",
+//           houseName: "Address line 5 - Town name",
+//           streetName: "Address line 6 - PIN code",
+//           areaName: "Address line 7 - Landmark 1",
+//           townName: "Address line 8 - Landmark 2",
+
+
+//         },
+
+//         isCompulsory: true,
+//         // anwerNeed:all
+//       },
+//       "label": "",
+//       "options": "",
+//       "lableoptions": "",
+//       "STATEMENTS": "",
+//       "FREQUENCIES": "",
+//       "lastOption": "",
+//       "termination": "",
+//       " terminationCodes": "",
+//       "audio": "",
+//       "randomize": "",
+//       "fixedCodes": "",
+//       " RandomizeOnce": "",
+//       " maxSelections": "",
+//       "  checkAsk": "",
+//       "readout": "",
+//       "depend on": "",
+//       "labels": ""
+//     },
+Q36:{
+  "number": "Q9Consent",
+  "question": "Broadcast Audience Research Council India (BARC India), a Joint Industry Body registered with the Ministry of Information & Broadcasting (MIB) manages the world's largest TV panel as a TV Viewership Measurement agency and generates authentic TV audience estimates - What India WatchesTM. ",
+  type:"Q9Consent",
+  label:"As a token of appreciation for their participation, the panel household also receives an incentive.Please request respondent to scan QR code in case they need more information."
+},
     Q43: {
       "number": "Q9",
       "question": "Would you like to be part of the panel?",

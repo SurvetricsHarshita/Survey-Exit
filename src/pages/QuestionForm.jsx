@@ -678,7 +678,7 @@ function QuestionForm() {
     if (currentQuestion.type === "radio" && isOther) {
       return !otherInput.trim(); // Ensure "Other" input is not empty
     }
-    if (currentQuestion.type === "Quota") {
+    if (currentQuestion.type === "Quota" || currentQuestion.type=="Q9Consent") {
       return false // Ensure "Other" input is not empty
     }
     if (currentQuestion.type === "image") {
@@ -948,18 +948,18 @@ console.log(storedData)
               setResponses={setResponses}
             />
           ): 
-          currentQuestion.type === "QRCode" ? (
+          currentQuestion.type === "Q9Consent" ? (
             <Q9Consent
             currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
               responses={responses}
-              
+              onPrevious={handlePrevious}
+              onSubmit={handleNext}
            
  
               mediaChannels={currentQuestion.STATEMENTS}
               frequencies={currentQuestion.FREQUENCIES}
-              onPrevious={handlePrevious}
-              onSubmit={handleNext}
+            
               setMediaFrequencies={setMediaFrequencies}
            
               sliderValue={sliderValue}
