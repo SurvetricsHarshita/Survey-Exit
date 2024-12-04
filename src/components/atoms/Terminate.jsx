@@ -70,6 +70,7 @@ function Terminate() {
       existingData.endTime = endTime;
       existingData.endDate = endDate;
       existingData.duration = formatDuration(surveyDuration);
+      existingData.terminationCode=selectedReason;
       existingData.terminationReason =
         selectedReason === "7"
           ? ` ${otherReason}`
