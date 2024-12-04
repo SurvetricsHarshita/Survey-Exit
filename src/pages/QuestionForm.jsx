@@ -757,7 +757,7 @@ function QuestionForm() {
   
 
   return (
-    <Box p={5} mb={4}  >
+    <Box p={{ base: 3, md: 5 }} mb={{ base: 2, md: 4 }} fontSize={{ base: '14px', md: '20px' }}>
       {!demographicAnswered ? (
         <RespondentDemographic
           setResponses={setResponses}
@@ -766,13 +766,13 @@ function QuestionForm() {
           language={language}
         />
       ) : (
-        <FormControl mb={4} pl={2}>
+        <FormControl mb={4} >
 
         {/* <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/> */}
-          <Text fontSize="2xl" fontWeight={700} mb={30}>
+          <Text fontSize={{ base: '14px', md: '20px' }} fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>
-          <FormLabel fontSize="lg" mb={30} >
+          <FormLabel fontSize={{ base: '16px', md: '20px' }} mb={30} >
             {" "}
             {currentQuestion.number} .{currentQuestion.question} 
 
@@ -784,7 +784,7 @@ function QuestionForm() {
             {currentQuestion.instruction}
           </Text>
 
-          <FormLabel fontSize="md"> {currentQuestion.label}</FormLabel>
+          <FormLabel fontSize="md" mt={3}> {currentQuestion.label}</FormLabel>
 
           {/* Render components based on question type */}
           {currentQuestion.type === "multi" ? (
@@ -997,46 +997,68 @@ function QuestionForm() {
         </FormControl>
       )}
 
-      {demographicAnswered &&  (
-        <Flex mt={10} justify="space-between"  >
-          <PreviousButton
-            mr={2}
-            onPrev={
-              currentQuestionIndex === 0
-                ? () => setDemographicAnswered(false)
-                : handlePrevious
-            }
-            isDisabled={currentQuestionIndex === 0}>
-            Previous
-          </PreviousButton>
-          <Button
-              colorScheme="#2563eb"
+{demographicAnswered && (
+  <Flex
+    mt={10}
+    justify="space-between"
+    flexDirection={{ base: 'column', md: 'row' }}
+    gap={4} // Add spacing between elements for smaller screens
+  >
+    {/* Previous Button */}
+    <PreviousButton
+      mr={{ base: 0, md: 2 }} // Margin adjustment for smaller screens
+      w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
+      onPrev={
+        currentQuestionIndex === 0
+          ? () => setDemographicAnswered(false)
+          : handlePrevious
+      }
+      isDisabled={currentQuestionIndex === 0}
+    >
+      Previous
+    </PreviousButton>
+
+    {/* Terminate Button */}
+    <Button
+      colorScheme="red"
       bg="#e40a0a"
-              onClick={handleTerminate}
-              // isDisabled={isNextButtonDisabled() || isLoading }
-              >
+      w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
+      onClick={handleTerminate}
+    >
       Terminate
-            </Button>
-          <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/>
-          {currentQuestionIndex < questions.length - 1 ? (
-            <NextButton
-              onClick={handleNext}
-              isDisabled={isNextButtonDisabled() || isLoading}
-            />
-          ) : (
-            <Button
-              colorScheme="#2563eb"
-      bg="#319dcf"
-              onClick={handleSubmit}
-              isDisabled={isNextButtonDisabled() || isLoading }>
-       Submit
-            </Button>
-          )}
-        </Flex>
-      )}
+    </Button>
+
+    {/* Language Selector */}
+    <SelectLanguage 
+      handleLanguageSelect={handleLanguageSelect}
+      w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
+    />
+
+    {/* Next/Submit Buttons */}
+    {currentQuestionIndex < questions.length - 1 ? (
+      <NextButton
+        onClick={handleNext}
+        w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
+        isDisabled={isNextButtonDisabled() || isLoading}
+      />
+    ) : (
+      <Button
+        colorScheme="blue"
+        bg="#319dcf"
+        w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
+        onClick={handleSubmit}
+        isDisabled={isNextButtonDisabled() || isLoading}
+      >
+        Submit
+      </Button>
+    )}
+  </Flex>
+)}
+
     </Box>
   );
 }
+
 
 
 
