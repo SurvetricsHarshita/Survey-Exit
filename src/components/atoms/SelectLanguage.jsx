@@ -9,10 +9,11 @@ function SelectLanguage({handleLanguageSelect }) {
   return (
     <VStack
   spacing={2}
-  w={{ base: 150, md: 200, lg: 300 }}
+  // w={{ base: 150, md: 200, lg: 300 }}
   mb={3}
   border="1px solid "
   rounded="10px"
+  w={{ base: '100%', md: 'auto' }}
 // Add padding for better appearance
 >
   {/* <Heading as="h2" size="lg">Choose Language</Heading> */}
