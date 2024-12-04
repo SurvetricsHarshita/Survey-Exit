@@ -72,7 +72,7 @@ function Terminate() {
       existingData.duration = formatDuration(surveyDuration);
       existingData.terminationReason =
         selectedReason === "7"
-          ? `Other: ${otherReason}`
+          ? ` ${otherReason}`
           : terminationReasons.find((r) => r.code === parseInt(selectedReason))
               .reason;
     } else {
@@ -93,7 +93,7 @@ function Terminate() {
     alert(
       `Survey terminated due to: ${
         selectedReason === "7"
-          ? `${otherReason}`
+          ? ` ${otherReason}`
           : terminationReasons.find((r) => r.code === parseInt(selectedReason))
               .reason
       }`
@@ -144,9 +144,9 @@ function Terminate() {
           />
         )}
 
-        <Box mt={8} display="flex" alignItems="center" justifyContent="space-between">
+        <Box mt={8} display="flex" alignItems="center" justifyContent="space-between" gap={10}>
           <Link to="/">
-            <Button colorScheme="green" mb={4}>
+            <Button colorScheme="green" >
               Back to Login
             </Button>
           </Link>
