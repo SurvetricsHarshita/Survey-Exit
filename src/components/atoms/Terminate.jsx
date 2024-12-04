@@ -35,7 +35,7 @@ function Terminate() {
       return;
     }
 
-    if (selectedReason === "7" && !otherReason.trim()) {
+    if (selectedReason === "8" && !otherReason.trim()) {
       alert("Please specify the 'Other' reason.");
       return;
     }
@@ -73,7 +73,7 @@ function Terminate() {
       existingData.duration = formatDuration(surveyDuration);
       existingData.terminationCode=selectedReason;
       existingData.terminationReason =
-        selectedReason === "7"
+        selectedReason === "8"
           ? ` ${otherReason}`
           : terminationReasons.find((r) => r.code === parseInt(selectedReason))
               .reason;
@@ -94,7 +94,7 @@ function Terminate() {
 
     alert(
       `Survey terminated due to: ${
-        selectedReason === "7"
+        selectedReason === "8"
           ? ` ${otherReason}`
           : terminationReasons.find((r) => r.code === parseInt(selectedReason))
               .reason
@@ -137,7 +137,7 @@ function Terminate() {
           </Stack>
         </RadioGroup>
 
-        {selectedReason === "7" && (
+        {selectedReason === "8" && (
           <Input
             placeholder="Please specify"
             value={otherReason}
