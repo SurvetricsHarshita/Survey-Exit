@@ -25,7 +25,8 @@ function Terminate() {
     { reason: "Refused to give consent", code: 4 },
     { reason: "Refused to continue the interview after some time", code: 5 },
     { reason: "Permission not granted to enter the society", code: 6 },
-    { reason: "Others (Please Specify)", code: 7 },
+    { reason: "Terminated as per survey criteria", code: 7 },
+    { reason: "Others (Please Specify)", code: 8 },
   ];
 
   const handleConfirmTermination = async () => {

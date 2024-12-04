@@ -267,7 +267,7 @@ Label:" Since we get an idea of TV viewing from overall lifestyle and education,
       "number": "Q2_d1",
       "question": "You mentioned you own a car. Can you please tell me if the car used predominantly for commercial purpose?",
       // instruction:"Terminate if the HH has just one car which is predominantly used for commercial purpose",
-      // "type": "radio",
+      "type": "radio",
     
       
       options: [

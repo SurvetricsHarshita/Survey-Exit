@@ -25,7 +25,7 @@ function SelectLanguage({handleLanguageSelect }) {
     rounded="lg" // Adds consistent rounding to the Select component
   >
     <option value="en">English</option>
-    <option value="hi">Hindi</option>
+    <option value="en">Hindi</option>
     {/* <option value="ben">Bengali</option>
     <option value="tel">Telugu</option>
     <option value="guj">Gujarati</option>

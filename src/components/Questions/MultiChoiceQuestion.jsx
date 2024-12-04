@@ -58,7 +58,7 @@ function MultiChoiceQuestion({
     onChange={(values) => handleCheckboxChange(currentQuestion.number, values)}
   >
     <SimpleGrid
-      columns={options.length > 10 ? 3 : 2} // 3 columns if options > 10, otherwise 2
+      columns={options.length > 12 ? 3 : 1} // 3 columns if options > 10, otherwise 2
       spacing={6}
       width="100%"
       maxWidth="800px"

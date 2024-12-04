@@ -362,7 +362,9 @@ function QuestionForm() {
 
   const handleNext = async () => {
     if (currentQuestion.autoCodeQuestion) {
-      setResponses((prev) => {
+
+
+  setResponses((prev) => {
         const updatedResponses = { ...prev };
         
         // Retrieve stored data from localStorage
@@ -371,7 +373,7 @@ function QuestionForm() {
     
         if (currentQuestion.number === "Q2_c") {
           // Get Q2_c value from prev and Q2_b from storedData
-          const Q2_c = prev[currentQuestion.number];
+          const Q2_c = storedData["Q2_c"];
           const Q2_b = storedData["Q2_b"];
           
           // Ensure Q2_b is a valid number (it might be a string)
@@ -388,10 +390,11 @@ function QuestionForm() {
           setNccs(nccsValue); // Assuming `setNccs` is a state update function
         
           // Update storedData values with the new NCCS value
-          updatedResponses['NCCS'] = nccs; // Correct assignment here
-          updatedResponses['Q2d'] = nccs;  // Adjusting Q2d value as well
+          updatedResponses['NCCS'] = nccsValue; // Correct assignment here
+          updatedResponses['Q2d'] = nccsValue;  // Adjusting Q2d value as well
           
-   
+          storedData['NCCS'] = nccsValue;
+          storedData['Q2d'] = nccsValue;
         
           // Save updated data to localStorage
           localStorage.setItem('ProductsTest', JSON.stringify(storedData));
@@ -408,8 +411,10 @@ function QuestionForm() {
         }
     
         return updatedResponses;
-      });
+      })
+
     }
+   
     
     if (terminate) {
       alert("terminated");
