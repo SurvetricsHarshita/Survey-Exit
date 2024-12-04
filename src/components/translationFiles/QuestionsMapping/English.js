@@ -33,7 +33,7 @@ const products = {
       question: " ",
       label: "The survey is very short and will only take about 5 minutes. May I please proceed? ",
       response: " ",
-      instruction: "Hello! I am __from _____(Agency name) and we are conducting a brief survey to gather information for empanelment.We'll be asking about the ownership of household items, education levels, and languages spoken in your home.",
+      instruction: "Hello! I am __from _____(Agency name) and we are conducting a brief survey to gather information for empanelment to study TV viewing behaviour.Since we get an idea of TV viewing from overall lifestyle and education, we'll be asking a few questions on ownership of household items, education, and languages spoken in your home.",
 
       options: [
         { label: "Yes", code: "1" },
