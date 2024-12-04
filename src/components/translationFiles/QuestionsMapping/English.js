@@ -7,7 +7,7 @@ const products = {
     {
       number: "QH",
       question: "Please select the appropriate option from the list. This household is located in …",
-      instruction: "Please check that the residence is not used for commercial purposes based on observation. Survey can be conducted with a householder or CWE for identifying Premium. Before knocking the door select the correct option for QH",
+      instruction: "Please check that the residence is not used for commercial purposes based on observation. Survey can be conducted with a householder or CWE for identifying Premium. Before knocking the door select the correct option  from  below",
       response: "",
       options: [
         { label: "A gated community with 24 hours security", code: "1" },
@@ -33,8 +33,10 @@ const products = {
       question: " ",
       label: "The survey is very short and will only take about 5 minutes. May I please proceed? ",
       response: " ",
-      instruction: "Hello! I am __from _____(Agency name) and we are conducting a brief survey to gather information for empanelment to study TV viewing behaviour.Since we get an idea of TV viewing from overall lifestyle and education, we'll be asking a few questions on ownership of household items, education, and languages spoken in your home.",
+      instruction: "Hello! I am __from _____(Agency name) and we are conducting a brief survey to gather information for empanelment to study TV viewing behaviour.  ",
+// subInstruction:""
 
+Label:" Since we get an idea of TV viewing from overall lifestyle and education, we'll be asking a few questions on ownership of household items, education, and languages spoken in your home.",
       options: [
         { label: "Yes", code: "1" },
         { label: "No", code: "2" }
@@ -87,6 +89,7 @@ const products = {
       type: "input",
       "placeHolder": "",
       "label": "Age",
+      inputLimit:3
 
     },
     QRes3:{
@@ -131,7 +134,7 @@ const products = {
           "code": "5"
         },
         {
-          "label": "Whether part of any TV/Media panel in last 2 years e.g. BARCINDIA TV Panel",
+          "label": "Whether part of any TV/Media panel in last 2 years e.g. BARC TV Panel",
           "code": "6"
         },
         {
@@ -146,7 +149,7 @@ const products = {
     Q4:
     {
       number: "Q2_a",
-      question: " Can you please tell me the name of Chief Wage Earner of this household. By this, I mean the person who contributes the most to the household expenditure.",
+      question: " Can you please tell me the name of Chief Wage Earner of your household. By this, I mean the person who contributes the most to the household expenditure.",
       response: "",
       type: "input",
       "placeHolder": "please mention name",
@@ -263,8 +266,8 @@ const products = {
     {
       "number": "Q2_d1",
       "question": "You mentioned you own a car. Can you please tell me if the car used predominantly for commercial purpose?",
-      instruction:"Terminate if the HH has just one car which is predominantly used for commercial purpose",
-      "type": "radio",
+      // instruction:"Terminate if the HH has just one car which is predominantly used for commercial purpose",
+      // "type": "radio",
     
       
       options: [
@@ -944,7 +947,7 @@ const products = {
       "instruction": "",
       " inputType": "",
       "  inputLimit": "",
-      "type": "",
+      type: "input",
       "  placeHolder": "",
 label:"Email ID",
       // formFieldsStep1: [
@@ -1008,29 +1011,14 @@ label:"Email ID",
         isCompulsory: true,
         // anwerNeed:all
       },
-      "label": "",
-      "options": "",
-      "lableoptions": "",
-      "STATEMENTS": "",
-      "FREQUENCIES": "",
-      "lastOption": "",
-      "termination": "",
-      " terminationCodes": "",
-      "audio": "",
-      "randomize": "",
-      "fixedCodes": "",
-      " RandomizeOnce": "",
-      " maxSelections": "",
-      " checkAsk": "",
-      "readout": "",
-      "depend on": "",
-      "labels": ""
+     
     },
 Q36:{
   "number": "Q9Consent",
   "question": "Broadcast Audience Research Council India (BARC India), a Joint Industry Body registered with the Ministry of Information & Broadcasting (MIB) manages the world's largest TV panel as a TV Viewership Measurement agency and generates authentic TV audience estimates - What India WatchesTM. ",
+  subLabel:"As a token of appreciation for their participation, the panel household also receives an incentive.Please request respondent to scan QR code in case they need more information.",
   type:"Q9Consent",
-  label:"As a token of appreciation for their participation, the panel household also receives an incentive.Please request respondent to scan QR code in case they need more information."
+  // label:"As a token of appreciation for their participation, the panel household also receives an incentive.Please request respondent to scan QR code in case they need more information."
 },
     Q43: {
       "number": "Q9",

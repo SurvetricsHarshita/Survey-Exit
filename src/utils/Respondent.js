@@ -1,7 +1,7 @@
 export const languageText = {
 
   en: {
-    title: "Respondent Demographic",
+    title: "Interveiewer details",
     // name: "Name of the Respondent",
    
     // address: "Address",

@@ -145,11 +145,11 @@ function Terminate() {
         )}
 
         <Box mt={8} display="flex" alignItems="center" justifyContent="space-between" gap={10}>
-          <Link to="/">
+          {/* <Link to="/">
             <Button colorScheme="green" >
               Back to Login
             </Button>
-          </Link>
+          </Link> */}
           <Button
             colorScheme="red"
             isDisabled={!selectedReason}

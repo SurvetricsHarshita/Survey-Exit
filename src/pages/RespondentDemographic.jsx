@@ -6,6 +6,7 @@ import {
   Flex,
   FormLabel,
   Input,
+  Select,
   SimpleGrid,
   Text,
   useToast,
@@ -16,13 +17,9 @@ import NextButton from "../components/atoms/NextButton";
 import PreviousButton from "../components/atoms/PreviousButton";
 import { getIndianTime } from "../utils/constant";
 import { formFieldsStep1, languageText } from "../utils/Respondent";
-import SelectLanguage from "../components/atoms/SelectLanguage";
 
-const RespondentDemographic = ({ handleNext,  onComplete }) => {
-  const [formData, setFormData] = useState({
-    
-   
-  });
+const RespondentDemographic = ({ handleNext, onComplete }) => {
+  const [formData, setFormData] = useState({});
   const [language, setLanguage] = useState("en");
   const [error, setError] = useState("");
   const [latitude, setLatitude] = useState(null);
@@ -72,7 +69,11 @@ const RespondentDemographic = ({ handleNext,  onComplete }) => {
   };
 
   const validateForm = () => {
-    const requiredFields = formFieldsStep1.map((field) => field.name);
+    const requiredFields = [
+      ...formFieldsStep1.map((field) => field.name),
+      "AccompaniedBy", // Include the "AccompaniedBy" field in validation
+      ...(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2" ? ["AccompaniedByName"] : []), // Add "AccompaniedByName" if AccompaniedBy requires it
+    ];
     const isComplete = requiredFields.every((field) => formData[field]?.trim());
     setIsFormComplete(isComplete);
   };
@@ -103,33 +104,24 @@ const RespondentDemographic = ({ handleNext,  onComplete }) => {
       ...respondentData,
       startTime: start.toLocaleTimeString("en-IN"),
       startDate: start.toLocaleDateString("en-IN"),
-      language
+      language,
     };
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
 
-    // Only handleNext if step 1 validation passes.
-    handleNext();
+    handleNext(); // Proceed to the next step
   };
 
-  function handlePrevious() {
+  const handlePrevious = () => {
     const email = localStorage.getItem("email");
-
     localStorage.clear();
 
     if (email) {
       localStorage.setItem("email", email);
     }
     navigate("/");
-  }
-  const handleLanguageSelect = (event) => {
-    const selectedLanguage = event.target.value;
-    setLanguage(selectedLanguage);
-    
-  
-    localStorage.setItem('selectedLanguage', JSON.stringify(selectedLanguage)); // Store French as the selected language
-
   };
+
   return (
     <Flex
       p={4}
@@ -163,20 +155,44 @@ const RespondentDemographic = ({ handleNext,  onComplete }) => {
             <Input
               name={field.name}
               placeholder={field.placeholder}
-              value={formData[field.name]}
+              value={formData[field.name] || ""}
               onChange={handleChange}
               type={field.type || "text"}
             />
           </div>
         ))}
-        <SelectLanguage handleLanguageSelect={handleLanguageSelect}/>
+        <div>
+          <FormLabel>Accompanied by</FormLabel>
+          <Select
+            name="AccompaniedBy"
+            value={formData.AccompaniedBy || ""}
+            onChange={handleChange}
+            focusBorderColor="black"
+            borderColor="black"
+            rounded="lg"
+          >
+            <option value="">Select </option>
+            <option value="1">Agency Supervisor</option>
+            <option value="2">MDL</option>
+            <option value="3">None</option>
+          </Select>
+        </div>
+        {(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2") && (
+          <div>
+            <FormLabel>Enter Name:</FormLabel>
+            <Input
+              name="AccompaniedByName"
+              placeholder="Enter name"
+              value={formData.AccompaniedByName || ""}
+              onChange={handleChange}
+            />
+          </div>
+        )}
       </SimpleGrid>
 
       <Flex mt={10} justify="space-between" gap={10}>
         <PreviousButton onPrev={handlePrevious} />
-        <NextButton onClick={handleSubmit}
-        isDisabled={!isFormComplete}
-         />
+        <NextButton onClick={handleSubmit} isDisabled={!isFormComplete} />
       </Flex>
     </Flex>
   );

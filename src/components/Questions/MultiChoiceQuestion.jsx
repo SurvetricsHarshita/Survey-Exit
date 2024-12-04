@@ -58,37 +58,21 @@ function MultiChoiceQuestion({
     onChange={(values) => handleCheckboxChange(currentQuestion.number, values)}
   >
     <SimpleGrid
-      columns={{ base: 1, md: 2 }}
+      columns={options.length > 10 ? 3 : 2} // 3 columns if options > 10, otherwise 2
       spacing={6}
       width="100%"
       maxWidth="800px"
       mb={8}
     >
-      {/* First Section of Checkboxes */}
-      <Stack spacing={4}>
-        {options.slice(0, Math.ceil(options.length / 2)).map((option, idx) => (
-          <Checkbox
-            key={idx}
-            value={option.code}
-            isChecked={(responses[currentQuestion.number] || []).includes(option.code)}
-          >
-            {option.label}
-          </Checkbox>
-        ))}
-      </Stack>
-  
-      {/* Second Section of Checkboxes */}
-      <Stack spacing={4}>
-        {options.slice(Math.ceil(options.length / 2)).map((option, idx) => (
-          <Checkbox
-            key={idx + Math.ceil(options.length / 2)} // Ensure unique keys
-            value={option.code}
-            isChecked={(responses[currentQuestion.number] || []).includes(option.code)}
-          >
-            {option.label}
-          </Checkbox>
-        ))}
-      </Stack>
+      {options.map((option, idx) => (
+        <Checkbox
+          key={idx}
+          value={option.code}
+          isChecked={(responses[currentQuestion.number] || []).includes(option.code)}
+        >
+          {option.label}
+        </Checkbox>
+      ))}
     </SimpleGrid>
   
     {/* Display input field for "Other" options */}
@@ -119,6 +103,7 @@ function MultiChoiceQuestion({
         )
     )}
   </CheckboxGroup>
+  
   
   );
 }

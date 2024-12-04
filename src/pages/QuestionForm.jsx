@@ -643,9 +643,18 @@ function QuestionForm() {
 
   const isNextButtonDisabled = () => {
     const currentResponse = responses[currentQuestion.number];
-
+  
     if (!demographicAnswered) return false;
-
+  
+    // Email validation for Q8_cc
+    if ( currentQuestion.type=="input" &&  currentQuestion.number === "Q8_cc") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+      if (currentResponse && !emailRegex.test(currentResponse)) {
+        // alert("Please enter a valid email address."); // Show validation message
+        return true; // Don't disable the button
+      }
+    }
+  
     if (currentQuestion.options && currentQuestion.type === "multi") {
       if (currentQuestion.maxSelections) {
         return (
@@ -660,7 +669,7 @@ function QuestionForm() {
         );
       }
     }
-
+  
     // Rate question handling
     if (currentQuestion.type === "rate") {
       return (
@@ -674,25 +683,29 @@ function QuestionForm() {
         Object.values(mediaFrequencies).some((value) => value === "")
       );
     }
-    if (currentQuestion.type === "RatingSlider" ||currentQuestion.type === "segment" ) {
-      return !sliderMoved
+    if (currentQuestion.type === "RatingSlider" || currentQuestion.type === "segment") {
+      return !sliderMoved;
     }
+  
     // Radio question handling with "Other" option
     if (currentQuestion.type === "radio" && isOther) {
       return !otherInput.trim(); // Ensure "Other" input is not empty
     }
-    if (currentQuestion.type === "Quota" || currentQuestion.type=="Q9Consent") {
-      return false // Ensure "Other" input is not empty
+  
+    if (currentQuestion.type === "Quota" || currentQuestion.type === "Q9Consent") {
+      return false; // Button not disabled for these types
     }
     if (currentQuestion.type === "image") {
-      return true // Ensure "Other" input is not empty
+      return true; // Button always disabled for "image"
     }
     if (currentQuestion.type === "multiInput") {
-      return false // Ensure "Other" input is not empty
+      return false; // Button not disabled for multiInput
     }
+  
     // Default case for unanswered questions
     return !currentResponse && !otherInput.trim();
   };
+  
 
   const handleChange = (mediaId, frequency) => {
     setMediaFrequencies((prevFrequencies) => ({
@@ -767,7 +780,7 @@ function QuestionForm() {
         />
       ) : (
         <FormControl mb={4} >
-
+{/* subLabel */}
         {/* <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/> */}
           <Text fontSize={{ base: '14px', md: '20px' }} fontWeight={700} mb={30}>
             {currentQuestion.section}
@@ -776,12 +789,19 @@ function QuestionForm() {
             {" "}
             {currentQuestion.number} .{currentQuestion.question} 
 
+            {}
+            <br />
+
+{currentQuestion.subLabel}
             {currentQuestion.number === "Q2_b" ? storedData["Q2_a"] : ""}
             {currentQuestion.number === "Q5" ?   storedData["Q2_a"] +   "   occupation ?" : ""}
             
           </FormLabel>
           <Text color="green.500" fontWeight={500}>
             {currentQuestion.instruction}
+
+         <br />
+            {currentQuestion.Label}
           </Text>
 
           <FormLabel fontSize="md" mt={3}> {currentQuestion.label}</FormLabel>
