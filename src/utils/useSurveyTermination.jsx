@@ -96,28 +96,21 @@ function handleS9d(answer, terminationCodes, storedData) {
   const s9cValue = storedData["NCCS"] || ""; // Household type
   const Q2_c = storedData["Q2_c"] || []; // Codes for Q2_c
 
-  // Check if codes 1 and 5 are selected in Q2_c
-  const areCodes1and5Selected = Q2_c.includes("1") && Q2_c.includes("5");
 
-  // Check if codes 1 and 2 are not selected in Q2_e
-  const areCodes1and2NotSelectedInQ2e = Q2_e_1 !== "1" && Q2_e_2 !== "1";
 
   // Logic for Terminate 1
   if (s9cValue === "A1") {
-    // Terminate if codes 1 and 5 are not selected in Q2_c AND codes 1 and 2 are not selected in Q2_e
-    if (!areCodes1and5Selected && areCodes1and2NotSelectedInQ2e) {
-      return true; // Terminate
+
+
+   
+    if ((Q2_c.includes("1") || Q2_e_1=="1" ) && ( Q2_c.includes("5") ||Q2_e_2=="1") &&  Q2_e_6 == "1"){
+      return false
     }
   }
 
-  // Logic for Terminate 2
-  if (Q2_e_6 !== "1") {
-    // Terminate if code 6 is not selected in Q2_e
-    return true; // Terminate
-  }
+  return true;
 
-  // If no termination condition is met
-  return false; // Do not terminate
+ 
 }
 
   
