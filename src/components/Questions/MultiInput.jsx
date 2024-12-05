@@ -3,28 +3,19 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  Button,
+  
   Flex,
   FormLabel,
   Input,
   SimpleGrid,
   Text,
- 
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-
-const MultiInput = ({
-
-  language,
-  formFieldsStep1,
-  languageText,
-  setResponses,
-}) => {
+const MultiInput = ({ language, formFieldsStep1, languageText, setResponses }) => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
   const langText = languageText[language] || languageText["en"];
-
 
   useEffect(() => {
     const initialData = formFieldsStep1.reduce((acc, field) => {
@@ -36,7 +27,7 @@ const MultiInput = ({
 
   const handleMultiChange = (e, currentQuestion) => {
     const { name, value } = e.target;
-    
+
     // Limit the input value based on the inputLimit property for fields
     const newValue = value.slice(0, currentQuestion.inputLimit || value.length);
 
@@ -49,22 +40,14 @@ const MultiInput = ({
       ...prev,
       [name]: newValue,
     }));
+
+    // Clear the error if a field is filled
+    if (error && value.trim()) {
+      setError("");
+    }
   };
 
-  // const validateForm = () => {
-  //   for (const field of formFieldsStep1) {
-  //     if (!formData[field.name]?.trim() && field.isRequired) {
-  //       setError(`${field.placeholder} is required.`);
-  //       return false;
-  //     }
-  //     if (field.type === "tel" && formData[field.name]?.length !== 10) {
-  //       setError("Mobile number must be 10 digits.");
-  //       return false;
-  //     }
-  //   }
-  //   setError("");
-  //   return true;
-  // };
+  
 
   return (
     <Flex p={4} flexDirection="column" alignItems="center">
@@ -88,14 +71,10 @@ const MultiInput = ({
               name={field.name}
               placeholder={field.placeholder}
               value={formData[field.name]}
-              onChange={(e) =>
-                handleMultiChange(e, field)
-              }
+              onChange={(e) => handleMultiChange(e, field)}
               type={field.type || "text"}
-              isInvalid={
-                error === `${field.placeholder} is required.` ||
-                (field.type === "tel" && error === "Mobile number must be 10 digits.")
-              }
+              maxLength={field.inputLimit}
+              isInvalid={error === `${field.placeholder} is required.`}
               errorBorderColor="red.300"
             />
           </div>
