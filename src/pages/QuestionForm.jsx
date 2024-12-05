@@ -186,6 +186,8 @@ function QuestionForm() {
     setStoredData(updatedData);
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
+
+    
   }, [responses]);
 
   useEffect(() => {
@@ -430,7 +432,7 @@ function QuestionForm() {
     
     if (terminate) {
       alert("terminated");
-      navigate("/terminate")
+      // navigate("/terminate")
       // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
@@ -735,32 +737,62 @@ function QuestionForm() {
   };
   
 
-  const handleChange = (mediaId, frequency) => {
-    setMediaFrequencies((prevFrequencies) => ({
-      ...prevFrequencies,
-      [mediaId]: frequency,
-    }));
+  // const handleChange = (mediaId, frequency) => {
+
+  //   setMediaFrequencies((prevFrequencies) => ({
+  //     ...prevFrequencies,
+  //     [mediaId]: frequency,
+  //   }));
 
    
    
     
-    setResponses((prevResponses) => ({
-      ...prevResponses,
-      [mediaId]: frequency,
+  //   setResponses((prevResponses) => ({
+  //     ...prevResponses,
+  //     [mediaId]: frequency,
 
-    }))
-    ;
-    const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
+  //   }))
+  //   ;
+  //   const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
+  //   if (currentQuestion.termination) {
+  //     const terminate = isTerminate(
+  //       currentQuestion.number,
+  //       "2345",
+  //       currentQuestion.terminationCodes,
+  //       storedData
+  //     );
+  //     setTerminate(terminate);
+  //   }
+   
+  // };
+  
+  const handleChange = async (mediaId, frequency) => {
+    // Update `mediaFrequencies`
+    setMediaFrequencies((prevFrequencies) => ({
+      ...prevFrequencies,
+      [mediaId]: frequency,
+    }));
+  
+    // Compute updated responses and set it
+    const updatedResponses = {
+      ...responses,
+      [mediaId]: frequency,
+    };
+    await setResponses(updatedResponses);
+  
+    // Fetch localStorage data
+    const storedData =   JSON.parse(localStorage.getItem("ProductsTest")) || [];
+  
+    // Call termination logic with the updated responses
     if (currentQuestion.termination) {
       const terminate = isTerminate(
         currentQuestion.number,
-        "2345",
+        "2345", // Replace this with the correct value if needed
         currentQuestion.terminationCodes,
         storedData
       );
       setTerminate(terminate);
     }
-   
   };
   
   const handleMultiChange = (mediaId, frequency) => {
