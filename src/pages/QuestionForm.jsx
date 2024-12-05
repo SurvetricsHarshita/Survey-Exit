@@ -432,7 +432,7 @@ function QuestionForm() {
     
     if (terminate) {
       alert("terminated");
-      navigate("/terminate")
+      // navigate("/terminate")
       // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
