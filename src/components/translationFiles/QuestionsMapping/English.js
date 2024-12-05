@@ -89,7 +89,7 @@ Label:" Since we get an idea of TV viewing from overall lifestyle and education,
       type: "input",
       "placeHolder": "",
       "label": "Age",
-      inputLimit:3
+      inputLimit:2
 
     },
     QRes3:{
