@@ -53,48 +53,73 @@ Q2_d1: () => radioHandler(answer, terminationCodes),
   }
 
   // Custom handler for S9d (dependent on storedData)
- function handleS9d(answer, terminationCodes, storedData) {
-    const Q2_e_1 = storedData["Q2_e_1"];
-    const Q2_e_2 = storedData["Q2_e_2"];
+//  function handleS9d(answer, terminationCodes, storedData) {
+//     const Q2_e_1 = storedData["Q2_e_1"];
+//     const Q2_e_2 = storedData["Q2_e_2"];
     
-    const Q2_e_6 = storedData["Q2_e_6"];
+//     const Q2_e_6 = storedData["Q2_e_6"];
     
     
-    // Extract NCCS, Q2_c, and Q2_e values from storedData
-    const s9cValue = storedData["NCCS"] || ""; // Household NCCS value
-    const Q2_c = storedData["Q2_c"] || []; // Selected codes for Q2_c
-    // const Q2eValue = [Q2_e_1, Q2_e_2, Q2_e_3, Q2_e_4]; // Selected codes for Q2_e
-    console.log(Q2_c)
-    // console.log("Q2_e_Values:", Q2eValue);
     
-    // Check if codes 1 and 5 are selected in Q2_c
-    const areCodes1and5Selected = Q2_c.includes("1") && Q2_c.includes("5");
+//     const s9cValue = storedData["NCCS"] || ""; 
+//     const Q2_c = storedData["Q2_c"] || []; 
+    
+//     console.log(Q2_c)
+    
+//     const areCodes1and5Selected = Q2_c.includes("1") && Q2_c.includes("5");
   
-    // // Check if codes 1 and 5 are not selected in Q2_c
-    // const areCodes1and5NotSelectedInQ2c = !Q2_c.includes("1") || !Q2_c.includes("5");
-  
-    // Check if codes 1 and 2 are not selected in Q2_e
-    const areCodes1and2NotSelectedInQ2e = (Q2_e_1 =="2" &  Q2_e_2 =="2"&& Q2_e_6 =="2")
-    // Logic for when Household is NCCS A1
-    if (s9cValue === "A1") {
-        // Household is NCCS A1, check the termination conditions
-        if (!areCodes1and5Selected && areCodes1and2NotSelectedInQ2e) {
-            // Terminate if codes 1 and 5 are not selected in Q2_c and codes 1 and 2 are not selected in Q2_e
-            return true; // Terminate
-        } else {
-            // If conditions aren't met for termination, don't terminate
-            return  Q2_e_6 !="1"; // Do not terminate
-        }
-    } else {
-        // Logic for when Household is NOT NCCS A1
-        return !areCodes1and5Selected  || Q2_e_6 !="1" // No termination for other households
+    
+//     const areCodes1and2NotSelectedInQ2e = (Q2_e_1 =="2" &  Q2_e_2 =="2" && Q2_e_6 =="2")
+//     // Logic for when Household is NCCS A1
+//     if (s9cValue === "A1") {
+//         // Household is NCCS A1, check the termination conditions
+//         if (!areCodes1and5Selected && areCodes1and2NotSelectedInQ2e) {
+//             // Terminate if codes 1 and 5 are not selected in Q2_c and codes 1 and 2 are not selected in Q2_e
+//             return true; // Terminate
+//         } else {
+//             // If conditions aren't met for termination, don't terminate
+//             return false; // Do not terminate
+//         }
+//     } else {
+//         // Logic for when Household is NOT NCCS A1
+//         return !areCodes1and5Selected  || Q2_e_6 !="1" // No termination for other households
+//     }
+
+
+    
+// }
+
+function handleS9d(answer, terminationCodes, storedData) {
+  const Q2_e_1 = storedData["Q2_e_1"];
+  const Q2_e_2 = storedData["Q2_e_2"];
+  const Q2_e_6 = storedData["Q2_e_6"];
+  const s9cValue = storedData["NCCS"] || ""; // Household type
+  const Q2_c = storedData["Q2_c"] || []; // Codes for Q2_c
+
+  // Check if codes 1 and 5 are selected in Q2_c
+  const areCodes1and5Selected = Q2_c.includes("1") && Q2_c.includes("5");
+
+  // Check if codes 1 and 2 are not selected in Q2_e
+  const areCodes1and2NotSelectedInQ2e = Q2_e_1 !== "1" && Q2_e_2 !== "1";
+
+  // Logic for Terminate 1
+  if (s9cValue === "A1") {
+    // Terminate if codes 1 and 5 are not selected in Q2_c AND codes 1 and 2 are not selected in Q2_e
+    if (!areCodes1and5Selected && areCodes1and2NotSelectedInQ2e) {
+      return true; // Terminate
     }
+  }
 
+  // Logic for Terminate 2
+  if (Q2_e_6 !== "1") {
+    // Terminate if code 6 is not selected in Q2_e
+    return true; // Terminate
+  }
 
-    
+  // If no termination condition is met
+  return false; // Do not terminate
 }
 
-  
   
   
   function handleQ3(answer) {
