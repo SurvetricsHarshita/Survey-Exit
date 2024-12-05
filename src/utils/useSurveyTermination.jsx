@@ -2,6 +2,8 @@ let terminationReason = "";
 
 function useSurveyTermination() {
   function isTerminate(question, answer, terminationCodes, storedData = {}) {
+
+    
     const questionHandlers = {
       QH: () => radioHandler(answer, terminationCodes),
       Introduction: () => radioHandler(answer, terminationCodes),
@@ -97,16 +99,27 @@ function handleS9d(answer, terminationCodes, storedData) {
   const Q2_c = storedData["Q2_c"] || []; // Codes for Q2_c
 
 
-
+  console.log(Q2_e_6 ,"6")
   // Logic for Terminate 1
   if (s9cValue === "A1") {
 
-
-   
-    if ((Q2_c.includes("1") || Q2_e_1=="1" ) && ( Q2_c.includes("5") ||Q2_e_2=="1") &&  Q2_e_6 == "1"){
+    if ((Q2_c.includes("1") || Q2_e_1=="1" ) && ( Q2_c.includes("5") || Q2_e_2=="1") &&  Q2_e_6 == "1"){ 
       return false
     }
+
+   
+   
+
+
   }
+  else if( s9cValue != "A1" &&  Q2_e_6 == "1" ){
+
+    
+
+return false
+  }
+
+
 
   return true;
 

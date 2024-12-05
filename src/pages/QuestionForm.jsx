@@ -67,9 +67,10 @@ function QuestionForm() {
   const [ask, setAsk] = useState(false);
   const [responses, setResponses] = useState({});
   const [storedData, setStoredData] = useState({});
+  const [isSubmitting,setSubmiiting]=useState(false)
   const table = [
     ["E3", "E2", "E2", "E2", "E2", "E1", "D2"], 
-    ["E1", "E1", "E1", "E1", "D2", "D2", "D2"], 
+    ["E2", "E1", "E1", "E1", "D2", "D2", "D2"], 
     ["E1", "E1", "D2", "D2", "D1", "D1", "D1"], 
     ["D2", "D2", "D1", "D1", "C2", "C2", "C2"], 
     ["D1", "C2", "C2", "C1", "C1", "B2", "B2"], 
@@ -79,7 +80,18 @@ function QuestionForm() {
     ["B1", "A3", "A3", "A3", "A2", "A2", "A2"],
     ["B1", "A3", "A3", "A2", "A2", "A1", "A1"]
   ];
-
+  // const table = [
+  //   ["E3", "E2", "E2", "E2", "E2", "E1", "D2"], 
+  //   ["E2", "E1", "E1", "E1", "D2", "D2", "D2"], 
+  //   ["E1", "E1", "D2", "D2", "D1", "D1", "D1"], 
+  //   ["D2", "D2", "D1", "D1", "C2", "C2", "C2"], 
+  //   ["D1", "C2", "C2", "C1", "C1", "B2", "B2"], 
+  //   ["C2", "C1", "C1", "B2", "B1", "B1", "B1"], 
+  //   ["C1", "B2", "B2", "B1", "A3", "A3", "A3"],
+  //   ["C1", "B1", "B1", "A3", "A3", "A2", "A2"],
+  //   ["B1", "A3", "A3", "A3", "A2", "A2", "A2"],
+  //   ["B1", "A3", "A3", "A2", "A2", "A1", "A1"]
+  // ];
 
   const [mediaFrequencies, setMediaFrequencies] = useState({});
   const [sliderValue, setSliderValue] = useState(3);
@@ -380,7 +392,7 @@ function QuestionForm() {
           const Q2_bValue = parseInt(Q2_b, 10); // Convert Q2_b to a number
           
           // Calculate the row index based on Q2_c length
-          let row = Q2_c.length - 1;
+          let row = Q2_c.length ;
           if (row >= 9) row = 9; // Ensure the row does not exceed 9
           
           // Fetch the correct value for NCCS based on the row and Q2_b
@@ -572,7 +584,7 @@ function QuestionForm() {
  };
 
   const handleSubmit = async () => {
-    
+    setSubmiiting(true)
     // Get the current time in IST
     const end = getIndianTime(); // Function to get Indian Standard Time
     const endDate = `${end.getDate()}/${end.getMonth() + 1}/${end.getFullYear()}`; // Format: DD/MM/YYYY
@@ -628,8 +640,10 @@ function QuestionForm() {
     // navigate("/submit", { state: { msg: "submit" } });
   // localStorage.clear()
     // Submit data to the API
+
+    
     const { success, message } = await submitDataToAPI(updatedProductTest);
-  
+    setSubmiiting(false)
     if (success) {
       navigate("/submit", { state: { msg: "submit" } });
       localStorage.clear()
@@ -639,6 +653,7 @@ function QuestionForm() {
     }
   };
   //Terminate
+
   const handleTerminate = async () => {
     
     navigate("/terminate")
@@ -726,24 +741,28 @@ function QuestionForm() {
       [mediaId]: frequency,
     }));
 
+   
+   
+    
     setResponses((prevResponses) => ({
       ...prevResponses,
       [mediaId]: frequency,
-    }));
 
+    }))
+    ;
     const storedData = JSON.parse(localStorage.getItem("ProductsTest")) || [];
-   
     if (currentQuestion.termination) {
       const terminate = isTerminate(
         currentQuestion.number,
-   "2345",
+        "2345",
         currentQuestion.terminationCodes,
-        storedData,
-    
+        storedData
       );
       setTerminate(terminate);
     }
+   
   };
+  
   const handleMultiChange = (mediaId, frequency) => {
     setMediaFrequencies((prevFrequencies) => ({
       ...prevFrequencies,
@@ -1080,7 +1099,8 @@ function QuestionForm() {
         bg="#319dcf"
         w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
         onClick={handleSubmit}
-        isDisabled={isNextButtonDisabled() || isLoading}
+        isDisabled={isNextButtonDisabled() || isSubmitting}
+        
       >
         Submit
       </Button>

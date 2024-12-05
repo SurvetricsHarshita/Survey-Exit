@@ -16,6 +16,7 @@ import { submitDataToAPI } from "../../utils/submitDataToAPI";
 function Terminate() {
   const [selectedReason, setSelectedReason] = useState(null);
   const [otherReason, setOtherReason] = useState(""); // State for 'Other' input
+  const [isSubmitting,setSubmiiting]=useState(false)
   const navigate = useNavigate();
 
   const terminationReasons = [
@@ -39,7 +40,7 @@ function Terminate() {
       alert("Please specify the 'Other' reason.");
       return;
     }
-
+    setSubmiiting(true)
     const end = getIndianTime();
     const endDate = `${end.getDate()}/${
       end.getMonth() + 1
@@ -85,6 +86,7 @@ function Terminate() {
     localStorage.setItem("ProductsTest", JSON.stringify(updatedProductTest));
 
     const { success, message } = await submitDataToAPI(updatedProductTest);
+    setSubmiiting(false)
     if (success) {
       navigate("/submit", { state: { msg: "terminated" } });
       localStorage.clear();
@@ -147,14 +149,15 @@ function Terminate() {
         )}
 
         <Box mt={8} display="flex" alignItems="center" justifyContent="space-between" gap={10}>
-          {/* <Link to="/">
+{/* <Link to="/">
             <Button colorScheme="green" >
-              Back to Login
+              Back  to Login
             </Button>
           </Link> */}
+
           <Button
             colorScheme="red"
-            isDisabled={!selectedReason}
+            isDisabled={!selectedReason || isSubmitting}
             onClick={handleConfirmTermination}
           >
             Terminate
