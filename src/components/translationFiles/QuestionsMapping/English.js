@@ -891,7 +891,7 @@ Label:" Since we get an idea of TV viewing from overall lifestyle and education,
 
       // "label": "Mobile number",
 
-
+      field:1,
       "type": "multiInput",
       "  placeHolder": "",
 
@@ -927,7 +927,7 @@ Label:" Since we get an idea of TV viewing from overall lifestyle and education,
 
       ],
 
-
+      field:1,
       languageText: {
 
         en: {
@@ -942,31 +942,32 @@ Label:" Since we get an idea of TV viewing from overall lifestyle and education,
       }
     },
     Q34_a: {
+      field:0,
       "number": "Q8_cc",
       "question": "Please share your Email ID",
       "instruction": "",
       " inputType": "",
       "  inputLimit": "",
-      type: "input",
+      "type": "multiInput",
       "  placeHolder": "",
 label:"Email ID",
-      // formFieldsStep1: [
-      //   { name: "Q8_b2_a", placeholder: "Email ID" },
+      formFieldsStep1: [
+        { name: "Q8_cc", placeholder: "Email ID" },
 
-      // ],
-
-
-      // languageText: {
-
-      //   en: {
-
-      //     Q8_b2_a: "Email ID",
+      ],
 
 
-      //   },
+      languageText: {
+
+        en: {
+
+          Q8_cc: "Email ID",
+
+// 
+        },
 
       //   // isCompulsory: true,
-      // }
+      }
     },
 
     Q35: {
@@ -977,7 +978,7 @@ label:"Email ID",
       "  inputLimit": "",
       "type": "multiInput",
       "  placeHolder": "",
-
+      field:5,
       formFieldsStep1: [
         { name: "Q8_c_1", placeholder: "Address line 1 - House number" },
         { name: "Q8_c_2", placeholder: "Address line 2 - Building number/name" },
