@@ -24,6 +24,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
   const [error, setError] = useState("");
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [city, setCity] = useState();
   const [isFormComplete, setIsFormComplete] = useState(false);
   const langText = languageText[language] || languageText["en"];
   const toast = useToast();
@@ -65,18 +66,30 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Update form data
     setFormData((prevState) => ({ ...prevState, [name]: value }));
+
+    // Save city to local storage
+    if (name === "City") {
+      setCity(value);
+    }
   };
 
   const validateForm = () => {
     const requiredFields = [
       ...formFieldsStep1.map((field) => field.name),
-      "AccompaniedBy", // Include the "AccompaniedBy" field in validation
-      ...(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2" ? ["AccompaniedByName"] : []), // Add "AccompaniedByName" if AccompaniedBy requires it
+      "AccompaniedBy",
+      ...(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2"
+        ? ["AccompaniedByName"]
+        : []),
+      "City", // Ensure 'City' is included as a required field
     ];
+
     const isComplete = requiredFields.every((field) => formData[field]?.trim());
     setIsFormComplete(isComplete);
-  };
+};
+
 
   const handleValidationError = (errorMessage) => {
     toast({
@@ -175,6 +188,23 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             <option value="1">Agency Supervisor</option>
             <option value="2">MDL</option>
             <option value="3">None</option>
+          </Select>
+          <FormLabel mt={4}>City</FormLabel>
+          <Select
+            name="City"
+            value={formData.City || ""}
+            onChange={handleChange}
+            focusBorderColor="black"
+            borderColor="black"
+            rounded="lg"
+          >
+            <option value="">Select</option>
+            <option value="1">Bangalore</option>
+            <option value="2">Chennai</option>
+            <option value="3">Delhi</option>
+            <option value="4">Hyderabad</option>
+            <option value="5">Kolkata</option>
+            <option value="6">Mumbai</option>
           </Select>
         </div>
         {(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2") && (
