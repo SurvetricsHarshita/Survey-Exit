@@ -659,7 +659,13 @@ function QuestionForm() {
         return true; // Don't disable the button
       }
     }
-  
+    if (currentQuestion.type === "multiInput") {
+      // Check if the first field in `formFieldsStep1` is filled
+      const isFirstFieldFilled = storedData[currentQuestion.formFieldsStep1[0].name]?.trim() !== "";
+    
+      // Return true if the first field is not filled
+      return !isFirstFieldFilled;
+    }
     if (currentQuestion.options && currentQuestion.type === "multi") {
       if (currentQuestion.maxSelections) {
         return (
@@ -682,6 +688,8 @@ function QuestionForm() {
         Object.values(mediaFrequencies).some((value) => value === "")
       );
     }
+
+    
     if (currentQuestion.type === "rank") {
       return (
         !mediaFrequencies ||
