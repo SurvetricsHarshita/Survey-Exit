@@ -882,7 +882,10 @@ const [isTerminating, setIsTerminating] = useState(false);
 
   };
 
-  
+  function handleCancel(){
+    setCurrentQuestionIndex((prev) => prev - 1);
+    onClose()
+  }
 
   return (
     <Box p={{ base: 3, md: 5 }} mb={{ base: 2, md: 4 }} fontSize={{ base: '14px', md: '20px' }}>
@@ -1170,7 +1173,7 @@ const [isTerminating, setIsTerminating] = useState(false);
             <Text>Are you sure you want to terminate? This action cannot be undone.</Text>
           </ModalBody>
           <ModalFooter>
-            <Button variant="ghost" onClick={onClose}>
+            <Button variant="ghost" onClick={handleCancel}>
               Cancel
             </Button>
             <Button
