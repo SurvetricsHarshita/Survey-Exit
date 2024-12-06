@@ -927,7 +927,7 @@ Label:" Since we get an idea of TV viewing from overall lifestyle and education,
 
       ],
 
-      field:1,
+      field:0,
       languageText: {
 
         en: {
@@ -982,7 +982,7 @@ label:"Email ID",
       formFieldsStep1: [
         { name: "Q8_c_1", placeholder: "Address line 1 - House number" },
         { name: "Q8_c_2", placeholder: "Address line 2 - Building number/name" },
-        { name: "Q8_c_3", placeholder: "Address line 3 - Lane/street/ward number/name", type: "tel", label: "" },
+        { name: "Q8_c_3", placeholder: "Address line 3 - Lane/street/ward number/name",  label: "" },
         { name: "Q8_c_4", placeholder: "Address line 4 - Area /locality name",  },
         { name: "Q8_c_5", placeholder: "Address line 5 - Town name" },
         { name: "Q8_c_6", placeholder: "Address line 6 - PIN code" ,type: "number"},
