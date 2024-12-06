@@ -676,6 +676,39 @@ const [isTerminating, setIsTerminating] = useState(false);
 
     const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
 
+   
+
+
+    if (currentQuestion.type === "multiInput" && currentQuestion.number === "Q8_a") {
+      let areFirstFieldsFilled = true;
+    
+      // Check for Q8_a specifically
+      if (currentQuestion.number === "Q8_a") {
+        // Validate that the first `currentQuestion.field` fields are filled
+        areFirstFieldsFilled = currentQuestion.formFieldsStep1
+          .slice(0, currentQuestion.field) // Take only the required number of fields
+          .every(field => {
+            const fieldValue = storedData[field.name]; // Retrieve value from storedData
+            return (
+              fieldValue && // Ensure fieldValue exists
+              fieldValue.trim() !== "" && // Ensure fieldValue is not empty
+              fieldValue.length === 10 && // Ensure it's exactly 10 digits
+              /^[0-9]+$/.test(fieldValue) // Ensure it's numeric
+            );
+          });
+    
+        // If validation fails, keep "Next" disabled
+        if (!areFirstFieldsFilled) {
+          console.log("Validation failed for Q8_a. Ensure all fields are valid.");
+          return true; // Keep the button disabled
+        }
+      }
+    
+      return !areFirstFieldsFilled; // Return whether the button should be disabled
+    }
+    
+  
+
     // Validate all fields in `formFieldsStep1` for `multiInput`
     if (currentQuestion.type === "multiInput") {
       const areFirstFiveFieldsFilled = currentQuestion.formFieldsStep1
