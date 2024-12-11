@@ -28,8 +28,12 @@ const RankingQuestion = ({ mediaChannels, frequencies, handleChange, setMediaFre
   }, [currentQuestion, mediaChannels]);
 
   useEffect(() => {
-    setShuffledMediaChannels(shuffleStatementsWithLastOption(mediaChannels, currentQuestion.lastOption));
-  }, [mediaChannels]);
+    if (currentQuestion?.randomize) {
+      setShuffledMediaChannels(shuffleStatementsWithLastOption(mediaChannels, currentQuestion.lastOption));
+    } else {
+      setShuffledMediaChannels(mediaChannels); // Keep the original order if `randomized` is false
+    }
+  }, [mediaChannels, currentQuestion]);
 
   const handleFrequencyChange = (channelId, frequencyValue) => {
     // Ensure that only one channel is selected for each frequency
@@ -58,7 +62,9 @@ const RankingQuestion = ({ mediaChannels, frequencies, handleChange, setMediaFre
             <Table variant="simple" size={{ base: 'sm', md: 'md' }}>
               <Thead>
                 <Tr>
-                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">Statements</Th>
+                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">
+                    {currentQuestion.heading || 'Statements'}
+                  </Th>
                   {frequencies.map((freq) => (
                     <Th key={freq.value} fontSize={{ base: 'sm', md: 'md' }} textAlign="center">{freq.label}</Th>
                   ))}

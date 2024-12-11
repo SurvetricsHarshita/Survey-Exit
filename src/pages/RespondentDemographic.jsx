@@ -171,12 +171,12 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
   const validateForm = () => {
     const requiredFields = [
       ...formFieldsStep1.map((field) => field.name),
-      "AccompaniedBy",
-      ...(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2"
-        ? ["AccompaniedByName"]
+      "TypeofRespondent",
+      ...(formData.TypeofRespondent === "1" || formData.TypeofRespondent === "2"
+        ? ["TypeofRespondentName"]
         : []),
       "City",
-      "SubArea"
+   
     ];
 
     const isComplete = requiredFields.every((field) => formData[field]?.trim());
@@ -266,19 +266,19 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
           </div>
         ))}
         <div>
-          <FormLabel>Accompanied by</FormLabel>
+          <FormLabel>2.	Type of Respondent</FormLabel>
           <Select
-            name="AccompaniedBy"
-            value={formData.AccompaniedBy || ""}
+            name="TypeofRespondent"
+            value={formData.TypeofRespondent || ""}
             onChange={handleChange}
             focusBorderColor="black"
             borderColor="black"
             rounded="lg"
           >
             <option value="">Select</option>
-            <option value="1">Agency Supervisor</option>
-            <option value="2">MDL</option>
-            <option value="3">None</option>
+            <option value="a">	Exposed with Apollo Tyres Foundation / designated NGO based health intervention</option>
+            <option value="b">	Exposed with non-ATF based health intervention</option>
+            {/* <option value="3">None</option> */}
           </Select>
 
           <FormLabel mt={4}>City</FormLabel>
@@ -298,7 +298,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             ))}
           </Select>
 
-          {formData.City && subAreas[formData.City] && (
+          {/* {formData.City && subAreas[formData.City] && (
             <>
               <FormLabel mt={4}>Sub-Area</FormLabel>
               <Select
@@ -317,25 +317,25 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
                 ))}
               </Select>
             </>
-          )}
+          )} */}
         </div>
-        {(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2") && (
+        {/* {(formData.TypeofRespondent === "1" || formData.TypeofRespondent === "2") && (
           <div>
             <FormLabel>Enter Name:</FormLabel>
             <Input
-              name="AccompaniedByName"
+              name="TypeofRespondentName"
               placeholder="Enter name"
-              value={formData.AccompaniedByName || ""}
+              value={formData.TypeofRespondentName || ""}
               onChange={handleChange}
             />
           </div>
-        )}
+        )} */}
       </SimpleGrid>
 
       <Flex mt={10} justify="space-between" gap={10}>
         <PreviousButton onPrev={handlePrevious} />
         <NextButton onClick={handleSubmit} 
-        // isDisabled={!isFormComplete}
+        isDisabled={!isFormComplete}
          />
       </Flex>
     </Flex>

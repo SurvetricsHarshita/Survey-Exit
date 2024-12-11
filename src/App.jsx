@@ -24,7 +24,7 @@ function App() {
         m="4"
       >
         <Routes>
-          <Route path="/" element={  <QuestionForm />} />
+          <Route path="/" element={  <LoginPage />} />
           <Route
             path="/survey"
             element={

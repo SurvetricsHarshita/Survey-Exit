@@ -26,53 +26,57 @@ function LoginPage() {
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleLogin = async (event) => {
-    event.preventDefault(); // Prevent page reload on form submission
+  // const handleLogin = async (event) => {
+  //   event.preventDefault(); // Prevent page reload on form submission
 
-    if (!email || !password) {
-      toast({
-        title: 'Validation Error',
-        description: 'Both email and password are required.',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-        position: 'top-right',
-      });
-      return;
-    }
+  //   if (!email || !password) {
+  //     toast({
+  //       title: 'Validation Error',
+  //       description: 'Both email and password are required.',
+  //       status: 'error',
+  //       duration: 3000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //     return;
+  //   }
 
-    setIsSubmitting(true);
+  //   setIsSubmitting(true);
 
-    try {
-      const response = await axios.post('https://pptv-backend.vercel.app/login', { username: email, password});
+  //   try {
+  //     const response = await axios.post('https://pptv-backend.vercel.app/login', { username: email, password});
 
-      if (response.status === 200) {
-        toast({
-          title: 'Login Successful',
-          description: 'You have been successfully logged in.',
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-        localStorage.setItem("ProductsTest", JSON.stringify({ email: email }));
-        localStorage.setItem('email', JSON.stringify(email));
-        navigate('/survey'); // Navigate to the next page
-      }
-    } catch (error) {
-      toast({
-        title: 'Login Failed',
-        description: error.response?.data?.message || 'Invalid credentials. Please try again.',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-        position: 'top-right',
-      });
-    } finally {
-      setIsSubmitting(false); // Reset loading state
-    }
+  //     if (response.status === 200) {
+  //       toast({
+  //         title: 'Login Successful',
+  //         description: 'You have been successfully logged in.',
+  //         status: 'success',
+  //         duration: 3000,
+  //         isClosable: true,
+  //         position: 'top-right',
+  //       });
+  //       localStorage.setItem("ProductsTest", JSON.stringify({ email: email }));
+  //       localStorage.setItem('email', JSON.stringify(email));
+  //       navigate('/survey'); // Navigate to the next page
+  //     }
+  //   } catch (error) {
+  //     toast({
+  //       title: 'Login Failed',
+  //       description: error.response?.data?.message || 'Invalid credentials. Please try again.',
+  //       status: 'error',
+  //       duration: 3000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   } finally {
+  //     setIsSubmitting(false); // Reset loading state
+  //   }
+  // };
+  const handleLogin = (event) => {
+    event.preventDefault(); // Prevent form submission behavior
+    navigate('/survey'); // Directly navigate to the survey page
   };
-
+  
   return (
     <Center>
       <Box p={6}  width={{ base: '100%', sm: '400px' }} textAlign="center">

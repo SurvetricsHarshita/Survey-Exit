@@ -670,12 +670,9 @@ const English = {
       "question": "Which are symptoms of vision related problems?",
       "type": "multi",
       "options": [
+       
         {
-          "label": "Severe",
-          "code": ""
-        },
-        {
-          "label": "sudden eye pain",
+          "label": "Severe, sudden eye pain",
           "code": "1"
         },
         {
@@ -686,28 +683,18 @@ const English = {
           "label": "Hazy or Blurred vision",
           "code": "3"
         },
+       
         {
-          "label": "Swollen",
-          "code": ""
-        },
-        {
-          "label": "Red Eyes",
+          "label": "Swollen, Red Eyes",
           "code": "4"
         },
         {
           "label": "Difficulty in Seeing flashes of light",
           "code": "5"
         },
+       
         {
-          "label": "Unusual",
-          "code": ""
-        },
-        {
-          "label": "even painful",
-          "code": ""
-        },
-        {
-          "label": "sensitivity to light or glare",
+          "label": "Unusual, even painful, sensitivity to light or glare",
           "code": "6"
         },
         {
@@ -845,19 +832,17 @@ const English = {
           "label": "No",
           "code": "2"
         }
-      ]
+      ], checkAsk:true,
+      nextStep:4
     },
     "3.9": {
       "number": 3.9,
       "question": "For what vision related issue you have visited ATF/NGO health clinic.",
       "type": "radio",
       "options": [
+       
         {
-          "label": "Severe",
-          "code": ""
-        },
-        {
-          "label": "sudden eye pain",
+          "label": "Severe, sudden eye pain",
           "code": "1"
         },
         {
@@ -868,28 +853,18 @@ const English = {
           "label": "Hazy or Blurred vision",
           "code": "3"
         },
+       
         {
-          "label": "Swollen",
-          "code": ""
-        },
-        {
-          "label": "Red Eyes",
+          "label": "Swollen, Red Eyes",
           "code": "4"
         },
         {
           "label": "Difficulty in Seeing flashes of light",
           "code": "5"
         },
+        
         {
-          "label": "Unusual",
-          "code": ""
-        },
-        {
-          "label": "even painful",
-          "code": ""
-        },
-        {
-          "label": "sensitivity to light or glare",
+          "label": "Unusual, even painful, sensitivity to light or glare",
           "code": "6"
         },
         {
@@ -897,13 +872,13 @@ const English = {
           "code": "7"
         },
         {
-          "label": "Other (Specify )",
+          "label": "Others (Specify)",
           "code": "9"
         }
       ]
     },
-    "3.10A": {
-      "number": "3.10A",
+    "3.10": {
+      "number": "3.10",
       "question": "What kind of services were provided?",
       "type": "radio",
       "options": [
@@ -952,98 +927,107 @@ const English = {
       "number": 4.1,
       "question": "Awareness about Symptoms",
       "type": "rate",
+      section:"SECTION – 4 TB CARE",
       "STATEMENTS": [
+       
         {
-          "label": "If somebody is coughing for three or more weeks continuously",
-          "id": ""
+          "label": "If somebody is Coughing for three or more week continuously, he should not be worried as it is common due to seasonal changes",
+          "id": "4.1_A"
         },
+        
         {
-          "label": "he should not be worried as it is common due to seasonal changes",
-          "id": "A"
-        },
-        {
-          "label": "If there is weight loss",
-          "id": ""
-        },
-        {
-          "label": "he/she may be infected with TB",
-          "id": "B"
+          "label": "If there is weight loss, he/she may be infected with TB",
+          "id": "4.1_B"
         },
         {
           "label": "Chest pain is not a cause of TB",
-          "id": "C"
+          "id": "4.1_C"
         },
         {
           "label": "People say that sweating during night is one of the causes of TB",
-          "id": "D"
+          "id": "4.1_D"
         },
+        
         {
-          "label": "If a person has loss of appetite",
-          "id": ""
-        },
-        {
-          "label": "he should go for TB testing",
-          "id": "E"
+          "label": "If a person has loss of appetite, he should go for TB testing",
+          "id": "4.1_E"
         },
         {
           "label": "Regular headache can be one of the causes of TB",
-          "id": "F"
+          "id": "4.1_F"
         },
         {
           "label": "Is TB a communicable disease? It can be transmitted through cough/sneezing",
-          "id": "G"
+          "id": "4.1_G"
+        },
+        
+        {
+          "label": "Somebody experiences fever in the evening continuously for few days, he should get tested for TB",
+          "id": "4.1_H"
+        },
+        
+        {
+          "label": "If someone is coughing for two or more weeks, he/she should immediately get his/her sputum tested.",
+          "id": "4.1_I"
+        },
+        
+      ],
+      "FREQUENCIES": [
+        {
+          "label": "Agree",
+          "value": "1"
         },
         {
-          "label": "Somebody experiences fever in the evening continuously for a few days",
-          "id": ""
+          "label": "Disagree",
+          "value": "2"
         },
         {
-          "label": "he should get tested for TB",
-          "id": "H"
-        },
-        {
-          "label": "If someone is coughing for two or more weeks",
-          "id": ""
-        },
-        {
-          "label": "he/she should immediately get his/her sputum tested",
-          "id": "I"
-        },
+          "label": "DK/CS",
+          "value": "3"
+        }
+      ],
+      "instruction": "Now I am going to read out some statements, please tell whether you agree or disagree with this statement."
+    },
+    "4.12": {
+      "number": 4.1,
+      "question": "Awareness about Symptoms",
+      "type": "rate",
+      section:"SECTION – 4 TB CARE",
+      "STATEMENTS": [
+       
+     
         {
           "label": "TB infected person needs to collect his/her sputum in a covered container and wash that container in running water",
-          "id": "J"
+          "id": "4.1_J"
         },
         {
           "label": "TB infected person should cover his/her mouth with cloth while coughing",
-          "id": "K"
+          "id": "4.1_K"
         },
         {
           "label": "TB infected person can spit anywhere",
-          "id": "L"
+          "id": "4.1_L"
         },
+        
         {
-          "label": "If someone is diagnosed with TB",
-          "id": ""
-        },
-        {
-          "label": "he/she should not reveal this to anyone",
-          "id": "M"
+          "label": "If someone is diagnosed with TB, he/she should not reveal this to anyone.",
+          "id": "4.1_M"
         },
         {
           "label": "One should not take liquor or consume tobacco if diagnosed with TB",
-          "id": "N"
+          "id": "4.1_N"
         },
         {
           "label": "TB infected person should not hide his/her illness with anybody and should start treatment immediately as possible",
-          "id": "O"
+          "id": "4.1_O"
         },
         {
           "label": "TB infected person need not to complete his/her course of treatment if feeling better before completion of the course",
-          "id": "P"
+          "id": "4.1_P"
         },
         {
-          "label": "One should strictly follow instructions of the doctor and complete the entire course for complete recovery (Q).",
-          "id": ""
+          "label": "One should strictly follow instructions of the doctor and complete the entire course for complete recovery ",
+          "id": "4.1_Q"
         }
       ],
       "FREQUENCIES": [
@@ -1076,7 +1060,8 @@ const English = {
           "code": "2"
         }
       ],
-      "checkask": true
+      checkAsk:true,
+        nextStep:4
     },
     "4.3": {
       "number": 4.3,
@@ -1092,11 +1077,13 @@ const English = {
           "code": "2"
         }
       ],
-      "checkask": true
+      checkAsk:true,
+      nextStep:3
     },
     "4.4": {
       "number": 4.4,
       "question": "where did you go for sputum test or X-ray.",
+      type:"radio",
       "options": [
         {
           "label": "Govt. Health Facility",
@@ -1107,7 +1094,11 @@ const English = {
           "code": "2"
         },
         {
-          "label": "Other NGO Health Clinic(3) Private Health Facility / Pathology lab",
+          "label": "Other NGO Health Clinic",
+          "code": "3"
+        },
+        {
+          "label": "Private Health Facility / Pathology lab",
           "code": "4"
         },
         {
@@ -1119,6 +1110,7 @@ const English = {
     "4.5": {
       "number": 4.5,
       "question": "If gone to ATF or NGO health clinic, are you satisfied with services?",
+      type:"radio",
       "options": [
         {
           "label": "Yes",
@@ -1129,10 +1121,12 @@ const English = {
           "code": "2"
         }
       ]
-    },"5.1": {
+    },
+    "5.1": {
       "number": 5.1,
       "question": "When did you visited the doctor last time, were your blood pressure checked?",
       "type": "radio",
+      section:"SECTION – 5 DIABETES & HYPERTENSION",
       "options": [
         {
           "label": "Yes",
@@ -1143,7 +1137,8 @@ const English = {
           "code": "2"
         }
       ],
-      "checkask": true
+      "checkAsk": true,
+      nextStep:2
     },
     "5.2": {
       "number": 5.2,
@@ -1159,7 +1154,11 @@ const English = {
           "code": "2"
         },
         {
-          "label": "Fatigue / tiredness(3) Unexpected weight loss",
+          "label": "Fatigue / tiredness",
+          "code": "3"
+        },
+        {
+          "label": " Unexpected weight loss",
           "code": "4"
         },
         {
@@ -1167,7 +1166,7 @@ const English = {
           "code": "5"
         },
         {
-          "label": "Other (Specify )",
+          "label": "Others (Specify)",
           "code": "6"
         }
       ]
@@ -1198,7 +1197,7 @@ const English = {
           "code": "5"
         },
         {
-          "label": "Other (Specify )",
+          "label": "Others (Specify)",
           "code": "6"
         }
       ]
@@ -1244,7 +1243,8 @@ const English = {
           "code": "2"
         }
       ],
-      "checkask": true
+      "checkAsk": true,
+      nextStep:5
     },
     "5.6": {
       "number": 5.6,
@@ -1283,7 +1283,7 @@ const English = {
           "code": "4"
         },
         {
-          "label": "Any Other (Specify )",
+          "label": "Any other (Specify )",
           "code": "5"
         }
       ]
@@ -1308,63 +1308,66 @@ const English = {
       "question": "Are you satisfied with the services?",
       "type": "radio",
       "options": [
+        
         {
-          "label": "Yes",
-          "code": ""
-        },
-        {
-          "label": "very much satisfied",
+          "label": "Yes,very much satisfied",
           "code": "1"
         },
+       
         {
-          "label": "Yes",
-          "code": ""
-        },
-        {
-          "label": "satisfied to some extent",
+          "label": "Yes,satisfied to some extent",
           "code": "2"
         },
         {
           "label": "Not at all satisfied",
           "code": "3"
         }
-      ]
+      ],
+      
+
     },
-    "5.11": {
-      "number": 5.11,
+    "5.10": {
+      "number": "5.10",
       "question": "When did you visited the doctor last time, were your blood pressure checked?",
       "type": "radio",
       "options": [
         {
           "label": "Yes",
-          "code": ""
-        },
-        {
-          "label": "it was normal",
           "code": "1"
         },
         {
           "label": "No",
-          "code": ""
+          "code": "2"
+        },
+       
+      ],
+      checkAsk:true,
+      nextStep:3
+    },
+    "5.11": {
+      "number": 5.11,
+      "question": "Whether the blood pressure was normal?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Yes, it was normal",
+          "code": "1"
         },
         {
-          "label": "it was low",
+          "label": "No, it was low",
           "code": "2"
         },
         {
-          "label": "No",
-          "code": ""
-        },
-        {
-          "label": "it was high",
+          "label": "No, it was high",
           "code": "3"
         },
         {
           "label": "Don’t know as the doctor did not tell",
           "code": "4"
-        }
+        },
       ],
-      "checkask": true
+      checkAsk:true,
+      nextStep:2
     },
     "5.12": {
       "number": 5.12,
@@ -1408,14 +1411,39 @@ const English = {
           "code": "4"
         },
         {
-          "label": "Any Other (Specify )",
+          "label": "Any other (Specify )",
           "code": "5"
         }
       ]
-    },"6.1": {
+    },
+    "6.1": {
       "number": 6.1,
-      "question": " Are there any additional health topics you think ATF or NGO workers should address in their awareness sessions?",
-      "type": "input"
+      "question": "How long you know the ATF /NGO worker / health clinic at this	site?",
+      "type": "radio",
+      section:"SECTION 6: ROLE OF ATF OR NGO WORKER",
+      "options": [
+        {
+          "label": "One month",
+          "code": "1"
+        },
+        {
+          "label": "Three months",
+          "code": "2"
+        },
+        {
+          "label": "Six months",
+          "code": "3"
+        },
+        {
+          "label": "Twelve months",
+          "code": "4"
+        },
+        {
+          "label": "More than twelve months",
+          "code": "5"
+        },
+        
+      ]
     },
     "6.2": {
       "number": 6.2,
@@ -1443,7 +1471,7 @@ const English = {
           "code": "5"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "6"
         }
       ]
@@ -1504,7 +1532,7 @@ const English = {
           "code": "4"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "5"
         }
       ]
@@ -1555,22 +1583,19 @@ const English = {
           "code": "10"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "11"
         }
       ]
     },
     "6.7": {
       "number": 6.7,
-      "question": "\r\nHave these sessions help you.",
+      "question": "Have these sessions help you.",
       "type": "radio",
       "options": [
+        
         {
-          "label": "Yes",
-          "code": ""
-        },
-        {
-          "label": "very much",
+          "label": "Yes,very much",
           "code": "1"
         },
         {
@@ -1613,8 +1638,8 @@ const English = {
           "code": "6"
         },
         {
-          "label": "Other (Specify)",
-          "code": "7"
+          "label": "Others (Specify)",
+          "code": "9"
         }
       ]
     },
@@ -1623,8 +1648,15 @@ const English = {
       "question": "How would you rate the quality of interaction and information provided by ATF or NGO workers?",
       "type": "input"
     },
+    "6.10": {
+      "number": "6.10",
+      "question": " Are there any additional health topics you think ATF or NGO workers should address in their awareness sessions?",
+      "type": "input",
+      
+    },
     "7.1": {
       "number": 7.1,
+      section:"SECTION 7: AWARENESS ABOUT ATF / NGO HEALTHCARE CENTRE AND SERVICES",
       "question": "Are you aware of the health clinic run by ATF or NGO at this site?",
       "type": "radio",
       "options": [
@@ -1638,7 +1670,9 @@ const English = {
         }
       ],
       "instruction": "I will read out the following services one by one and ask certain questions from you.",
-      "checkask": true
+      checkAsk:true,
+      nextStep:8
+      // [Ask SECTION 7 from ATF / NGO beneficiaries (CODED “a” IN QUESTION “2” OF IDENTIFICATION DETAILS)]
     },
     "7.2": {
       "number": 7.2,
@@ -1666,8 +1700,8 @@ const English = {
           "code": "5"
         },
         {
-          "label": "Other health care/treatment (6).",
-          "code": ""
+          "label": "Other health care/treatment.",
+          "code": "6"
         }
       ]
     },
@@ -1693,8 +1727,8 @@ const English = {
           "code": "4"
         },
         {
-          "label": "Others (5).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "5"
         }
       ]
     },
@@ -1743,8 +1777,8 @@ const English = {
           "code": "2"
         },
         {
-          "label": "Only once (3).",
-          "code": ""
+          "label": "Only once",
+          "code": "3"
         }
       ]
     },
@@ -1766,8 +1800,8 @@ const English = {
           "code": "2"
         },
         {
-          "label": "Not satisfied (3).",
-          "code": ""
+          "label": "Not satisfied",
+          "code": "3"
         }
       ]
     },
@@ -1776,192 +1810,133 @@ const English = {
       "question": "Do you think you have been benefited after using these services?"
     },
     "8.1": {
+      question:"Perception about ATF / NGO worker / Health clinic",
       "number": 8.1,
       "type": "rate",
+      section:"SECTION 8: PERCEPTION ABOUT ATF / NGO WORKER / HEALTH CLINIC",
+      instruction:"Note: Now I will read out some statements to you one by one and ask you to tell me to what extent you agree / disagree with each of the statements on a five-point rating scale.",
       "STATEMENTS": [
         {
           "label": "Perception about ATF/NGO worker/Health clinic",
-          "id": "1"
+          "id": "8.1_1"
         },
         {
           "label": "I am aware that ATF/NGO workers are running a health clinic at site",
-          "id": "2"
+          "id": "8.1_2"
         },
         {
           "label": "The services provided by ATF/NGO health clinic are beneficial to the common people",
-          "id": "3"
+          "id": "8.1_3"
         },
         {
-          "label": "ATF/NGO workers have helped to access free health services like HIV/AIDS",
-          "id": ""
+          "label": "ATF / NGO worker have helped to access the free health services like HIV/AIDS, STI, Eye, Sugar, & High BP testing or other health care treatment",
+          "id": "8.1_4"
         },
-        {
-          "label": "STI",
-          "id": ""
-        },
-        {
-          "label": "Eye",
-          "id": ""
-        },
-        {
-          "label": "Sugar",
-          "id": ""
-        },
-        {
-          "label": "& High BP testing or other health care treatment",
-          "id": "4"
-        },
+        
+        
         {
           "label": "I am highly dependent upon ATF/NGO health clinic for my health whenever I come to the site",
-          "id": "5"
+          "id": "8.1_5"
         },
+        
         {
-          "label": "In need of health treatment",
-          "id": ""
+          "label": "In the need of health treatment, I prefer to go ATF / NGO health clinic as not only it is affordable but the quality of services is good",
+          "id": "8.1_6"
         },
+       
         {
-          "label": "I prefer to go to ATF/NGO health clinic as not only it is affordable but the quality of services is good",
-          "id": "6"
-        },
-        {
-          "label": "There is no health facility available nearby this site. Hence",
-          "id": ""
-        },
-        {
-          "label": "I go for ATF/NGO clinic",
-          "id": "7"
+          "label": "There is no health facility available nearby this site. Hence, I go for ATF / NGO clinic",
+          "id": "8.1_7"
         },
         {
           "label": "ATF/NGO workers organize awareness activities quite regularly for the community members",
-          "id": "8"
+          "id": "8.1_8"
+        },
+        
+      
+        {
+          "label": "ATF / NGO worker are always approachable and they extend all possible help in clarifying doubts related   to   HIV/AIDS, Vision,  TB, Hypertension, Diabetes and others",
+          "id": "8.1_9"
+        },
+       
+       
+      ],
+      "FREQUENCIES": [
+        {
+          "label": "Strongly Agree",
+          "value": "5"
         },
         {
-          "label": "ATF/NGO workers are always approachable and they extend all possible help in clarifying doubts related to HIV/AIDS",
-          "id": ""
+          "label": "Agree",
+          "value": "4"
         },
         {
-          "label": "Vision",
-          "id": ""
+          "label": "Neither agree nor disagree",
+          "value": "3"
         },
         {
-          "label": "TB",
-          "id": ""
+          "label": "Disagree",
+          "value": "2"
         },
         {
-          "label": "Hypertension",
-          "id": ""
+          "label": "Strongly Disagree",
+          "value": "1"
         },
         {
-          "label": "Diabetes",
-          "id": ""
-        },
+          "label": "DK/CS",
+          "value": "8"
+        }
+      ]
+    },
+    "8.11": {
+      question:"Perception about ATF / NGO worker / Health clinic",
+      "number": 8.1,
+      "type": "rate",
+      // section:"SECTION 8: PERCEPTION ABOUT ATF / NGO WORKER / HEALTH CLINIC",
+      instruction:"Note: Now I will read out some statements to you one by one and ask you to tell me to what extent you agree / disagree with each of the statements on a five-point rating scale.",
+      "STATEMENTS": [
+       
+       
         {
-          "label": "and others",
-          "id": "9"
+          "label": "ATF / NGO worker did not have adequate understanding and knowledge about HIV/AIDS, STI, Vision Care, TB, Hypertension, & Diabetes related problems",
+          "id": "8.1_10"
         },
+       
         {
-          "label": "ATF/NGO workers did not have adequate understanding and knowledge about HIV/AIDS",
-          "id": ""
-        },
-        {
-          "label": "STI",
-          "id": ""
-        },
-        {
-          "label": "Vision Care",
-          "id": ""
-        },
-        {
-          "label": "TB",
-          "id": ""
-        },
-        {
-          "label": "Hypertension",
-          "id": ""
-        },
-        {
-          "label": "& Diabetes-related problems",
-          "id": "10"
-        },
-        {
-          "label": "The information on HIV/AIDS",
-          "id": ""
-        },
-        {
-          "label": "STI",
-          "id": ""
-        },
-        {
-          "label": "Vision Care",
-          "id": ""
-        },
-        {
-          "label": "TB",
-          "id": ""
-        },
-        {
-          "label": "Hypertension",
-          "id": ""
-        },
-        {
-          "label": "Diabetes/Sugar provided by ATF/NGO workers is useful",
-          "id": "11"
+          "label": "The information on HIV/AIDS, STI, Vision Care, TB, Hypertension, Diabetes/Sugar provided by ATF / NGO worker is useful ",
+          "id": "8.1_11"
         },
         {
           "label": "The IPC session conducted by ATF/NGO workers is not effective as they could not answer all/some of my queries",
-          "id": "12"
+          "id": "8.1_12"
         },
+        
         {
-          "label": "ATF/NGO workers often organize programs at the site for HIV/AIDS",
-          "id": ""
+          "label": "ATF / NGO worker often organize programme at the site for HIV/AIDS, Vision Care, TB, Diabetes & Hypertension awareness generation",
+          "id": "8.1_13"
         },
+       
         {
-          "label": "Vision Care",
-          "id": ""
-        },
-        {
-          "label": "TB",
-          "id": ""
-        },
-        {
-          "label": "Diabetes & Hypertension awareness generation",
-          "id": "13"
-        },
-        {
-          "label": "ATF/NGO workers maintain the confidentiality",
-          "id": ""
-        },
-        {
-          "label": "privacy",
-          "id": ""
-        },
-        {
-          "label": "and identity of the members",
-          "id": "14"
+          "label": "ATF / NGO worker maintain the confidentiality, privacy and identity of the members",
+          "id": "8.1_14"
         },
         {
           "label": "They work in collaboration with community stakeholders",
-          "id": "15"
+          "id": "8.1_15"
         },
         {
           "label": "I can afford more than what ATF/NGO charges as fees for treatment",
-          "id": "16"
+          "id": "8.1_16"
         },
+        
         {
-          "label": "I am satisfied with the role of ATF/NGO workers which has helped me in protecting myself from HIV/AIDS/STI",
-          "id": ""
+          "label": "I am satisfied with the role of ATF / NGO worker which has helped me in protecting myself from HIV / AIDS / STI, etc.",
+          "id": "8.1_17"
         },
+        
         {
-          "label": "etc.",
-          "id": "17"
-        },
-        {
-          "label": "Overall",
-          "id": ""
-        },
-        {
-          "label": "I am satisfied with the role of ATF/NGO workers and I will always purchase Apollo tyres in future also (18).",
-          "id": ""
+          "label": "Overall,I am satisfied with the role of ATF/NGO workers and I will always purchase Apollo tyres in future also.",
+          "id": "8.1_18"
         }
       ],
       "FREQUENCIES": [
@@ -1986,8 +1961,8 @@ const English = {
           "value": "1"
         },
         {
-          "label": "DK/CS (8).",
-          "value": ""
+          "label": "DK/CS",
+          "value": "8"
         }
       ]
     },
@@ -1996,12 +1971,9 @@ const English = {
       "question": "what are your future expectations from ATF / NGO worker?\r\n\r\n\r\n[Please use the given codes]",
       "type": "radio",
       "options": [
+       
         {
-          "label": "More information about STI",
-          "code": ""
-        },
-        {
-          "label": "AIDS",
+          "label": "More information about STI, AIDS",
           "code": "1"
         },
         {
@@ -2017,21 +1989,15 @@ const English = {
           "code": "4"
         },
         {
-          "label": "More information on health services like ART/ICTC/STI",
-          "code": ""
-        },
-        {
-          "label": "etc.",
+          "label": "More information on health services like ART/ICTC/STI etc.",
           "code": "5"
         },
+       
         {
-          "label": "Referral of health services like ART/ICTC/STI",
-          "code": ""
-        },
-        {
-          "label": "etc.",
+          "label": "Referral of health services like ART/ICTC/STI etc.",
           "code": "6"
         },
+        
         {
           "label": "Free checkup or testing facility",
           "code": "7"
@@ -2041,11 +2007,12 @@ const English = {
           "code": "8"
         },
         {
-          "label": "Other (Specify) (9).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "9"
         }
       ]
     },
+    
     "8.3": {
       "number": 8.3,
       "question": "Do you think the ATF/NGO healthcare centres are adequately equipped to handle common health issues faced by truckers?",
@@ -2058,71 +2025,23 @@ const English = {
     },
     "9.1": {
       "number": 9.1,
-      "question": "How would you rate brands of tyres on given parameters\r\n\r\n\r\n(Quality of a tyre includes smoothness, retreading, power, noise level, cushioning etc.) ",
-      "label": "Brand Name",
-      "STATEMENTS": [
+      "question": "Have you heard of Apollo Tyres? ",
+      // "label": "Brand Name",
+      type:"radio",
+
+      "options": [
+       
         {
-          "label": "Apollo Tyre",
-          "id": "1"
+          "label": "Yes",
+          "code": "1"
         },
         {
-          "label": "MRF",
-          "id": "2"
+          "label": "No",
+          "code": "2"
         },
-        {
-          "label": "JK",
-          "id": "3"
-        },
-        {
-          "label": "Bridgestone",
-          "id": "4"
-        },
-        {
-          "label": "Birla",
-          "id": "5"
-        },
-        {
-          "label": "Continental",
-          "id": "6"
-        },
-        {
-          "label": "Goodyear",
-          "id": "7"
-        },
-        {
-          "label": "Other",
-          "id": "Specify"
-        }
-      ],
-      "FREQUENCIES": [
-        {
-          "label": "Price",
-          "value": "1"
-        },
-        {
-          "label": "Quality",
-          "value": "2"
-        },
-        {
-          "label": "Safety",
-          "value": "3"
-        },
-        {
-          "label": "Durability",
-          "value": "4"
-        },
-        {
-          "label": "Availability",
-          "value": "5"
-        },
-        {
-          "label": "Company image",
-          "value": "6"
-        },
-        {
-          "label": "Social work (7).",
-          "value": ""
-        }
+      
+        
+     
       ]
     },
     "9.2": {
@@ -2139,8 +2058,8 @@ const English = {
           "code": "2"
         },
         {
-          "label": "Other (Specify) (3).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "3"
         }
       ]
     },
@@ -2174,12 +2093,12 @@ const English = {
           "code": "6"
         },
         {
-          "label": "Other (Specify)",
-          "code": "7"
+          "label": "Others (Specify)",
+          "code": "9"
         },
         {
-          "label": "Don’t remember (8).",
-          "code": ""
+          "label": "Don’t remember ",
+          "code": "10"
         }
       ]
     },
@@ -2217,8 +2136,8 @@ const English = {
           "code": "7"
         },
         {
-          "label": "Other (Specify) (8).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "9"
         }
       ]
     },
@@ -2229,7 +2148,7 @@ const English = {
     },
     "9.6": {
       "number": 9.6,
-      "question": "What are the reasons for preferring this brand over others? RECORD VERBATIM AND THEN POST CODE -------\r\n",
+      "question": "What are the reasons for preferring this brand over others? RECORD VERBATIM AND THEN POST CODE -------",
       "type": "radio",
       "options": [
         {
@@ -2289,8 +2208,8 @@ const English = {
           "code": "14"
         },
         {
-          "label": "Other (Specify) (15).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "99"
         }
       ]
     },
@@ -2298,7 +2217,7 @@ const English = {
       "number": 9.7,
       "question": "What is your opinion about Apollo Tyres ",
       "type": "input",
-      "label": "  Insert 5 Point Scale \r\nVery Good 5   4    3   2   1   Very Poor"
+      "label": " Insert 5 Point Scale \r\nVery Good 5   4    3   2   1   Very Poor"
     },
     "9.7(i)": {
       "number": "9.7(i)",
@@ -2313,7 +2232,9 @@ const English = {
           "label": "No",
           "code": "2"
         }
-      ]
+      ],
+      checkAsk:true,
+      nextStep:4
     },
     "9.8a": {
       "number": "9.8a",
@@ -2403,14 +2324,86 @@ const English = {
           "code": "15"
         },
         {
-          "label": "Other (Specify) (99).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "99"
+        }
+      ]
+    },
+    "9.10": {
+      "number": "9.10",
+      "question": "How would you rate brands of tyres on given parameters (Quality of a tyre includes smoothness, retreading, power, noise level, cushioning etc.) ",
+      // "label": "Brand Name",
+      heading:"Brand Name",
+      type:"rank",
+      "STATEMENTS": [
+        {
+          "label": "Apollo Tyre",
+          "id": "9.10_1"
+        },
+        {
+          "label": "MRF",
+          "id": "9.10_2"
+        },
+        {
+          "label": "JK",
+          "id": "9.10_3"
+        },
+        {
+          "label": "Bridgestone",
+          "id": "9.10_4"
+        },
+        {
+          "label": "Birla",
+          "id": "9.10_5"
+        },
+        {
+          "label": "Continental",
+          "id": "9.10_6"
+        },
+        {
+          "label": "Goodyear",
+          "id": "9.10_7"
+        },
+        // {
+        //   "label": "Other",
+        //   "id": "9.10_99"
+        // }
+      ],
+      "FREQUENCIES": [
+        {
+          "label": "Price",
+          "value": "1"
+        },
+        {
+          "label": "Quality",
+          "value": "2"
+        },
+        {
+          "label": "Safety",
+          "value": "3"
+        },
+        {
+          "label": "Durability",
+          "value": "4"
+        },
+        {
+          "label": "Availability",
+          "value": "5"
+        },
+        {
+          "label": "Company image",
+          "value": "6"
+        },
+        {
+          "label": "Social work .",
+          "value": "7"
         }
       ]
     },
     "9.11": {
       "number": 9.11,
       "question": "Before purchasing a tyre what will be the key factor a transporter/ truck driver will keep in his mind? (RANK)\r\nREAD OUT THE OPTIONS BEFORE RANKING",
+      type:"radio",
       "options": [
         {
           "label": "Low price",
@@ -2461,10 +2454,11 @@ const English = {
           "code": "12"
         },
         {
-          "label": "Other (Specify) (99).",
-          "code": ""
+          "label": "Others (Specify)",
+          "code": "99"
         }
-      ]
+      ],
+ 
     },
     "9.12": {
       "number": 9.12,
@@ -2520,15 +2514,16 @@ const English = {
           "code": "12"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "99"
         }
-      ]
+      ],     maxSelections:3
     },
     "9.13": {
       "number": 9.13,
-      "question": "RANK 3 major weaknesses\r\nof Apollo tyres\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t",
+      "question": "RANK 3 major weaknesses\r\nof Apollo tyres.",
       "type": "multi",
+      maxSelections:3,
       "options": [
         {
           "label": "Price higher than competition",
@@ -2563,23 +2558,22 @@ const English = {
           "code": "8"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "99"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+        
       ]
     },
     "9.14a": {
       "number": "9.14a",
-      "question": "In years",
+      question:"a)	If using Apollo tyres currently, from how long you are using this brand",
+      "label": "In years",
       "type": "input"
     },
     "9.14b": {
+      question:"a)	If using Apollo tyres currently, from how long you are using this brand",
       "number": "9.14b",
-      "question": "In Months",
+      "label": "In Months",
       "type": "input"
     },
     "9.14c": {
@@ -2625,13 +2619,10 @@ const English = {
           "code": "8"
         },
         {
-          "label": "Other (Specify)",
-          "code": "99"
+          "label": "Others (Specify)",
+          "code": "9"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+        
       ]
     },
     "9.16": {
@@ -2700,13 +2691,10 @@ const English = {
           "code": "15"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "99"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+       
       ]
     },
     "9.17": {
@@ -2750,14 +2738,15 @@ const English = {
           "code": "5"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "9"
-        },
-        {
-          "label": "",
-          "code": ""
         }
-      ]
+        
+      ],
+      termination:true,
+
+      // checkAsk:true,
+      // nextStep:7
     },
     "9.19": {
       "number": 9.19,
@@ -2776,17 +2765,35 @@ const English = {
           "label": "Don’t know/can’t say",
           "code": "3"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+       
       ],
+       checkAsk:true,
+      nextStep:2,
       "instruction": "INSTRUCTION: ASK FROM THOSE WHO HAVE CODED”1” IN 7.1 TERMINATE THE INTERVIEW OTHERWISE."
     },
     "9.21": {
       "number": 9.21,
       "question": "Do you think the purchasing of Apollo tyres has increased considering the works that ATF is doing?",
-      "type": "radio"
+      "type": "radio",
+      "options": [
+        {
+          "label": "Very much",
+          "code": "1"
+        },
+        {
+          "label": "To an extent",
+          "code": "2"
+        },
+        {
+          "label": "Not much",
+          "code": "3"
+        },
+        {
+          "label": "Don’t know/can’t say",
+          "code": "4"
+        },
+        
+      ]
     },
     "9.22": {
       "number": 9.22,
@@ -2809,16 +2816,13 @@ const English = {
           "label": "Don’t know/can’t say",
           "code": "4"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+        
       ]
     },
     "9.23": {
       "number": 9.23,
       "question": "Can you explain the reason for your answer to above question\r\n\r\n",
-      "type": "radio",
+      "type": "input",
       "instruction": "\r\n\r\nPlease note VERBATIM for any of the options mentioned above"
     },
     "9.24": {
@@ -2851,13 +2855,10 @@ const English = {
           "code": "6"
         },
         {
-          "label": "Other (Specify)",
+          "label": "Others (Specify)",
           "code": "9"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+       
       ]
     },
     "9.26": {

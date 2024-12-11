@@ -1,7 +1,7 @@
 export const othersSpecify = [
 "Others (Specify)",
 
-"Others"
+"Others","Any other (Specify )",
 ]
 
 export  const othersPlaceholders = {

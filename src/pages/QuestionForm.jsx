@@ -449,7 +449,7 @@ const [isTerminating, setIsTerminating] = useState(false);
       alert("terminated");
       // onOpen()
       // navigate("/terminate")
-      // navigate("/submit", { state: { msg: "terminated" } });
+      navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
     }
     if (!demographicAnswered) {
@@ -564,14 +564,39 @@ const [isTerminating, setIsTerminating] = useState(false);
 
   // setMulti(1)
   const handlePrevious = () => {
- 
-     setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
- 
+    let includesArray = ["2.1", "4.1", "5.1", "5.10", "5.13", "8.1","9.10"];
+    if (includesArray.includes(currentQuestion.number)) {
+      setCurrentQuestionIndex((prevIndex) => {
+        let newIndex = prevIndex;
 
-   // Reset other global states or perform cleanup
-   setSliderMoved(false);
-   setOther(false)
- };
+        // Loop to find the previous question with a response
+        while (newIndex > 0) {
+          newIndex -= 1; // Decrement the index
+          const prevQuestionKey = questions[newIndex]?.number;
+
+          // Break the loop if a response is found for the question
+          if (responses[prevQuestionKey]) {
+            break;
+          }
+
+          // If no response and index reaches 0, exit the loop
+          if (newIndex === 0) {
+            break;
+          }
+        }
+
+        return newIndex; // Update to the new index
+      });
+    } else {
+      setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    }
+
+    // }
+
+    // Reset other global states or perform cleanup
+    setSliderMoved(false);
+    setOther(false);
+  };
 
   const handleSubmit = async () => {
     setSubmiiting(true)
@@ -752,6 +777,7 @@ const [isTerminating, setIsTerminating] = useState(false);
       return (
         !mediaFrequencies ||
         Object.values(mediaFrequencies).some((value) => value === "")
+      
       );
     }
 
