@@ -4,6 +4,9 @@ function useAsk() {
   function isAsk(question, answer, storedData) {
     const questionHandlers = {
       S9e: () => handleS9e(answer, storedData),
+      1.13: () => handleQ13(answer),
+      3.7: () => handleQ37(answer, storedData),
+      3.8: () => handleQ37(answer, storedData),
     };
 
     if (questionHandlers[question]) {
@@ -15,7 +18,22 @@ function useAsk() {
     }
     return false;
   }
+  function handleQ13(answer) {
+    
 
+    if (answer == "1" ) {
+      return false;
+    }
+    return true;
+  }
+  function handleQ37(answer) {
+    
+console.log(answer)
+    if (answer == "1" ) {
+      return false;
+    }
+    return true;
+  }
   function handleS9e(answer, storedData) {
     console.log("hi", storedData);
     const s4aValue = storedData["S9e"] || "";

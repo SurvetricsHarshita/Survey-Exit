@@ -24,13 +24,13 @@ function App() {
         m="4"
       >
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={  <QuestionForm />} />
           <Route
             path="/survey"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <QuestionForm />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route path="/submit" element={<SubmitMsg />} />

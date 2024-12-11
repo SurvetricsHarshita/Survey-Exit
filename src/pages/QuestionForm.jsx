@@ -49,16 +49,12 @@ import MultiInput from "../components/Questions/MultiInput";
 import SelectLanguage from "../components/atoms/SelectLanguage";
 import hindi from "../components/translationFiles/QuestionsMapping/hindi";
 import Q9Consent from "../components/Questions/Q9Consent";
+import Introduction from "../components/atoms/Introduction";
 
 
 function QuestionForm() {
-  const { Section1, Section2 } = products || {};  // Add fallback to prevent destructuring null
-  const {
-    Section1: HiSection1,
-    Section2: HiSection2,
-   
-  } = hindi;
-;  // Add fallback to prevent destructuring null
+  const { Section1, Section2 ,Section3} = products || {};  // Add fallback to prevent destructuring null
+  // Add fallback to prevent destructuring null
 const { isOpen, onOpen, onClose } = useDisclosure();
 const [isTerminating, setIsTerminating] = useState(false);
   const [sliderMoved, setSliderMoved] = useState(false);
@@ -66,7 +62,7 @@ const [isTerminating, setIsTerminating] = useState(false);
   const [sectionIndex, setSectionIndex] = useState(0);
   // Default is English
   const [language, setLanguage] = useState("en");
-  const [sections, setSections] = useState([Section1,Section2,]); // Default is English
+  const [sections, setSections] = useState([Section1,Section2,Section3]); // Default is English
   const [loading, setLoading] = useState(true);
   const [nccs, setNccs] = useState();
   const [isOther, setOther] = useState(false);
@@ -146,18 +142,18 @@ const [isTerminating, setIsTerminating] = useState(false);
     setLanguage(selectedLanguage);
     switch (language) {
       case "en":
-        setSections([Section1, Section2]);
+        setSections([Section1, Section2,Section3]);
         break;
-        case "hi":
-          setSections([
-            HiSection1,
-            HiSection2,
+        // case "hi":
+        //   setSections([
+        //     HiSection1,
+        //     HiSection2,
          
-          ]);
-        break;
+        //   ]);
+        // break;
 
       default:
-        setSections([Section1,Section2]); // Default to English if no match
+        setSections([Section1, Section2,Section3]);; // Default to English if no match
         break;
     }
 
@@ -166,7 +162,8 @@ const [isTerminating, setIsTerminating] = useState(false);
 
   const questions = loading
     ? []
-    : [...Object.values(sections[0]),...Object.values(sections[1])]
+    : [...Object.values(sections[0]),...Object.values(sections[1]),
+      ...Object.values(sections[2])]
 
   const [isLoading, setIsLoading] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
@@ -228,9 +225,10 @@ const [isTerminating, setIsTerminating] = useState(false);
 
   const handleResponseChange = (key, value, index) => {
     let keyForOtherSpecify = "";
-
+    // alert(value)
     // Loop through options and find the "Other" option
     currentQuestion.options.forEach((option, idx) => {
+      // alert(option.label)
       if (othersSpecify.includes(option.label)) {
 
         // alert(option.label)
@@ -449,7 +447,7 @@ const [isTerminating, setIsTerminating] = useState(false);
      
     if (terminate) {
       alert("terminated");
-      onOpen()
+      // onOpen()
       // navigate("/terminate")
       // navigate("/submit", { state: { msg: "terminated" } });
       setTerminate(false);
@@ -767,7 +765,10 @@ const [isTerminating, setIsTerminating] = useState(false);
     if (currentQuestion.type === "RatingSlider" || currentQuestion.type === "segment") {
       return !sliderMoved;
     }
-  
+    if (currentQuestion.type == "Introduction") {
+      return false
+     
+    }
     // Radio question handling with "Other" option
     if (currentQuestion.type === "radio" && isOther) {
       return !otherInput.trim(); // Ensure "Other" input is not empty
@@ -900,12 +901,12 @@ const [isTerminating, setIsTerminating] = useState(false);
         <FormControl mb={4} >
 {/* subLabel */}
         {/* <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/> */}
-          <Text fontSize={{ base: '14px', md: '20px' }} fontWeight={700} mb={30}>
+          <Text fontSize={{ base: '18px', md: '20px' }} fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>
           <FormLabel fontSize={{ base: '16px', md: '20px' }} mb={30} >
             {" "}
-            {currentQuestion.number} .{currentQuestion.question} 
+            {currentQuestion.number} {currentQuestion.question} 
 
             {}
             <br />
@@ -950,6 +951,13 @@ const [isTerminating, setIsTerminating] = useState(false);
               handleOtherInputChange={handleOtherInputChange}
               
               isOther={isOther}
+            />
+          ):currentQuestion.type === "Introduction" ? (
+            <Introduction
+              currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              
             />
           ): currentQuestion.type === "matrixInput" ? (
             <MatrixInput
@@ -1157,14 +1165,14 @@ const [isTerminating, setIsTerminating] = useState(false);
     </PreviousButton>
 
     {/* Terminate Button */}
-    <Button
+    {/* <Button
       colorScheme="red"
       bg="#e40a0a"
       w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
       onClick={onOpen}
     >
       Terminate
-    </Button>
+    </Button> */}
     <Modal isOpen={isOpen}  onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

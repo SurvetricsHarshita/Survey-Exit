@@ -5,9 +5,9 @@ function useSurveyTermination() {
 
     
     const questionHandlers = {
-      QH: () => radioHandler(answer, terminationCodes),
+      QConsent: () => radioHandler(answer, terminationCodes),
       Introduction: () => radioHandler(answer, terminationCodes),
-QConsent: () => radioHandler(answer, terminationCodes),
+
 Q2_c: () => handleQ2_c(answer),
 Q2_d1: () => radioHandler(answer, terminationCodes),
       Q1: () => radioHandler(answer, terminationCodes),

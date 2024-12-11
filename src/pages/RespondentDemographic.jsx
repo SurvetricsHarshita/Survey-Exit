@@ -334,7 +334,9 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
 
       <Flex mt={10} justify="space-between" gap={10}>
         <PreviousButton onPrev={handlePrevious} />
-        <NextButton onClick={handleSubmit} isDisabled={!isFormComplete} />
+        <NextButton onClick={handleSubmit} 
+        // isDisabled={!isFormComplete}
+         />
       </Flex>
     </Flex>
   );
