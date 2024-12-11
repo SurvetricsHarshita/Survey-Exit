@@ -24,11 +24,110 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
   const [error, setError] = useState("");
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [city, setCity] = useState();
   const [isFormComplete, setIsFormComplete] = useState(false);
-  const langText = languageText[language] || languageText["en"];
   const toast = useToast();
   const navigate = useNavigate();
+
+  const subAreas = {
+    Kolkata: [
+      "Rammohan Roy Road",
+      "Golf Green",
+      "Northern Avenue",
+      "Biren Roy Road",
+      "South Sinthee Road",
+      "Patuli",
+      "S C Mallick Road(Sulekha)",
+      "Lake Gardens",
+      "Indra Biswas Road",
+      "Ramgarh",
+      "Poddar Nagar",
+    ],
+    Mumbai: [
+      "Lokhandwala Complex",
+      "Ashok Tower-Kalpataru",
+      "Thakur Village",
+      "Bhakti Park-Dosti Acres",
+      "Old Cadel Road",
+      "Shivaji Park",
+      "Prarthana Samaj, Girgaon",
+      "Union Park",
+      "Versova",
+      "Carter Road",
+      "Hill Road",
+      "NRI Complex-DPS School",
+      "Utsav Chowk Road",
+      "Malabar Hill",
+      "Pedder Road",
+      "Vasant Vihar",
+    ],
+    Delhi: [
+      "Pachim Vihar",
+      "IP Extension",
+      "South Ex -Part 1",
+      "GK -1",
+      "Janakpuri",
+      "Rajouri Garden",
+      "Preet Vihar",
+      "Malviya Nagar",
+      "Indirapuram -Ghaziabad",
+      "Nirwana Country Gurgaon",
+      "South City Sec 59 Gurgaon",
+      "Sec-22 Noida",
+    ],
+    Chennai: [
+      "Chetpet",
+      "KK Nagar",
+      "Anna Nagar West",
+      "Jafferkhanpet",
+      "Saidapet",
+      "Mandaveli",
+      "Kotturpuram",
+      "Kilpauk",
+      "Nungambakkam",
+      "Kolathur",
+      "Shenoy Nagar",
+      "West Mambalam",
+      "Velachery",
+      "Virugambakkam",
+      "Mylapore",
+    ],
+    Hyderabad: [
+      "P&T Colony",
+      "Chaitnyapuri",
+      "DD Colony",
+      "Tarnaka",
+      "Marredpally",
+      "Begumpet",
+      "Prakashnagar",
+      "Kukatpally",
+      "KPHB",
+      "Himayatnagar",
+      "Vanasthalipuram",
+      "Banjara Hills",
+      "Jubilee Hills",
+      "HITEC City (Madhapur and Kondapur)",
+      "Gachibowli",
+      "Kokapet",
+    ],
+    Bangalore: [
+      "Mathikere",
+      "Sanjay Nagar",
+      "Banasawadi",
+      "R R Nagar",
+      "Banashakari",
+      "Nagarabavi",
+      "Rajajinagar",
+      "Koramagala",
+      "Hosakerahalli",
+      "Willson Garden",
+      "Ulsoor",
+      "Malleshwaram",
+      "Jayanagar",
+      "Sadashivanagar",
+      "Indranagar",
+    ],
+  
+  };
 
   useEffect(() => {
     requestMicrophonePermission();
@@ -66,14 +165,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Update form data
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-
-    // Save city to local storage
-    if (name === "City") {
-      setCity(value);
-    }
   };
 
   const validateForm = () => {
@@ -83,13 +175,13 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
       ...(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2"
         ? ["AccompaniedByName"]
         : []),
-      "City", // Ensure 'City' is included as a required field
+      "City",
+      "SubArea"
     ];
 
     const isComplete = requiredFields.every((field) => formData[field]?.trim());
     setIsFormComplete(isComplete);
-};
-
+  };
 
   const handleValidationError = (errorMessage) => {
     toast({
@@ -121,8 +213,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
     };
 
     localStorage.setItem("ProductsTest", JSON.stringify(updatedData));
-
-    handleNext(); // Proceed to the next step
+    handleNext();
   };
 
   const handlePrevious = () => {
@@ -144,7 +235,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
       pl={{ base: "10", md: "4", lg: "6" }}
     >
       <Text fontSize="xl" fontWeight="bold" mb={9}>
-        {langText.title}
+        Respondent Demographics
       </Text>
 
       {error && (
@@ -184,11 +275,12 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             borderColor="black"
             rounded="lg"
           >
-            <option value="">Select </option>
+            <option value="">Select</option>
             <option value="1">Agency Supervisor</option>
             <option value="2">MDL</option>
             <option value="3">None</option>
           </Select>
+
           <FormLabel mt={4}>City</FormLabel>
           <Select
             name="City"
@@ -199,13 +291,33 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             rounded="lg"
           >
             <option value="">Select</option>
-            <option value="1">Bangalore</option>
-            <option value="2">Chennai</option>
-            <option value="3">Delhi</option>
-            <option value="4">Hyderabad</option>
-            <option value="5">Kolkata</option>
-            <option value="6">Mumbai</option>
+            {Object.keys(subAreas).map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
           </Select>
+
+          {formData.City && subAreas[formData.City] && (
+            <>
+              <FormLabel mt={4}>Sub-Area</FormLabel>
+              <Select
+                name="SubArea"
+                value={formData.SubArea || ""}
+                onChange={handleChange}
+                focusBorderColor="black"
+                borderColor="black"
+                rounded="lg"
+              >
+                <option value="">Select</option>
+                {subAreas[formData.City].map((area, index) => (
+                  <option key={index} value={area}>
+                    {area}
+                  </option>
+                ))}
+              </Select>
+            </>
+          )}
         </div>
         {(formData.AccompaniedBy === "1" || formData.AccompaniedBy === "2") && (
           <div>
