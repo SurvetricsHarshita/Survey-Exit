@@ -349,7 +349,7 @@ const English = {
       Section2:{
      
     "2.1": {
-      "number": 2.1,
+        "number": "2.1",
       "question": "What are your main sources of information about HIV/AIDS and STI?",
       "type": "multi",
       section:"SECTION 2: AWARENESS, KNOWLEDGE, AND ATTITUDE ABOUT HIV/AIDS AND STI",
