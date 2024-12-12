@@ -2,10 +2,10 @@ export const languageText = {
 
   en: {
     title: "Interveiewer details",
-    // name: "Name of the Respondent",
+    name: "Name of the Respondent",
    
     // address: "Address",
-    // contact: "Contact number",
+    contact: "Contact number",
     // doorNo: "Door / House / Bldng No.",
     // floorNo: "Floor No.",
     // houseName: "House / Flat Name",
@@ -20,7 +20,7 @@ export const languageText = {
     // emailId: "e-mail ID",
     // City:"enter city",
     interviewerName: "Interviewer Name",
-    // interviewerId: "Interviewer ID",
+    interviewerId: "Interviewer ID",
     next: "Next",
     previous: "Previous",
     // place: "Place of Interview",
@@ -32,17 +32,17 @@ export const languageText = {
 
 // src/static/formFields.js
 export const formFieldsStep1 = [
-  // { name: "name", placeholder: "Name of the Respondent" },
-  
+  { name: "name", placeholder: "Name of the Respondent" },
+  { name: "contact", placeholder: "Contact number",type: "number" ,},
   // { name: " City", placeholder: "	Name of City",},
   { name: "interviewerName", placeholder: "	Name of the interviewer" },
-  // { name: "interviewerId", placeholder: "Interviewer ID" },
+  { name: "interviewerId", placeholder: "Interviewer ID" },
  
 ];
 
 // export const formFieldsStep2=[ { name: "landmark", placeholder: "Landmark" },
 //   { name: "pincode", placeholder: "Pincode", type: "number" ,label:"Pincode" },
-//   { name: "mobile", placeholder: "MOBILE No.", type: "tel" ,label:"Mobile No"},
+  
 //   { name: "phoneRes", placeholder: "Phone No. (Res)", type: "number" ,label:"Res Phone No" },
 //   { name: "phonePP", placeholder: "Phone No. PP(C/O)", type: "number", },
 //   { name: "phoneOff", placeholder: "Phone No. (Off)",type: "number"  },

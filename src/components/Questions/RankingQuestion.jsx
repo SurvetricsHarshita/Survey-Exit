@@ -56,24 +56,24 @@ const RankingQuestion = ({ mediaChannels, frequencies, handleChange, setMediaFre
   // #F7FAFC
   return (
     <Box bg="" p={4}>
-      <Box p={6} borderWidth={1} borderRadius="md" boxShadow="md" maxWidth="90vw" width="100%" overflowX="auto">
+      <Box p={4} borderWidth={1} borderRadius='sm' boxShadow='sm' maxWidth="100vw" width="100%" overflowX="auto">
         <FormControl mb={4}>
           <Box overflowX="auto">
-            <Table variant="simple" size={{ base: 'sm', md: 'md' }}>
+            <Table variant="simple" size={{ base: '10px', md: '12px' }}>
               <Thead>
                 <Tr>
-                  <Th fontSize={{ base: 'sm', md: 'md' }} textAlign="center">
+                  <Th fontSize={{ base: '10px', md: '10px' }} textAlign="center">
                     {currentQuestion.heading || 'Statements'}
                   </Th>
                   {frequencies.map((freq) => (
-                    <Th key={freq.value} fontSize={{ base: 'sm', md: 'md' }} textAlign="center">{freq.label}</Th>
+                    <Th key={freq.value} fontSize={{ base: '12px', md: '10px' }} textAlign="center">{freq.label}</Th>
                   ))}
                 </Tr>
               </Thead>
               <Tbody>
                 {shuffledMediaChannels.map((channel) => (
                   <Tr key={channel.id}>
-                    <Td fontSize={{ base: 'sm', md: 'md' }}>{channel.label}</Td>
+                    <Td fontSize={{ base: '12px',  md: '13px'}}>{channel.label}</Td>
                     {frequencies.map((freq) => (
                       <Td key={freq.value} textAlign="center">
                         <RadioGroup
@@ -85,7 +85,7 @@ const RankingQuestion = ({ mediaChannels, frequencies, handleChange, setMediaFre
                             borderColor="black"
                             borderWidth="1px"
                             _focus={{ boxShadow: 'outline' }}
-                            size={{ base: 'sm', md: 'md' }}
+                            size={{  sm: 'sm' , md: 'sm'}}
                           />
                         </RadioGroup>
                       </Td>

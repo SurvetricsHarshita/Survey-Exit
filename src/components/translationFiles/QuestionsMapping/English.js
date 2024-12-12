@@ -2,9 +2,13 @@ const English = {
   Section1: {
 
     Q1a: {
-      // number: "Introduction",
+    
       section:"Introduction",
-      question: "Hello, my name is ________, and I work for _________ Ltd. We are conducting a research study on behalf of Apollo Tyres Foundation (ATF), which is running a healthcare center in collaboration with an NGO at this site. The purpose of this study is to evaluate the impact of the health interventions implemented by ATF and to identify areas for improvement. The findings will help ATF refine its strategies for addressing health-related challenges across various locations.I kindly invite you to participate in this interview, which will take about 20 minutes. During the session, I will ask you some questions, and I assure you that your responses will remain completely confidential. Your honest answers will provide valuable insights into people’s understanding and experiences regarding communicable and non-communicable diseases, as well as the role of ATF/NGO in addressing them.Your participation is entirely voluntary, and you are free to skip any question or stop the interview at any time if you feel uncomfortable. We sincerely appreciate your cooperation and thank you for contributing to this important study. ",
+    
+      para1:"Hello, my name is _________________________, and I work for ______________________ Ltd. We are conducting a research study on behalf of Apollo Tyres Foundation (ATF), which is running a healthcare center in collaboration with an NGO at this site. The purpose of this study is to evaluate the impact of the health interventions implemented by ATF and to identify areas for improvement. The findings will help ATF refine its strategies for addressing health-related challenges across various locations.",
+      para2:"I kindly invite you to participate in this interview, which will take about 20 minutes. During the session, I will ask you some questions, and I assure you that your responses will remain completely confidential. Your honest answers will provide valuable insights into people’s understanding and experiences regarding communicable and non-communicable diseases, as well as the role of ATF/NGO in addressing them.",
+      para3:"Your participation is entirely voluntary, and you are free to skip any question or stop the interview at any time if you feel uncomfortable. We sincerely appreciate your cooperation and thank you for contributing to this important study. ",
+      
       type: "Introduction",
      
     },
@@ -27,7 +31,7 @@ const English = {
       termination:true,
       terminationCodes:["2"]
     },
-
+   
     "1.1": {
       "number": "1.1",
       "question": "What is your age? (Enter completed years)",
@@ -2221,11 +2225,34 @@ const English = {
         }
       ]
     },
-    "9.7": {
+   "9.7": {
       "number": 9.7,
       "question": "What is your opinion about Apollo Tyres ",
-      "type": "input",
-      "label": " Insert 5 Point Scale \r\nVery Good 5   4    3   2   1   Very Poor"
+      "type": "RatingSlider",
+      "label": " Insert 5 Point Scale \r\nVery Good 5   4    3   2   1   Very Poor",
+      label1:"Very Good ",
+      label2:"Very Poor",
+      "lableOptions": [
+        {
+          "label": "5 ",
+          "value": "5"
+        },
+        {"label": "4",
+          "value": "4"},
+          
+          {
+           "label": "3",
+          "value": "3" 
+          },
+        {"label": "2",
+          "value": "2"
+
+        },
+        {
+          "label": "1",
+          "value": "1"
+        }
+      ]
     },
     "9.7(i)": {
       "number": "9.7(i)",
@@ -2575,18 +2602,16 @@ const English = {
         
       ]
     },
-    "9.14a+b": {
+   "9.14a+b": {
       "number": "9.14a+b",
       "question": "If using Apollo tyres currently, from how long you are using this brand",
-      "instruction": "",
-      " inputType": "",
-      "  inputLimit": "",
+     
       "type": "multiInput",
-      "  placeHolder": "",
+   
 
       formFieldsStep1: [
-        { name: "Q8_c_1", placeholder: "in months" },
-        { name: "Q8_c_2", placeholder: "in years" },
+        { name: "9.14_months", placeholder: "in months" ,type:"number"},
+        { name: "9.14_years", placeholder: "in years" ,type:"number"},
        
       ],
 
@@ -2603,23 +2628,7 @@ const English = {
         isCompulsory: true,
         // anwerNeed:all
       },
-      "label": "",
-      "options": "",
-      "lableoptions": "",
-      "STATEMENTS": "",
-      "FREQUENCIES": "",
-      "lastOption": "",
-      "termination": "",
-      " terminationCodes": "",
-      "audio": "",
-      "randomize": "",
-      "fixedCodes": "",
-      " RandomizeOnce": "",
-      " maxSelections": "",
-      " checkAsk": "",
-      "readout": "",
-      "depend on": "",
-      "labels": ""
+
     },
   
     "9.14c": {

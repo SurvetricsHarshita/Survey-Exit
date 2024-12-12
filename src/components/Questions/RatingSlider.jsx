@@ -64,6 +64,7 @@ const RatingSlider = ({ currentQuestion, setSliderMoved, setResponses }) => {
           onChange={handleSliderChange}
           colorScheme="blue"
         >
+       
           <SliderTrack bg="gray.300">
             <SliderFilledTrack />
           </SliderTrack>
@@ -72,6 +73,7 @@ const RatingSlider = ({ currentQuestion, setSliderMoved, setResponses }) => {
 
         {/* Displaying Labels dynamically from currentQuestion.lableOptions */}
         <HStack justify="space-between" mt={2}>
+        <Text>{currentQuestion.label1}</Text>
           {currentQuestion.lableOptions.map((option, index) => (
             <Text
               key={index}
@@ -82,7 +84,9 @@ const RatingSlider = ({ currentQuestion, setSliderMoved, setResponses }) => {
               {option.label} {/* Display the label for each option */}
             </Text>
           ))}
+           <Text>{currentQuestion.label2}</Text>
         </HStack>
+  
       </VStack>
     </Box>
   );

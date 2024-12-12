@@ -50,8 +50,8 @@ const MultiInput = ({ language, formFieldsStep1, languageText, setResponses }) =
   
 
   return (
-    <Flex p={4} flexDirection="column" alignItems="center">
-      <Text fontSize="xl" fontWeight="bold" mb={9}>
+    <Flex >
+      <Text fontSize="xl" fontWeight="bold" >
         {langText.title}
       </Text>
 

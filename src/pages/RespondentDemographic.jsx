@@ -253,8 +253,21 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
         maxWidth="800px"
         mb={8}
       >
-          <div>
-          <FormLabel>2.	Type of Respondent</FormLabel>
+         
+        {formFieldsStep1.map((field, index) => (
+          <div key={index}>
+            <FormLabel>{field.placeholder}:</FormLabel>
+            <Input
+              name={field.name}
+              placeholder={field.placeholder}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              type={field.type || "text"}
+            />
+          </div>
+        ))}
+         <div>
+          <FormLabel>Type of Respondent</FormLabel>
           <Select
             name="TypeofRespondent"
             value={formData.TypeofRespondent || ""}
@@ -307,18 +320,6 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             </>
           )} */}
         </div>
-        {formFieldsStep1.map((field, index) => (
-          <div key={index}>
-            <FormLabel>{field.placeholder}:</FormLabel>
-            <Input
-              name={field.name}
-              placeholder={field.placeholder}
-              value={formData[field.name] || ""}
-              onChange={handleChange}
-              type={field.type || "text"}
-            />
-          </div>
-        ))}
         {/* <div>
           <FormLabel>2.	Type of Respondent</FormLabel>
           <Select
