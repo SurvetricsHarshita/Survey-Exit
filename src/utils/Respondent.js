@@ -18,8 +18,9 @@ export const languageText = {
     // phonePP: "Phone No. PP(C/O)",
     // phoneOff: "Phone No. (Off)",
     // emailId: "e-mail ID",
+    // City:"enter city",
     interviewerName: "Interviewer Name",
-    interviewerId: "Interviewer ID",
+    // interviewerId: "Interviewer ID",
     next: "Next",
     previous: "Previous",
     // place: "Place of Interview",
@@ -33,9 +34,9 @@ export const languageText = {
 export const formFieldsStep1 = [
   // { name: "name", placeholder: "Name of the Respondent" },
   
-  // { name: "Age", placeholder: "Age",type: "number"},
-  { name: "interviewerName", placeholder: "Interviewer Name" },
-  { name: "interviewerId", placeholder: "Interviewer ID" },
+  // { name: " City", placeholder: "	Name of City",},
+  { name: "interviewerName", placeholder: "	Name of the interviewer" },
+  // { name: "interviewerId", placeholder: "Interviewer ID" },
  
 ];
 

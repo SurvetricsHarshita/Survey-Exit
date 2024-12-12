@@ -154,7 +154,7 @@ const English = {
         },
        
         {
-          "label": "but I am not entirely dependent on it",
+          "label": "Yes, but I am not entirely dependent on it",
           "code": "2"
         },
         {
@@ -166,7 +166,8 @@ const English = {
     "1.6": {
       "number": 1.6,
       "question": "How long have you been driving to this site? (Enter in years)",
-      "type": "input"
+      "type": "input",
+      inputType:"number",
     },
     "1.7": {
       "number": 1.7,
@@ -588,7 +589,7 @@ const English = {
     },
     "2.9": {
       "number": 2.9,
-      "question": "Can you identify any symptoms of STIs in men? (Multiple responses allowed)",
+      "question": "Can you identify any symptoms of STIs in men? ",
       label:"Part 6: Symptoms and Treatment",
       "type": "radio",
     
@@ -1124,7 +1125,7 @@ const English = {
     },
     "5.1": {
       "number": 5.1,
-      "question": "When did you visited the doctor last time, were your blood pressure checked?",
+      "question": "Do you know early signs and symptoms of diabetes?",
       "type": "radio",
       section:"SECTION – 5 DIABETES & HYPERTENSION",
       "options": [
@@ -1174,7 +1175,7 @@ const English = {
     "5.3": {
       "number": 5.3,
       "question": "What are the problems faced by diabetes patient after few years of diagnosis of diabetes?",
-      "type": "radio",
+      "type": "multi",
       "options": [
         {
           "label": "Blurred Vision",
@@ -1512,7 +1513,8 @@ const English = {
     },
     "6.5": {
       "number": 6.5,
-      "question": "If met only once, what are the\r\nreasons?\r\n\r\nDo Not Prompt\r\n\r\n(Multiple response possible)",
+      "question": "If met only once, what are the reasons?",
+      instruction:"Do Not Prompt",
       "type": "multi",
       "options": [
         {
@@ -1758,8 +1760,8 @@ const English = {
           "code": "5"
         },
         {
-          "label": "Other health care/treatment (6).",
-          "code": ""
+          "label": "Other health care/treatment .",
+          "code": "6"
         }
       ]
     },

@@ -235,7 +235,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
       pl={{ base: "10", md: "4", lg: "6" }}
     >
       <Text fontSize="xl" fontWeight="bold" mb={9}>
-        Respondent Demographics
+      IDENTIFICATION DETAILS
       </Text>
 
       {error && (
@@ -253,19 +253,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
         maxWidth="800px"
         mb={8}
       >
-        {formFieldsStep1.map((field, index) => (
-          <div key={index}>
-            <FormLabel>{field.placeholder}:</FormLabel>
-            <Input
-              name={field.name}
-              placeholder={field.placeholder}
-              value={formData[field.name] || ""}
-              onChange={handleChange}
-              type={field.type || "text"}
-            />
-          </div>
-        ))}
-        <div>
+          <div>
           <FormLabel>2.	Type of Respondent</FormLabel>
           <Select
             name="TypeofRespondent"
@@ -319,6 +307,72 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             </>
           )} */}
         </div>
+        {formFieldsStep1.map((field, index) => (
+          <div key={index}>
+            <FormLabel>{field.placeholder}:</FormLabel>
+            <Input
+              name={field.name}
+              placeholder={field.placeholder}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              type={field.type || "text"}
+            />
+          </div>
+        ))}
+        {/* <div>
+          <FormLabel>2.	Type of Respondent</FormLabel>
+          <Select
+            name="TypeofRespondent"
+            value={formData.TypeofRespondent || ""}
+            onChange={handleChange}
+            focusBorderColor="black"
+            borderColor="black"
+            rounded="lg"
+          >
+            <option value="">Select</option>
+            <option value="a">	Exposed with Apollo Tyres Foundation / designated NGO based health intervention</option>
+            <option value="b">	Exposed with non-ATF based health intervention</option>
+            {/* <option value="3">None</option> */}
+          {/* </Select> */}
+
+          {/* <FormLabel mt={4}>City</FormLabel>
+          <Select
+            name="City"
+            value={formData.City || ""}
+            onChange={handleChange}
+            focusBorderColor="black"
+            borderColor="black"
+            rounded="lg"
+          >
+            <option value="">Select</option>
+            {Object.keys(subAreas).map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </Select> */}
+
+          {/* {formData.City && subAreas[formData.City] && (
+            <>
+              <FormLabel mt={4}>Sub-Area</FormLabel>
+              <Select
+                name="SubArea"
+                value={formData.SubArea || ""}
+                onChange={handleChange}
+                focusBorderColor="black"
+                borderColor="black"
+                rounded="lg"
+              >
+                <option value="">Select</option>
+                {subAreas[formData.City].map((area, index) => (
+                  <option key={index} value={area}>
+                    {area}
+                  </option>
+                ))}
+              </Select>
+            </>
+          )} */}
+        {/* </div> */} 
         {/* {(formData.TypeofRespondent === "1" || formData.TypeofRespondent === "2") && (
           <div>
             <FormLabel>Enter Name:</FormLabel>

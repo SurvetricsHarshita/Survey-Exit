@@ -318,7 +318,7 @@ const [isTerminating, setIsTerminating] = useState(false);
         keyForOtherSpecify = option.code;
       }
       
-      if (option.label === "None" ||  option.label === "कोई नहीं" ) {
+      if (option.label === "None/Alone" ||  option.label === "कोई नहीं" ) {
         keyForNone = option.code;
       }
     });
@@ -653,7 +653,7 @@ const [isTerminating, setIsTerminating] = useState(false);
   
     // Navigate to the submit page
     // navigate("/submit", { state: { msg: "submit" } });
-  // localStorage.clear()
+  localStorage.clear()
     // Submit data to the API
 
     
