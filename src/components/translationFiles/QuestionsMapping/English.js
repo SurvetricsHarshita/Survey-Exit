@@ -167,7 +167,7 @@ const English = {
       "number": 1.6,
       "question": "How long have you been driving to this site? (Enter in years)",
       "type": "input",
-      inputType:"number",
+      "inputType":"number",
     },
     "1.7": {
       "number": 1.7,
@@ -2145,12 +2145,19 @@ const English = {
     },
     "9.5": {
       "number": 9.5,
-      "question": "What is your most preferred tyre brand? RECORD VERBATIM",
+      "question": "What is your most preferred tyre brand?",
+      "instruction":" RECORD VERBATIM",
+      "type": "input"
+    },
+    "9.6a": {
+      "number": 9.6,
+      "question": "What are the reasons for preferring this brand over others? ",
       "type": "input"
     },
     "9.6": {
       "number": 9.6,
-      "question": "What are the reasons for preferring this brand over others? RECORD VERBATIM AND THEN POST CODE -------",
+      "question": "What are the reasons for preferring this brand over others? ",
+      "instruction":"RECORD VERBATIM AND THEN POST CODE -------",
       "type": "radio",
       "options": [
         {
@@ -2242,6 +2249,8 @@ const English = {
       "number": "9.8a",
       "question": "Can you please tell me which was your previous using brand and which is   your current using brand of tyre? [ Please record information on the last shift of brands]",
       "type": "input",
+      "placeholder": "Earlier Brand",
+      
       "options": [
         {
           "label": "Earlier Brand",
@@ -2253,6 +2262,7 @@ const English = {
       "number": "9.8b",
       "question": "Can you please tell me which was your previous using brand and which is   your current using brand of tyre? [ Please record information on the last shift of brands]",
       "type": "input",
+      "placeholder":"Current Brand",
       "options": [
         {
           "label": "Current Brand",
@@ -2405,7 +2415,7 @@ const English = {
     "9.11": {
       "number": 9.11,
       "question": "Before purchasing a tyre what will be the key factor a transporter/ truck driver will keep in his mind? (RANK)\r\nREAD OUT THE OPTIONS BEFORE RANKING",
-      type:"radio",
+      type:"multi",
       "options": [
         {
           "label": "Low price",
@@ -2566,18 +2576,53 @@ const English = {
         
       ]
     },
-    "9.14a": {
-      "number": "9.14a",
-      question:"a)	If using Apollo tyres currently, from how long you are using this brand",
-      "label": "In years",
-      "type": "input"
+    "9.14a+b": {
+      "number": "9.14a+b",
+      "question": "If using Apollo tyres currently, from how long you are using this brand",
+      "instruction": "",
+      " inputType": "",
+      "  inputLimit": "",
+      "type": "multiInput",
+      "  placeHolder": "",
+
+      formFieldsStep1: [
+        { name: "Q8_c_1", placeholder: "in months" },
+        { name: "Q8_c_2", placeholder: "in years" },
+       
+      ],
+
+
+      languageText: {
+
+        en: {
+          // title: "Respondent Demographic",
+          months:"months",
+          years:"years"
+
+        },
+
+        isCompulsory: true,
+        // anwerNeed:all
+      },
+      "label": "",
+      "options": "",
+      "lableoptions": "",
+      "STATEMENTS": "",
+      "FREQUENCIES": "",
+      "lastOption": "",
+      "termination": "",
+      " terminationCodes": "",
+      "audio": "",
+      "randomize": "",
+      "fixedCodes": "",
+      " RandomizeOnce": "",
+      " maxSelections": "",
+      " checkAsk": "",
+      "readout": "",
+      "depend on": "",
+      "labels": ""
     },
-    "9.14b": {
-      question:"a)	If using Apollo tyres currently, from how long you are using this brand",
-      "number": "9.14b",
-      "label": "In Months",
-      "type": "input"
-    },
+  
     "9.14c": {
       "number": "9.14c",
       "question": "Not using Apollo tyres",
