@@ -1,11 +1,10 @@
-
 const English = {
   Section1: {
 
     Q1a: {
       // number: "Introduction",
       section:"Introduction",
-      question: "Hello, my name is _________________________, and I work for ______________________ Ltd. We are conducting a research study on behalf of Apollo Tyres Foundation (ATF), which is running a healthcare center in collaboration with an NGO at this site. The purpose of this study is to evaluate the impact of the health interventions implemented by ATF and to identify areas for improvement. The findings will help ATF refine its strategies for addressing health-related challenges across various locations.I kindly invite you to participate in this interview, which will take about 20 minutes. During the session, I will ask you some questions, and I assure you that your responses will remain completely confidential. Your honest answers will provide valuable insights into people’s understanding and experiences regarding communicable and non-communicable diseases, as well as the role of ATF/NGO in addressing them.Your participation is entirely voluntary, and you are free to skip any question or stop the interview at any time if you feel uncomfortable. We sincerely appreciate your cooperation and thank you for contributing to this important study. ",
+      question: "Hello, my name is ________, and I work for _________ Ltd. We are conducting a research study on behalf of Apollo Tyres Foundation (ATF), which is running a healthcare center in collaboration with an NGO at this site. The purpose of this study is to evaluate the impact of the health interventions implemented by ATF and to identify areas for improvement. The findings will help ATF refine its strategies for addressing health-related challenges across various locations.I kindly invite you to participate in this interview, which will take about 20 minutes. During the session, I will ask you some questions, and I assure you that your responses will remain completely confidential. Your honest answers will provide valuable insights into people’s understanding and experiences regarding communicable and non-communicable diseases, as well as the role of ATF/NGO in addressing them.Your participation is entirely voluntary, and you are free to skip any question or stop the interview at any time if you feel uncomfortable. We sincerely appreciate your cooperation and thank you for contributing to this important study. ",
       type: "Introduction",
      
     },
@@ -2630,7 +2629,7 @@ const English = {
     },
     "9.15": {
       "number": 9.15,
-      "question": "What are the reasons for not using\r\nApollo tyres?\r\n\r\n",
+      "question": "What are the reasons for not using\r\nApollo tyres?",
       "type": "multi",
       "options": [
         {
