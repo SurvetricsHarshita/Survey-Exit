@@ -31,7 +31,7 @@ const English = {
       termination:true,
       terminationCodes:["2"]
     },
-   
+  
     "1.1": {
       "number": "1.1",
       "question": "What is your age? (Enter completed years)",
@@ -2273,7 +2273,8 @@ const English = {
     },
     "9.8a": {
       "number": "9.8a",
-      "question": "Can you please tell me which was your previous using brand and which is   your current using brand of tyre? [ Please record information on the last shift of brands]",
+      "question": "Can you please tell me which was your previous using brand and which is   your current using brand of tyre? ",
+      instruction:"[ Please record information on the last shift of brands]",
       "type": "input",
       "placeholder": "Earlier Brand",
       
@@ -2496,7 +2497,7 @@ const English = {
           "code": "99"
         }
       ],
- 
+      maxSelections:3,
     },
     "9.12": {
       "number": 9.12,
@@ -2555,7 +2556,11 @@ const English = {
           "label": "Others (Specify)",
           "code": "99"
         }
-      ],     maxSelections:3
+      ],     maxSelections:3,
+      "depend on": "9.11",
+      "labels": "",
+      optionsDependOn: "9.11",
+      optionsRemove: [],
     },
     "9.13": {
       "number": 9.13,

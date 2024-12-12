@@ -5,7 +5,7 @@ function useOptions() {
 
   function isOptions(question, dependOn,  optionsRemove,allOptions, storedData) {
     const questionHandlers = {
-      Q7_b: () => handleQ7_b(dependOn, allOptions, storedData,optionsRemove),
+      9.12: () => handle912(dependOn, allOptions, storedData,optionsRemove),
       S6a:() => handleDynamicFilter(dependOn, allOptions, storedData,optionsRemove)
     };
 
@@ -44,10 +44,10 @@ function useOptions() {
       return allOptions;
     }
   }
-  function handleQ7_b(dependOn, allOptions, storedData, optionsRemove = []) {
+  function handle912(dependOn, allOptions, storedData, optionsRemove = []) {
     // Extract Q7_a from storedData
-    const selectedCodes = storedData["Q7_a"];
-    
+    const selectedCodes = storedData["9.11"];
+    console.log(selectedCodes)
     // Ensure Q7_a exists and is an array
     if (!Array.isArray(selectedCodes)) {
       return [];
