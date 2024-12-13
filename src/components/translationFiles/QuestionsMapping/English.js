@@ -31,7 +31,7 @@ const English = {
       termination:true,
       terminationCodes:["2"]
     },
-  
+
     "1.1": {
       "number": "1.1",
       "question": "What is your age? (Enter completed years)",
@@ -341,14 +341,53 @@ const English = {
     "1.15": {
       "number": 1.15,
       "question": "Do you think your occupation as a trucker or helper exposes you to more health risks compared to other professions?",
-      "type": "input"
+      // type:"InputRadio",
+      "type": "radio",
+      options:[
+            {
+          "label": "Yes",
+          "code":"1"
+            },
+            {
+              "label": "No",
+              "code":"2"
+                }
+          
+      ],
+      checkAsk:true,
+      nextStep:2
+    },
+    "1.15a": {
+      "number": "1.15a",
+      "question": "what are those risks ",
+      "type": "input",
+     
     },
     "1.16": {
-      "number": 1.16,
+      "number": "1.16",
       "question": "Have you noticed any significant changes in your health over the years due to the nature of your work?",
-      "type": "input"
+      "type": "radio",
+      options:[
+            {
+          "label": "Yes",
+          "code":"1"
+            },
+            {
+              "label": "No",
+              "code":"2"
+                }
+          
+      ],
+      checkAsk:true,
+      nextStep:2
     },
-  
+    "1.16a": {
+      "number": "1.16a",
+      "question": "what changes have you noticed?",
+      "type": "input",
+      placeHolder:"changes"
+     
+    },
   },
       Section2:{
      
@@ -414,6 +453,7 @@ const English = {
       "number": 2.2,
       "question": "What are the main ways HIV/AIDS is transmitted?",
       "type": "multi",
+      instruction:"[ Do Not Prompt]",
       label:"Part 2: Knowledge About Transmission",
       "options": [
         {
@@ -450,6 +490,7 @@ const English = {
       "number": 2.3,
       "question": "In your opinion, how can HIV/AIDS be prevented?",
       "type": "multi",
+    instruction:"[ Do Not Prompt]",
     label:"Part 3: Preventive Measures",
       "options": [
         {
@@ -1147,7 +1188,7 @@ const English = {
     "5.2": {
       "number": 5.2,
       "question": "If Yes, what are the early signs and symptoms of Diabetes?",
-      "type": "radio",
+      "type": "multi",
       "options": [
         {
           "label": "Increased thirst",
@@ -1209,7 +1250,7 @@ const English = {
     "5.4": {
       "number": 5.4,
       "question": "What are the things that we should do to control diabetes?",
-      "type": "radio",
+      "type": "multi",
       "options": [
         {
           "label": "Take healthy and balanced diet",
@@ -1545,7 +1586,7 @@ const English = {
     "6.6": {
       "number": 6.6,
       "question": "During the meetings / IPC sessions, what topics have been discussed with you by the ATF / NGO worker?",
-      "type": "radio",
+      "type": "multi",
       "options": [
         {
           "label": "Information about HIV / AIDS / STI",
@@ -1616,7 +1657,7 @@ const English = {
     "6.8": {
       "number": 6.8,
       "question": "Reasons for not finding the meetings/ IPC sessions helpful?",
-      "type": "radio",
+      "type": "multi",
       "options": [
         {
           "label": "The behaviour of ATF / NGO worker was not friendly",
@@ -1651,7 +1692,28 @@ const English = {
     "6.9": {
       "number": 6.9,
       "question": "How would you rate the quality of interaction and information provided by ATF or NGO workers?",
-      "type": "input"
+      "type": "radio",
+      options:[
+        {
+          "label": "Very poor",
+          "code": "1"
+        },
+        {
+          "label": "Poor",
+          "code": "2"
+        },{
+          "label": "Neutral",
+          "code": "3"
+        },{
+          "label": "Good",
+          "code": "4"
+        },{
+          "label": "Very Good",
+          "code": "5"
+        },
+      ]
+
+
     },
     "6.10": {
       "number": "6.10",
@@ -1676,7 +1738,7 @@ const English = {
       ],
       "instruction": "I will read out the following services one by one and ask certain questions from you.",
       checkAsk:true,
-      nextStep:8
+      nextStep:13
       // [Ask SECTION 7 from ATF / NGO beneficiaries (CODED “a” IN QUESTION “2” OF IDENTIFICATION DETAILS)]
     },
     "7.2": {
@@ -1789,7 +1851,18 @@ const English = {
     },
     "7.6": {
       "number": 7.6,
-      "question": "Are you satisfied with the accessibility of the services"
+      "question": "Are you satisfied with the accessibility of the services",
+      type:"radio",
+      options:[
+        {
+          "label": "Yes",
+          "code": "1"
+        },
+        {
+          "label": "No",
+          "code": "2"
+        }
+      ]
     },
     "7.7": {
       "number": 7.7,
@@ -1974,7 +2047,7 @@ const English = {
     "8.2": {
       "number": 8.2,
       "question": "what are your future expectations from ATF / NGO worker?\r\n\r\n\r\n[Please use the given codes]",
-      "type": "radio",
+      "type": "multi",
       "options": [
        
         {
@@ -2021,7 +2094,18 @@ const English = {
     "8.3": {
       "number": 8.3,
       "question": "Do you think the ATF/NGO healthcare centres are adequately equipped to handle common health issues faced by truckers?",
-      "type": "input"
+      // "type": "input",
+      "type": "radio",
+      "options": [
+        {
+          "label": "yes",
+          "code": "1"
+        },
+        {
+          "label": "No",
+          "code": "2"
+        },
+      ]
     },
     "8.4": {
       "number": 8.4,
@@ -2070,8 +2154,8 @@ const English = {
     },
     "9.3": {
       "number": 9.3,
-      "question": "Have you ever seen/heard any advertisement of Apollo Tyres brand?",
-      "type": "radio",
+      "question": " From where  you  seen/heard any advertisement of Apollo Tyres brand?",
+      "type": "multi",
       "options": [
         {
           "label": "Radio",
@@ -2148,20 +2232,23 @@ const English = {
     },
     "9.5": {
       "number": 9.5,
-      "question": "What is your most preferred tyre brand?",
+      "question": "Which is your most preferred tyre brand?",
       "instruction":" RECORD VERBATIM",
       "type": "input"
     },
     "9.6a": {
-      "number": 9.6,
+      "number": "9.6a",
       "question": "What are the reasons for preferring this brand over others? ",
-      "type": "input"
+      "instruction":"RECORD VERBATIM AND THEN POST CODE -------",
+      "type": "input",
+      placeHolder:"reasons"
     },
     "9.6": {
       "number": 9.6,
-      "question": "What are the reasons for preferring this brand over others? ",
+      // "question": "What are the reasons for preferring this brand over others? ",
       "instruction":"RECORD VERBATIM AND THEN POST CODE -------",
       "type": "radio",
+      subLabel:"Respondent Answers",
       "options": [
         {
           "label": "It is affordable",
@@ -2272,31 +2359,34 @@ const English = {
       nextStep:4
     },
     "9.8a": {
-      "number": "9.8a",
+      "number": "9.8",
       "question": "Can you please tell me which was your previous using brand and which is   your current using brand of tyre? ",
       instruction:"[ Please record information on the last shift of brands]",
-      "type": "input",
-      "placeholder": "Earlier Brand",
       
-      "options": [
-        {
-          "label": "Earlier Brand",
-          "code": ""
-        }
-      ]
+      "type": "multiInput",
+   
+
+      formFieldsStep1: [
+        { name: "9.8_Earlier", placeholder: "Earlier Brand" },
+        { name: "9.8_Current ", placeholder: "Current Brand" },
+       
+      ],
+
+
+      languageText: {
+
+        en: {
+          // title: "Respondent Demographic",
+          Earlier:"Earlier",
+          Current:"Current"
+
+        },
+
+        isCompulsory: true,
+        // anwerNeed:all
+      },
     },
-    "9.8b": {
-      "number": "9.8b",
-      "question": "Can you please tell me which was your previous using brand and which is   your current using brand of tyre? [ Please record information on the last shift of brands]",
-      "type": "input",
-      "placeholder":"Current Brand",
-      "options": [
-        {
-          "label": "Current Brand",
-          "code": ""
-        }
-      ]
-    },
+    
     "9.9": {
       "number": 9.9,
       "question": "Can you please tell us the reason for shifting between brands? [MULTIPLE RESPONSE POSSIBLE]",
@@ -2374,68 +2464,68 @@ const English = {
       // "label": "Brand Name",
       heading:"Brand Name",
       type:"rank",
-      "STATEMENTS": [
-        {
-          "label": "Apollo Tyre",
-          "id": "9.10_1"
-        },
-        {
-          "label": "MRF",
-          "id": "9.10_2"
-        },
-        {
-          "label": "JK",
-          "id": "9.10_3"
-        },
-        {
-          "label": "Bridgestone",
-          "id": "9.10_4"
-        },
-        {
-          "label": "Birla",
-          "id": "9.10_5"
-        },
-        {
-          "label": "Continental",
-          "id": "9.10_6"
-        },
-        {
-          "label": "Goodyear",
-          "id": "9.10_7"
-        },
-        // {
-        //   "label": "Other",
-        //   "id": "9.10_99"
-        // }
-      ],
       "FREQUENCIES": [
         {
-          "label": "Price",
+          "label": "Apollo Tyre",
           "value": "1"
         },
         {
-          "label": "Quality",
+          "label": "MRF",
           "value": "2"
         },
         {
-          "label": "Safety",
+          "label": "JK",
           "value": "3"
         },
         {
-          "label": "Durability",
+          "label": "Bridgestone",
           "value": "4"
         },
         {
-          "label": "Availability",
+          "label": "Birla",
           "value": "5"
         },
         {
-          "label": "Company image",
+          "label": "Continental",
           "value": "6"
         },
         {
-          "label": "Social work .",
+          "label": "Goodyear",
           "value": "7"
+        },
+        // {
+        //   "label": "Other",
+        //   "id": "99"
+        // }
+      ],
+      "STATEMENTS": [
+        {
+          "label": "Price",
+          "id": "9.10_1"
+        },
+        {
+          "label": "Quality",
+          "id": "9.10_2"
+        },
+        {
+          "label": "Safety",
+          "id": "9.10_3"
+        },
+        {
+          "label": "Durability",
+          "id": "9.10_4"
+        },
+        {
+          "label": "Availability",
+          "id": "9.10_5"
+        },
+        {
+          "label": "Company image",
+          "id": "9.10_6"
+        },
+        {
+          "label": "Social work .",
+          "id": "9.10_7"
         }
       ]
     },
@@ -2497,7 +2587,7 @@ const English = {
           "code": "99"
         }
       ],
-      maxSelections:3,
+      // maxSelections:3,
     },
     "9.12": {
       "number": 9.12,
@@ -2556,11 +2646,12 @@ const English = {
           "label": "Others (Specify)",
           "code": "99"
         }
-      ],     maxSelections:3,
-      "depend on": "9.11",
-      "labels": "",
-      optionsDependOn: "9.11",
-      optionsRemove: [],
+      ],     
+      maxSelections:3,
+      // "depend on": "9.11",
+      // "labels": "",
+      // optionsDependOn: "9.11",
+      // optionsRemove: [],
     },
     "9.13": {
       "number": 9.13,
@@ -2610,29 +2701,30 @@ const English = {
    "9.14a+b": {
       "number": "9.14a+b",
       "question": "If using Apollo tyres currently, from how long you are using this brand",
+      type:"InputRadio",
      
-      "type": "multiInput",
+      // "type": "multiInput",
    
 
-      formFieldsStep1: [
-        { name: "9.14_months", placeholder: "in months" ,type:"number"},
-        { name: "9.14_years", placeholder: "in years" ,type:"number"},
+      // formFieldsStep1: [
+      //   { name: "9.14_months", placeholder: "in months" ,type:"number"},
+      //   { name: "9.14_years", placeholder: "in years" ,type:"number"},
        
-      ],
+      // ],
 
 
-      languageText: {
+      // languageText: {
 
-        en: {
-          // title: "Respondent Demographic",
-          months:"months",
-          years:"years"
+      //   en: {
+      //     // title: "Respondent Demographic",
+      //     months:"months",
+      //     years:"years"
 
-        },
+      //   },
 
-        isCompulsory: true,
-        // anwerNeed:all
-      },
+      //   isCompulsory: true,
+      //   // anwerNeed:all
+      // },
 
     },
   
@@ -2827,8 +2919,8 @@ const English = {
         },
        
       ],
-       checkAsk:true,
-      nextStep:2,
+      //  checkAsk:true,
+      // nextStep:2,
       "instruction": "INSTRUCTION: ASK FROM THOSE WHO HAVE CODED”1” IN 7.1 TERMINATE THE INTERVIEW OTHERWISE."
     },
     "9.21": {
@@ -2856,7 +2948,7 @@ const English = {
       ]
     },
     "9.22": {
-      "number": 9.22,
+      "number": "9.22",
       "question": "Do you think the strategy used by Apollo Tyres Limited by running health clinics in India will enhance the sale of its brand in the country?",
       "type": "radio",
       "options": [
@@ -2880,10 +2972,18 @@ const English = {
       ]
     },
     "9.23": {
-      "number": 9.23,
+      "number": "9.23",
       "question": "Can you explain the reason for your answer to above question\r\n\r\n",
+      subLabel:"Respondent answers for 9.22",
       "type": "input",
-      "instruction": "\r\n\r\nPlease note VERBATIM for any of the options mentioned above"
+      "instruction": "\r\n\r\nPlease note VERBATIM for any of the options mentioned above",
+      optionforShow:[
+        { label: "Very much", code: "1" },
+        { label: "To an extent", code: "2" },
+        { label: "Not much", code: "3" },
+        { label: "Don’t know/can’t say", code: "4" },
+      ]
+      
     },
     "9.24": {
       "number": 9.24,
@@ -2924,7 +3024,17 @@ const English = {
     "9.26": {
       "number": 9.26,
       "question": "Would you recommend Apollo Tyres to other truckers based on the health services they provide?",
-      "type": "input"
+      "type": "radio",
+     "options": [
+        {
+          "label": "Yes",
+          "code": "1"
+        },
+        {
+          "label": "No",
+          "code": "2"
+        },
+      ]
     }
   }
 

@@ -13,9 +13,15 @@ export  const othersPlaceholders = {
 };
 
 
+export  const noneValues=["None/Alone","कोई नहीं", "All of the above",
+  "Have not changed the brand", "Can’t Say",]
 
-
-
+  export  const  optionforShow=[
+    { label: "Very much", code: "1" },
+    { label: "To an extent", code: "2" },
+    { label: "Not much", code: "3" },
+    { label: "Don’t know/can’t say", code: "4" },
+  ]
 export function shuffleArray(array) {
   return array.sort((a, b) => {
     // Compare the label strings and sort randomly

@@ -13,6 +13,8 @@ function useAsk() {
       5.5:() => handleQ37(answer, storedData),
       "5.10":() => handleQ37(answer, storedData),
       5.11:() => handleQ511(answer, storedData),
+      "1.15":() => handleQ37(answer, storedData),
+      "1.16":() => handleQ37(answer, storedData),
       7.1: () => handleQ37(answer, storedData),
       "9.7(i)": () => handleQ37(answer, storedData),
       9.18: () => handleQ918(answer, storedData),

@@ -25,7 +25,8 @@ import {
   getIndianTime,
   othersPlaceholders,
   othersSpecify,
-  sendBlobToBackend
+  sendBlobToBackend,
+  noneValues,optionforShow
 } from "../utils/constant";
 
 import InputQuestion from "../components/Questions/InputQuestion";
@@ -50,6 +51,7 @@ import SelectLanguage from "../components/atoms/SelectLanguage";
 import hindi from "../components/translationFiles/QuestionsMapping/hindi";
 import Q9Consent from "../components/Questions/Q9Consent";
 import Introduction from "../components/atoms/Introduction";
+import InputRadio from "../components/Questions/InputRadio";
 
 
 function QuestionForm() {
@@ -300,10 +302,9 @@ const [isTerminating, setIsTerminating] = useState(false);
 
   const handleCheckboxChange = (key, values) => {
  
-  
     const keyValue = key;
     let keyForOtherSpecify = "";
-    let keyForNone = "";
+  
     const currentQuestion = questions[currentQuestionIndex];
     const maxSelections = currentQuestion.maxSelections || 0;
   
@@ -318,21 +319,21 @@ const [isTerminating, setIsTerminating] = useState(false);
         keyForOtherSpecify = option.code;
       }
       
-      if (option.label === "None/Alone" ||  option.label === "कोई नहीं" ) {
-        keyForNone = option.code;
-      }
+     
     });
-  
+    const noneSelectedKeys = currentQuestion.options
+    .filter((option) => noneValues.includes(option.label))
+    .map((option) => option.code);
     // Check if "None" is selected
-    const isNoneSelected = values.includes(keyForNone);
-  
-    // If "None" is selected, deselect all other options
-    if (isNoneSelected) {
-      values = [keyForNone];
+    const selectedNoneValues = values.filter((value) => noneSelectedKeys.includes(value));
+   
+    if (selectedNoneValues.length > 0) {
+      values = selectedNoneValues; // Keep only "None" values
     } else {
-      // Prevent "None" from being selected along with other options
-      values = values.filter((value) => value !== keyForNone);
+      // Ensure "None" values are not selected with other options
+      values = values.filter((value) => !noneSelectedKeys.includes(value));
     }
+    
   
     // Check if "Others (please specify)" is selected
     const isOtherSelected = values.includes(keyForOtherSpecify);
@@ -564,7 +565,7 @@ const [isTerminating, setIsTerminating] = useState(false);
 
   // setMulti(1)
   const handlePrevious = () => {
-    let includesArray = ["2.1", "4.1", "5.1", "5.10", "5.13", "8.1","9.10"];
+    let includesArray = ["2.1", "4.1", "5.1", "5.10", "5.13", "8.1","9.10","1.16","2.1"];
     if (includesArray.includes(currentQuestion.number)) {
       setCurrentQuestionIndex((prevIndex) => {
         let newIndex = prevIndex;
@@ -664,7 +665,7 @@ const [isTerminating, setIsTerminating] = useState(false);
       localStorage.clear()
     } else {
        
-      console.log(message); // Show error message if submission fails
+      // console.log(message); // Show error message if submission fails
     }
   };
   //Terminate
@@ -689,13 +690,7 @@ const [isTerminating, setIsTerminating] = useState(false);
         return true; // Don't disable the button
       }
     }
-    // if (currentQuestion.type === "multiInput") {
-    //   // Check if the first field in `formFieldsStep1` is filled
-    //   const isFirstFieldFilled = storedData[currentQuestion.formFieldsStep1[0].name]?.trim() !== "";
     
-    //   // Return true if the first field is not filled
-    //   return !isFirstFieldFilled;
-    // }
 
     const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
 
@@ -756,7 +751,31 @@ const [isTerminating, setIsTerminating] = useState(false);
     }
     
     
+    if (currentQuestion.type === "InputRadio") {
+      if (currentQuestion.type === "InputRadio") {
 
+        const isUsingApollo=storedData["9.14_isUsingApollo"]
+        const years=storedData["9.14_years"]
+        const months=storedData["'9.14_months"]
+        // If "Not using Apollo Tyres" is selected, allow proceeding
+        if (isUsingApollo === '99') {
+          return false; // Enabled
+        } else if( years == '' || months == ''){
+          return true
+        }
+        else{
+          return false
+        }
+    
+        
+    
+     
+      
+      }
+   
+  
+    }
+    
     if (currentQuestion.options && currentQuestion.type === "multi") {
       if (currentQuestion.maxSelections) {
         return (
@@ -930,6 +949,17 @@ const [isTerminating, setIsTerminating] = useState(false);
           <Text fontSize={{ base: '18px', md: '20px' }} fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>
+          {currentQuestion.subLabel}
+          <Text fontSize="16px" fontWeight={700} mb={3}>
+  {/* Display response for question 9.6 */}
+  {currentQuestion.number === "9.6" ? responses["9.6a"] : ""}
+  
+  {/* Determine the actual answer for question 9.23 */}
+  {currentQuestion.number === "9.23" && (
+  optionforShow.find(option => option.code === responses["9.22"])?.label || ""
+  )}
+</Text>
+
           <FormLabel fontSize={{ base: '16px', md: '20px' }} mb={30} >
             {" "}
             {currentQuestion.number} {currentQuestion.question} 
@@ -937,9 +967,7 @@ const [isTerminating, setIsTerminating] = useState(false);
             {}
             <br />
 
-{currentQuestion.subLabel}
-            {currentQuestion.number === "Q2_b" ? storedData["Q2_a"] : ""}
-            {currentQuestion.number === "Q5" ?   storedData["Q2_a"] +   "   occupation ?" : ""}
+
             
           </FormLabel>
           <Text color="green.500" fontWeight={500}>
@@ -1059,7 +1087,28 @@ const [isTerminating, setIsTerminating] = useState(false);
               mediaFrequencies={mediaFrequencies}
            
             />
-          ) :currentQuestion.type === "Quota" ? (
+          ) :currentQuestion.type === "InputRadio" ? (
+            <InputRadio
+            currentQuestionIndex={currentQuestionIndex}
+              currentQuestion={currentQuestion}
+              responses={responses}
+              othersSpecify={othersSpecify}
+              othersPlaceholders={othersPlaceholders}
+              otherInput={otherInput}
+              setResponses={setResponses }
+              isOther={isOther}
+              mediaChannels={currentQuestion.STATEMENTS}
+              frequencies={currentQuestion.FREQUENCIES}
+              // onRating={handleRating}
+              handleChange={handleChange}
+              setMediaFrequencies={setMediaFrequencies}
+              mediaFrequencies={mediaFrequencies}
+           
+            />
+
+
+            // multiInput
+          ):currentQuestion.type === "Quota" ? (
             <Quota
             currentQuestionIndex={currentQuestionIndex}
               currentQuestion={currentQuestion}
