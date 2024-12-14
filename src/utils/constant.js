@@ -1,5 +1,11 @@
 export const othersSpecify = [
 "Others (Specify)",
+"Any other (Specify)-----------------------",
+"Any Other (Specify__)",
+"Any other (Specify__)",
+"Other (Specify………………………)",
+"Any other (Specify__)",
+
 
 "Others","Any other (Specify )",
 "अन्य (बताएं)","अन्य कोई (बताएं)","कोई अन्य (निर्दिष्ट बताएं)","अन्य (निर्दिष्ट बताएं)","कोई अन्य (बताएं)",
