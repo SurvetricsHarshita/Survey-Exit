@@ -2,6 +2,8 @@ export const othersSpecify = [
 "Others (Specify)",
 
 "Others","Any other (Specify )",
+"अन्य (बताएं)","अन्य कोई (बताएं)","कोई अन्य (निर्दिष्ट बताएं)","अन्य (निर्दिष्ट बताएं)","कोई अन्य (बताएं)",
+"कोई अन्य (निर्दिष्ट बताएं)","इतर (स्पष्ट करा)", "इतर","इतर कोणतेही (स्पष्ट करा)", "इतर ",
 ]
 
 export  const othersPlaceholders = {
@@ -14,7 +16,10 @@ export  const othersPlaceholders = {
 
 
 export  const noneValues=["None/Alone","कोई नहीं", "All of the above",
-  "Have not changed the brand", "Can’t Say",]
+  "Have not changed the brand", "Can’t Say","कोई नहीं/अकेले","नाही/एकटे","वरील सर्व",
+                "ब्रँड बदलला नाही",
+               
+                "सांगू शकत नाही",]
 
   export  const  optionforShow=[
     { label: "Very much", code: "1" },

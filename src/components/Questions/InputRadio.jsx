@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Radio, RadioGroup, Stack, Input, Text, FormControl, FormLabel } from '@chakra-ui/react';
 
-function InputRadio({ setResponses }) {
+function InputRadio({ setResponses ,currentQuestion}) {
   const [isUsingApollo, setIsUsingApollo] = useState('');
   const [years, setYears] = useState('');
   const [months, setMonths] = useState('');
@@ -28,14 +28,14 @@ function InputRadio({ setResponses }) {
     <Box p={4}>
       <RadioGroup onChange={handleRadioChange} value={isUsingApollo}>
         <Stack direction="column">
-          <Radio value="99">Not using Apollo Tyres</Radio>
-          <Radio value="other">Yes, using Apollo tyres</Radio>
+          <Radio value="99">{currentQuestion.option1}</Radio>
+          <Radio value="other">{currentQuestion.option2}</Radio>
         </Stack>
       </RadioGroup>
 
       <Box mt={4}>
         <FormControl mb={4} isDisabled={isUsingApollo === '99'}>
-          <FormLabel>In Years:</FormLabel>
+          <FormLabel>{currentQuestion.answer1}:</FormLabel>
           <Input
             type="number"
             value={years}
@@ -44,7 +44,7 @@ function InputRadio({ setResponses }) {
           />
         </FormControl>
         <FormControl isDisabled={isUsingApollo === '99'}>
-          <FormLabel>In Months:</FormLabel>
+          <FormLabel>{currentQuestion.answer2}:</FormLabel>
           <Input
             type="number"
             value={months}

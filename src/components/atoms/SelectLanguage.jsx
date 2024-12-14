@@ -25,14 +25,15 @@ function SelectLanguage({handleLanguageSelect }) {
     rounded="lg" // Adds consistent rounding to the Select component
   >
     <option value="en">English</option>
-    <option value="en">Hindi</option>
+    <option value="hi">Hindi</option>
+    <option value="mar">Marathi</option>
     {/* <option value="ben">Bengali</option>
     <option value="tel">Telugu</option>
     <option value="guj">Gujarati</option>
     <option value="kan">Kannada</option>
     <option value="mal">Malayalam</option>
     <option value="odi">Odia</option> */}
-    <option value="en">Tamil</option>
+    {/* <option value="en">Tamil</option> */}
   </Select>
 </VStack>
 

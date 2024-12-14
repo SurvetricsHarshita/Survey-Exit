@@ -52,10 +52,15 @@ import hindi from "../components/translationFiles/QuestionsMapping/hindi";
 import Q9Consent from "../components/Questions/Q9Consent";
 import Introduction from "../components/atoms/Introduction";
 import InputRadio from "../components/Questions/InputRadio";
+import marathi from "../components/translationFiles/QuestionsMapping/marathi";
+
 
 
 function QuestionForm() {
-  const { Section1, Section2 ,Section3} = products || {};  // Add fallback to prevent destructuring null
+  const { Section1, Section2 ,Section3} = products || {}; 
+  const { Section1: HiSection1, Section2: HiSection2,Section3: HiSection3 } = hindi || {}; 
+  const { Section1:MiSection1, Section2: MiSection2,Section3: MiSection3 } =marathi|| {}; 
+  // Add fallback to prevent destructuring null
   // Add fallback to prevent destructuring null
 const { isOpen, onOpen, onClose } = useDisclosure();
 const [isTerminating, setIsTerminating] = useState(false);
@@ -146,14 +151,20 @@ const [isTerminating, setIsTerminating] = useState(false);
       case "en":
         setSections([Section1, Section2,Section3]);
         break;
-        // case "hi":
-        //   setSections([
-        //     HiSection1,
-        //     HiSection2,
-         
-        //   ]);
-        // break;
-
+        case "hi":
+          setSections([
+            HiSection1,
+            HiSection2,
+            HiSection3
+          ]);
+        break;
+        case "mar":
+          setSections([
+            MiSection1,
+            MiSection2,
+            MiSection3
+          ]);
+        break;
       default:
         setSections([Section1, Section2,Section3]);; // Default to English if no match
         break;

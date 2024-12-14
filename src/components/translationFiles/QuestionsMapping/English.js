@@ -1432,7 +1432,7 @@ const English = {
           "code": "3"
         }
       ],
-      "checkask": true
+   
     },
     "5.13": {
       "number": 5.13,
@@ -2698,33 +2698,16 @@ const English = {
         
       ]
     },
-   "9.14a+b": {
+ 
+    "9.14a+b": {
       "number": "9.14a+b",
       "question": "If using Apollo tyres currently, from how long you are using this brand",
       type:"InputRadio",
-     
-      // "type": "multiInput",
-   
-
-      // formFieldsStep1: [
-      //   { name: "9.14_months", placeholder: "in months" ,type:"number"},
-      //   { name: "9.14_years", placeholder: "in years" ,type:"number"},
-       
-      // ],
-
-
-      // languageText: {
-
-      //   en: {
-      //     // title: "Respondent Demographic",
-      //     months:"months",
-      //     years:"years"
-
-      //   },
-
-      //   isCompulsory: true,
-      //   // anwerNeed:all
-      // },
+     answer1:"In Years",
+     answer2:"In Months",
+    option1:"Not using Apollo Tyres",
+     option2:"Yes, using Apollo tyres"
+    
 
     },
   
