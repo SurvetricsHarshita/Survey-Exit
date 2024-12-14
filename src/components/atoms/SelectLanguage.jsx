@@ -27,6 +27,7 @@ function SelectLanguage({handleLanguageSelect }) {
     <option value="en">English</option>
     <option value="hi">Hindi</option>
     <option value="mar">Marathi</option>
+    <option value="ass">Assamese</option>
     {/* <option value="ben">Bengali</option>
     <option value="tel">Telugu</option>
     <option value="guj">Gujarati</option>

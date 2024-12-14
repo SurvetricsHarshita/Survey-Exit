@@ -53,6 +53,7 @@ import Q9Consent from "../components/Questions/Q9Consent";
 import Introduction from "../components/atoms/Introduction";
 import InputRadio from "../components/Questions/InputRadio";
 import marathi from "../components/translationFiles/QuestionsMapping/marathi";
+import assamese from "../components/translationFiles/QuestionsMapping/assamese";
 
 
 
@@ -60,6 +61,7 @@ function QuestionForm() {
   const { Section1, Section2 ,Section3} = products || {}; 
   const { Section1: HiSection1, Section2: HiSection2,Section3: HiSection3 } = hindi || {}; 
   const { Section1:MiSection1, Section2: MiSection2,Section3: MiSection3 } =marathi|| {}; 
+  const { Section1:AssSection1, Section2: AssSection2,Section3: AssSection3 } =assamese|| {}; 
   // Add fallback to prevent destructuring null
   // Add fallback to prevent destructuring null
 const { isOpen, onOpen, onClose } = useDisclosure();
@@ -163,6 +165,13 @@ const [isTerminating, setIsTerminating] = useState(false);
             MiSection1,
             MiSection2,
             MiSection3
+          ]);
+        break;
+        case "ass":
+          setSections([
+            AssSection1,
+            AssSection2,
+            AssSection3
           ]);
         break;
       default:

@@ -12,7 +12,7 @@ const marathi = {
 
     },
     "Qconsent": {
-      "number": "Qconsent",
+      "number": "QConsent",
       "question": "तुम्ही या अभ्यासात सहभागी होण्यास इच्छुक आहात का?",
       "type": "radio",
       "options": [
