@@ -928,14 +928,14 @@ function QuestionForm() {
 
 
   // Update the language state and immediately update localStorage
-  const handleLanguageSelect = (event) => {
-    const selectedLanguage = event.target.value;
-    setLanguage(selectedLanguage);
+  // const handleLanguageSelect = (event) => {
+  //   const selectedLanguage = event.target.value;
+  //   setLanguage(selectedLanguage);
 
 
-    localStorage.setItem('selectedLanguage', JSON.stringify(selectedLanguage)); // Store French as the selected language
+  //   localStorage.setItem('selectedLanguage', JSON.stringify(selectedLanguage)); // Store French as the selected language
 
-  };
+  // };
 
   function handleCancel() {
     setCurrentQuestionIndex((prev) => prev - 1);
@@ -1280,10 +1280,10 @@ function QuestionForm() {
             </ModalContent>
           </Modal>
           {/* Language Selector */}
-          <SelectLanguage
+          {/* <SelectLanguage
             handleLanguageSelect={handleLanguageSelect}
             w={{ base: '100%', md: 'auto' }} // Full width on smaller screens
-          />
+          /> */}
 
           {/* Next/Submit Buttons */}
           {currentQuestionIndex < questions.length - 1 ? (
