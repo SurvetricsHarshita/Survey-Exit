@@ -1,5 +1,4 @@
 
-
 const English = {
   Section1: {
     "1.1": {
@@ -229,6 +228,7 @@ const English = {
     },
     "1.11": {
       "number": 1.11,
+      checkAsk:true,
       "question": "In your current visit how many person(s) did you meet? ",
       "type": "multi",
       "options": [

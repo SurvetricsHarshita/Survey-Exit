@@ -31,23 +31,12 @@ function useAsk() {
     }
     return false;
   }
-
-
-
-
   function handleQ13(answer) {
-    
-
     if (answer == "1" ) {
       return false;
     }
     return true;
   }
-
-
-
-
-
   function handleQ37(answer) {
     
 console.log(answer)
