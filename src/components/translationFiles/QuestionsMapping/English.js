@@ -1331,7 +1331,7 @@ const English = {
           "value": "2"
         },
         {
-          ";abel": "Very Bad",
+          "label": "Very Bad",
           "value": "1"
         },
         {
