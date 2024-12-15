@@ -90,7 +90,7 @@ const English = {
       "number": 1.5,
       "question": "How many times you have visited this center (clinic) in past? ",
       "type": "radio",
-      checkAsk:true,
+      
       "options": [
         {
           "label": "This is the first time",
@@ -107,16 +107,18 @@ const English = {
       ]
     },
     "1.6": {
-      "number": 1.6,
+      "number": "1.6",
       "question": "When was the first time you visited this center (clinic)?",
       "type": "input",
+      // checkAsk:true,
+      // nextStep:2,
       "inputType": "number",
       "inputLimit": 4,
       placeHolder: "_ _ _ _ ",
       label:"please mention in years like(2000)"
     },
     "1.7": {
-      "number": 1.7,
+      "number": "1.7",
       "question": "On any other visit to this clinic, have you ever got your blood tested?",
       "type": "radio",
       "options": [
@@ -1349,6 +1351,5 @@ const English = {
       "type": "input"
     }
   }
-
 }
 export default English;

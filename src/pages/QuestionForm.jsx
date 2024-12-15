@@ -306,8 +306,9 @@ function QuestionForm() {
         setTerminate(terminate);
       }
       if (currentQuestion.checkAsk) {
-        const display = isAsk(currentQuestion.number, storedData);
+        const display = isAsk(currentQuestion.number, value, storedData);
         setAsk(display);
+        console.log(storedData);
       }
       if (othersSpecify.includes(value)) {
         // If "Others" is selected in any language, keep the previous input if available
@@ -404,30 +405,18 @@ function QuestionForm() {
   };
 
   const handleNext = async () => {
-
-
-
-
-
-
     if (currentQuestion.autoCodeQuestion) {
-
-
       setResponses((prev) => {
         const updatedResponses = { ...prev };
-
         // Retrieve stored data from localStorage
         const storedData = JSON.parse(localStorage.getItem('ProductsTest')) || {};
         const selectedCode = prev[currentQuestion.number]; // assuming the selected code is saved in prev[currentQuestion.number]
-
         if (currentQuestion.number === "Q2_c") {
           // Get Q2_c value from prev and Q2_b from storedData
           const Q2_c = storedData["Q2_c"];
           const Q2_b = storedData["Q2_b"];
-
           // Ensure Q2_b is a valid number (it might be a string)
           const Q2_bValue = parseInt(Q2_b, 10); // Convert Q2_b to a number
-
           // Calculate the row index based on Q2_c length
           let row = Q2_c.length;
           if (row >= 9) row = 9; // Ensure the row does not exceed 9
@@ -463,11 +452,9 @@ function QuestionForm() {
       })
 
     }
-
-
-
-
-
+    if(currentQuestion.number==1.6 && storedData["1.5"]==1){
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
     if (terminate) {
       alert("terminated");
       // onOpen()
@@ -587,7 +574,7 @@ function QuestionForm() {
 
   // setMulti(1)
   const handlePrevious = () => {
-    let includesArray = ["2.1", "4.1", "5.1", "5.10", "5.13", "8.1", "9.10", "1.16", "2.1"];
+    let includesArray = [ "1.8"];
     if (includesArray.includes(currentQuestion.number)) {
       setCurrentQuestionIndex((prevIndex) => {
         let newIndex = prevIndex;
