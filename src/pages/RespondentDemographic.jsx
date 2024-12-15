@@ -282,7 +282,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
           
 
 
-          <FormLabel mt={4}>City</FormLabel>
+          <FormLabel>City</FormLabel>
           <Select
             name="City"
             value={formData.City || ""}
