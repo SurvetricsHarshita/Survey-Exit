@@ -91,6 +91,7 @@ const English = {
       "number": 1.5,
       "question": "How many times you have visited this center (clinic) in past? ",
       "type": "radio",
+      checkAsk:true,
       "options": [
         {
           "label": "This is the first time",
@@ -128,6 +129,32 @@ const English = {
           "label": "No",
           "code": "2"
         }
+      ]
+    },
+    "1.8":{
+      number:"1.8",
+      question:"Who referred/told you about this center (clinic) for the first time?",
+      type:"radio",
+      options:[
+        {label:"Who referred/told you about this center (clinic) for the first time?",
+          code:"1"
+        },
+        {label:"Peer educator",
+          code:"2"
+        },
+        {label:"Other colleagues ",
+          code:"3"
+        },
+        {label:"Member of allied population(Tea-shop/Dhaba owners, barbers, roadside mechanics etc) ",
+          code:"4"
+        },
+        {label:"Visited on my own (saw advertisement, IEC material, etc)",
+          code:"5"
+        },
+        {label:"Don’t Remember",
+          code:"6"
+        },
+
       ]
     },
     "1.9": {
@@ -243,13 +270,6 @@ const English = {
         }
       ]
     }
-
-
-
-
-
-
-
   },
   Section2: {
     "2.1": {
@@ -654,8 +674,8 @@ const English = {
     },
     "4.17": {
       "number": 4.17,
-      type:"radio",
-      "question": "What did the doctor prescribe? Multiple code",
+      type:"multi",
+      "question": "What did the doctor prescribe? ",
       "options": [
         {
           "label": "Medicine",
@@ -910,7 +930,7 @@ const English = {
           "code": "2"
         }
       ]
-    },
+    }
   },
   Section6: {
     "6.1": {
@@ -1060,7 +1080,7 @@ const English = {
           "code": "5"
         }
       ]
-    },
+    }
   },
   Section7: {
     "7.1": {
@@ -1132,11 +1152,7 @@ const English = {
           "code": "3"
         },
         {
-          "label": "Not applicable",
-          "code": ""
-        },
-        {
-          "label": "medicine was available",
+          "label": "Not applicable, medicine was available",
           "code": "4"
         },
         {
@@ -1168,32 +1184,16 @@ const English = {
       "type": "radio",
       "options": [
         {
-          "label": "recommended Spectacles",
+          "label": "Yes ",
           "code": "1"
         },
         {
-          "label": "Recommended Eye drop",
+          "label": "No",
           "code": "2"
         },
         {
-          "label": "Recommended Cataract Operation",
+          "label": "Did not observe",
           "code": "3"
-        },
-        {
-          "label": "Recommended Surgery",
-          "code": "4"
-        },
-        {
-          "label": "Recommended some medicine",
-          "code": "5"
-        },
-        {
-          "label": "Mentioned everything is fine",
-          "code": "6"
-        },
-        {
-          "label": "Any other (Specify__)",
-          "code": "7"
         }
       ],
       "section": "SECTION 8: DISPLAY OF IEC MATERIALS AND OTHER AMMENITIES (ASK TO ALL)"
@@ -1325,7 +1325,11 @@ const English = {
           "value": "3"
         },
         {
-          "label": "Bad(2) Very Bad",
+          "label": "Bad",
+          "value": "2"
+        },
+        {
+          ";abel": "Very Bad",
           "value": "1"
         },
         {

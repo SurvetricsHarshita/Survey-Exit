@@ -126,7 +126,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
       "Sadashivanagar",
       "Indranagar",
     ],
-  
+
   };
 
   useEffect(() => {
@@ -171,12 +171,11 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
   const validateForm = () => {
     const requiredFields = [
       ...formFieldsStep1.map((field) => field.name),
-      "TypeofRespondent",
+      // "TypeofRespondent",
       ...(formData.TypeofRespondent === "1" || formData.TypeofRespondent === "2"
         ? ["TypeofRespondentName"]
         : []),
       "City",
-   
     ];
 
     const isComplete = requiredFields.every((field) => formData[field]?.trim());
@@ -235,7 +234,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
       pl={{ base: "10", md: "4", lg: "6" }}
     >
       <Text fontSize="xl" fontWeight="bold" mb={9}>
-      IDENTIFICATION DETAILS
+        IDENTIFICATION DETAILS
       </Text>
 
       {error && (
@@ -253,7 +252,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
         maxWidth="800px"
         mb={8}
       >
-         
+
         {formFieldsStep1.map((field, index) => (
           <div key={index}>
             <FormLabel>{field.placeholder}:</FormLabel>
@@ -266,9 +265,9 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             />
           </div>
         ))}
-         <div>
-          <FormLabel>Type of Respondent</FormLabel>
-          <Select
+        <div>
+          {/* <FormLabel>Type of Respondent</FormLabel> */}
+          {/* <Select
             name="TypeofRespondent"
             value={formData.TypeofRespondent || ""}
             onChange={handleChange}
@@ -279,8 +278,9 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             <option value="">Select</option>
             <option value="a">	Exposed with Apollo Tyres Foundation / designated NGO based health intervention</option>
             <option value="b">	Exposed with non-ATF based health intervention</option>
-            {/* <option value="3">None</option> */}
-          </Select>
+          </Select> */}
+          
+
 
           <FormLabel mt={4}>City</FormLabel>
           <Select
@@ -334,9 +334,9 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             <option value="a">	Exposed with Apollo Tyres Foundation / designated NGO based health intervention</option>
             <option value="b">	Exposed with non-ATF based health intervention</option>
             {/* <option value="3">None</option> */}
-          {/* </Select> */}
+        {/* </Select> */}
 
-          {/* <FormLabel mt={4}>City</FormLabel>
+        {/* <FormLabel mt={4}>City</FormLabel>
           <Select
             name="City"
             value={formData.City || ""}
@@ -353,7 +353,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
             ))}
           </Select> */}
 
-          {/* {formData.City && subAreas[formData.City] && (
+        {/* {formData.City && subAreas[formData.City] && (
             <>
               <FormLabel mt={4}>Sub-Area</FormLabel>
               <Select
@@ -373,7 +373,7 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
               </Select>
             </>
           )} */}
-        {/* </div> */} 
+        {/* </div> */}
         {/* {(formData.TypeofRespondent === "1" || formData.TypeofRespondent === "2") && (
           <div>
             <FormLabel>Enter Name:</FormLabel>
@@ -389,9 +389,9 @@ const RespondentDemographic = ({ handleNext, onComplete }) => {
 
       <Flex mt={10} justify="space-between" gap={10}>
         <PreviousButton onPrev={handlePrevious} />
-        <NextButton onClick={handleSubmit} 
-        isDisabled={!isFormComplete}
-         />
+        <NextButton onClick={handleSubmit}
+          isDisabled={!isFormComplete}
+        />
       </Flex>
     </Flex>
   );

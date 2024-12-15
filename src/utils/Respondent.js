@@ -1,10 +1,8 @@
 export const languageText = {
-
   en: {
     title: "Interveiewer details",
     name: "Name of the Respondent",
-   
-    // address: "Address",
+    address: "Address",
     contact: "Contact number",
     // doorNo: "Door / House / Bldng No.",
     // floorNo: "Floor No.",
@@ -34,6 +32,7 @@ export const languageText = {
 export const formFieldsStep1 = [
   { name: "name", placeholder: "Name of the Respondent" },
   { name: "contact", placeholder: "Contact number",type: "number" ,},
+  {name:"address" , placeholder: "Address"},
   // { name: " City", placeholder: "	Name of City",},
   { name: "interviewerName", placeholder: "	Name of the interviewer" },
   { name: "interviewerId", placeholder: "Interviewer ID" },
