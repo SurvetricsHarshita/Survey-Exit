@@ -1,6 +1,6 @@
 const bengali = {
   Section1: {
-    "1.1": {
+ "1.1": {
       "number": 1.1,
       "question": " পূর্ণ হওয়া বছর হিসাবে বয়স?",
       "type": "input",
@@ -26,6 +26,7 @@ const bengali = {
     "1.3": {
       "number": 1.3,
       "question": "শিক্ষাগত যোগ্যতা অর্জন করেছেন?",
+      "type": "radio",
       "options": [
         {
           "label": "নিরক্ষর",
@@ -74,30 +75,16 @@ const bengali = {
           "label": "হেল্পার",
           "code": "2"
         },
+      
         {
-          "label": "চা-দোকান/ধাবা মালিক",
-          "code": ""
-        },
-        {
-          "label": "নাপিত",
-          "code": ""
-        },
-        {
-          "label": "রাস্তার ধারের মেকানিক্স",
-          "code": ""
-        },
-        {
-          "label": "সাইটে থাকা দোকানে কাজ করেন",
+          "label": "চা-দোকান/ধাবা মালিক,নাপিত,রাস্তার ধারের মেকানিক্স,সাইটে থাকা দোকানে কাজ করেন",
           "code": "3"
         },
         {
           "label": "অন্য কোন (উল্লেখ করুন)------------ -----------",
           "code": "9"
         },
-        {
-          "label": "",
-          "code": ""
-        }
+        
       ]
     },
     "1.5": {
@@ -140,6 +127,31 @@ const bengali = {
           "code": "2"
         }
       ]
+    },  "1.8":{
+      number:"1.8",
+      question:"Who referred/told you about this center (clinic) for the first time?",
+      type:"radio",
+      options:[
+        {label:"Who referred/told you about this center (clinic) for the first time?",
+          code:"1"
+        },
+        {label:"Peer educator",
+          code:"2"
+        },
+        {label:"Other colleagues ",
+          code:"3"
+        },
+        {label:"Member of allied population(Tea-shop/Dhaba owners, barbers, roadside mechanics etc) ",
+          code:"4"
+        },
+        {label:"Visited on my own (saw advertisement, IEC material, etc)",
+          code:"5"
+        },
+        {label:"Don’t Remember",
+          code:"6"
+        },
+
+      ]
     },
     "1.9": {
       "number": 1.9,
@@ -174,31 +186,15 @@ const bengali = {
       "type": "multi",
       "options": [
         {
-          "label": "সাধারণ জ্বর",
-          "code": ""
-        },
-        {
-          "label": "সর্দি ও কাশি",
+          "label": "সাধারণ জ্বর, সর্দি ও কাশি",
           "code": "1"
         },
         {
-          "label": "পিঠে ব্যাথা",
-          "code": ""
-        },
-        {
-          "label": "পেট ব্যাথা",
-          "code": ""
-        },
-        {
-          "label": "মাথা ব্যাথা",
+          "label": "পিঠে ব্যথা, পেট ব্যথা, মাথা ব্যথা",
           "code": "2"
         },
         {
-          "label": "জয়েন্টে ব্যথা",
-          "code": ""
-        },
-        {
-          "label": "পেশী ব্যথা",
+          "label": "জয়েন্টে ব্যথা, পেশী ব্যথা",
           "code": "3"
         },
         {
@@ -244,12 +240,9 @@ const bengali = {
           "label": "যে ব্যক্তি চোখের পরীক্ষা করেছেন",
           "code": "4"
         },
+       
         {
-          "label": "যে ব্যক্তি র‍্যান্ডম ব্লাড সুগার চেক করেছেন",
-          "code": ""
-        },
-        {
-          "label": "যদি ডাক্তার দ্বারা চেক না করা হয়",
+          "label": "যে ব্যক্তি র‍্যান্ডম ব্লাড সুগার চেক করেছেন,যদি ডাক্তার দ্বারা চেক না করা হয়",
           "code": "5"
         },
         {
@@ -270,7 +263,7 @@ const bengali = {
         },
         {
           "label": "অন্য কোন (নির্দিষ্ট করুন)----------",
-          "code": ""
+          "code": "11"
         }
       ]
     },
@@ -434,6 +427,7 @@ const bengali = {
     "4.4": {
       "number": 4.4,
       "question": "ডাক্তার দেখানোর আগে আপনাকে কতক্ষণ অপেক্ষা করতে হয়েছিল?",
+      "type": "radio",
       "options": [
         {
           "label": "10 মিনিটের কম",
@@ -479,6 +473,7 @@ const bengali = {
     "4.6": {
       "number": 4.6,
       "question": "আপনি আপনার স্বাস্থ্য সমস্যা সম্পর্কে কোন প্রশ্ন জিজ্ঞাসা করেছেন?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -493,6 +488,7 @@ const bengali = {
     "4.7": {
       "number": 4.7,
       "question": " ডাক্তার কি আপনার প্রশ্ন/সন্দেহের উত্তর দিতে (বা স্পষ্ট করতে) সক্ষম ছিলেন?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -522,6 +518,7 @@ const bengali = {
     "4.9": {
       "number": 4.9,
       "question": "ক্লিনিকে কি পরীক্ষার জন্য একটি ব্যক্তিগত এলাকা ছিল?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -551,6 +548,7 @@ const bengali = {
     "4.11": {
       "number": 4.11,
       "question": "আপনার মতে ডাক্তারের সার্বিক আচরণ কেমন ছিল?",
+      "type": "radio",
       "options": [
         {
           "label": "রোগী এবং সবকিছু সঠিকভাবে ব্যাখ্যা করেছেন",
@@ -601,6 +599,7 @@ const bengali = {
     "4.13": {
       "number": 4.13,
       "question": "আপনাকে দেওয়া কাউন্সেলিং/পরীক্ষা/নির্ণয়ের মানের পরিপ্রেক্ষিতে আপনি ডাক্তারকে কীভাবে মূল্যায়ন করবেন?",
+      "type": "radio",
       "options": [
         {
           "label": "ভাল",
@@ -634,6 +633,7 @@ const bengali = {
     "4.15": {
       "number": 4.15,
       "question": "পরীক্ষা/আলোচনার সময় ডাক্তার কি মাস্ক পরেছিলেন?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -667,6 +667,7 @@ const bengali = {
     "4.17": {
       "number": 4.17,
       "question": "ডাক্তার কি লিখে দিলেন? একাধিক কোড",
+      "type": "multi",
       "options": [
         {
           "label": "ঔষধ",
@@ -712,6 +713,7 @@ const bengali = {
     "5.1": {
       "number": 5.1,
       "question": "অপটোমেট্রিস্টকে দেখার আগে আপনাকে কতক্ষণ অপেক্ষা করতে হয়েছিল?",
+      "type": "radio",
       "options": [
         {
           "label": "10 মিনিটের কম",
@@ -757,6 +759,7 @@ const bengali = {
     "5.3": {
       "number": 5.3,
       "question": "চোখের দৃষ্টি পরীক্ষা করা হয়েছে কি?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -806,6 +809,7 @@ const bengali = {
     "5.5": {
       "number": 5.5,
       "question": "অপ্টোমেট্রিস্টের সাথে আলোচনাটি কি আপনি বুঝতে পেরেছিলেন?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -932,6 +936,7 @@ const bengali = {
     "6.2": {
       "number": 6.2,
       "question": "ক্লিনিকে কি ল্যাব পরীক্ষার জন্য একটি ব্যক্তিগত এলাকা ছিল?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -966,6 +971,7 @@ const bengali = {
     "6.4": {
       "number": 6.4,
       "question": "ফার্মাসিস্ট/ল্যাব টেকনিশিয়ান কি রক্ত ​​পরীক্ষার সময় হাত ধুয়েছিলেন?",
+      "type": "radio",
       "options": [
         {
           "label": "পরীক্ষার আগে হাত ধুয়েছিলেন",
@@ -1074,6 +1080,7 @@ const bengali = {
     "7.2": {
       "number": 7.2,
       "question": "আপনার মতে ফার্মাসিস্টের সার্বিক আচরণ কেমন ছিল?",
+      "type": "radio",
       "options": [
         {
           "label": "রোগী এবং সঠিকভাবে ওষুধ বিতরণ করেছেন",
@@ -1110,12 +1117,9 @@ const bengali = {
           "label": "কিছুই বলা হয়নি",
           "code": "3"
         },
+      
         {
-          "label": "প্রযোজ্য নয়",
-          "code": ""
-        },
-        {
-          "label": "ওষুধ পাওয়া যায়",
+          "label": "প্রযোজ্য নয়,ওষুধ পাওয়া যায়",
           "code": "4"
         },
         {
@@ -1127,6 +1131,7 @@ const bengali = {
     "7.4": {
       "number": 7.4,
       "question": "আপনাকে ওষুধের ডোজ সম্পর্কে বলা হয়েছিল কি",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -1177,10 +1182,19 @@ const bengali = {
     "8.2": {
       "number": 8.2,
       "question": "ক্লিনিক চত্বরের ভিতরে একটি ওয়াশরুম/বাথরুম/টয়লেট ছিল কি?",
+      "type": "radio",
       "options": [
         {
-          "label": "হ্যাঁ ১ নং 2 পর্যবেক্ষণ করেননি 3",
-          "code": ""
+          "label": "হ্যাঁ",
+          "code": "1"
+        },
+        {
+          "label": "না",
+          "code": "2"
+        },
+        {
+          "label": "পর্যবেক্ষণ করেননি",
+          "code": "3"
         }
       ]
     },
@@ -1206,6 +1220,7 @@ const bengali = {
     "8.4": {
       "number": 8.4,
       "question": "ক্লিনিক চত্বরের ভিতরে রোগীদের জন্য বসার ব্যবস্থা/ওয়েটিং রুম ছিল কি?",
+      "type": "radio",
       "options": [
         {
           "label": "হ্যাঁ",
@@ -1248,36 +1263,36 @@ const bengali = {
       "STATEMENTS": [
         {
           "label": "ডাক্তার দ্বারা পরীক্ষা/নির্ণয়",
-          "id": ""
+          "id": "9.1A"
         },
         {
           "label": "রক্ত ​​পরীক্ষা",
-          "id": ""
+          "id": "9.1B"
         },
         {
           "label": "ওষুধ বিতরণ",
-          "id": ""
+          "id": "9.1C"
         },
         {
           "label": "কর্মীদের আচরণ",
-          "id": ""
+          "id": "9.1D"
         },
         {
           "label": "অপেক্ষার স্থান/রুম",
-          "id": ""
+          "id": "9.1E"
         },
         {
           "label": "ক্লিনিকের মধ্যে পরিষ্কার-পরিচ্ছন্নতা",
-          "id": ""
+          "id": "9.1F"
         },
         {
           "label": "প্রচারমূলক উপকরণ",
-          "id": ""
+          "id": "9.1G"
         }
       ],
       "FREQUENCIES": [
         {
-          "label": "\"সত্যিই ভাল",
+          "label": "সত্যিই ভাল",
           "value": "5"
         },
         {
@@ -1287,14 +1302,17 @@ const bengali = {
         {
           "label": "ঠিক আছে",
           "value": "3"
+        },{
+          "label": "খারাপ",
+          "value": "2"
         },
         {
-          "label": "খারাপ (2) খুব খারাপ",
+          "label": " খুব খারাপ",
           "value": "1"
         },
         {
-          "label": "পারে না মন্তব্য (8) \"",
-          "value": ""
+          "label": "পারে না মন্তব্য ",
+          "value": "8"
         }
       ]
     },

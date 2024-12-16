@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Box, Center } from '@chakra-ui/react';
 
@@ -9,7 +9,7 @@ import SelfieCapture from './components/atoms/SelfieCapture';
 import QuestionForm from './pages/QuestionForm';
 import Terminate from './components/atoms/Terminate';
 import ProtectedRoute from './pages/ProtectedRoute';
-// import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute
+
 
 function App() {
   return (
@@ -28,9 +28,9 @@ function App() {
           <Route
             path="/survey"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <QuestionForm />
-              // </ProtectedRoute>
+               </ProtectedRoute>
             }
           />
           <Route path="/submit" element={<SubmitMsg />} />
