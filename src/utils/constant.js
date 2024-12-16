@@ -123,14 +123,14 @@ export function shuffleArrayWithFixed(array, fixedCodes = [], randomizeOnce = fa
 }
 export const sendBlobToBackend = async (blob) => {
   const formData = new FormData();
-  formData.append("file", blob, "audio.mp4");
-
+  formData.append("file", blob, "audio.mp4"); 
+  
   // formData.append("file", blob, "audio.weblm");
   // Append the blob to FormData with a filename
   // https://fi-backend.vercel.app/add-audio
   // https://pptv-backend.vercel.app/add-audio
   try {
-    const response = await fetch("https://pptv-backend.vercel.app/add-audio", {
+    const response = await fetch("https://three-dec.vercel.app/add-audio", {
       method: "POST",
       body: formData,
     });
