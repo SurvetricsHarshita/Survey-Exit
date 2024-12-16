@@ -835,7 +835,7 @@ function QuestionForm() {
       ) : (
         <FormControl mb={4} >
           {/* subLabel */}
-          <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/>
+          {/* <SelectLanguage handleLanguageSelect ={handleLanguageSelect }/> */}
           <Text fontSize={{ base: '18px', md: '20px' }} fontWeight={700} mb={30}>
             {currentQuestion.section}
           </Text>
