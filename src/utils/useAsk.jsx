@@ -3,7 +3,7 @@ let display = "";
 function useAsk() {
   function isAsk(question, answer, storedData) {
     const questionHandlers = {
-      // "1.6":()=>handleQ1_6(answer, storedData)
+      "1.6":()=>handleQ1_6(question, answer, storedData)
       // 1.11:()=> handle4_11(answer, storedData)
     };
 
@@ -16,13 +16,16 @@ function useAsk() {
     }
     return false;
   }
-  // function handleQ1_6(answer, storedData) {
-  //   const Q5 = storedData["1.5"]
-  //   console.log(storedData);
-  //   console.log(Q5);
-  //   if(Q5==2 || Q5==3) return false;
-  //   else true;
-  // }
+  function handleQ1_6( question, answer,storedData) {
+    const Q5 = storedData["1.5"]
+    console.log(storedData,"fron checkAsk");
+    console.log(Q5);
+    if (Q5 == "2 " || Q5 == "3") {
+      return true; // Proper return for this condition
+  } else {
+      return true; // Explicitly return true for the else case as well
+  }
+  }
 
 //   function handleQ13(answer) {
 //     if (answer == "1" ) {

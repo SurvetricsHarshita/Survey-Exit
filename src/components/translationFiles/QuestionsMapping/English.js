@@ -110,8 +110,8 @@ const English = {
       "number": "1.6",
       "question": "When was the first time you visited this center (clinic)?",
       "type": "input",
-      // checkAsk:true,
-      // nextStep:2,
+      checkAsk:true,
+      nextStep:2,
       "inputType": "number",
       "inputLimit": 4,
       placeHolder: "_ _ _ _ ",
@@ -272,8 +272,8 @@ const English = {
         }
       ]
     }
-  },
-  Section2: {
+,
+
     "2.1": {
       "number": 2.1,
       "question": "How much time did you have to wait for registration?",
@@ -386,8 +386,7 @@ const English = {
       ]
     },
 
-  },
-  Section4: {
+
     "4.1": {
       "number": 4.1,
       "question": "Were you physically examined, diagnosed by the doctor inside the clinic",
@@ -720,8 +719,7 @@ const English = {
         }
       ]
     },
-  },
-  Section5: {
+  
     "5.1": {
       "number": 5.1,
       type:"radio",
@@ -933,8 +931,7 @@ const English = {
         }
       ]
     }
-  },
-  Section6: {
+,
     "6.1": {
       "number": 6.1,
       "question": "How much time did you have to wait before you could see the Lab Technician?",
@@ -1083,8 +1080,7 @@ const English = {
         }
       ]
     }
-  },
-  Section7: {
+,
     "7.1": {
       "number": 7.1,
       "question": "How much time did you have to wait before you could see the Pharmacist?",
@@ -1178,8 +1174,7 @@ const English = {
         }
       ]
     },
-  },
-  Section8: {
+
     "8.1": {
       "number": 8.1,
       "question": "Were there any glow sign board/poster/other PoPs on STI, HIV/AIDS visible inside the clinic / counsellor’s / doctor’s chamber? ",
@@ -1276,8 +1271,7 @@ const English = {
         }
       ]
     },
-  },
-  Section9: {
+
     "9.1": {
       "number": 9.1,
       "question": "There are many processes which you went through inside the ATF Clinic, How would you rate your overall perception of the following indicators? Please Tick mark",
