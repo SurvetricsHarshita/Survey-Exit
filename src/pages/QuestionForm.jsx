@@ -612,6 +612,7 @@ function QuestionForm() {
 
     const { success, message } = await submitDataToAPI(updatedProductTest);
     setSubmiiting(false)
+      navigate("/submit", { state: { msg: "submit" } });
     if (success) {
       navigate("/submit", { state: { msg: "submit" } });
       localStorage.clear()
@@ -1200,4 +1201,4 @@ export default QuestionForm;
 
 
 
-// export default QuestionForm;
+// export default QuestionForm;q
